@@ -11002,6 +11002,10 @@ textarea.form-control-lg {
 .title-selectory {
   display: none;
 }
+quick-ul li a {
+    text-decoration: none;
+    color: black;
+}
 @media (min-width: 992px) and (max-width: 1118px) {
   .input-button {
     position: absolute;
@@ -11045,7 +11049,24 @@ textarea.form-control-lg {
     color: #fff;
   }
 }
-
+.btn-back-to-top {
+    display: none;
+    position: fixed;
+    width: 40px;
+    height: 38px;
+    bottom: 0px;
+    right: 40px;
+    background-color: #ea1010;
+    opacity: 0.5;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
 @media (min-width: 1118px) {
   .input-button {
     width: 45%;
