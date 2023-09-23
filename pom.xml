@@ -21,6 +21,17 @@
             <version>7.0</version>
             <scope>provided</scope>
         </dependency>
+                <dependency>   
+            <groupId>javax.servlet</groupId>
+            <artifactId>jstl</artifactId>
+            <version>1.2</version>
+        </dependency>
+        <dependency> 
+            <groupId>com.microsoft.sqlserver</groupId> 
+            <artifactId>sqljdbc4</artifactId> 
+            <version>4.0</version>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>
