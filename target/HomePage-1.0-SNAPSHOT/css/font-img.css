@@ -1,0 +1,26 @@
+.card-font-img {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.content-font-img table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.content-font-img th,
+.content-font-img td {
+    text-align: center;
+    padding: 10px;
+    word-break: break-word;
+}
+
+.header-font-img-admin {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 20px;
+}
+
+.logo-font-img{
+    font-size: 30px;
+}
