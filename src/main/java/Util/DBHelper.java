@@ -34,7 +34,7 @@ public class DBHelper {
         //2. Create Connection String
         String url ="jdbc:sqlserver://"
                 + "localhost:1433;"
-                + "databaseName=trisy"
+                + "databaseName=BIRD_FARM_SHOP"
                ;
         //3. Open Connection
         Connection con = DriverManager.getConnection(url, "sa", "12345");
