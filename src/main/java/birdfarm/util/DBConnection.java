@@ -17,6 +17,8 @@ import javax.sql.DataSource;
  *
  * @author Admin
  */
+
+
 public class DBConnection {
 
     public static Connection makeConnection()
@@ -42,8 +44,3 @@ public class DBConnection {
         return con;
     }
 }
-
-    /**
-     *
-     * @author HP
-     */

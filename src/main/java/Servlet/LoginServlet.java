@@ -5,8 +5,8 @@
  */
 package Servlet;
 
-import DTODAO.DAO;
-import DTODAO.DTO;
+import birdfarm.dao.UserDAO;
+import birdfarm.dto.UserDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -44,9 +44,9 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("txtPassword");
         String url = LOGIN_PAGE;
         try {
-            DAO dao = new DAO();
+            UserDAO dao = new UserDAO();
                 
-            DTO user = dao.checkLogin(userName, password);
+            UserDTO user = dao.checkLogin(userName, password);
             if (user != null) {
                 url = RESULT_PAGE;
             }
