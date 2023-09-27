@@ -6,6 +6,8 @@
 package birdfarm.controller.admin;
 
 import birdfarm.dao.AdminDAO;
+import birdfarm.dto.AdminDTO;
+import birdfarm.dto.AdminProductDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -19,17 +21,15 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import birdfarm.dto.AdminDTO;
 
 /**
  *
  * @author HP
  */
-@WebServlet(name = "AdminControlAccountServlet", urlPatterns = {"/AdminControlAccountServlet"})
-public class AdminControlAccountServlet extends HttpServlet {
-
-    private final String ADMIN_CONTROL_ACCOUNT_PAGE = "Admin_ControlAccount.jsp";
-    private final String ERROR_PAGE = "error.html";
+@WebServlet(name = "AdminViewProductServlet", urlPatterns = {"/AdminViewProductServlet"})
+public class AdminViewProductServlet extends HttpServlet {
+private final String ADMIN_VIEW_PRODUCT_PAGE = "Admin_ViewProduct.jsp";
+private final String ERROR_PAGE = "error.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -39,18 +39,16 @@ public class AdminControlAccountServlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR_PAGE;
         try {
             AdminDAO dao = new AdminDAO();
-            dao.showAccount();
-            List<AdminDTO> dto = dao.getAccountList();
-            request.setAttribute("ACCOUNT_LIST", dto);
-            url = ADMIN_CONTROL_ACCOUNT_PAGE;
+            dao.showProduct();
+            List<AdminProductDTO> dto = dao.getProductList();
+            request.setAttribute("PRODUCT_LIST", dto);
+            url = ADMIN_VIEW_PRODUCT_PAGE;
 
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
@@ -58,28 +56,27 @@ public class AdminControlAccountServlet extends HttpServlet {
         }
     }
 
-
-// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-/**
- * Handles the HTTP <code>GET</code> method.
- *
- * @param request servlet request
- * @param response servlet response
- * @throws ServletException if a servlet-specific error occurs
- * @throws IOException if an I/O error occurs
- */
-@Override
-        protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminControlAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
-            Logger.getLogger(AdminControlAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AdminControlAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    try {
+        processRequest(request, response);
+    } catch (SQLException ex) {
+        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (NamingException ex) {
+        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     /**
@@ -91,17 +88,17 @@ public class AdminControlAccountServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     @Override
-        protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(AdminControlAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (NamingException ex) {
-            Logger.getLogger(AdminControlAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AdminControlAccountServlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    try {
+        processRequest(request, response);
+    } catch (SQLException ex) {
+        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (NamingException ex) {
+        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     /**
@@ -110,7 +107,7 @@ public class AdminControlAccountServlet extends HttpServlet {
      * @return a String containing servlet description
      */
     @Override
-        public String getServletInfo() {
+    public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
 

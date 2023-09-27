@@ -1,17 +1,19 @@
 <%-- 
-    Document   : Admin_ControlAccount
-    Created on : 18-Sep-2023, 14:30:01
+    Document   : Admin_ViewProduct
+    Created on : 26-Sep-2023, 22:44:21
     Author     : HP
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
 
@@ -60,10 +62,13 @@
 
                     <ul class="nav">
                         <li>
+
                             <a href="DispatchServlet?btAction=AdminControlAccount">
                                 <i class="pe-7s-user"></i>
                                 <p>Tai khoan</p>
                             </a> 
+
+
                         </li>
 
                         <li>
@@ -94,7 +99,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-
+                            <a class="navbar-brand" href="#">Table List</a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left">
@@ -114,40 +119,43 @@
                             <div class="card-font-img">
 
                                 <div class="header-font-img-admin" style="margin-left: 20px;">
-                                    <h4 class="title">Tai khoan</h4>
-                                    <p class="category">Staff & Manager</p>
+                                    <h4 class="title">Products</h4>
+                                    <p class="category">List of Product</p>
                                 </div>
                                 <div class="content-font-img">
-                                    <c:set var="result" value="${requestScope.ACCOUNT_LIST}"/>
+                                    <c:set var="result" value="${requestScope.PRODUCT_LIST}"/>
                                     <c:if test="${not empty result}">
                                         <table>
                                             <thead>
                                                 <tr>
+                                                    <th>STT</th>
                                                     <th>ID</th>
-                                                    <th>Tên đăng nhập</th>
-                                                    <th>Họ và tên</th>
-                                                    <th>Vai trò</th>
-                                                    <th>Mật khẩu</th>
-                                                    <th>Đặt lại</th>
-                                                    <th>Xóa</th>
+                                                    <th>Tên</th>
+                                                    <th>Số lượng</th>
+                                                    <th>Giá bán</th>
+                                                    <th>Tổ chim</th>
+                                                    <th>Trạng thái</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
                                                     <tr>
-                                                        <td>${dto.idUser}</td>
-                                                        <td>${dto.userName}</td>
-                                                        <td>${dto.fullName}</td>
-                                                        <td>${dto.roleName}</td>
-                                                        <td>${dto.password}</td>
-                                                        <td><button>Edit</button></td>
-                                                        <td><button>Delete</button></td>
+                                                        <td style="text-align: center">
+                                                            ${counter.count}
+                                                        </td>
+                                                        <td>${dto.idBird}</td>
+                                                        <td>${dto.name}</td>
+                                                        <td>${dto.quantity}</td>
+                                                        <td>${dto.salePrice}</td>
+                                                        <td>${dto.isBirdNest}</td>
+                                                        <td>${dto.status}</td>
                                                     </tr>
 
                                                 </c:forEach>
                                             </tbody>
                                         </table>
                                     </c:if>
+
                                 </div>
                             </div>
                         </div>
@@ -155,18 +163,15 @@
                     </div>
                 </div>
 
-                <footer class="footer">
-                    <div class="container-fluid">
-
+                <footer class="footer" >
+                    <div class="container-fluid" >
 
                     </div>
                 </footer>
 
 
             </div>
-        </div> 
-
-
+        </div>
 
 
     </body>
@@ -188,5 +193,6 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="js/demo.js"></script>
+
 
 </html>

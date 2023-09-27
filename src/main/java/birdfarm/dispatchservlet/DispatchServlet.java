@@ -21,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "DispatchServlet", urlPatterns = {"/DispatchServlet"})
 public class DispatchServlet extends HttpServlet {
 private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
+private final String ADMIN_VIEW_PRODUCT_CONTROLLER = "AdminViewProductServlet";
+
 private final String LOGIN_PAGE = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,7 +45,8 @@ private final String LOGIN_PAGE = "";
                 //do nothing
             } else if (button.equals("AdminControlAccount")) {
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;            
-            }
+            } else if (button.equals("AdminViewProduct"))
+                url = ADMIN_VIEW_PRODUCT_CONTROLLER;
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

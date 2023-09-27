@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package kajumisu.dto;
+package birdfarm.dto;
 
 import java.io.Serializable;
 
@@ -25,6 +25,14 @@ public class AdminDTO implements Serializable {
         this.password = password;
         this.fullName = fullName;
         this.phoneNumber = phoneNumber;
+        this.roleName = roleName;
+    }
+
+    public AdminDTO(String idUser, String userName, String password, String fullName, String roleName) {
+        this.idUser = idUser;
+        this.userName = userName;
+        this.password = password;
+        this.fullName = fullName;
         this.roleName = roleName;
     }
 
