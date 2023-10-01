@@ -1,7 +1,15 @@
-<!doctype html>
-<html lang="en">
+<%-- 
+    Document   : ManagerViewBill
+    Created on : 01-Oct-2023, 13:28:34
+    Author     : HP
+--%>
 
-    <head>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+       <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -151,22 +159,25 @@
                                                 <th>Tên</th>
                                                 <th>Số điện thoại</th>
                                                 <th>Tổng tiền</th>
-                                                <th></th>
+                                                <th>Ngày</th>
                                             </tr>
                                             <tr class="invoice " onclick="showDetails(1)">
                                                 <td>Nguyễn Văn A</td>
                                                 <td>0123456789</td>
                                                 <td>100,000 VND</td>
+                                                <td>22/22/2022</td>
                                             </tr>
                                             <tr class="invoice" onclick="showDetails(2)">
                                                 <td>Trần Thị B</td>
                                                 <td>0987654321</td>
                                                 <td>200,000 VND</td>
+                                                <td>22/22/2022</td>
                                             </tr>
                                             <tr class="invoice" onclick="showDetails(3)">
                                                 <td>Lê Văn C</td>
                                                 <td>0369876543</td>
-                                                <td>150,000 VND</td>
+                                                <td>150,00000000 VND</td>
+                                                <td>22/22/2022</td>
                                             </tr>
                                         </table>
                                     </div>
@@ -238,18 +249,13 @@
 
     </body>
 
-    <!--   Core JS Files   -->
     <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
-
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src="js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-
     <script src="js/Bill-show-hide.js"></script>
-
-
-
+    
 
 </html>
