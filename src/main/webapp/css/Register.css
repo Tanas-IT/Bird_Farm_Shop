@@ -15,7 +15,7 @@ body{
 .container{
     max-width: 440px;
     padding: 0 20px;
-    margin: 170px auto;
+    margin: 100px auto;
 }
 .wrapper{
     width: 100%;
@@ -39,7 +39,7 @@ body{
 }
 .wrapper form .row{
     height: 45px;
-    margin-bottom: 15px;
+    margin-bottom: 180px;
     position: relative;
 }
 .wrapper form .row input{
@@ -107,13 +107,5 @@ form .button input:hover{
 form .signup-link a:hover{
     text-decoration: underline;
 }
-form .google{
-    border: 1px solid #007bff;
-    text-align: center;
-    background: white;
-    padding: 10px;
-    color: white;
-    text-decoration: none;
-    border-radius: 6px;
+
     
-}
