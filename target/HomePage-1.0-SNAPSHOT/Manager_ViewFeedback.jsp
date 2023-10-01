@@ -1,17 +1,19 @@
 <%-- 
-    Document   : Admin_ControlAccount
-    Created on : 18-Sep-2023, 14:30:01
+    Document   : Manager_ViewFeedback
+    Created on : 27-Sep-2023, 23:37:09
     Author     : HP
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
 
@@ -53,30 +55,53 @@
                     </div>
 
                     <div class="user-image" style="text-align: center;">
-                        <i class="pe-7s-user" style="font-size: 100px;"></i>
+                        <i class="pe-7s-user" style="font-size: 40px;"></i>
                         <p>Nguyen Duc Anh</p>
-                        <p>Admin</p>
+                        <p>Manager</p>
                     </div>
 
                     <ul class="nav">
+                        
                         <li>
-                            <a href="DispatchServlet?btAction=AdminControlAccount">
-                                <i class="pe-7s-user"></i>
-                                <p>Tai khoan</p>
-                            </a> 
-                        </li>
-
-                        <li>
-                            <a href="DispatchServlet?btAction=AdminViewProduct">
-                                <i class="pe-7s-note2"></i>
-                                <p>Danh Muc San Pham</p>
+                            <a href="Don_hang.html">
+                                <i class="pe-7s-news-paper"></i>
+                                <p>Don Hang</p>
                             </a>
                         </li>
-
+                        <li>
+                            <a href="View_Bill.html">
+                                <i class="pe-7s-note2"></i>
+                                <p>Hoa Don</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Thong_ke.html">
+                                <i class="pe-7s-graph1"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="List_of_product.html">
+                                <i class="pe-7s-drawer"></i>
+                                <p>Tat Ca San Pham</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="DispatchServlet?btAction=ManagerViewFeedback">
+                                <i class="pe-7s-repeat"></i>
+                                <p>Feedback</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Update_product.html">
+                                <i class="pe-7s-note"></i>
+                                <p>Cap Nhat San Pham</p>
+                            </a>
+                        </li>
                     </ul>
                     <div style="text-align: center;">
                         <a href="#">
-                            <i class="fa fa-sign-out fa-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
+                            <i class="fa fa-sign-out fa-rotate-180" style="font-size: 20px; margin-top:10px; color: black;"></i>
 
                         </a>
                     </div>
@@ -94,7 +119,7 @@
                                 <span class="icon-bar"></span>
                                 <span class="icon-bar"></span>
                             </button>
-
+                            <a class="navbar-brand" href="#">Feedback</a>
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left">
@@ -114,34 +139,32 @@
                             <div class="card-font-img">
 
                                 <div class="header-font-img-admin" style="margin-left: 20px;">
-                                    <h4 class="title">Tai khoan</h4>
-                                    <p class="category">Staff & Manager</p>
+                                    <h4 class="title">Feedback</h4>
+                                    <p class="category">Staff &Manager</p>
                                 </div>
                                 <div class="content-font-img">
-                                    <c:set var="result" value="${requestScope.ACCOUNT_LIST}"/>
+                                    <c:set var="result" value="${requestScope.FEEDBACK_LIST}"/>
                                     <c:if test="${not empty result}">
                                         <table>
                                             <thead>
                                                 <tr>
-                                                    <th>ID</th>
-                                                    <th>Tên đăng nhập</th>
-                                                    <th>Họ và tên</th>
-                                                    <th>Vai trò</th>
-                                                    <th>Mật khẩu</th>
-                                                    <th>Đặt lại</th>
-                                                    <th>Xóa</th>
+                                                    <th>STT</th>
+                                                    <th>Tên</th>
+                                                    <th>Email</th>
+                                                    <th>Phản hồi</th>
+                                                    <th>Ngày</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
                                                     <tr>
-                                                        <td>${dto.idUser}</td>
-                                                        <td>${dto.userName}</td>
+                                                        <td style="text-align: center">
+                                                            ${counter.count}
+                                                        </td>
                                                         <td>${dto.fullName}</td>
-                                                        <td>${dto.roleName}</td>
-                                                        <td>${dto.password}</td>
-                                                        <td><button>Edit</button></td>
-                                                        <td><button>Delete</button></td>
+                                                        <td>${dto.email}</td>
+                                                        <td>${dto.content}</td>
+                                                        <td>${dto.createdDate}</td>
                                                     </tr>
 
                                                 </c:forEach>
@@ -164,13 +187,11 @@
 
 
             </div>
-        </div> 
-
-
+        </div>
 
 
     </body>
-
+    <!--   Core JS Files   -->
     <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
@@ -188,5 +209,4 @@
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
     <script src="js/demo.js"></script>
-
 </html>

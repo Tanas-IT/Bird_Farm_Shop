@@ -60,17 +60,14 @@
 
                     <ul class="nav">
                         <li>
-
                             <a href="DispatchServlet?btAction=AdminControlAccount">
                                 <i class="pe-7s-user"></i>
                                 <p>Tai khoan</p>
                             </a> 
-
-
                         </li>
 
                         <li>
-                            <a href="List_of_product.html">
+                            <a href="DispatchServlet?btAction=AdminViewProduct">
                                 <i class="pe-7s-note2"></i>
                                 <p>Danh Muc San Pham</p>
                             </a>
@@ -126,6 +123,7 @@
                                         <table>
                                             <thead>
                                                 <tr>
+                                                    <th>ID</th>
                                                     <th>Tên đăng nhập</th>
                                                     <th>Họ và tên</th>
                                                     <th>Vai trò</th>
@@ -137,6 +135,7 @@
                                             <tbody>
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
                                                     <tr>
+                                                        <td>${dto.idUser}</td>
                                                         <td>${dto.userName}</td>
                                                         <td>${dto.fullName}</td>
                                                         <td>${dto.roleName}</td>

@@ -24,3 +24,14 @@ C:\Users\Admin\OneDrive\Desktop\SWP391\SWP_Project - Copy\Bird_Farm_Shop\src\mai
 C:\Users\Admin\OneDrive\Desktop\SWP391\SWP_Project - Copy\Bird_Farm_Shop\src\main\java\Util\DBHelper.java
 C:\Users\Admin\OneDrive\Desktop\SWP391\SWP_Project - Copy\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminDTO.java
 C:\Users\Admin\OneDrive\Desktop\SWP391\SWP_Project - Copy\Bird_Farm_Shop\src\main\java\Servlet\LoginServlet.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminViewProductServlet.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dao\AdminDAO.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\util\DBConnection.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dto\ManagerOrderDTO.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminDTO.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminControlAccountServlet.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dao\ManagerDAO.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminProductDTO.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dto\ManagerViewFeedbackDTO.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewFeedbackServlet.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dispatchservlet\DispatchServlet.java

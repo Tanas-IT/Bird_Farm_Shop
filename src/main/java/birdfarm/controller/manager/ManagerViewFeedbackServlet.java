@@ -3,10 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package birdfarm.dispatchservlet;
+package birdfarm.controller.manager;
 
+import birdfarm.dao.AdminDAO;
+import birdfarm.dao.ManagerDAO;
+import birdfarm.dto.AdminDTO;
+import birdfarm.dto.ManagerViewFeedbackDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,14 +27,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "DispatchServlet", urlPatterns = {"/DispatchServlet"})
-public class DispatchServlet extends HttpServlet {
-private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
-private final String ADMIN_VIEW_PRODUCT_CONTROLLER = "AdminViewProductServlet";
-private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
-
-
-private final String LOGIN_PAGE = "";
+@WebServlet(name = "ManagerViewFeedbackServlet", urlPatterns = {"/ManagerViewFeedbackServlet"})
+public class ManagerViewFeedbackServlet extends HttpServlet {
+private final String MANAGER_VIEW_FEEDBACK_PAGE = "Manager_ViewFeedback.jsp";
+private final String ERROR_PAGE = "error.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,21 +41,16 @@ private final String LOGIN_PAGE = "";
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException, NamingException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-
-        //Which button did user click?
-        String button = request.getParameter("btAction");//btaction phai duoc copy va paste vao trong servletlogin
-        String url = LOGIN_PAGE;
+                String url = ERROR_PAGE;
         try {
-            if (button == null) { //trigger welcome file
-                //do nothing
-            } else if (button.equals("AdminControlAccount")) {
-                url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;            
-            } else if (button.equals("AdminViewProduct")){
-                url = ADMIN_VIEW_PRODUCT_CONTROLLER;
-            } else if (button.equals("ManagerViewFeedback"))
-                url = MANAGER_VIEW_FEEDBACK_CONTROLLER;
+            ManagerDAO dao = new ManagerDAO();
+            dao.showFeedback();
+            List<ManagerViewFeedbackDTO> dto = dao.getFeedbackList();
+            request.setAttribute("FEEDBACK_LIST", dto);
+            url = MANAGER_VIEW_FEEDBACK_PAGE;
+
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
@@ -69,7 +69,15 @@ private final String LOGIN_PAGE = "";
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    try {
         processRequest(request, response);
+    } catch (SQLException ex) {
+        Logger.getLogger(ManagerViewFeedbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (NamingException ex) {
+        Logger.getLogger(ManagerViewFeedbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ManagerViewFeedbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     /**
@@ -83,7 +91,15 @@ private final String LOGIN_PAGE = "";
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+    try {
         processRequest(request, response);
+    } catch (SQLException ex) {
+        Logger.getLogger(ManagerViewFeedbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (NamingException ex) {
+        Logger.getLogger(ManagerViewFeedbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(ManagerViewFeedbackServlet.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }
 
     /**
