@@ -129,22 +129,28 @@
                                                     <th>Vai trò</th>
                                                     <th>Mật khẩu</th>
                                                     <th>Đặt lại</th>
-                                                    <th>Xóa</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
+                                                <form action="DispatchServlet">
                                                     <tr>
                                                         <td>${dto.idUser}</td>
-                                                        <td>${dto.userName}</td>
-                                                        <td>${dto.fullName}</td>
+                                                        <td>
+                                                            ${dto.userName}
+                                                            <input type="hidden" name="txtUsername" value="${dto.userName}" />
+                                                        </td>
+                                                        <td>
+                                                            <input type="text" name="txtfullName" value="${dto.fullName}" />
+                                                        </td>
                                                         <td>${dto.roleName}</td>
-                                                        <td>${dto.password}</td>
-                                                        <td><button>Edit</button></td>
-                                                        <td><button>Delete</button></td>
+                                                        <td>
+                                                            <input type="text" name="txtpassword" value="${dto.password}" />
+                                                        </td>
+                                                        <td><input type="submit" value="Update" name="btAction"/></td>
                                                     </tr>
-
-                                                </c:forEach>
+                                                </form>
+                                            </c:forEach>
                                             </tbody>
                                         </table>
                                     </c:if>

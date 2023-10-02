@@ -1,15 +1,15 @@
 <%-- 
-    Document   : ManagerViewBill
-    Created on : 01-Oct-2023, 13:28:34
+    Document   : Manager_ViewBill
+    Created on : 01-Oct-2023, 15:47:10
     Author     : HP
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
-       <head>
+
+    <head>
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -18,7 +18,7 @@
         <meta name="viewport" content="width=device-width" />
 
         <!-- Font & img CSS     -->
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="css/img-font.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
 
@@ -69,7 +69,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="Don_hang.html">
+                            <a href="DispatchServlet?btAction=ManagerViewBill">
                                 <i class="pe-7s-note2"></i>
                                 <p>Bill</p>
                             </a>
@@ -154,32 +154,31 @@
 
                                         <label for="searchTerm">Tìm kiếm:</label>
                                         <input type="text" id="searchTerm" name="searchTerm">
-                                        <table>
-                                            <tr>
-                                                <th>Tên</th>
-                                                <th>Số điện thoại</th>
-                                                <th>Tổng tiền</th>
-                                                <th>Ngày</th>
-                                            </tr>
-                                            <tr class="invoice " onclick="showDetails(1)">
-                                                <td>Nguyễn Văn A</td>
-                                                <td>0123456789</td>
-                                                <td>100,000 VND</td>
-                                                <td>22/22/2022</td>
-                                            </tr>
-                                            <tr class="invoice" onclick="showDetails(2)">
-                                                <td>Trần Thị B</td>
-                                                <td>0987654321</td>
-                                                <td>200,000 VND</td>
-                                                <td>22/22/2022</td>
-                                            </tr>
-                                            <tr class="invoice" onclick="showDetails(3)">
-                                                <td>Lê Văn C</td>
-                                                <td>0369876543</td>
-                                                <td>150,00000000 VND</td>
-                                                <td>22/22/2022</td>
-                                            </tr>
-                                        </table>
+                                        <c:set var="result" value="${requestScope.BILL_LIST}"/>
+                                        <c:if test="${not empty result}">
+                                            <table>
+                                                <thead>
+                                                    <tr>
+                                                        <th>OrderID</th>
+                                                        <th>Tên</th>
+                                                        <th>Số điện thoại</th>
+                                                        <th>Ngày mua hàng</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <c:forEach var="dto" items="${result}" varStatus="counter">
+
+                                                        <tr class="invoice" onclick="showDetails(${dto.idOrder})">
+                                                            <td>${dto.idOrder}</td>
+                                                            <td>${dto.fullName}</td>
+                                                            <td>${dto.receiverPhoneNumber}</td>
+                                                            <td>${dto.createdDate}</td>
+                                                        </tr>
+
+                                                    </c:forEach>
+                                                </tbody>
+                                            </table>
+                                        </c:if>                                      
                                     </div>
                                 </div>
 
@@ -188,42 +187,50 @@
                                 <div class="card">
                                     <div class="right-panel">
                                         <div style="font-size: 30px;">Thông tin đơn hàng</div>
-                                        <div id="details-1" class="invoice-details">
-                                            <p>Tên: Nguyễn Văn A</p>
-                                            <p>Số điện thoại: 0123456789</p>
-                                            <p>Ngày mua:</p>
+                                  
+                                             <c:set var="result" value="${requestScope.BILL_DETAIL_LIST}"/>
+                                                <div id="details-${invoice.id}" class="invoice-details">
+                                                    <!-- Invoice details for ID ${invoice.id} -->
+                                                   
+                                                    <c:if test="${not empty result}">
+
+                                                        <p>Tên: ${dto.fullName}</p>
+                                                        <p>Số điện thoại: ${dto.receiverPhoneNumber}</p>
+                                                        <p>Ngày mua: ${dto.createdDate}</p>
+
+                                                        <table>
+                                                            <thead>                                                       
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    <th>Tên chim</th>
+                                                                    <th>Số lượng</th>
+                                                                    <th>Giá</th>                                               
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <c:forEach var="dto" items="${result}" varStatus="counter">
+                                                                    <c:set var="quantity" value="${dto.quantity}" />
+                                                                    <c:set var="price" value="${dto.price}" />
+                                                                    <c:set var="total" value="${total + quantity * price}" />   
+                                                                    <tr class="invoice" onclick="showDetails(${dto.idOrder})">
+                                                                        <td>${counter.count}</td>
+                                                                        <td>${dto.name}</td>
+                                                                        <td>${dto.quantity}</td>
+                                                                        <td>${dto.price}</td>
+                                                                    </tr>
+
+                                                                </c:forEach>
+                                                            </tbody>
+                                                        </table>
+                                                        <div>Tổng tiền: ${total}</div> 
+                                                    </c:if>   
+                                             
+                                        
                                             <!-- Thêm thông tin chi tiết khác của hóa đơn -->
-                                            <table>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Tên chim</th>
-                                                    <th>Số lượng</th>
-                                                    <th>Giá</th>
-                                                </tr>
-                                                <tr>
-                                                    <td>1</td>
-                                                    <td>Chào mèo</td>
-                                                    <td>10</td>
-                                                    <td>100,000 VND</td>
-                                                </tr>
-                                            </table>
-                                            <div>Tổng tiền</div>
+                                                                                        
                                             <button class="cancel" onclick="hideDetails(1)">Hủy</button>
                                         </div>
-                                        <div id="details-2" class="invoice-details">
-                                            <p>Tên: Trần Thị B</p>
-                                            <p>Số điện thoại: 0987654321</p>
-                                            <p>Tổng tiền mua hàng: 200,000 VND</p>
-                                            <!-- Thêm thông tin chi tiết khác của hóa đơn -->
-                                            <button class="cancel" onclick="hideDetails(2)">Hủy</button>
-                                        </div>
-                                        <div id="details-3" class="invoice-details">
-                                            <p>Tên: Lê Văn C</p>
-                                            <p>Số điện thoại: 0369876543</p>
-                                            <p>Tổng tiền mua hàng: 150,000 VND</p>
-                                            <!-- Thêm thông tin chi tiết khác của hóa đơn -->
-                                            <button class="cancel" onclick="hideDetails(3)">Hủy</button>
-                                        </div>
+
                                     </div>
                                 </div>
 
@@ -249,13 +256,35 @@
 
     </body>
 
+    <!--   Core JS Files   -->
     <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
+
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
     <script src="js/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
-    <script src="js/Bill-show-hide.js"></script>
-    
+
+    <script>
+                                                function showDetails(id) {
+                                                    // Ẩn tất cả các chi tiết hóa đơn
+                                                    var details = document.getElementsByClassName("invoice-details");
+
+                                                    for (var i = 0; i < details.length; i++) {
+                                                        details[i].classList.remove("active");
+                                                    }
+
+                                                    // Hiển thị chi tiết hóa đơn tương ứng với id được truyền vào
+                                                    var detail = document.getElementById("details-" + id);
+                                                    detail.classList.add("active");
+                                                }
+
+                                                function hideDetails(id) {
+                                                    // Ẩn chi tiết hóa đơn tương ứng với id được truyền vào
+                                                    var detail = document.getElementById("details-" + id);
+                                                    detail.classList.remove("active");
+                                                }
+    </script>
+
 
 </html>

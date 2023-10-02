@@ -22,7 +22,14 @@ import javax.servlet.http.HttpServletResponse;
 public class DispatchServlet extends HttpServlet {
 private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
 private final String ADMIN_VIEW_PRODUCT_CONTROLLER = "AdminViewProductServlet";
+private final String ADMIN_UPDATE_ACCOUNT_CONTROLLER = "AdminUpdateAccountServlet";
+
+
 private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
+private final String MANAGER_VIEW_BILL_CONTROLLER = "ManagerViewBillServlet";
+private final String MANAGER_VIEW_PRODUCT_CONTROLLER = "ManagerViewProductServlet";
+
+
 
 
 private final String LOGIN_PAGE = "";
@@ -49,8 +56,18 @@ private final String LOGIN_PAGE = "";
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;            
             } else if (button.equals("AdminViewProduct")){
                 url = ADMIN_VIEW_PRODUCT_CONTROLLER;
-            } else if (button.equals("ManagerViewFeedback"))
+            }  else if (button.equals("Update")){
+                url = ADMIN_UPDATE_ACCOUNT_CONTROLLER;  
+                
+                
+                
+                
+            } else if (button.equals("ManagerViewFeedback")){
                 url = MANAGER_VIEW_FEEDBACK_CONTROLLER;
+            } else if (button.equals("ManagerViewBill")){
+                url = MANAGER_VIEW_BILL_CONTROLLER;} 
+            else if (button.equals("ManagerViewProduct"))
+                url = MANAGER_VIEW_PRODUCT_CONTROLLER;
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

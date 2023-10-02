@@ -13,30 +13,17 @@ import java.io.Serializable;
  */
 public class AdminProductDTO implements Serializable {
 
-    private String idBird;
     private String name;
     private int quantity;
-    private float salePrice;
-    private boolean isBirdNest;
-    private boolean status;
+    private Double salePrice;
+    private String lifeExpectancy;
+    private String idBird;
 
-    public AdminProductDTO() {
-    }
-
-    public AdminProductDTO(String idBird, String name, int quantity, float salePrice, boolean isBirdNest, boolean status) {
-        this.idBird = idBird;
+    public AdminProductDTO(String name, int quantity, Double salePrice, String lifeExpectancy, String idBird) {
         this.name = name;
         this.quantity = quantity;
         this.salePrice = salePrice;
-        this.isBirdNest = isBirdNest;
-        this.status = status;
-    }
-
-    public String getIdBird() {
-        return idBird;
-    }
-
-    public void setIdBird(String idBird) {
+        this.lifeExpectancy = lifeExpectancy;
         this.idBird = idBird;
     }
 
@@ -56,30 +43,30 @@ public class AdminProductDTO implements Serializable {
         this.quantity = quantity;
     }
 
-    public float getSalePrice() {
+    public Double getSalePrice() {
         return salePrice;
     }
 
-    public void setSalePrice(float salePrice) {
+    public void setSalePrice(Double salePrice) {
         this.salePrice = salePrice;
     }
 
-    public boolean isIsBirdNest() {
-        return isBirdNest;
+    public String getLifeExpectancy() {
+        return lifeExpectancy;
     }
 
-    public void setIsBirdNest(boolean isBirdNest) {
-        this.isBirdNest = isBirdNest;
+    public void setLifeExpectancy(String lifeExpectancy) {
+        this.lifeExpectancy = lifeExpectancy;
     }
 
-    public boolean isStatus() {
-        return status;
+    public String getIdBird() {
+        return idBird;
     }
 
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setIdBird(String idBird) {
+        this.idBird = idBird;
     }
-    
-    
+
+
 
 }

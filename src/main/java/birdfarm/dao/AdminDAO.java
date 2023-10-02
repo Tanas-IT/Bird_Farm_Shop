@@ -45,20 +45,20 @@ public class AdminDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "Select idBird, name, quantity, salePrice, isBirdNest, status "
+                String sql = " Select [idBird] "
+                        + ",[name],[salePrice],[quantity],[lifeExpectancy]\n"
                         + "From BirdProduct";
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     String idBird = rs.getString("idBird");
                     String name = rs.getString("name");
+                    String lifeExpectancy = rs.getString("lifeExpectancy");
+                    Double salePrice = rs.getDouble("salePrice");
                     int quantity = rs.getInt("quantity");
-                    float salePrice = rs.getFloat("salePrice");
-                    boolean isBirdNest = rs.getBoolean("isBirdNest");
-                    boolean status = rs.getBoolean("status");
 
                     AdminProductDTO dto
-                            = new AdminProductDTO(idBird, name, quantity, salePrice, isBirdNest, status);
+                            = new AdminProductDTO(name, quantity, salePrice, lifeExpectancy, idBird);
 
                     if (this.productList == null) {
                         this.productList = new ArrayList<>();
@@ -116,5 +116,45 @@ public class AdminDAO implements Serializable {
                 con.close();
             }
         }
+    }
+
+    public boolean updatePassRole(String username, String password, String fullName)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null; 
+        PreparedStatement stm = null; 
+        boolean result = false;
+
+        try {
+            //1. Make connection
+            con = DBConnection.makeConnection();
+            if (con != null) {
+               
+                String sql = "  Update [User]\n"
+                        + "SET password = ? , fullName = ? \n"
+                        + "Where username = ? ";
+             
+                stm = con.prepareStatement(sql);
+                stm.setString(1, password);
+                stm.setString(2, fullName);
+                stm.setString(3, username);
+            
+                int effectRows = stm.executeUpdate();
+
+                //5. Process
+                if (effectRows > 0) {
+                    result = true;
+                }
+
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
     }
 }

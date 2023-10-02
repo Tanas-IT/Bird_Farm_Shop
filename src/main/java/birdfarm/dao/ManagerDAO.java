@@ -34,6 +34,12 @@ public class ManagerDAO implements Serializable {
     public List<ManagerOrderDTO> getOrderList() {
         return orderList;
     }
+    
+        private List<ManagerOrderDTO> orderListDetail;
+
+    public List<ManagerOrderDTO> getOrderListDetail() {
+        return orderListDetail;
+    }
 
     public void showFeedback()
             throws SQLException, NamingException, ClassNotFoundException {
@@ -79,46 +85,6 @@ public class ManagerDAO implements Serializable {
             }
         }
     }
-
-//    public void showOrder()
-//            throws SQLException, NamingException, ClassNotFoundException {
-//        Connection con = null;
-//        PreparedStatement stm = null;
-//        ResultSet rs = null;
-//
-//        try {
-//            con = DBConnection.makeConnection();
-//            if (con != null) {
-//                String sql = "SELECT O.createdDate, O.Total, U.fullName, C.phoneNumber\n"
-//                        + "FROM [Order] AS O\n"
-//                        + "JOIN [User] AS U ON O.idUser = U.idUser\n"
-//                        + "JOIN Customer AS C ON U.idUser = C.idCustomer;";
-//                stm = con.prepareCall(sql);
-//                rs = stm.executeQuery();
-//                while (rs.next()) {
-//                    String fullName = rs.getString("fullName");
-//                    String phoneNumber = rs.getString("phoneNumber");
-//                    String createdDate = rs.getString("createdDate");
-//                    Double Total = rs.getDouble("Total");
-//                    
-//                    ManagerOrderDTO dto
-//                            = new ManagerOrderDTO(createdDate, Total, fullName, phoneNumber);
-//
-//                    if (this.orderList == null) {
-//                        this.orderList = new ArrayList<>();
-//                    }
-//                    this.orderList.add(dto);
-//                }
-//            }
-//        } finally {
-//            if (stm != null) {
-//                stm.close();
-//            }
-//            if (con != null) {
-//                con.close();
-//            }
-//        }
-//    }
     public void showOrder()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -128,37 +94,26 @@ public class ManagerDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "  SELECT\n"
-                        + "    O.createdDate,\n"
-                        + "    O.Total,\n"
-                        + "    O.deliveryCost,\n"
-                        + "    O.receiverAddress,\n"
-                        + "    O.receiverPhoneNumber,\n"
-                        + "    O.receiverName,\n"
-                        + "    BP.name,\n"
-                        + "    OD.quantity,\n"
-                        + "    OD.price\n"
-                        + "FROM\n"
-                        + "    [Order] AS O\n"
-                        + "    JOIN OrderDetail AS OD ON O.idOrder = OD.idOrder\n"
-                        + "    JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird;";
+                String sql = "SELECT \n"
+                        + "   O.idOrder,\n"
+                        + "   O.createdDate,\n"
+                        + "   O.receiverPhoneNumber, "
+                        + "   u.fullName\n"
+                        + "    FROM\n"
+                        + "   [Order] AS O\n"
+                        + "   Join [User] As u ON u.idUser = O.idUser\n";
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
+                    int idOrder = rs.getInt("idOrder");
                     String createdDate = rs.getString("createdDate");
-                    Double Total = rs.getDouble("Total");
-                    Double deliveryCost = rs.getDouble("deliveryCost");
-                    String receiverAddress = rs.getString("receiverAddress");
                     String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
-                    String receiverName = rs.getString("receiverName");
-                    String name = rs.getString("name");
-                    int quantity = rs.getInt("quantity");
-                    Double price = rs.getDouble("price");
+                    String fullName = rs.getString("fullName");
 
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(createdDate, Total, deliveryCost, 
-                                    receiverAddress, receiverPhoneNumber, receiverName, 
-                                    name, quantity, price);                           
+                            = new ManagerOrderDTO(idOrder, createdDate, 
+                                     receiverPhoneNumber, fullName);
+
                     if (this.orderList == null) {
                         this.orderList = new ArrayList<>();
                     }
@@ -174,4 +129,60 @@ public class ManagerDAO implements Serializable {
             }
         }
     }
+    public void showOrderDetail()
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "SELECT distinct\n"
+                        + "   O.idOrder,\n"
+                        + "   O.createdDate,\n"
+                        + "   O.receiverPhoneNumber, "
+                        + "O.receiverAddress,\n"
+                        + "   u.fullName,\n"
+                        + "   OD.price,\n"
+                        + "   OD.quantity,\n"
+                        + "	BP.name\n"
+                        + "    FROM\n"
+                        + "   [Order] AS O\n"
+                        + "   Join [User] As u ON u.idUser = O.idUser\n"
+                        + "Join [OrderDetail] As OD on O.idOrder = OD.idOrder \n"
+                        + "JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird;";
+                stm = con.prepareCall(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int idOrder = rs.getInt("idOrder");
+                    String createdDate = rs.getString("createdDate");
+                    String receiverAddress = rs.getString("receiverAddress");
+                    String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
+                    String fullName = rs.getString("fullName");
+                    String name = rs.getString("name");
+                    int quantity = rs.getInt("quantity");
+                    Double price = rs.getDouble("price");
+
+                    ManagerOrderDTO dto
+                            = new ManagerOrderDTO(idOrder, createdDate, 
+                                    receiverAddress, receiverPhoneNumber, name, quantity, price, fullName);
+
+                    if (this.orderListDetail == null) {
+                        this.orderListDetail = new ArrayList<>();
+                    }
+                    this.orderListDetail.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+
 }
