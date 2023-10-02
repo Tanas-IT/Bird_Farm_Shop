@@ -23,7 +23,8 @@ public class DispatchServlet extends HttpServlet {
     private final String LOGIN_CONTROLLER = "LoginServlet";
     private static final String LOGIN_PAGE = "Login.jsp";
     private static final String RESULT_PAGE = "paintingList.jsp";
-
+    private final String REGISTER_PAGE = "CreateAccountServlet";
+    private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet"; 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -44,9 +45,12 @@ public class DispatchServlet extends HttpServlet {
             } else if (button.equals("Login")) {
                 
                     url = LOGIN_CONTROLLER;
-
-                } else {
-
+           } else if (button.equals("Register")) {
+                url = REGISTER_PAGE;
+            } else if (button.equals("AdminControlAccount")) {
+                url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;
+            }
+            else {
                     url = LOGIN_PAGE;
                 }
             }

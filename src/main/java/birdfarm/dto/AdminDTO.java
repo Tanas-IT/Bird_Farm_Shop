@@ -27,7 +27,13 @@ public class AdminDTO implements Serializable {
         this.phoneNumber = phoneNumber;
         this.roleName = roleName;
     }
-
+    public AdminDTO(String idUser, String userName, String password, String fullName, String roleName) {
+        this.idUser = idUser;
+        this.userName = userName;
+        this.password = password;
+        this.fullName = fullName;
+        this.roleName = roleName;
+    }
     public AdminDTO() {
     }
 

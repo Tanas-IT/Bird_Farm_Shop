@@ -26,7 +26,8 @@ public class LoginServlet extends HttpServlet {
 
     private static final String LOGIN_PAGE = "Login.jsp";
     private static final String HOME_PAGE = "home.html";
-
+    private static final String ADMIN_PAGE = "Admin_ControlAccount.jsp";
+    private static final String MANAGER_PAGE = "List_of_product.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -47,10 +48,16 @@ public class LoginServlet extends HttpServlet {
             UserDAO dao = new UserDAO();
                 
             UserDTO user = dao.checkLogin(userName, password);
-            if (user == null) {
-                url = LOGIN_PAGE;
-            }else{
-                url= HOME_PAGE;
+            if (user != null) {
+                if(user.getRoleDTO().getRoleName().equals("admin")) {
+                    url = ADMIN_PAGE;
+                } else if(user.getRoleDTO().getRoleName().equals("manager")) {
+                    url = MANAGER_PAGE;
+                } else if(user.getRoleDTO().getRoleName().equals("staff")) {
+                    url = MANAGER_PAGE;
+                } else {
+                   url = HOME_PAGE;
+                }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

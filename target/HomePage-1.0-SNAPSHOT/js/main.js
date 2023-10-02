@@ -1,3 +1,9 @@
+function handleButtonClick(clickedButton) {
+    // Toggle the active state of the clicked anchor tag
+    const buttons = document.querySelectorAll('.nav-link');
+    buttons.forEach(button => button.classList.remove('nav-active'));
+    clickedButton.classList.add('nav-active');
+}
 
 $(document).ready(function ($) {
     "use strict";

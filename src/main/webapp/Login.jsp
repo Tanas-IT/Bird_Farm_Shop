@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title> 
-
+		<link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <link rel="stylesheet" href="css/Google.css">
         <link rel="stylesheet" href="css/Login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
@@ -33,10 +33,10 @@
                     <div class="row button">
                         <input type="submit" value="Login" name="btAction">
                     </div>
-                    <div class="signup-link">Not a member? <a href="Register.html">Register</a></div>
+                    <div class="signup-link">Not a member? <a href="Register.jsp">Register</a></div>
                     <div class="conainer">
-                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8084/SWPLogin/LoginGoogleHandler&response_type=code
-                           &client_id=91807241555-9kgfge8t87k8lheot7cg5gs4u9avused.apps.googleusercontent.com&approval_prompt=force">
+                        <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8084/HomePage/LoginGoogleHandler&response_type=code
+                           &client_id=91807241555-hv99gc5grvs76rj1nv4p26igusmtn6g7.apps.googleusercontent.com&approval_prompt=force">
                             <div class="g-sign-in-button">
                                 <div class="content-wrapper">
                                     <div class="logo-wrapper">

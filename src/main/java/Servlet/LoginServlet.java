@@ -25,7 +25,8 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
     private static final String LOGIN_PAGE = "Login.jsp";
-    private static final String RESULT_PAGE = "paintingList.jsp";
+    private static final String RESULT_PAGE = "home.html";
+    private static final String ADMIN_PAGE = "Admin_ControlAccount.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -48,7 +49,15 @@ public class LoginServlet extends HttpServlet {
                 
             UserDTO user = dao.checkLogin(userName, password);
             if (user != null) {
-                url = RESULT_PAGE;
+                if(user.getRoleDTO().getRoleName().equals("admin")) {
+                    url = ADMIN_PAGE;
+                } else if(user.getRoleDTO().getRoleName().equals("manager")) {
+                    url = ADMIN_PAGE;
+                } else if(user.getRoleDTO().getRoleName().equals("staff")) {
+                    url = ADMIN_PAGE;
+                } else {
+                   url = RESULT_PAGE;
+                }
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

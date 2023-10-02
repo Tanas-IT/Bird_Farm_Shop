@@ -20,8 +20,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DispatchServlet", urlPatterns = {"/DispatchServlet"})
 public class DispatchServlet extends HttpServlet {
-private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
-private final String LOGIN_PAGE = "";
+    private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
+    private final String LOGIN_PAGE = "";
+    private final String REGISTER_PAGE = "CreateAccountServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -43,6 +44,8 @@ private final String LOGIN_PAGE = "";
                 //do nothing
             } else if (button.equals("AdminControlAccount")) {
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;            
+            } else if (button.equals("Register")) {
+                url = REGISTER_PAGE;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

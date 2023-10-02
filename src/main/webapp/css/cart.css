@@ -40,7 +40,7 @@ body {
 
 
 .cart {
-  background-color: #fff;
+  background-color: #ffecec;
   padding: 4vh 4vh;
   border-bottom-left-radius: 1rem;
   border-top-left-radius: 1rem;
@@ -97,6 +97,7 @@ a {
 
 img {
   width: 3.5rem;
+  margin-left: 20px;
 }
 .back-to-shop{
   float: left;

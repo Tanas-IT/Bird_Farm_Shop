@@ -22,24 +22,29 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html" onclick="handleButtonClick(this)">
+                            <a class="nav-link " aria-current="page" href="index.html" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Home</h5>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.jsp" onclick="handleButtonClick(this)">
+                            <a class="nav-link nav-active" href="about.jsp" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">About Us</h5>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle background-hover" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" onclick="DropdownClick(this)">
-                                    <h5 style="display: inline-block" class="background-hover">Bird Pairing</h5>
+                        <li class="nav-item">
+                            <a class="nav-link" href="pairingBird.html" onclick="handleButtonClick(this)">
+                                <h5 class="background-hover">Bird Pairing</h5>
                             </a>
-                            <ul id="myDropdown" class="dropdown-menu-style dropdown-menu" aria-labelledby="navbarDropdown">
+                        </li>
+<!--                        <li class="nav-item dropdown">-->
+<!--                            <a class="nav-link nav-active dropdown-toggle background-hover" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" onclick="DropdownClick(this)">
+                                    <h5 style="display: inline-block" class="background-hover">Bird Pairing</h5>
+                            </a>-->
+<!--                            <ul id="myDropdown" class="nav-activedropdown-menu-style dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-hover dropdown-padding dropdown-item" href="#!">By the store's available</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-hover dropdown-padding dropdown-item" href="#!">Brought by you</a></li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
@@ -63,8 +68,12 @@
                             <span class="badge bg-warning text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
-                    <button type="button" class="btn-login btn btn-primary">Login</button>
-                    <button type="button" class="btn-register btn btn-danger">Register</button>
+                     <button type="button" class="btn-login btn btn-primary">
+                        <a style="text-decoration: none; font-size: 20px; color: #fff;" href="Login.jsp">Login</a>
+                    </button>
+                    <button type="button" class="btn-register btn btn-danger">
+                        <a style="text-decoration: none; font-size: 20px; color: #fff; text-align: center" href="Register.jsp">Register</a>
+                    </button>
                 </div>
             </div>
         </nav>

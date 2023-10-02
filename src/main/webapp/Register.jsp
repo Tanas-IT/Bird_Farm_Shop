@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register</title>
-        <link rel="stylesheet" href="css/Register.css">
+        <link rel="stylesheet" href="css/register.css">
     </head>
     <body>
         <div class="container">
@@ -19,58 +19,80 @@
                 <div class="title"><span>Register</span></div>
                 <form action="DispatchServlet" method="POST">
                     <div class="row">          
-                        <input name="txtUsername" type="text" placeholder="UserName(6-15 chars)" required><br/>
-                        <font color="red">
-                        <%
-                            RegistrationCreateError errors
-                                    = (RegistrationCreateError) request.getAttribute("CREATE_ERROR");
-                            if (errors != null) {
-                                if (errors.getUsernameLengthErr() != null) {
-                        %>
-                        <%=errors.getUsernameLengthErr()%>
-                        <%
+                        <input style="margin-bottom: 10px" name="txtUsername" type="text" placeholder="UserName(6-15 chars)" required><br/>
+                        <div>
+                            <font color="red">
+                            <%
+                                RegistrationCreateError errors
+                                        = (RegistrationCreateError) request.getAttribute("CREATE_ERROR");
+                                if (errors != null) {
+                                    if (errors.getUsernameLengthErr() != null) {
+                            %>
+                            <%=errors.getUsernameLengthErr()%>
+                            <%
+                                    }
                                 }
-                            }
-                        %>
-                        </font>
-                        <input name="txtPassword" type="text" placeholder="Password(8-15 chars)" required><br/>
-                        <font color="red">
-                        <%
-                            if (errors != null) {
-                                if (errors.getPasswordLengthErr() != null) {
-                        %>
-                        <%=errors.getPasswordLengthErr()%>
-                        <%
+                            %>
+                            </font>
+                        </div>
+                        <input style="margin-bottom: 10px" name="txtPassword" type="text" placeholder="Password(8-15 chars)" required><br/>
+                        <div>
+                            <font color="red">
+                            <%
+                                if (errors != null) {
+                                    if (errors.getPasswordLengthErr() != null) {
+                            %>
+                            <%=errors.getPasswordLengthErr()%>
+                            <%
+                                    }
                                 }
-                            }
-                        %>
-                        </font>
-                        <input name="txtConfirm" type="text" placeholder="Confirm Password" required><br/>
-                        <font color="red">
-                        <%
-                            if (errors != null) {
-                                if (errors.getConfirmNotMatched()!= null) {
-                        %>
-                        <%=errors.getConfirmNotMatched()%>
-                        <%
+                            %>
+                            </font>
+                        </div>
+                        <input style="margin-bottom: 10px" name="txtConfirm" type="text" placeholder="Confirm Password" required><br/>
+                        <div>
+                            <font color="red">
+                            <%
+                                if (errors != null) {
+                                    if (errors.getConfirmNotMatched()!= null) {
+                            %>
+                            <%=errors.getConfirmNotMatched()%>
+                            <%
+                                    }
                                 }
-                            }
-                        %>
-                        </font>
-                        <input name="txtEmail" type="text" placeholder="Email" required><br/>
-                        <input name="txtAddress" type="text" placeholder="Address" required><br/>
-                        <input name="txtPhonenumber" type="text" placeholder="Phonenumber" required><br/>
-                         <font color="red">
-                        <%
-                            if (errors != null) {
-                                if (errors.getFullNameLengthErr()!= null) {
-                        %>
-                        <%=errors.getFullNameLengthErr() %>
-                        <%
+                            %>
+                            </font>
+                        </div>
+                         <input style="margin-bottom: 10px" name="txtFullName" type="text" placeholder="FullName" required><br/>
+                         <div>
+                            <font color="red">
+                             <%
+                                if (errors != null) {
+                                    if (errors.getFullNameLengthErr()!= null) {
+                            %>
+                            <%=errors.getFullNameLengthErr()%>
+                            <%
+                                    }
                                 }
-                            }
-                        %>
-                        </font>
+                            %>
+                            </font>
+                         </div>
+                         <input style="margin-bottom: 10px" name="txtEmail" type="email" placeholder="Email" required><br/>
+                        <input style="margin-bottom: 10px" name="txtAddress" type="text" placeholder="Address" required><br/>
+                        <input  style="margin-bottom: 10px" name="txtPhonenumber" type="text" placeholder="Phonenumber" required><br/>
+                        <div> 
+                            <font color="red">
+                            <%
+                                if (errors != null) {
+                                    if (errors.getPhoneNumberLengthErr() != null) {
+                            %>
+                            <%=errors.getPhoneNumberLengthErr() %>
+                            <%
+                                    }
+                                }
+                            %>
+                            </font>
+                        <div> 
                     </div>
                     <div class="row button">
                         <input type="submit" value="Register" name="btAction" />

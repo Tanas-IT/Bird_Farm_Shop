@@ -76,7 +76,7 @@
                     <!-- Team item-->
                     <div class="col-xl-3 col-sm-6 mb-5">
                         <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://avatars.githubusercontent.com/u/77594830?v=4" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                            <h5 class="mb-0 text-black">Khoa Dang Hoang</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+                            <h5 class="mb-0 text-black">Team 3</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
                             <ul class="social mb-0 list-inline mt-3">
                                 <li class="list-inline-item"><a href="https://www.facebook.com/khoahd7621/" class="social-link"><i class="bi bi-facebook"></i></a></li>
                                 <li class="list-inline-item"><a href="https://github.com/khoahd7621" class="social-link"><i class="bi bi-github"></i></a></li>

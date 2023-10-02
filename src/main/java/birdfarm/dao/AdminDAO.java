@@ -15,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
-import kajumisu.dto.AdminDTO;
+import birdfarm.dto.AdminDTO;
 
 /**
  *
@@ -38,22 +38,20 @@ public class AdminDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "SELECT u.idUser, u.userName, u.password, u.fullName, u.phoneNumber, r.roleName "
-                        + "FROM [User] u "
-                        + "JOIN [Role] r ON r.idRole = u.idRole "
-                        + "WHERE r.roleName <> 'customer' ";
-                stm = con.prepareCall(sql);
+                String sql = "Select u.idUser, u.username, u.fullName, u.password, r.roleName From [User] u\n" +
+                            "  JOIN Role r\n" +
+                            "  ON u.idRole = r.idRole";
+                stm = con.prepareStatement(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     String idUser = rs.getString("idUser");
                     String userName = rs.getString("userName");
                     String password = rs.getString("password");
                     String fullName = rs.getString("fullName");
-                    String phoneNumber = rs.getString("phoneNumber");
                     String roleName = rs.getString("roleName");
                     
                     AdminDTO dto
-                            = new AdminDTO(idUser, userName, password, fullName, phoneNumber, roleName);
+                            = new AdminDTO(idUser, userName, password, fullName, roleName);
 
                     if (this.accountList == null) {
                         this.accountList = new ArrayList<>();
@@ -62,6 +60,9 @@ public class AdminDAO implements Serializable {
                 }
             }
         } finally {
+            if(rs != null) {
+                rs.close();
+            }
             if (stm != null) {
                 stm.close();
             }
