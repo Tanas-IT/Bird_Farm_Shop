@@ -5949,10 +5949,10 @@ textarea.form-control-lg {
 .carousel-indicators [data-bs-target] {
   box-sizing: content-box;
   flex: 0 1 auto;
-  width: 30px;
-  height: 3px;
+  width: 10px;
+  height: 10px;
   padding: 0;
-  margin-right: 3px;
+  margin-right: 15px;
   margin-left: 3px;
   text-indent: -999px;
   cursor: pointer;
@@ -5963,6 +5963,7 @@ textarea.form-control-lg {
   border-bottom: 10px solid transparent;
   opacity: 0.5;
   transition: opacity 0.6s ease;
+  border-radius: 50%;
 }
 @media (prefers-reduced-motion: reduce) {
   .carousel-indicators [data-bs-target] {
@@ -10833,6 +10834,7 @@ textarea.form-control-lg {
 }
 .container-header {
     max-width: 100%;
+    background-color: #f3e4e4;
 }
 .background-hover:hover {
     --tw-text-opacity: 1;
@@ -10846,10 +10848,7 @@ textarea.form-control-lg {
     --tw-text-opacity: 1;
     background-color: rgb(62 212 0/var(--tw-text-opacity));
 }
-.input-button {
-    width: 45%;
-    right: 18%;
-}
+
 .dropdown-hover:hover {
     background-color: #ffeba7;
     width: 100%;
@@ -10886,9 +10885,7 @@ textarea.form-control-lg {
     padding-top: 0;
     padding-bottom: 0;
     overflow: hidden;
-    border: 0.5px solid #000;
-    box-shadow: 0,0,0,0.2;
-    display: block;
+    display: none;
     position: absolute;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
@@ -10898,6 +10895,7 @@ textarea.form-control-lg {
 }
 .active-dropdown + .dropdown-menu-style {
         transform: scaleY(1); /* Expand the dropdown smoothly on hover */
+        display: block;
 }
  .rotate::after {
         transform: rotate(0deg); /* Rotate the ::after pseudo-element 90 degrees */
@@ -10915,5 +10913,221 @@ textarea.form-control-lg {
 }
 .btn-search {
     position: absolute !important;
-    right:0;
+    right:-1px;
+}
+.btn-search:hover  {
+  background-color: #7DB32B;
+}
+.btn-search:active {
+  background-color: #7DB32B !important;
+}
+.cart {
+  margin: 10px 0;
+}
+.cart:hover {
+    color: #fff;
+    background-color: #7DB32B;
+    border: 0.5px;
+}
+.slide-containter {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.slider {
+  margin-top: 135px;
+  width: 100%;
+  overflow: hidden;
+
+}
+.img-slider {
+  width: 100%;
+  height: 100%;
+}
+.navbar-sub {
+  font-size: 18px;
+  font-weight: bold;
+}
+#slider-product {
+  position: relative;
+}
+#slider-product-item {
+  transition: all 0.5s ease;
+}
+#prevButton {
+  display: none;
+}
+#nextButton {
+  display: none;
+}
+.slick-initialized .slick-slide {
+  margin-left: 20px;
+}
+.slick-slider .slick-track, .slick-slider .slick-list {
+  transform: translate3d(0, 0, 0);
+  width: 100%;
+}
+.slick-arrow {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-40%);
+  width: 150px;
+  z-index: 2;
+  border: none;
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  align-items: center;
+  line-height: 1;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  border-radius: 50%;
+  padding: 10px 20px;
+}
+.slick-arrow:hover {
+  background-color: #20E3B2;
+  color: white;
+}
+.slick-prev {
+  left: -1.5%;
+  
+}
+.slick-next {
+  right: -1.5%;
+}
+.slick-current .card{
+  border: 3px solid #37c5a4;
+}
+
+.title-selectory {
+  display: none;
+}
+quick-ul li a {
+    text-decoration: none;
+    color: black;
+}
+@media (min-width: 992px) and (max-width: 1118px) {
+  .input-button {
+    position: absolute;
+    width: 71%;
+    top: 73%;
+  }
+  .cart {
+    position: absolute;
+    margin: 0 10px;
+    right: 26%;
+    top: 40%;
+  }
+  .title-selectory {
+    display: none;
+  }
+  .btn-login {
+    width: 100px;
+    margin-right: 30px;
+   }
+   .btn-register {
+     width: 100px;
+   }
+   .nav-item-format {
+    margin:0 20px;
+    margin-top: 18px;
+    width: 180px;
+    height: 50px;
+    display: flex;
+    border: 1px solid #75856b;
+    border-radius: 10px;
+    padding: 0 10px;
+    font-size: 15px;
+    align-items: center;
+  }
+  .nav-item-format:hover {
+    background-color: #7DB32B;
+    border-radius: 10px;
+    cursor:pointer;
+  }
+  .nav-item-format:hover a {
+    color: #fff;
+  }
+}
+.btn-back-to-top {
+    display: none;
+    position: fixed;
+    width: 40px;
+    height: 38px;
+    bottom: 0px;
+    right: 40px;
+    background-color: #ea1010;
+    opacity: 0.5;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    transition: all 0.4s;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+}
+@media (min-width: 1118px) {
+  .input-button {
+    width: 45%;
+    right: 11%;
+  }
+  .cart {
+    position: absolute;
+    margin: 0 10px;
+    right: 16%;
+    top: 40%;
+  }
+  .btn-login {
+   width: 100px;
+   margin-right: 30px;
+  }
+  .btn-register {
+    width: 100px;
+  }
+  .nav-item-format {
+    margin:0 20px;
+    margin-top: 18px;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    border: 1px solid #75856b;
+    border-radius: 10px;
+    padding: 0 10px;
+  }
+  .nav-item-format:hover {
+    background-color: #7DB32B;
+    border-radius: 10px;
+    cursor:pointer;
+  }
+  .nav-item-format:hover a {
+    color: #fff;
+  }
+  #prevButton {
+      display: block;
+      position: absolute; 
+      font-size: 50px; 
+      color: #00ffbf; 
+      top: 50%;
+      left: -3.5%;
+      cursor: pointer;
+    }
+  #nextButton {
+      display: block;
+      position: absolute; 
+      font-size: 50px; 
+      color: #00ffbf; 
+      right: -18%; 
+      top: 50%;
+      cursor: pointer;
+  }
+  .title-selectory {
+    display:block;
+    position:fixed; 
+    margin-top:5.5%;
+    margin-left:4%; 
+    z-index: 101;
+    font-weight: bold;
+    font-size: 23px;
+  }
 }
