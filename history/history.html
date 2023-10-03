@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css">
+  <title>Lịch sử mua hàng</title>
+  <style>
+    /* Tùy chỉnh CSS của bạn */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="mt-4">Lịch sử mua hàng</h1>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Đơn hàng #001</h5>
+            <p class="card-text">
+              <p class="card-text">Ngày mua: 1/10/2023</p>
+              <strong>Sản phẩm:</strong><br>
+              <img src="https://via.placeholder.com/50" alt="">
+              <span>chim chích chèo</span>
+              <span></span>
+              <span>x 2</span>
+              <span>450.000 vnd</span><br>
+              <img src="https://via.placeholder.com/50" alt="">
+              <span>chim chích chèo</span>
+              <span>x 1</span>
+              <span>500.000 vnd</span>
+            </p>
+
+            <p class="card-text">Tổng tiền: 950.000 vnđ</p>
+            <button class="btn btn-danger">Hủy đơn hàng</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Đơn hàng #001</h5>
+            <p class="card-text">
+              <p class="card-text">Ngày mua: 1/10/2023</p>
+              <strong>Sản phẩm:</strong><br>
+              <img src="ely.png" style="height: 50px;width: 50px;" alt="">
+              <span>chim chích chèo</span>
+              <span></span>
+              <span>x 2</span>
+              <span>450.000 vnd</span><br>
+              <img src="ely.png" style="height: 50px;width: 50px;" alt="">
+              <span>chim chích chèo</span>
+              <span>x 1</span>
+              <span>500.000 vnd</span>
+            </p>
+
+            <p class="card-text">Tổng tiền: 950.000 vnđ</p>
+            <button id="cancelBtn" class="btn btn-danger">Đánh giá</button>
+          </div>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <!-- Thêm các đơn hàng khác vào đây -->
+
+  </div>
+  <script>
+    document.getElementById("cancelBtn").addEventListener("click", function() {
+      // Chuyển đến trang khác ở đây
+      window.location.href = "test.html";
+    });
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
