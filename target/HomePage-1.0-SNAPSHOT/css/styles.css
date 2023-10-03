@@ -3633,6 +3633,15 @@ textarea.form-control-lg {
   text-decoration: none;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
 }
+/*.nav-link::after {
+    content: "";
+    width: 2%;
+    position:absolute;
+    height: 3px;
+    --tw-text-opacity: 1;
+    background-color: transparent;
+    transition: background-color 0.3s ease-in-out;
+}*/
 @media (prefers-reduced-motion: reduce) {
   .nav-link {
     transition: none;
@@ -10840,13 +10849,14 @@ textarea.form-control-lg {
     --tw-text-opacity: 1;
     color: rgb(62 212 0/var(--tw-text-opacity)) !important;
 }
-.active::after {
+.nav-active::after {
     content: "";
     width: 2%;
     position:absolute;
     height: 3px;
     --tw-text-opacity: 1;
-    background-color: rgb(62 212 0/var(--tw-text-opacity));
+    transition: background-color 0.3s ease-in-out;
+   background-color: rgb(62 212 0/var(--tw-text-opacity));
 }
 
 .dropdown-hover:hover {
@@ -11063,6 +11073,10 @@ textarea.form-control-lg {
   }
   .btn-register {
     width: 100px;
+  }
+  .btn-logout {
+      width: 105px;
+      margin-left: 10px;
   }
   .nav-item-format {
     margin:0 20px;

@@ -16,7 +16,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
 import birdfarm.dto.AdminDTO;
-import birdfarm.dto.AdminProductDTO;
 
 /**
  *
@@ -109,6 +108,9 @@ public class AdminDAO implements Serializable {
                 }
             }
         } finally {
+            if(rs != null) {
+                rs.close();
+            }
             if (stm != null) {
                 stm.close();
             }

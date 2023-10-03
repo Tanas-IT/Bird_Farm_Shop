@@ -109,8 +109,9 @@
                     </li>
                 </ul>
                 <div style="text-align: center;">
-                    <a href="#">
-                        <i class="pe-7s-back pe-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
+                    <a href="Login.jsp">
+                        <i class="fa fa-sign-out fa-rotate-180" style="font-size: 20px; margin-top:10px; color: black;"></i>
+                                       
                     </a>
                 </div>
             </div>

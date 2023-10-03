@@ -67,7 +67,7 @@
                         </li>
 
                         <li>
-                            <a href="DispatchServlet?btAction=AdminViewProduct">
+                            <a href="List_san_pham.html">
                                 <i class="pe-7s-note2"></i>
                                 <p>Danh Muc San Pham</p>
                             </a>
@@ -75,7 +75,7 @@
 
                     </ul>
                     <div style="text-align: center;">
-                        <a href="#">
+                        <a href="Login.jsp">
                             <i class="fa fa-sign-out fa-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
 
                         </a>

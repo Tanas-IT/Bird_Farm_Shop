@@ -35,11 +35,11 @@ body{
     justify-content: center;
 }
 .wrapper form{
-    padding: 30px 25px 25px 25px;
+    padding: 30px 25px 330px 25px;
 }
 .wrapper form .row{
     height: 45px;
-    margin-bottom: 180px;
+    margin-bottom: 200px;
     position: relative;
 }
 .wrapper form .row input{
@@ -107,5 +107,4 @@ form .button input:hover{
 form .signup-link a:hover{
     text-decoration: underline;
 }
-
     

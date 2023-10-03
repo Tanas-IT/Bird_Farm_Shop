@@ -30,7 +30,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#!" onclick="handleButtonClick(this)">
+                            <a　id="home-link" class="nav-link nav-active" aria-current="page" href="index.html" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Home</h5>
                             </a>
                         </li>
@@ -39,15 +39,18 @@
                                 <h5 class="background-hover">About Us</h5>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle background-hover" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" onclick="DropdownClick(this)">
-                                    <h5 style="display: inline-block" class="background-hover">Bird Pairing</h5>
+                        <li class="nav-item">
+                            <a id="about-link" class="nav-link" href="pairingBird.html" onclick="handleButtonClick(this)">
+                                <h5 class="background-hover">Bird Pairing</h5>
                             </a>
-                            <ul id="myDropdown" class="dropdown-menu-style dropdown-menu" aria-labelledby="navbarDropdown">
+<!--                            <a class="nav-link dropdown-toggle background-hover" id="navbarDropdown" href="pairingBird.html" role="button" data-bs-toggle="dropdown" aria-expanded="false" onclick="DropdownClick(this)">
+                                    <h5 style="display: inline-block" class="background-hover">Bird Pairing</h5>
+                            </a>-->
+<!--                            <ul id="myDropdown" class="dropdown-menu-style dropdown-menu" aria-labelledby="navbarDropdown">
                                 <li><a class="dropdown-hover dropdown-padding dropdown-item" href="#!">By the store's available</a></li>
                                 <li><hr class="dropdown-divider" /></li>
                                 <li><a class="dropdown-hover dropdown-padding dropdown-item" href="#!">Brought by you</a></li>
-                            </ul>
+                            </ul>-->
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
@@ -64,15 +67,25 @@
                         </span>
                     </div>
                     
-                    <form class="d-flex">
+                    <form action="Login.jsp">
                         <button class="cart btn btn-outline-dark" type="submit">
                             <i class="fa-solid fa-cart-shopping"></i>
                             Cart
                             <span class="badge bg-warning text-white ms-1 rounded-pill">0</span>
                         </button>
                     </form>
-                    <button type="button" class="btn-login btn btn-primary">Login</button>
-                    <button type="button" class="btn-register btn btn-danger">Register</button>
+                    
+                    <form action="Login.jsp">
+                        <button type="submit" class="btn-login btn btn-primary">
+                      				Login
+                        </button>
+                    </form>
+                    
+              		<form action="Register.jsp">
+                        <button type="submit" class="btn-register btn btn-danger">
+                      				Register
+                        </button>
+                    </form>
                 </div>
             </div>
            
@@ -130,14 +143,14 @@
                             </div>
                           </div>
                           <div class="carousel-item">
-                            <img src="https://www.freewebheaders.com/wp-content/gallery/birds/cache/amazing-flying-sandhill-crane-bird-website-header.jpg-nggid042719-ngg0dyn-1280x720x100-00f0w010c010r110f110r010t010.jpg" class="d-block  w-100 img-slider" alt="...">
+                            <img src="https://www.freewebheaders.com/wp-content/gallery/birds/cache/pair-of-amazing-colorful-birds-website-header.jpg-nggid042911-ngg0dyn-1280x720x100-00f0w010c010r110f110r010t010.jpg" class="d-block  w-100 img-slider" alt="...">
                             <div class="carousel-caption d-none d-md-block">
                               <h5>Second slide label</h5>
                               <p>Some representative placeholder content for the second slide.</p>
                             </div>
                           </div>
                           <div class="carousel-item">
-                            <img src="https://www.freewebheaders.com/wp-content/gallery/birds/cache/south-african-ducks-lake-website-header.jpg-nggid042723-ngg0dyn-1280x720x100-00f0w010c010r110f110r010t010.jpg" class="d-block w-100 img-slider" alt="Bird image">
+                            <img src="https://www.freewebheaders.com/wp-content/gallery/birds/south-african-ducks-lake-website-header.jpg" class="d-block w-100 img-slider" alt="Bird image">
                             <div class="carousel-caption d-none d-md-block">
                               <h5>Third slide label</h5>
                               <p>Some representative placeholder content for the third slide.</p>
@@ -180,7 +193,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product.html">View options</a></div>
                             </div>
                         </div>
                     </div>
@@ -523,7 +536,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product.html">View options</a></div>
                             </div>
                         </div>
                     </div>
@@ -866,7 +879,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product.html">View options</a></div>
                             </div>
                         </div>
                     </div>
@@ -1034,7 +1047,7 @@
                             </div>
                             <!-- Product actions-->
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
+                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="product.html">View options</a></div>
                             </div>
                         </div>
                     </div>

@@ -3,10 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package birdfarm.controller.login;
+package birdfarm.controller.googlelogin;
 
+import birdfarm.dao.UserDAO;
+import birdfarm.dto.CustomerDTO;
+import birdfarm.dto.GoogleDTO;
+import birdfarm.dto.UserDTO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.UUID;
+import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,6 +27,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "LoginGoogleHandler", urlPatterns = {"/LoginGoogleHandler"})
 public class LoginGoogleHandler extends HttpServlet {
 
+    private final String RESULT_PAGE = "Register.jsp";
+    private final String LOGIN_PAGE = "Login.jsp";
+    private final String HOME_PAGE = "index.html";
+    
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -32,17 +44,36 @@ public class LoginGoogleHandler extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginGoogleHandler</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginGoogleHandler at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String url = HOME_PAGE;
+        String code = request.getParameter("code");
+        try {
+            if (code == null || code.isEmpty()) {
+                RequestDispatcher dis = request.getRequestDispatcher("Login.jsp");
+                dis.forward(request, response);
+            } else {
+                String accessToken = GoogleUtils.getToken(code);
+                GoogleDTO userToken = GoogleUtils.getUserInfo(accessToken);
+                String uniqueID = UUID.randomUUID().toString();
+                String idUser = uniqueID.substring(0, 5);
+                String username = userToken.getEmail();
+                String email = userToken.getEmail();
+                String fullName = userToken.getGiven_name();
+                UserDAO dao = new UserDAO();
+                UserDTO account = new UserDTO(idUser, username, "123", fullName, 4);;
+                CustomerDTO customer = new CustomerDTO(idUser, "123", "123", email);
+                boolean result = dao.createAccount(account);
+                boolean customerResult = dao.createCustomerAccount(customer);
+                if (result && customerResult) {
+                    url = HOME_PAGE;
+                }
+            }
+        } catch (NamingException ex) {
+            log("CreateNewAccount_naming" + ex.getMessage());
+        } catch (SQLException ex) {
+            log("CreateNewAccount_SQL" + ex.getMessage());
+        } finally {
+            RequestDispatcher rd = request.getRequestDispatcher(url);
+            rd.forward(request, response);
         }
     }
 

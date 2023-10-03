@@ -6,6 +6,7 @@
 package birdfarm.controller.login;
 
 import birdfarm.dao.UserDAO;
+import birdfarm.dto.CustomerDTO;
 import birdfarm.dto.UserDTO;
 import birdfarm.util.RegistrationCreateError;
 import java.io.IOException;
@@ -28,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CreateAccountServlet", urlPatterns = {"/CreateAccountServlet"})
 public class CreateAccountServlet extends HttpServlet {
 
-    private final String RESULT_PAGE = "Register.html";
+    private final String RESULT_PAGE = "Register.jsp";
     private final String LOGIN_PAGE = "Login.jsp";
 
     /**
@@ -50,6 +51,9 @@ public class CreateAccountServlet extends HttpServlet {
         String password = request.getParameter("txtPassword");
         String confirm = request.getParameter("txtConfirm");
         String fullName = request.getParameter("txtFullName");
+        String address = request.getParameter("txtAddress");
+        String email = request.getParameter("txtEmail");
+        String phoneNumber = request.getParameter("txtPhonenumber");
         boolean foundErr = false;
         RegistrationCreateError Error = new RegistrationCreateError();
         try {
@@ -70,7 +74,15 @@ public class CreateAccountServlet extends HttpServlet {
             if (fullName.trim().length() < 2
                     || fullName.trim().length() > 20) {
                 foundErr = true;
-                Error.setFullNameLengthErr("Phone number inputed from 10 to 11 characters");
+                Error.setFullNameLengthErr("FullName inputed from 2 to 20 characters");
+            }
+            if(!phoneNumber.matches("^[0-9]{10}$")) {
+                if (phoneNumber.trim().length() < 10 
+                        || fullName.trim().length() > 12) {
+                    foundErr = true;
+                    Error.setPhoneNumberLengthErr("Phone number inputed from 10 to 11 characters");
+                }
+                Error.setPhoneNumberLengthErr("Phone number incorrect format");
             }
             if (foundErr) {
                 request.setAttribute("CREATE_ERROR", Error);
@@ -78,9 +90,11 @@ public class CreateAccountServlet extends HttpServlet {
                 //2.Call DAO
                 UserDAO dao = new UserDAO();
                 UserDTO account = new UserDTO(idUser,username, password, fullName,4);
+                CustomerDTO customer = new CustomerDTO(idUser, address, phoneNumber, email);
                 boolean result = dao.createAccount(account);
+                boolean customerResult = dao.createCustomerAccount(customer);
                 //3.Process Result 
-                if (result) {
+                if (result && customerResult) {
                     url = LOGIN_PAGE;
                 }//Creating action is successful
             }//do nothhing 

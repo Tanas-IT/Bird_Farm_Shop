@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Thêm link Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
+     <link rel="stylesheet" href="css/style.css">
+    <title>Sản phẩm chi tiết</title>
+    <style>
+        .quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .quantity input {
+            width: 50px;
+            text-align: center;
+            margin-bottom: 11px;
+        }
+
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        .container {
+            min-height: 100%;
+            position: relative;
+        }
+
+        .content {
+            padding-bottom: 50px;
+            /* Chiều cao của footer */
+        }
+
+        footer {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            /* Chiều cao của footer */
+        }
+
+        .carousel-item.active {
+            width: auto;
+            height: auto;
+        }
+        .thumbnail {
+		    width: 70px;
+		    height: 70px;
+		    margin-top: 15px;
+		    margin-right: 15px;
+		    
+		}
+	.btn-format {
+	width: 37px;
+    margin-right: 4px;
+    height: 35px;
+    margin-left: 4px;
+    margin-bottom: 11px;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <a class="navbar-brand" href="#">Trang chủ</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Liên hệ</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Nội dung trang -->
+    <div class="container-fluid">
+        <div class="product row flex-row">
+            <div class="col-md-6 order-1 order-md-2">
+                <div class="detail">
+                <h1>Chim chào mào má đỏ</h1>
+                <p>Chim Chào mào má đỏ trưởng thành có kích thước thon gọn, nhỏ bé và có kích thước khoảng 18 – 22cm,
+                    trọng lượng khoảng 70 – 80g. Dưới đây là những đặc điểm nổi bật của chim Chào mào má đỏ: </p>
+                <p>Đầu chim thon dài và khá nhỏ. </p>
+                <p>Mỏ chim nhọn, cứng và hơi quặp.
+                </p>
+                <p>Chào mào má đỏ có đôi mắt tròn, đen nhánh.
+                </p>
+                <p>Thân chim chào mào má đỏ thuôn dài và phần bụng hơi xệ.
+                </p>
+                <p>Màu lông chim nâu đen ở lưng, thân, đầu và đuôi. Bụng chim có màu trắng đục hoặc trắng sáng. Lông gần
+                    hậu môn có màu đỏ và hai bên má màu đỏ.
+                </p>
+            </div>
+                <div><p class="price">Giá: $99.99</p></div>
+                <div class="quantity">
+                    <p class="sl">Số lượng</p>
+                    <button class="btn-format btn btn-secondary" onclick="decreaseQuantity()">-</button>
+                    <input type="number" id="quantityInput" value="1" min="1">
+                    <button class="btn-format btn btn-secondary" onclick="increaseQuantity()">+</button>
+                </div>
+                <div class="product-categories">
+                    <label>Phân loại:</label>
+
+                    <select id="categorySelect">
+                        <option value="category1">chim non</option>
+                        <option value="category2">chim chuyền</option>
+                        <option value="category3">chim trưởng thành</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary">
+                    <i class="pe-7s-cart"></i> Thêm vào giỏ hàng
+                </button>
+            </div>
+            <div class="col-md-6 order-2 order-md-1">
+                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="img/b1.jpg" alt="Ảnh sản phẩm" style="height: 100%;width: 750px;margin-top: 10px;">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="image-thumbnails">
+                    <img class="thumbnail" src="img/b1.jpg" alt="Thumbnail 1">
+                    <img class="thumbnail" src="img/b2.jpg" alt="Thumbnail 2">
+                    <img class="thumbnail" src="img/b3.jpg" alt="Thumbnail 3">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- Footer -->
+    <footer class="bg-danger text-white text-center py-3 fixed-bottom">
+        <p>Bản quyền &copy; Group3.</p>
+    </footer>
+
+    <!-- Thêm script JavaScript -->
+    <script>
+
+        const thumbnails = document.getElementsByClassName("thumbnail");
+
+        // Lặp qua từng thumbnail và gán sự kiện click cho chúng
+        for (let i = 0; i < thumbnails.length; i++) {
+            thumbnails[i].addEventListener("click", function () {
+                // Lấy đường dẫn ảnh từ thuộc tính "src" của thumbnail được click
+                const imageSrc = this.getAttribute("src");
+
+                // Lấy tất cả các carousel item
+                const carouselItems = document.getElementsByClassName("carousel-item");
+
+                // Lặp qua từng carousel item và thay đổi ảnh hiển thị
+                for (let j = 0; j < carouselItems.length; j++) {
+                    const image = carouselItems[j].querySelector("img");
+                    image.setAttribute("src", imageSrc);
+                    // Thay đổi kích thước ảnh trong carousel item
+                    image.style.width = "750px"; // Đặt kích thước chiều rộng theo ý muốn
+                    image.style.height = "495px"; // Đặt chiều cao tự động để giữ tỉ lệ khung hình
+                }
+            });
+        }
+
+        function increaseQuantity() {
+            var input = document.getElementById("quantityInput");
+            var value = parseInt(input.value);
+            value = isNaN(value) ? 0 : value;
+            value++;
+            input.value = value;
+        }
+
+        function decreaseQuantity() {
+            var input = document.getElementById("quantityInput");
+            var value = parseInt(input.value);
+            value = isNaN(value) ? 0 : value;
+            if (value > 1) {
+                value--;
+                input.value = value;
+            }
+        }
+
+
+
+    </script>
+</body>
+
+</html>
