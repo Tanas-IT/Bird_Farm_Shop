@@ -10,8 +10,7 @@ function handleButtonClick(clickedButton) {
         }
     });
     clickedButton.classList.add('active');
-}
-    
+    }
 function DropdownClick(clickedButton) {
         // Toggle the active state of the clicked anchor tag
         const buttons = document.querySelectorAll('.nav-link');
