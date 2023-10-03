@@ -20,19 +20,20 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DispatchServlet", urlPatterns = {"/DispatchServlet"})
 public class DispatchServlet extends HttpServlet {
-private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
-private final String ADMIN_VIEW_PRODUCT_CONTROLLER = "AdminViewProductServlet";
-private final String ADMIN_UPDATE_ACCOUNT_CONTROLLER = "AdminUpdateAccountServlet";
 
+    private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
+    private final String ADMIN_VIEW_PRODUCT_CONTROLLER = "AdminViewProductServlet";
+    private final String ADMIN_UPDATE_ACCOUNT_CONTROLLER = "AdminUpdateAccountServlet";
 
-private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
-private final String MANAGER_VIEW_BILL_CONTROLLER = "ManagerViewBillServlet";
-private final String MANAGER_VIEW_PRODUCT_CONTROLLER = "ManagerViewProductServlet";
+    private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
+    private final String MANAGER_VIEW_BILL_CONTROLLER = "ManagerViewBillServlet";
+    private final String MANAGER_VIEW_DETAIL_BILL_CONTROLLER = "ManagerViewDetailBillServlet";
+    private final String MANAGER_DASHBOARD_CONTROLLER = "ManagerDashBoardServlet";
 
+    private final String MANAGER_VIEW_PRODUCT_CONTROLLER = "ManagerViewProductServlet";
 
+    private final String LOGIN_PAGE = "";
 
-
-private final String LOGIN_PAGE = "";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -53,21 +54,23 @@ private final String LOGIN_PAGE = "";
             if (button == null) { //trigger welcome file
                 //do nothing
             } else if (button.equals("AdminControlAccount")) {
-                url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;            
-            } else if (button.equals("AdminViewProduct")){
+                url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;
+            } else if (button.equals("AdminViewProduct")) {
                 url = ADMIN_VIEW_PRODUCT_CONTROLLER;
-            }  else if (button.equals("Update")){
-                url = ADMIN_UPDATE_ACCOUNT_CONTROLLER;  
-                
-                
-                
-                
-            } else if (button.equals("ManagerViewFeedback")){
+            } else if (button.equals("Update")) {
+                url = ADMIN_UPDATE_ACCOUNT_CONTROLLER;
+
+            } else if (button.equals("ManagerViewFeedback")) {
                 url = MANAGER_VIEW_FEEDBACK_CONTROLLER;
-            } else if (button.equals("ManagerViewBill")){
-                url = MANAGER_VIEW_BILL_CONTROLLER;} 
-            else if (button.equals("ManagerViewProduct"))
+            } else if (button.equals("ManagerViewBill")) {
+                url = MANAGER_VIEW_BILL_CONTROLLER;
+            } else if (button.equals("ManagerViewProduct")) {
                 url = MANAGER_VIEW_PRODUCT_CONTROLLER;
+            } else if (button.equals("DetailBill")) {
+                url = MANAGER_VIEW_DETAIL_BILL_CONTROLLER;
+            } else if (button.equals("Check")) {
+                url = MANAGER_DASHBOARD_CONTROLLER;
+            }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

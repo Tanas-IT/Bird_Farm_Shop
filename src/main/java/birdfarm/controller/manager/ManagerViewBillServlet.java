@@ -31,7 +31,6 @@ import javax.servlet.http.HttpServletResponse;
 public class ManagerViewBillServlet extends HttpServlet {
 
     private final String MANAGER_VIEW_BILL_PAGE = "Manager_ViewBill.jsp";
-    private final String ERROR_PAGE = "error.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,17 +44,13 @@ public class ManagerViewBillServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, NamingException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = ERROR_PAGE;
+        String url = MANAGER_VIEW_BILL_PAGE;
         try {
             ManagerDAO dao = new ManagerDAO();
             dao.showOrder();
             List<ManagerOrderDTO> dto = dao.getOrderList();
-            dao.showOrderDetail();
-            List<ManagerOrderDTO> dtoDetail = dao.getOrderListDetail();
-
-            
             request.setAttribute("BILL_LIST", dto);
-            request.setAttribute("BILL_DETAIL_LIST", dtoDetail);
+            
             url = MANAGER_VIEW_BILL_PAGE;
 
         } finally {

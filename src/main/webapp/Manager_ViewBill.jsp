@@ -154,8 +154,7 @@
 
                                         <label for="searchTerm">Tìm kiếm:</label>
                                         <input type="text" id="searchTerm" name="searchTerm">
-                                        <c:set var="result" value="${requestScope.BILL_LIST}"/>
-                                        <c:if test="${not empty result}">
+                                        <c:if test="${not empty requestScope.BILL_LIST}">
                                             <table>
                                                 <thead>
                                                     <tr>
@@ -166,78 +165,66 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <c:forEach var="dto" items="${result}" varStatus="counter">
-
-                                                        <tr class="invoice" onclick="showDetails(${dto.idOrder})">
-                                                            <td>${dto.idOrder}</td>
+                                                    <c:forEach var="dto" items="${requestScope.BILL_LIST}" varStatus="counter">
+                                                        <tr class="invoice" onclick="submitForm('${dto.idOrder}', 'DetailBill')">
+                                                            <td>
+                                                                ${dto.idOrder}
+                                                            </td>
                                                             <td>${dto.fullName}</td>
                                                             <td>${dto.receiverPhoneNumber}</td>
                                                             <td>${dto.createdDate}</td>
                                                         </tr>
-
                                                     </c:forEach>
                                                 </tbody>
                                             </table>
-                                        </c:if>                                      
+                                        </c:if>
                                     </div>
                                 </div>
-
                             </div>
                             <div class="col-md-6">
                                 <div class="card">
                                     <div class="right-panel">
                                         <div style="font-size: 30px;">Thông tin đơn hàng</div>
-                                  
-                                             <c:set var="result" value="${requestScope.BILL_DETAIL_LIST}"/>
-                                                <div id="details-${invoice.id}" class="invoice-details">
-                                                    <!-- Invoice details for ID ${invoice.id} -->
-                                                   
-                                                    <c:if test="${not empty result}">
 
+                                        <c:forEach var="dto" items="${requestScope.BILL_LIST}">
+                                            <div id="details-${dto.idOrder}" class="invoice-details" style="display: none;">
+                                                <c:forEach var="billDetail" items="${requestScope.BILL_DETAIL_LIST}">
+                                                    <c:if test="${billDetail.idOrder eq dto.idOrder}">
                                                         <p>Tên: ${dto.fullName}</p>
                                                         <p>Số điện thoại: ${dto.receiverPhoneNumber}</p>
                                                         <p>Ngày mua: ${dto.createdDate}</p>
 
                                                         <table>
-                                                            <thead>                                                       
+                                                            <thead>
                                                                 <tr>
                                                                     <th>No</th>
                                                                     <th>Tên chim</th>
                                                                     <th>Số lượng</th>
-                                                                    <th>Giá</th>                                               
+                                                                    <th>Giá</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
-                                                                <c:forEach var="dto" items="${result}" varStatus="counter">
-                                                                    <c:set var="quantity" value="${dto.quantity}" />
-                                                                    <c:set var="price" value="${dto.price}" />
-                                                                    <c:set var="total" value="${total + quantity * price}" />   
-                                                                    <tr class="invoice" onclick="showDetails(${dto.idOrder})">
-                                                                        <td>${counter.count}</td>
-                                                                        <td>${dto.name}</td>
-                                                                        <td>${dto.quantity}</td>
-                                                                        <td>${dto.price}</td>
-                                                                    </tr>
-
+                                                                <c:forEach var="detail" items="${requestScope.BILL_DETAIL_LIST}">
+                                                                    <c:if test="${detail.idOrder eq dto.idOrder}">
+                                                                        <tr>
+                                                                            <td>${detail.idOrder}</td>
+                                                                            <td>${detail.name}</td>
+                                                                            <td>${detail.quantity}</td>
+                                                                            <td>${detail.price}</td>
+                                                                        </tr>
+                                                                    </c:if>
                                                                 </c:forEach>
                                                             </tbody>
                                                         </table>
-                                                        <div>Tổng tiền: ${total}</div> 
-                                                    </c:if>   
-                                             
-                                        
-                                            <!-- Thêm thông tin chi tiết khác của hóa đơn -->
-                                                                                        
-                                            <button class="cancel" onclick="hideDetails(1)">Hủy</button>
-                                        </div>
-
+                                                    </c:if>
+                                                </c:forEach>
+                                                <button class="cancel" onclick="hideDetails(${dto.idOrder})">Hủy</button>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
-
                             </div>
-
                         </div>
-
                     </div>
                 </div>
 
@@ -266,24 +253,44 @@
 
 
     <script>
-                                                function showDetails(id) {
-                                                    // Ẩn tất cả các chi tiết hóa đơn
-                                                    var details = document.getElementsByClassName("invoice-details");
+                                                    function showDetails(id) {
+                                                        // Hide all invoice details
+                                                        var details = document.getElementsByClassName("invoice-details");
 
-                                                    for (var i = 0; i < details.length; i++) {
-                                                        details[i].classList.remove("active");
+                                                        for (var i = 0; i < details.length; i++) {
+                                                            details[i].style.display = "none";
+                                                        }
+
+                                                        // Show the invoice detail corresponding to the clicked ID
+                                                        var detail = document.getElementById("details-" + id);
+                                                        detail.style.display = "block";
                                                     }
 
-                                                    // Hiển thị chi tiết hóa đơn tương ứng với id được truyền vào
-                                                    var detail = document.getElementById("details-" + id);
-                                                    detail.classList.add("active");
-                                                }
+                                                    function hideDetails(id) {
+                                                        // Hide the invoice detail corresponding to the clicked ID
+                                                        var detail = document.getElementById("details-" + id);
+                                                        detail.style.display = "none";
+                                                    }
+                                                    function submitForm(idOrder, btAction) {
+                                                        var form = document.createElement('form');
+                                                        form.method = 'POST';
+                                                        form.action = 'DispatchServlet';
 
-                                                function hideDetails(id) {
-                                                    // Ẩn chi tiết hóa đơn tương ứng với id được truyền vào
-                                                    var detail = document.getElementById("details-" + id);
-                                                    detail.classList.remove("active");
-                                                }
+                                                        var inputIdOrder = document.createElement('input');
+                                                        inputIdOrder.type = 'hidden';
+                                                        inputIdOrder.name = 'txtidOrder';
+                                                        inputIdOrder.value = idOrder;
+                                                        form.appendChild(inputIdOrder);
+
+                                                        var inputBtAction = document.createElement('input');
+                                                        inputBtAction.type = 'hidden';
+                                                        inputBtAction.name = 'btAction';
+                                                        inputBtAction.value = btAction;
+                                                        form.appendChild(inputBtAction);
+
+                                                        document.body.appendChild(form);
+                                                        form.submit();
+                                                    }
     </script>
 
 

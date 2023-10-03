@@ -129,7 +129,7 @@ public class ManagerDAO implements Serializable {
             }
         }
     }
-    public void showOrderDetail()
+    public void showOrderDetail(int searchIdOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -138,7 +138,7 @@ public class ManagerDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "SELECT distinct\n"
+                String sql = "SELECT \n"
                         + "   O.idOrder,\n"
                         + "   O.createdDate,\n"
                         + "   O.receiverPhoneNumber, "
@@ -151,8 +151,11 @@ public class ManagerDAO implements Serializable {
                         + "   [Order] AS O\n"
                         + "   Join [User] As u ON u.idUser = O.idUser\n"
                         + "Join [OrderDetail] As OD on O.idOrder = OD.idOrder \n"
-                        + "JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird;";
+                        + "JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird;"
+                        + "Where O.idOrder Like ? ";
                 stm = con.prepareCall(sql);
+              
+                stm.setString(1, "%" + searchIdOrder + "%");
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int idOrder = rs.getInt("idOrder");
