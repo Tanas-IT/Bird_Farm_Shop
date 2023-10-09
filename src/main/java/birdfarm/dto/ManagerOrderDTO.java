@@ -16,7 +16,7 @@ public class ManagerOrderDTO implements Serializable{
     private String idUser;
     private String createdDate;
     private String status;
-    private Double Total;
+    private Double total;
     private Double deliveryCost;
     private String deliveryDate;
     private int usePoint;
@@ -34,14 +34,26 @@ public class ManagerOrderDTO implements Serializable{
     private String fullName; 
     private String phoneNumber;
 
-
-
-    public ManagerOrderDTO(int idOrder, String createdDate, String receiverPhoneNumber, String fullName) {
+    public ManagerOrderDTO(int idOrder, String createdDate, Double total, String receiverPhoneNumber, String fullName) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
+        this.total = total;
         this.receiverPhoneNumber = receiverPhoneNumber;
         this.fullName = fullName;
     }
+
+    public ManagerOrderDTO(int idOrder, String createdDate, String status, String receiverAddress, String receiverPhoneNumber, String fullName) {
+        this.idOrder = idOrder;
+        this.createdDate = createdDate;
+        this.status = status;
+        this.receiverAddress = receiverAddress;
+        this.receiverPhoneNumber = receiverPhoneNumber;
+        this.fullName = fullName;
+    }
+
+
+
+    
 
     public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress, String receiverPhoneNumber, String name, int quantity, Double price, String fullName) {
         this.idOrder = idOrder;
@@ -52,6 +64,9 @@ public class ManagerOrderDTO implements Serializable{
         this.quantity = quantity;
         this.price = price;
         this.fullName = fullName;
+    }
+
+    public ManagerOrderDTO() {
     }
 
     public int getIdOrder() {
@@ -87,11 +102,11 @@ public class ManagerOrderDTO implements Serializable{
     }
 
     public Double getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(Double Total) {
-        this.Total = Total;
+        this.total = total;
     }
 
     public Double getDeliveryCost() {

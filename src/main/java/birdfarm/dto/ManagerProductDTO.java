@@ -12,17 +12,36 @@ import java.io.Serializable;
  * @author HP
  */
 public class ManagerProductDTO implements Serializable{
-    private String name;
-    private int quantity;
-    private Double salePrice;
-    private String lifeExpectancy;
     private String idBird;
+    private String name;
+    private String overview;
+    private int quantity;
+    private Double importPrice;
+    private Double salePrice;
+    private String imageURL;
+    private String period;
+    private boolean status;
 
-    public ManagerProductDTO(String name, int quantity, Double salePrice, String lifeExpectancy, String idBird) {
+    public ManagerProductDTO(String idBird, String name, String overview, 
+            int quantity, Double importPrice, Double salePrice, String imageURL, 
+            String period, boolean status) {
+        this.idBird = idBird;
+        this.name = name;
+        this.overview = overview;
+        this.quantity = quantity;
+        this.importPrice = importPrice;
+        this.salePrice = salePrice;
+        this.imageURL = imageURL;
+        this.period = period;
+        this.status = status;
+    }
+  
+    
+    public ManagerProductDTO(String name, int quantity, Double salePrice, String period, String idBird) {
         this.name = name;
         this.quantity = quantity;
         this.salePrice = salePrice;
-        this.lifeExpectancy = lifeExpectancy;
+        this.period = period;
         this.idBird = idBird;
     }
 
@@ -50,20 +69,53 @@ public class ManagerProductDTO implements Serializable{
         this.salePrice = salePrice;
     }
 
-    public String getLifeExpectancy() {
-        return lifeExpectancy;
+    public String getPeriod() {
+        return period;
     }
 
-    public void setLifeExpectancy(String lifeExpectancy) {
-        this.lifeExpectancy = lifeExpectancy;
+    public void setPeriod(String period) {
+        this.period = period;
     }
 
+ 
     public String getIdBird() {
         return idBird;
     }
 
     public void setIdBird(String idBird) {
         this.idBird = idBird;
+    }
+
+    public String getOverview() {
+        return overview;
+    }
+
+    public void setOverview(String overview) {
+        this.overview = overview;
+    }
+
+    public Double getImportPrice() {
+        return importPrice;
+    }
+
+    public void setImportPrice(Double importPrice) {
+        this.importPrice = importPrice;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
     
     

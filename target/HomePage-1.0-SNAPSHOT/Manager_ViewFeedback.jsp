@@ -42,71 +42,7 @@
     <body>
 
         <div class="wrapper">
-            <div class="sidebar" data-color="green" data-image="img/sidebar-5.jpg">
-
-                <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                        <a href="#" class="simple-text">
-                            Bird Farm
-                        </a>
-                    </div>
-
-                    <div class="user-image" style="text-align: center;">
-                        <i class="pe-7s-user" style="font-size: 40px;"></i>
-                        <p>Nguyen Duc Anh</p>
-                        <p>Manager</p>
-                    </div>
-
-                    <ul class="nav">
-                        
-                        <li>
-                            <a href="Don_hang.html">
-                                <i class="pe-7s-news-paper"></i>
-                                <p>Don Hang</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="View_Bill.html">
-                                <i class="pe-7s-note2"></i>
-                                <p>Hoa Don</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Thong_ke.html">
-                                <i class="pe-7s-graph1"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="List_of_product.html">
-                                <i class="pe-7s-drawer"></i>
-                                <p>Tat Ca San Pham</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="DispatchServlet?btAction=ManagerViewFeedback">
-                                <i class="pe-7s-repeat"></i>
-                                <p>Feedback</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Update_product.html">
-                                <i class="pe-7s-note"></i>
-                                <p>Cap Nhat San Pham</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <div style="text-align: center;">
-                        <a href="#">
-                            <i class="fa fa-sign-out fa-rotate-180" style="font-size: 20px; margin-top:10px; color: black;"></i>
-
-                        </a>
-                    </div>
-                </div>
-            </div>
+             <%@include file="ManagerComponent.jsp" %>
 
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">

@@ -27,9 +27,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ManagerViewDetailBillServlet", urlPatterns = {"/ManagerViewDetailBillServlet"})
 public class ManagerViewDetailBillServlet extends HttpServlet {
-    private final String MANAGER_VIEW_BILL_PAGE = "Manager_ViewBill.jsp";
-        private final String ERROR_PAGE = "error.html";
 
+    private final String MANAGER_VIEW_BILL_PAGE = "Manager_ViewDetailBill.jsp";
+    private final String ERROR_PAGE = "error.html";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,28 +43,30 @@ public class ManagerViewDetailBillServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException, SQLException, ClassNotFoundException, NamingException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        
+
         String searchValue = request.getParameter("txtidOrder");
         int searchVal = Integer.parseInt(searchValue);
-       
-        String url =MANAGER_VIEW_BILL_PAGE;
+
+        String url = ERROR_PAGE;
         try {
             //1. check value search value 
-            if (searchVal>0) {
+            if (searchVal > 0) {
                 //2. call model 
                 //2.1 new DAO object 
                 ManagerDAO dao = new ManagerDAO();
                 //2.2 call method of DAO 
                 dao.showOrderDetail(searchVal);
+                dao.showOrder();
                 //3. process result 
                 List<ManagerOrderDTO> result = dao.getOrderListDetail();
+
+                List<ManagerOrderDTO> dto = dao.getOrderList();
                 request.setAttribute("BILL_DETAIL_LIST", result);
+                request.setAttribute("BILL_LIST", dto);
+
                 url = MANAGER_VIEW_BILL_PAGE;
-            }else{
-                url=MANAGER_VIEW_BILL_PAGE;
             }
-        }finally{
+        } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }

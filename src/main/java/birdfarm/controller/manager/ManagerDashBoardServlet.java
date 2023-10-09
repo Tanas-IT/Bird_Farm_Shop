@@ -6,10 +6,13 @@
 package birdfarm.controller.manager;
 
 import birdfarm.dao.DateDAO;
+import birdfarm.dao.ManagerOrderDAO;
 import birdfarm.dao.ManagerProductDAO;
+import birdfarm.dto.Chart;
 import birdfarm.dto.DateDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -37,13 +40,13 @@ public class ManagerDashBoardServlet extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException, NamingException, ClassNotFoundException {
+            throws ServletException, IOException, NamingException, ClassNotFoundException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         ManagerProductDAO pd = new ManagerProductDAO();
 //        CustomerDAO cd = new CustomerDAO();
 //        FeedbackDAO fd = new FeedbackDAO();
 //        CategoryDAO ctd = new CategoryDAO();
-//        OrderDao od = new OrderDao();
+        ManagerOrderDAO od = new ManagerOrderDAO();
         DateDAO dd = new DateDAO();
 
         DateDTO date = dd.get7day();
@@ -62,29 +65,26 @@ public class ManagerDashBoardServlet extends HttpServlet {
         int totalProduct = pd.getTotalProduct();
         int totalProduct1 = pd.getTotalProduct(1);
         int totalProduct2 = pd.getTotalProduct(0);
-
-//        List<Category> listCategoryProduct = ctd.getAllCategory();
         
-        // set chart revenue
-//        List<Chart> listChartRevenueArea = od.getChartRevenueArea(salerId, start, day);
-//        int maxListChartRevenueArea = -1;
-//        for (Chart o : listChartRevenueArea) {
-//            if (o.getValue() > maxListChartRevenueArea) {
-//                maxListChartRevenueArea = o.getValue();
-//            }
-//        }
-//        maxListChartRevenueArea = (maxListChartRevenueArea / 1000000 + 1) * 1000000;
-//        
-//        // set chart customer
-//        List<Chart> listChartCustomer = cd.getChartCustomerArea(start, day);
-//        
-//        int maxListChartCustomerArea = -1;
-//        for (Chart o : listChartCustomer) {
-//            if (o.getValue() > maxListChartCustomerArea) {
-//                maxListChartCustomerArea = o.getValue();
-//            }
-//        }
-//        maxListChartCustomerArea = (maxListChartCustomerArea / 10 + 1) * 10;
+        List<Chart> listChartRevenueArea = od.getChartRevenueArea(salerId, start, day);
+        int maxListChartRevenueArea = -1;
+        for (Chart o : listChartRevenueArea) {
+            if (o.getValue() > maxListChartRevenueArea) {
+                maxListChartRevenueArea = o.getValue();
+            }
+        }
+        maxListChartRevenueArea = (maxListChartRevenueArea / 1000000 + 1) * 1000000;
+     
+        // set chart customer
+        List<Chart> listOrder = od.getTotalOrder(start, day);
+        
+        int maxListOrderArea = -1;
+        for (Chart o : listOrder) {
+            if (o.getValue() > maxListOrderArea) {
+                maxListOrderArea = o.getValue();
+            }
+        }
+        maxListOrderArea = (maxListOrderArea / 10 + 1) * 10;
 //        
 //        // set chart avg rated
 
@@ -96,11 +96,11 @@ public class ManagerDashBoardServlet extends HttpServlet {
         
 //        request.setAttribute("listCategoryProduct", listCategoryProduct);
 //        
-//        request.setAttribute("listChartRevenueArea", listChartRevenueArea);
-//        request.setAttribute("maxListChartRevenueArea", maxListChartRevenueArea);
+        request.setAttribute("listChartRevenueArea", listChartRevenueArea);
+        request.setAttribute("maxListChartRevenueArea", maxListChartRevenueArea);
 //        
-//        request.setAttribute("listChartCustomer", listChartCustomer);
-//        request.setAttribute("maxListChartCustomerArea", maxListChartCustomerArea);
+        request.setAttribute("listOrder", listOrder);
+        request.setAttribute("maxListOrderArea", maxListOrderArea);
 //        
 //        request.setAttribute("listChartAvgStar", listChartAvgStar);
         request.setAttribute("start", start);
@@ -127,6 +127,8 @@ public class ManagerDashBoardServlet extends HttpServlet {
             Logger.getLogger(ManagerDashBoardServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(ManagerDashBoardServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManagerDashBoardServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -146,6 +148,8 @@ public class ManagerDashBoardServlet extends HttpServlet {
         } catch (NamingException ex) {
             Logger.getLogger(ManagerDashBoardServlet.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
+            Logger.getLogger(ManagerDashBoardServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
             Logger.getLogger(ManagerDashBoardServlet.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

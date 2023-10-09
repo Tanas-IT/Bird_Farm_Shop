@@ -34,11 +34,17 @@ public class ManagerDAO implements Serializable {
     public List<ManagerOrderDTO> getOrderList() {
         return orderList;
     }
-    
-        private List<ManagerOrderDTO> orderListDetail;
+
+    private List<ManagerOrderDTO> orderListDetail;
 
     public List<ManagerOrderDTO> getOrderListDetail() {
         return orderListDetail;
+    }
+
+    private List<ManagerOrderDTO> orderListDetailCustomer;
+
+    public List<ManagerOrderDTO> getOrderListDetailCustomer() {
+        return orderListDetailCustomer;
     }
 
     public void showFeedback()
@@ -85,6 +91,7 @@ public class ManagerDAO implements Serializable {
             }
         }
     }
+
     public void showOrder()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -94,25 +101,28 @@ public class ManagerDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "SELECT \n"
+                String sql = "  SELECT\n"
                         + "   O.idOrder,\n"
                         + "   O.createdDate,\n"
-                        + "   O.receiverPhoneNumber, "
+                        + "   O.receiverPhoneNumber,\n"
+                        + "   O.Total,\n"
                         + "   u.fullName\n"
-                        + "    FROM\n"
+                        + "FROM\n"
                         + "   [Order] AS O\n"
-                        + "   Join [User] As u ON u.idUser = O.idUser\n";
+                        + "   JOIN [User] AS u ON u.idUser = O.idUser\n"
+                        + "WHERE\n"
+                        + "   O.status = N'Đã xử lý'";
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int idOrder = rs.getInt("idOrder");
                     String createdDate = rs.getString("createdDate");
                     String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
+                    Double Total = rs.getDouble("Total");
                     String fullName = rs.getString("fullName");
 
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate, 
-                                     receiverPhoneNumber, fullName);
+                            = new ManagerOrderDTO(idOrder, createdDate, Total, receiverPhoneNumber, fullName);
 
                     if (this.orderList == null) {
                         this.orderList = new ArrayList<>();
@@ -129,6 +139,7 @@ public class ManagerDAO implements Serializable {
             }
         }
     }
+
     public void showOrderDetail(int searchIdOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -151,11 +162,11 @@ public class ManagerDAO implements Serializable {
                         + "   [Order] AS O\n"
                         + "   Join [User] As u ON u.idUser = O.idUser\n"
                         + "Join [OrderDetail] As OD on O.idOrder = OD.idOrder \n"
-                        + "JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird;"
-                        + "Where O.idOrder Like ? ";
+                        + "JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird "
+                        + "Where O.idOrder = ? ";
                 stm = con.prepareCall(sql);
-              
-                stm.setString(1, "%" + searchIdOrder + "%");
+
+                stm.setInt(1, searchIdOrder);
                 rs = stm.executeQuery();
                 while (rs.next()) {
                     int idOrder = rs.getInt("idOrder");
@@ -168,7 +179,7 @@ public class ManagerDAO implements Serializable {
                     Double price = rs.getDouble("price");
 
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate, 
+                            = new ManagerOrderDTO(idOrder, createdDate,
                                     receiverAddress, receiverPhoneNumber, name, quantity, price, fullName);
 
                     if (this.orderListDetail == null) {
@@ -187,5 +198,53 @@ public class ManagerDAO implements Serializable {
         }
     }
 
+    public void showCustomerOrder(int searchIdOrder)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "SELECT \n"
+                        + " O.idOrder,\n"
+                        + " O.createdDate,\n"
+                        + " O.receiverPhoneNumber, \n"
+                        + " O.receiverAddress, O.status,\n"
+                        + " u.fullName\n"
+                        + "FROM [Order] AS O\n"
+                        + "Join [User] As u ON u.idUser = O.idUser\n"
+                        + "Where O.idOrder = ?";
+                stm = con.prepareCall(sql);
+
+                stm.setInt(1, searchIdOrder);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int idOrder = rs.getInt("idOrder");
+                    String createdDate = rs.getString("createdDate");
+                    String receiverAddress = rs.getString("receiverAddress");
+                    String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
+                    String fullName = rs.getString("fullName");
+                    String status = rs.getString("status");
+                    ManagerOrderDTO dto
+                            = new ManagerOrderDTO(idOrder, createdDate, status,
+                                    receiverAddress, receiverPhoneNumber, fullName);
+
+                    if (this.orderListDetailCustomer == null) {
+                        this.orderListDetailCustomer = new ArrayList<>();
+                    }
+                    this.orderListDetailCustomer.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 
 }

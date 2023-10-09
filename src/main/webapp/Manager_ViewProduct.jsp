@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
     <meta charset="utf-8" />
@@ -18,7 +19,7 @@
     <!-- Font & img CSS     -->
     <link href="font-img.css" rel="stylesheet" />
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/bootstrap1.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
     <link href="css/animate.min.css" rel="stylesheet" />
@@ -51,70 +52,7 @@
 <body>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="green" data-image="img/sidebar-5.jpg" style="width: 26rem !important;">
-
-            <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        Bird Farm
-                    </a>
-                </div>
-
-                <div class="user-image" style="text-align: center;">
-                    <i class="pe-7s-user" style="font-size: 100px;"></i>
-                    <p>Nguyen Duc Anh</p>
-                    <p>Admin</p>
-                </div>
-
-                <ul class="nav">
-
-                    <li>
-                        <a href="Don_hang.html">
-                            <i class="pe-7s-news-paper"></i>
-                            <p>Don hang</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Don_hang.html">
-                            <i class="pe-7s-note2"></i>
-                            <p>Bill</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Thong_ke.html">
-                            <i class="pe-7s-graph1"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="DispatchServlet?btAction=ManagerViewProduct">
-                            <i class="pe-7s-drawer"></i>
-                            <p>Tat ca san pham</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Feedback.html">
-                            <i class="pe-7s-repeat"></i>
-                            <p>Feedback</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="Update_product.html">
-                            <i class="pe-7s-note"></i>
-                            <p>Update Product</p>
-                        </a>
-                    </li>
-                </ul>
-                <div style="text-align: center;">
-                    <a href="#">
-                        <i class="pe-7s-back pe-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
+         <%@include file="ManagerComponent.jsp" %>
 
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-fixed">
@@ -161,31 +99,40 @@
                                                     <th>Tên</th>
                                                     <th>Số lượng</th>
                                                     <th>Giá</th>
-                                                    <th>Tuổi thọ</th>
+                                                    <th>Loại</th>
                                                     <th>Xóa/Sửa</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
+
                                                     <tr>
                                                         <td style="text-align: center">
-                                                            ${dto.idBird}
+                                                           
+                                                            ${dto.idBird}                                                     
                                                         </td>
                                                         <td>${dto.name}</td>
-                                                        <td>${dto.quantity}</td>
-                                                        <td>${dto.salePrice}</td>
-                                                        <td>${dto.lifeExpectancy}</td>
                                                         <td>
-                                                            
-                                                            <a href="${deleteLink}">Delete</a>   
-                                                            <input type="hidden" name="lastSearchValue" 
-                                                                   value="" />
-                                                            <input type="submit" value="Update" name="btAction"/></td>
+                                                            ${dto.quantity}
+                                                        </td>
+                                                        <td>
+                                                            <fmt:formatNumber value="${dto.salePrice}" maxFractionDigits="0"/> VND
+
+                                                        </td>
+                                                        <td>
+                                                            ${dto.period}
+                                                        </td>
+                                                        <td>          
+                                                            <a href="DispatchServlet?btAction=ViewUpdateProduct&txtIdBird=${dto.idBird}">Update</a>
+                                                            <a href="DispatchServlet?btAction=DeleteProduct&txtIdBird=${dto.idBird}">Delete</a>
+                                                        </td>
                                                     </tr>
+
 
                                                 </c:forEach>
                                             </tbody>
                                         </table>
+
                                     </c:if>
 
                                 </div>

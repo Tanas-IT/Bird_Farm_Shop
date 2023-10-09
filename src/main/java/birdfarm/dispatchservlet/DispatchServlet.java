@@ -31,7 +31,11 @@ public class DispatchServlet extends HttpServlet {
     private final String MANAGER_DASHBOARD_CONTROLLER = "ManagerDashBoardServlet";
 
     private final String MANAGER_VIEW_PRODUCT_CONTROLLER = "ManagerViewProductServlet";
+    private final String MANAGER_UPDATE_PRODUCT_CONTROLLER = "ManagerUpdateProductServlet";
+    private final String MANAGER_SHOW_UPDATE_PRODUCT_CONTROLLER = "ManagerShowUpdateProductServlet";
+    private final String MANAGER_DELETE_PRODUCT_CONTROLLER = "ManagerDeleteProductServlet";
 
+    private final String PAGE = "Manager_UpdateProduct.jsp";
     private final String LOGIN_PAGE = "";
 
     /**
@@ -70,7 +74,14 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_VIEW_DETAIL_BILL_CONTROLLER;
             } else if (button.equals("Check")) {
                 url = MANAGER_DASHBOARD_CONTROLLER;
+            } else if (button.equals("ViewUpdateProduct")) {
+                url = MANAGER_SHOW_UPDATE_PRODUCT_CONTROLLER;
+            } else if (button.equals("UpdateProduct")) {
+                url = MANAGER_UPDATE_PRODUCT_CONTROLLER;
+            } else if (button.equals("DeleteProduct")) {
+                url = MANAGER_DELETE_PRODUCT_CONTROLLER;
             }
+
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
