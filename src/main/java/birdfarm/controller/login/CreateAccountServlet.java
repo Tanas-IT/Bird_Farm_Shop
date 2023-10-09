@@ -90,7 +90,7 @@ public class CreateAccountServlet extends HttpServlet {
                 //2.Call DAO
                 UserDAO dao = new UserDAO();
                 UserDTO account = new UserDTO(idUser,username, password, fullName,4);
-                CustomerDTO customer = new CustomerDTO(idUser, address, phoneNumber, email);
+                CustomerDTO customer = new CustomerDTO(idUser, address, phoneNumber, email,null);
                 boolean result = dao.createAccount(account);
                 boolean customerResult = dao.createCustomerAccount(customer);
                 //3.Process Result 

@@ -58,9 +58,10 @@ public class LoginGoogleHandler extends HttpServlet {
                 String username = userToken.getEmail();
                 String email = userToken.getEmail();
                 String fullName = userToken.getGiven_name();
+                String image = userToken.getPicture();
                 UserDAO dao = new UserDAO();
-                UserDTO account = new UserDTO(idUser, username, "123", fullName, 4);;
-                CustomerDTO customer = new CustomerDTO(idUser, "123", "123", email);
+                UserDTO account = new UserDTO(idUser, username, "123", fullName, 4);
+                CustomerDTO customer = new CustomerDTO(idUser, "123", "123", email, image);
                 boolean result = dao.createAccount(account);
                 boolean customerResult = dao.createCustomerAccount(customer);
                 if (result && customerResult) {
