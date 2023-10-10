@@ -56,13 +56,13 @@ public class ManagerViewDetailBillServlet extends HttpServlet {
                 ManagerDAO dao = new ManagerDAO();
                 //2.2 call method of DAO 
                 dao.showOrderDetail(searchVal);
-                dao.showOrder();
+                dao.showCustomerOrder(searchVal);
+
                 //3. process result 
                 List<ManagerOrderDTO> result = dao.getOrderListDetail();
-
-                List<ManagerOrderDTO> dto = dao.getOrderList();
+                List<ManagerOrderDTO> result1 = dao.getOrderListDetailCustomer();
                 request.setAttribute("BILL_DETAIL_LIST", result);
-                request.setAttribute("BILL_LIST", dto);
+                request.setAttribute("BILL_CUSTOMER_DETAIL_LIST", result1);
 
                 url = MANAGER_VIEW_BILL_PAGE;
             }

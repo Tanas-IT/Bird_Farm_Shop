@@ -164,53 +164,57 @@
                         <div class="page-content container">
                             <div class="page-header text-blue-d2">
 
+                                <c:set var="result1" value="${requestScope.BILL_CUSTOMER_DETAIL_LIST}"/>
+                                <c:if test="${not empty result1}">
+                                    <c:forEach var="dto1" items="${result1}" varStatus="counter">
 
-                                <h1 class="page-title text-secondary-d1">
-                                    Bill Board
-                                    <small class="page-info">
-                                        <i class="fa fa-angle-double-right text-80"></i>
+                                        <h1 class="page-title text-secondary-d1">
+                                            Bill Board
+                                            <small class="page-info">
+                                                <i class="fa fa-angle-double-right text-80"></i>
 
-                                    </small>
-                                </h1>
-                            </div>
+                                            </small>
+                                        </h1>
+                                    </div>
 
-                            <div class="container px-0">
-                                <div class="row mt-4">
-                                    <div class="col-12 col-lg-12">
+                                    <div class="container px-0">
+                                        <div class="row mt-4">
+                                            <div class="col-12 col-lg-12">
 
-                                        <hr class="row brc-default-l1 mx-n1 mb-4" />
+                                                <hr class="row brc-default-l1 mx-n1 mb-4" />
 
-                                        <div style="font-size: 18px" class="row">
-                                            <div class="col-sm-6">
-                                                <div>
-                                                    <span class="text-sm text-grey-m2 align-middle">Tên: </span>
-                                                    <span class="text-600 text-110 text-blue align-middle">${dto.fullName}</span>
-                                                </div>
-                                                <div class="text-grey-m2">
-                                                    <div class="my-1">
-                                                        Địa chỉ: ${dto.receiverAddress}
+                                                <div style="font-size: 18px" class="row">
+                                                    <div class="col-sm-6">
+                                                        <div>
+                                                            <span class="text-sm text-grey-m2 align-middle">Tên: </span>
+                                                            <span class="text-600 text-110 text-blue align-middle">${dto1.fullName}</span>
+                                                        </div>
+                                                        <div class="text-grey-m2">
+                                                            <div class="my-1">
+                                                                Địa chỉ: ${dto1.receiverAddress}
+                                                            </div>
+
+                                                            <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600 ">${dto1.receiverPhoneNumber}</b></div>
+                                                        </div>
                                                     </div>
-                                                    
-                                                    <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600 ">111-111-111</b></div>
-                                                </div>
-                                            </div>
-                                            <!-- /.col -->
+                                                    <!-- /.col -->
 
-                                            <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-                                                <hr class="d-sm-none" />
-                                                <div class="text-grey-m2">
-                                                    <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
+                                                        <hr class="d-sm-none" />
+                                                        <div class="text-grey-m2">
+                                                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
 
+                                                            </div>
+
+                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID Order:</span> ${dto1.idOrder}</div>
+
+                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Ngày:</span> ${dto1.createdDate}</div>
+
+                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Trạng thái:</span> <span class="badge badge-warning badge-pill px-25">xxx</span></div>
+                                                        </div>
                                                     </div>
-
-                                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID Order:</span> ${dto.idOrder}</div>
-
-                                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Ngày:</span> ${dto.createdDate}</div>
-
-                                                    <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Trạng thái:</span> <span class="badge badge-warning badge-pill px-25">xxx</span></div>
-                                                </div>
-                                            </div>
-
+                                                </c:forEach>
+                                            </c:if>
                                             <!-- /.col -->
                                         </div>
 
