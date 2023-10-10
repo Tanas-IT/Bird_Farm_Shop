@@ -5,9 +5,11 @@ D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminProduc
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dispatchservlet\DispatchServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminUpdateAccountServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewProductServlet.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewOrderServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminControlAccountServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewBillServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dto\ManagerViewFeedbackDTO.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewDetailOrderServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dto\Chart.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewDetailBillServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\util\DBConnection.java
@@ -23,4 +25,5 @@ D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\mana
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dao\DateDAO.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\dao\ManagerDAO.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerUpdateProductServlet.java
+D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerAcceptOrderServlet.java
 D:\FPT\HK5\SWP\upload file\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewFeedbackServlet.java

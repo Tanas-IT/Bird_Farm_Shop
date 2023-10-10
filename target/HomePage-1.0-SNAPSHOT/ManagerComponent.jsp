@@ -29,15 +29,15 @@
             <ul class="nav">
 
                 <li>
-                    <a href="Don_hang.html">
+                    <a href="DispatchServlet?btAction=ManagerViewOrder">
                         <i class="pe-7s-news-paper"></i>
-                        <p>Don hang</p>
+                        <p>Đơn hàng</p>
                     </a>
                 </li>
                 <li>
                     <a href="DispatchServlet?btAction=ManagerViewBill">
                         <i class="pe-7s-note2"></i>
-                        <p>Bill</p>
+                        <p>Hóa Đơn</p>
                     </a>
                 </li>
                 <li>
@@ -49,19 +49,19 @@
                 <li>
                     <a href="DispatchServlet?btAction=ManagerViewProduct">
                         <i class="pe-7s-drawer"></i>
-                        <p>Tat ca san pham</p>
+                        <p>Tất cả sản phẩm</p>
                     </a>
                 </li>
                 <li>
                     <a href="DispatchServlet?btAction=ManagerViewFeedback">
                         <i class="pe-7s-repeat"></i>
-                        <p>Feedback</p>
+                        <p>Phản hồi người dùng</p>
                     </a>
                 </li>
                 <li>
                     <a href="Update_product.html">
                         <i class="pe-7s-note"></i>
-                        <p>Update Product</p>
+                        <p>Theo dõi đơn hàng</p>
                     </a>
                 </li>
             </ul>

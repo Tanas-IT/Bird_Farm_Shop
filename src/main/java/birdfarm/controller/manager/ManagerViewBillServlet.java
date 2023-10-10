@@ -47,7 +47,7 @@ public class ManagerViewBillServlet extends HttpServlet {
         String url = MANAGER_VIEW_BILL_PAGE;
         try {
             ManagerDAO dao = new ManagerDAO();
-            dao.showOrder();
+            dao.showBill();
             List<ManagerOrderDTO> dto = dao.getOrderList();
             request.setAttribute("BILL_LIST", dto);
             

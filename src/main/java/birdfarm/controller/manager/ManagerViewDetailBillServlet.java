@@ -55,8 +55,8 @@ public class ManagerViewDetailBillServlet extends HttpServlet {
                 //2.1 new DAO object 
                 ManagerDAO dao = new ManagerDAO();
                 //2.2 call method of DAO 
-                dao.showOrderDetail(searchVal);
-                dao.showCustomerOrder(searchVal);
+                dao.showBillDetail(searchVal);
+                dao.showCustomerBill(searchVal);
 
                 //3. process result 
                 List<ManagerOrderDTO> result = dao.getOrderListDetail();

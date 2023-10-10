@@ -124,6 +124,7 @@
                                                             <a href="DispatchServlet?btAction=DetailBill&txtidOrder=${dto.idOrder}">
                                                                 <i class="pe-7s-look"></i>
                                                             </a>
+                                                                
                                                         </td>
                                                     </tr>
 

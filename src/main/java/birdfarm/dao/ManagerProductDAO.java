@@ -137,7 +137,7 @@ public class ManagerProductDAO implements Serializable {
                         + "WHERE idBird = ? ";
 
                 stm = con.prepareStatement(sql);
-                stm.setBoolean(1, result);
+                stm.setBoolean(1, status);
                 stm.setString(2, period);
                 stm.setInt(3, quantity);
                 stm.setDouble(4, importPrice);

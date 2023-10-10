@@ -26,8 +26,10 @@ public class DispatchServlet extends HttpServlet {
     private final String ADMIN_UPDATE_ACCOUNT_CONTROLLER = "AdminUpdateAccountServlet";
 
     private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
+
     private final String MANAGER_VIEW_BILL_CONTROLLER = "ManagerViewBillServlet";
     private final String MANAGER_VIEW_DETAIL_BILL_CONTROLLER = "ManagerViewDetailBillServlet";
+
     private final String MANAGER_DASHBOARD_CONTROLLER = "ManagerDashBoardServlet";
 
     private final String MANAGER_VIEW_PRODUCT_CONTROLLER = "ManagerViewProductServlet";
@@ -35,7 +37,11 @@ public class DispatchServlet extends HttpServlet {
     private final String MANAGER_SHOW_UPDATE_PRODUCT_CONTROLLER = "ManagerShowUpdateProductServlet";
     private final String MANAGER_DELETE_PRODUCT_CONTROLLER = "ManagerDeleteProductServlet";
 
-    private final String PAGE = "Manager_UpdateProduct.jsp";
+    private final String MANAGER_VIEW_ORDER_CONTROLLER = "ManagerViewOrderServlet";
+    private final String MANAGER_VIEW_DETAIL_ORDER_CONTROLLER = "ManagerViewDetailOrderServlet";
+    private final String MANAGER_ACCEPT_ORDER_CONTROLLER = "ManagerAcceptOrderServlet";
+    private final String MANAGER_REJECT_ORDER_CONTROLLER = "ManagerRejectOrderServlet";
+
     private final String LOGIN_PAGE = "";
 
     /**
@@ -70,8 +76,18 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_VIEW_BILL_CONTROLLER;
             } else if (button.equals("ManagerViewProduct")) {
                 url = MANAGER_VIEW_PRODUCT_CONTROLLER;
+            } else if (button.equals("ManagerViewOrder")) {
+                url = MANAGER_VIEW_ORDER_CONTROLLER;
+                
+            } else if (button.equals("AcceptOrder")) {
+                url = MANAGER_ACCEPT_ORDER_CONTROLLER;
+            } else if (button.equals("RejectOrder")) {
+                url = MANAGER_REJECT_ORDER_CONTROLLER;
+                
             } else if (button.equals("DetailBill")) {
                 url = MANAGER_VIEW_DETAIL_BILL_CONTROLLER;
+            } else if (button.equals("DetailOrder")) {
+                url = MANAGER_VIEW_DETAIL_ORDER_CONTROLLER;
             } else if (button.equals("Check")) {
                 url = MANAGER_DASHBOARD_CONTROLLER;
             } else if (button.equals("ViewUpdateProduct")) {

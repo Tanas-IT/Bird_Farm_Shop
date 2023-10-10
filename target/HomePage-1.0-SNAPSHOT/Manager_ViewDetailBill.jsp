@@ -74,70 +74,7 @@
     <body>
 
         <div class="wrapper">
-            <div class="sidebar" data-color="green" data-image="img/sidebar-5.jpg" style="width: 26rem !important;">
-
-                <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                        <a href="#" class="simple-text">
-                            Bird Farm
-                        </a>
-                    </div>
-
-                    <div class="user-image" style="text-align: center;">
-                        <i class="pe-7s-user" style="font-size: 100px;"></i>
-                        <p>Nguyen Duc Anh</p>
-                        <p>Admin</p>
-                    </div>
-
-                    <ul class="nav">
-
-                        <li>
-                            <a href="Don_hang.html">
-                                <i class="pe-7s-news-paper"></i>
-                                <p>Don hang</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Don_hang.html">
-                                <i class="pe-7s-note2"></i>
-                                <p>Bill</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Thong_ke.html">
-                                <i class="pe-7s-graph1"></i>
-                                <p>Dashboard</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="List_of_product.html">
-                                <i class="pe-7s-drawer"></i>
-                                <p>Tat ca san pham</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Feedback.html">
-                                <i class="pe-7s-repeat"></i>
-                                <p>Feedback</p>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="Update_product.html">
-                                <i class="pe-7s-note"></i>
-                                <p>Update Product</p>
-                            </a>
-                        </li>
-                    </ul>
-                    <div style="text-align: center;">
-                        <a href="#">
-                            <i class="pe-7s-back pe-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <%@include file="ManagerComponent.jsp" %>
 
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
@@ -169,10 +106,10 @@
                                     <c:forEach var="dto1" items="${result1}" varStatus="counter">
 
                                         <h1 class="page-title text-secondary-d1">
-                                            Bill Board
+                                            Hóa đơn
                                             <small class="page-info">
                                                 <i class="fa fa-angle-double-right text-80"></i>
-
+                                                ${dto1.idOrder}
                                             </small>
                                         </h1>
                                     </div>
@@ -233,6 +170,11 @@
                                                     <c:set var="result" value="${requestScope.BILL_DETAIL_LIST}"/>
                                                     <c:if test="${not empty result}">
                                                         <c:forEach var="dto" items="${result}" varStatus="counter">
+                                                            <c:set var="quantity" value="${dto.quantity}" />
+                                                            <c:set var="price" value="${dto.price}" />
+                                                            <c:set var="priceANDquantity" value="${quantity*price}" />
+
+                                                            <c:set var="total" value="${total + quantity * price}" />   
                                                             <tr >
                                                                 <td>
                                                                     ${counter.count}
@@ -240,48 +182,49 @@
                                                                 <td>${dto.name}</td>
                                                                 <td>${dto.quantity}</td>
                                                                 <td>${dto.price}</td>
-                                                                <td>${dto.createdDate}</td>
+                                                                <td>${priceANDquantity}</td>
                                                             </tr>
 
                                                         </c:forEach>
                                                     </tbody>
                                                 </table>
-                                            </c:if>
 
-                                            <div class="row border-b-2 brc-default-l2"></div>
+                                                <div class="row border-b-2 brc-default-l2"></div>
 
 
-                                            <div class="row mt-3">
-                                                <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
-                                                </div>
-
-                                                <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                                                    <div class="row my-2">
-                                                        <div class="col-7 text-right">
-                                                            SubTotal
-                                                        </div>
-                                                        <div class="col-5">
-                                                            <span class="text-120 text-secondary-d1">$2,250</span>
-                                                        </div>
+                                                <div class="row mt-3">
+                                                    <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
                                                     </div>
 
-                                                    <div class="row my-2">
-                                                        <div class="col-7 text-right">
-                                                            Tax (10%)
-                                                        </div>
-                                                        <div class="col-5">
-                                                            <span class="text-110 text-secondary-d1">$225</span>
-                                                        </div>
-                                                    </div>
+                                                    <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
+                                                        <div class="row my-2">
+                                                            <div class="col-7 text-right">
 
-                                                    <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                                        <div class="col-7 text-right">
-                                                            Total Amount
+                                                            </div>
+                                                            <div class="col-5">
+                                                                <span class="text-120 text-secondary-d1"></span>
+                                                            </div>
                                                         </div>
-                                                        <div class="col-5">
-                                                            <span class="text-150 text-success-d3 opacity-2">$2,475</span>
+
+                                                        <div class="row my-2">
+                                                            <div class="col-7 text-right">
+
+                                                            </div>
+                                                            <div class="col-5">
+                                                                <span class="text-110 text-secondary-d1"></span>
+                                                            </div>
                                                         </div>
-                                                    </div>
+
+                                                        <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                                            <div class="col-7 text-right">
+                                                                Total Amount: 
+                                                            </div>
+                                                            <div class="col-5">
+                                                                <span class="text-150 text-success-d3 opacity-2"><fmt:formatNumber value="${total}" maxFractionDigits="0"/>đ</span>
+                                                            </div>
+                                                        </div>
+                                                    </c:if>
+
                                                 </div>
                                             </div>
 

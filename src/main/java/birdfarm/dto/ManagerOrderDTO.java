@@ -34,13 +34,16 @@ public class ManagerOrderDTO implements Serializable{
     private String fullName; 
     private String phoneNumber;
 
-    public ManagerOrderDTO(int idOrder, String createdDate, Double total, String receiverPhoneNumber, String fullName) {
+    public ManagerOrderDTO(int idOrder, String createdDate, String status, Double total, String receiverPhoneNumber, String fullName) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
+        this.status = status;
         this.total = total;
         this.receiverPhoneNumber = receiverPhoneNumber;
         this.fullName = fullName;
     }
+
+    
 
     public ManagerOrderDTO(int idOrder, String createdDate, String status, String receiverAddress, String receiverPhoneNumber, String fullName) {
         this.idOrder = idOrder;

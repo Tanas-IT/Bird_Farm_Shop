@@ -92,7 +92,7 @@ public class ManagerDAO implements Serializable {
         }
     }
 
-    public void showOrder()
+    public void showBill()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -105,7 +105,7 @@ public class ManagerDAO implements Serializable {
                         + "   O.idOrder,\n"
                         + "   O.createdDate,\n"
                         + "   O.receiverPhoneNumber,\n"
-                        + "   O.Total,\n"
+                        + "   O.Total, O.status,\n"
                         + "   u.fullName\n"
                         + "FROM\n"
                         + "   [Order] AS O\n"
@@ -119,10 +119,11 @@ public class ManagerDAO implements Serializable {
                     String createdDate = rs.getString("createdDate");
                     String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
                     Double Total = rs.getDouble("Total");
+                    String status = rs.getString("status");
                     String fullName = rs.getString("fullName");
 
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate, Total, receiverPhoneNumber, fullName);
+                            = new ManagerOrderDTO(idOrder, createdDate, status, Total, receiverPhoneNumber, fullName);
 
                     if (this.orderList == null) {
                         this.orderList = new ArrayList<>();
@@ -140,7 +141,7 @@ public class ManagerDAO implements Serializable {
         }
     }
 
-    public void showOrderDetail(int searchIdOrder)
+    public void showBillDetail(int searchIdOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -198,7 +199,7 @@ public class ManagerDAO implements Serializable {
         }
     }
 
-    public void showCustomerOrder(int searchIdOrder)
+    public void showCustomerBill(int searchIdOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -246,5 +247,7 @@ public class ManagerDAO implements Serializable {
             }
         }
     }
+    
+    
 
 }
