@@ -513,7 +513,6 @@ input:focus {
 
 .main-panel {
     position: relative;
-    z-index: 2;
     float: right;
     width: calc(100% - 260px);
 }
