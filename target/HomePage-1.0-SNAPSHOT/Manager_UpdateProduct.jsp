@@ -142,11 +142,20 @@
                                                     </div>
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label>Cập nhật hình ảnh</label>
                                                             <input type="text" class="form-control" placeholder="url" 
                                                                    name="txtImageURL" value="${dto.imageURL}" >
+                                                        </div>
+
+                                                    </div>
+                                                    <div class="col-md-6">
+
+                                                        <div class="form-group">
+                                                            <label>Cập nhật Video</label>
+                                                            <input type="text" class="form-control" placeholder="url" 
+                                                                   name="txtImageURL" value="" >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,7 +171,7 @@
                                                 </div>
                                                 <button type="submit" class="btn btn-info btn-fill pull-right" 
                                                         name="btAction" value="UpdateProduct">
-                                                    Update Profile
+                                                    Cập nhật
                                                 </button>
                                                 <div class="clearfix"></div>
                                             </form>  
@@ -183,13 +192,24 @@
 
                                     <div class="card-body">
                                         <div class="author">
-                                            <a href="#">
 
-                                                <h5 </h5>
-                                            </a>
+                                            <br>
+                                            <br>
+                                            <br><br>
+
+
                                             <p class="description">
 
                                             </p>
+
+                                            <div class="card card-image1">
+
+                                                <iframe width="400" height="220"
+                                                        src="https://www.youtube.com/embed/0WeG4_kYh6s" 
+                                                        frameborder="0" allowfullscreen></iframe>
+
+                                            </div>
+
                                         </div>
                                         <p class="description text-center">
 
@@ -206,33 +226,11 @@
                     <div class="container-fluid">
                         <nav>
                             <ul class="footer-menu">
-                                <li>
-                                    <a href="#">
-                                        Home
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Company
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Portfolio
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        Blog
-                                    </a>
-                                </li>
+                                
                             </ul>
                             <p class="copyright text-center">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear())
-                                </script>
-                                <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
+                               
+                                
                             </p>
                         </nav>
                     </div>
