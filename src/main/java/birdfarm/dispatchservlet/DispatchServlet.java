@@ -20,12 +20,17 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "DispatchServlet", urlPatterns = {"/DispatchServlet"})
 public class DispatchServlet extends HttpServlet {
-private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
-private final String ADMIN_VIEW_PRODUCT_CONTROLLER = "AdminViewProductServlet";
-private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
-
-
-private final String LOGIN_PAGE = "";
+        private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
+        private final String ADMIN_VIEW_PAYMENT_CONTROLLER = "AdminViewPaymentServlet";
+        private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
+        private final String BIRD_CONTROLLER = "BirdProductServlet";
+        private final String VIEW_MORE_BIRD_CONTROLLER = "ViewMoreBirdServlet";
+        private final String HOME_CONTROLLER = "HomeServlet";
+        private final String LOGIN_PAGE = "";
+        private final String LOGIN_CONTROLLER = "LoginServlet";
+        private final String ADD_TO_CART_CONTROLLER = "AddController";
+        private final String VIEW_CART_CONTROLLER = "ViewController";
+        private final String COMPARE_BIRD_CONTROLLER = "CompareBirdProductServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,19 +43,34 @@ private final String LOGIN_PAGE = "";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         //Which button did user click?
-        String button = request.getParameter("btAction");//btaction phai duoc copy va paste vao trong servletlogin
-        String url = LOGIN_PAGE;
+        String button = request.getParameter("btAction");//btAction phai duoc copy va paste vao trong servletlogin
+        String url = BIRD_CONTROLLER;
         try {
             if (button == null) { //trigger welcome file
-                //do nothing
+                url = BIRD_CONTROLLER;
             } else if (button.equals("AdminControlAccount")) {
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;            
             } else if (button.equals("AdminViewProduct")){
-                url = ADMIN_VIEW_PRODUCT_CONTROLLER;
-            } else if (button.equals("ManagerViewFeedback"))
+                url = ADMIN_VIEW_PAYMENT_CONTROLLER;
+            } else if (button.equals("ManagerViewFeedback")) {
                 url = MANAGER_VIEW_FEEDBACK_CONTROLLER;
+            }
+            else if (button.equals("View More")) {
+                url = VIEW_MORE_BIRD_CONTROLLER;
+            } else if(button.equals("Home")) {
+                url = HOME_CONTROLLER;
+            } else if (button.equals("Login")) {
+                url = LOGIN_CONTROLLER;
+            } else if (button.equals("Mua ngay")) {
+                url = ADD_TO_CART_CONTROLLER;
+            } else if(button.equals("Thêm sản phẩm") || button.equals("Trang chủ")) {
+                url =  BIRD_CONTROLLER;
+            } else if(button.equals("Xem giỏ hàng")) {
+                url = VIEW_CART_CONTROLLER;
+            } else if(button.equals("So sánh ngay")) {
+                url = COMPARE_BIRD_CONTROLLER;
+            }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);

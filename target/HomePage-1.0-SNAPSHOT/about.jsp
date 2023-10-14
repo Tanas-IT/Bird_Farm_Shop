@@ -29,17 +29,87 @@
         <!--===============================================================================================-->
         <link rel="stylesheet" type="text/css" href="css/util.css">
         <link rel="stylesheet" type="text/css" href="css/main.css">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
     </head>
 
     <body style="animation-duration: 1500ms; opacity: 1;">
         <!-- Home Menu -->
-        <%@include file="components/headerComponent.jsp" %>
+        <nav style="background-color:#f3e4e4 !important; position:fixed; width: 100%; z-index: 100; padding-bottom: 0; cursor: pointer;" class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container container-header px-4 px-lg-5">
+                <a style="margin: 0" class="navbar-brand" href="#!">
+                    <img class="logo" src="img/bird_logo.png" alt="logo"/>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
+                        <li class="nav-item">
+                            <%  String url = "DispatchServlet";
+                                if (username != null && password != null) {
+                                    url = "DispatchServlet?btAction=Home&txtUsername=" + username + "&txtPassword=" + password;
+                                }
+                            %>
+                            <form action="DispatchServlet">
+                                <input type="hidden" name="userID" value="<%= request.getParameter("userID")%>" />
+                                <input name="btAction" style="background-color: #f3e4e4;border: none;font-weight: 600;font-size: 18px;" id="home-link" type="submit" class="nav-link nav-active" aria-current="page" value="Trang chủ"/>
+                            </form>
+        <!--                    <a  class="nav-link nav-active" aria-current="page" href="DispatchServlet?btAction=Home?userID=<%= request.getParameter("userID")%>" onclick="handleButtonClick(this)">
+                                <h5 class="background-hover">Trang chủ</h5>
+                            </a>-->
+                        </li>
+                        <li class="nav-item">
+                            <a id="about-link" class="nav-link" href="about.jsp" onclick="handleButtonClick(this)">
+                                <h5 class="background-hover">Về chúng tôi</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a id="about-link" class="nav-link" href="pairingBird.html" onclick="handleButtonClick(this)">
+                                <h5 class="background-hover">Ghép cặp</h5>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
+                                <h5 class="background-hover">Hàng đã mua</h5>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class=" input-group input-button">
+                        <input class="form-control border-end-0 border rounded-pill" type="text" placeholder="search" id="example-search-input">
+                        <span class="input-group-append">
+                            <label style="z-index: 10" for="example-search-input" class="btn-search btn btn-outline-secondary border-bottom-0 border rounded-pill ms-n5">
+                                <i class="fa fa-search"></i>
+                            </label>
+                        </span>
+                    </div>
+
+                    <form action="Login.jsp">
+                        <button class="cart btn btn-outline-dark" type="submit">
+                            <i class="fa-solid fa-cart-shopping"></i>
+                            Giỏ hàng
+                            <span class="badge bg-warning text-white ms-1 rounded-pill">0</span>
+                        </button>
+                    </form>
+
+                    <form action="Login.jsp">
+                        <button type="submit" class="btn-login btn btn-primary">
+                            Đăng nhập
+                        </button>
+                    </form>
+
+                    <form action="Register.jsp">
+                        <button type="submit" class="btn-register btn btn-danger">
+                            Đăng kí
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+        </nav>
+
         <!-- About -->
         <div class="bg-white">
             <div class="container py-3">
                 <div style="margin-bottom: 50px" class="row align-items-center">
                     <i class="fa fa-leaf fa-2x mb-3 text-primary"></i><h2 class="text-center text-black">Wings & Whistles Aviary: Your Ultimate Avian Sanctuary</h2>
-                    <div class="col-lg-12 px-5 mx-auto"><img src="https://images.unsplash.com/photo-1515863000766-9226fad36cfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2076&q=80" alt="" class="img-fluid mb-4 mb-lg-0"></div>
                     <div class="col-lg-12">
                         <h3 class="text-center mt-2">What We Offer:</h3>
                         <ul>
@@ -76,7 +146,7 @@
                     <!-- Team item-->
                     <div class="col-xl-3 col-sm-6 mb-5">
                         <div class="bg-white rounded shadow-sm py-5 px-4"><img src="https://avatars.githubusercontent.com/u/77594830?v=4" alt="" width="100" class="img-fluid rounded-circle mb-3 img-thumbnail shadow-sm">
-                            <h5 class="mb-0 text-black">Khoa Dang Hoang</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
+                            <h5 class="mb-0 text-black">Team 3</h5><span class="small text-uppercase text-muted">CEO - Founder</span>
                             <ul class="social mb-0 list-inline mt-3">
                                 <li class="list-inline-item"><a href="https://www.facebook.com/khoahd7621/" class="social-link"><i class="bi bi-facebook"></i></a></li>
                                 <li class="list-inline-item"><a href="https://github.com/khoahd7621" class="social-link"><i class="bi bi-github"></i></a></li>
@@ -108,19 +178,19 @@
         <!--===============================================================================================-->
         <script src="vendor/perfect-scrollbar/perfect-scrollbar.min.js"></script>
         <script>
-                                                    $('.js-pscroll').each(function () {
-                                                        $(this).css('position', 'relative');
-                                                        $(this).css('overflow', 'hidden');
-                                                        var ps = new PerfectScrollbar(this, {
-                                                            wheelSpeed: 1,
-                                                            scrollingThreshold: 1000,
-                                                            wheelPropagation: false,
-                                                        });
+                        $('.js-pscroll').each(function () {
+                            $(this).css('position', 'relative');
+                            $(this).css('overflow', 'hidden');
+                            var ps = new PerfectScrollbar(this, {
+                                wheelSpeed: 1,
+                                scrollingThreshold: 1000,
+                                wheelPropagation: false,
+                            });
 
-                                                        $(window).on('resize', function () {
-                                                            ps.update();
-                                                        })
-                                                    });
+                            $(window).on('resize', function () {
+                                ps.update();
+                            })
+                        });
         </script>
         <!-- Main -->
         <script src="js/main.js"></script>

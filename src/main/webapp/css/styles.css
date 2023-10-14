@@ -10914,6 +10914,7 @@ textarea.form-control-lg {
 .btn-search {
     position: absolute !important;
     right:-1px;
+    top: 0;
 }
 .btn-search:hover  {
   background-color: #7DB32B;
@@ -10935,7 +10936,7 @@ textarea.form-control-lg {
   padding: 0;
 }
 .slider {
-  margin-top: 135px;
+  margin-top: 127px;
   width: 100%;
   overflow: hidden;
 
@@ -10995,9 +10996,13 @@ textarea.form-control-lg {
 .slick-next {
   right: -1.5%;
 }
-.slick-current .card{
-  border: 3px solid #37c5a4;
+.card:hover{
+    border: 1.5px solid #cf9a11;
+    box-shadow: 0 0 0 rgba(0,0,0.5)
 }
+/*.slick-current .card{
+  border: 3px solid #37c5a4;
+}*/
 
 .title-selectory {
   display: none;
@@ -11005,6 +11010,12 @@ textarea.form-control-lg {
 quick-ul li a {
     text-decoration: none;
     color: black;
+}
+.bird-title_descrption {
+    background: rgba(0,0,0,.02);
+    margin-top: 20px;
+    padding-top: 20px;
+    text-transform: capitalize;
 }
 @media (min-width: 992px) and (max-width: 1118px) {
   .input-button {
@@ -11045,9 +11056,7 @@ quick-ul li a {
     border-radius: 10px;
     cursor:pointer;
   }
-  .nav-item-format:hover a {
-    color: #fff;
-  }
+  
 }
 .btn-back-to-top {
     display: none;
@@ -11069,18 +11078,18 @@ quick-ul li a {
 }
 @media (min-width: 1118px) {
   .input-button {
-    width: 45%;
-    right: 11%;
+    width: 41%;
+    right: 13%;
   }
   .cart {
     position: absolute;
     margin: 0 10px;
-    right: 16%;
+    right: 17%;
     top: 40%;
   }
   .btn-login {
-   width: 100px;
-   margin-right: 30px;
+   width: 115px;
+    margin-right: 30px;
   }
   .btn-register {
     width: 100px;
@@ -11101,6 +11110,9 @@ quick-ul li a {
     cursor:pointer;
   }
   .nav-item-format:hover a {
+    color: #fff;
+  }
+  .nav-item-format:hover button:hover  {
     color: #fff;
   }
   #prevButton {

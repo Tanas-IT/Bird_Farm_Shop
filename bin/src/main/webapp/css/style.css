@@ -1,0 +1,84 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f8f9fa;
+  }
+  
+  header {
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .navbar-nav .nav-link {
+    font-size: 18px;
+  }
+  
+  .card-body1 {
+    border: solid;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    text-align: center;
+    height: 100px;
+  }
+  .card-body2 {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease-in-out;
+    text-align: center;
+    height: 100px;
+  }
+  .card-text{
+    text-align: center;
+
+  }
+  
+  .card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  .price{
+    width: 60px;
+    height: 60px;
+    background-color: white;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .card-subtitle {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  .card-text{
+    margin-top: 40px;
+
+  }
+  .text-muted {
+    margin: auto;
+    color: #999;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .text-muted1 {
+    margin: auto;
+    color: #999;
+  }
+  footer {
+    background-color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px 0;
+  }
+  
+  footer p {
+    font-size: 14px;
+    color: #999;
+  }

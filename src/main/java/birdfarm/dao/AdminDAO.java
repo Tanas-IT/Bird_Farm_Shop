@@ -17,6 +17,7 @@ import java.util.List;
 import javax.naming.NamingException;
 import birdfarm.dto.AdminDTO;
 import birdfarm.dto.AdminProductDTO;
+import birdfarm.dto.PaymentDTO;
 
 /**
  *
@@ -35,6 +36,12 @@ public class AdminDAO implements Serializable {
     public List<AdminProductDTO> getProductList() {
         return productList;
     }
+    private List<PaymentDTO> paymentList;
+
+    public List<PaymentDTO> getPaymentList() {
+        return paymentList;
+    }
+    
 
     public void showProduct()
             throws SQLException, NamingException, ClassNotFoundException {
@@ -106,6 +113,43 @@ public class AdminDAO implements Serializable {
                         this.accountList = new ArrayList<>();
                     }
                     this.accountList.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+    public void showPayment()    
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "SELECT [idPayment]\n" +
+                        "      ,[methodName]\n" +
+                        "  FROM [BIRD_FARM_SHOP].[dbo].[Payment]";
+                stm = con.prepareCall(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int idPayment = rs.getInt("idPayment");
+                    String methodName = rs.getString("methodName");
+
+                    PaymentDTO dto
+                            = new PaymentDTO(idPayment, methodName);
+
+                    if (this.paymentList == null) {
+                        this.paymentList = new ArrayList<>();
+                    }
+                    this.paymentList.add(dto);
                 }
             }
         } finally {
