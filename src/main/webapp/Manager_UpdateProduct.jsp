@@ -117,7 +117,7 @@
                                                     <div class="col-md-6 pl-1">
                                                         <div class="form-group">
                                                             <label>Giai đoạn chim</label>
-                                                            <input type="text" class="form-control" placeholder="Last Name" name="txtPeriod" value="${dto.period}">
+                                                            <input type="text" class="form-control"  placeholder="Last Name" name="txtPeriod" value="${dto.period}">
                                                         </div>
                                                     </div>
                                                 </div>

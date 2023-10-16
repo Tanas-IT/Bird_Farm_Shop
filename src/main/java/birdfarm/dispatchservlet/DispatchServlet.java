@@ -42,6 +42,12 @@ public class DispatchServlet extends HttpServlet {
     private final String MANAGER_ACCEPT_ORDER_CONTROLLER = "ManagerAcceptOrderServlet";
     private final String MANAGER_REJECT_ORDER_CONTROLLER = "ManagerRejectOrderServlet";
 
+    private final String MANAGER_VIEW_TRACKING_LIST_CONTROLLER = "ManagerViewTrackingListServlet";
+    private final String MANAGER_VIEW_TRACKING_DETAIL_CONTROLLER = "ManagerViewTrackingDetailServlet";
+    private final String MANAGER_UPDATE_TRACKING_BIRD_CONTROLLER = "ManagerUpdateTrackingBirdServlet";
+    private final String MANAGER_CANCEL_TRACKING_BIRD_CONTROLLER = "ManagerCancelTrackingBirdServlet";
+    private final String MANAGER_DONE_TRACKING_BIRD_CONTROLLER = "ManagerDoneTrackingBirdServlet";
+
     private final String LOGIN_PAGE = "";
 
     /**
@@ -69,7 +75,7 @@ public class DispatchServlet extends HttpServlet {
                 url = ADMIN_VIEW_PRODUCT_CONTROLLER;
             } else if (button.equals("Update")) {
                 url = ADMIN_UPDATE_ACCOUNT_CONTROLLER;
-
+//------------------------------------------------------------------------------
             } else if (button.equals("ManagerViewFeedback")) {
                 url = MANAGER_VIEW_FEEDBACK_CONTROLLER;
             } else if (button.equals("ManagerViewBill")) {
@@ -78,22 +84,34 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_VIEW_PRODUCT_CONTROLLER;
             } else if (button.equals("ManagerViewOrder")) {
                 url = MANAGER_VIEW_ORDER_CONTROLLER;
-                
+            } else if (button.equals("ManagerViewTrackingList")) {
+                url = MANAGER_VIEW_TRACKING_LIST_CONTROLLER;
+//------------------------------------------------------------------------------             
             } else if (button.equals("AcceptOrder")) {
                 url = MANAGER_ACCEPT_ORDER_CONTROLLER;
             } else if (button.equals("RejectOrder")) {
                 url = MANAGER_REJECT_ORDER_CONTROLLER;
-                
+            } else if (button.equals("CancelTrackingBird")) {
+                url = MANAGER_CANCEL_TRACKING_BIRD_CONTROLLER;
+            } else if (button.equals("DoneTrackingBird")) {
+                url = MANAGER_DONE_TRACKING_BIRD_CONTROLLER;
+
+//------------------------------------------------------------------------------
             } else if (button.equals("DetailBill")) {
                 url = MANAGER_VIEW_DETAIL_BILL_CONTROLLER;
             } else if (button.equals("DetailOrder")) {
                 url = MANAGER_VIEW_DETAIL_ORDER_CONTROLLER;
+            } else if (button.equals("DetailTrackingBird")) {
+                url = MANAGER_VIEW_TRACKING_DETAIL_CONTROLLER;
+//------------------------------------------------------------------------------             
             } else if (button.equals("Check")) {
                 url = MANAGER_DASHBOARD_CONTROLLER;
             } else if (button.equals("ViewUpdateProduct")) {
                 url = MANAGER_SHOW_UPDATE_PRODUCT_CONTROLLER;
             } else if (button.equals("UpdateProduct")) {
                 url = MANAGER_UPDATE_PRODUCT_CONTROLLER;
+            } else if (button.equals("UpdateTrackingBird")) {
+                url = MANAGER_UPDATE_TRACKING_BIRD_CONTROLLER;
             } else if (button.equals("DeleteProduct")) {
                 url = MANAGER_DELETE_PRODUCT_CONTROLLER;
             }

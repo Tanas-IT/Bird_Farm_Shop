@@ -119,12 +119,16 @@
                                                             ${dto.receiverPhoneNumber}
                                                         </td>
                                                         <td>
-                                                            <fmt:formatNumber value="${dto.total}" maxFractionDigits="0"/> VND                                                        </td>
-                                                        <td>  
+                                                            <fmt:formatNumber value="${dto.total}" maxFractionDigits="0"/> VND                                                       
+                                                        </td>
+                                                        
+                                                        <td class="d-flex justify-content-around align-items-center">
+                                                            <!-- Button trigger modal -->
+                                                            
                                                             <a href="DispatchServlet?btAction=DetailBill&txtidOrder=${dto.idOrder}">
                                                                 <i class="pe-7s-look"></i>
                                                             </a>
-                                                                
+                                                            
                                                         </td>
                                                     </tr>
 

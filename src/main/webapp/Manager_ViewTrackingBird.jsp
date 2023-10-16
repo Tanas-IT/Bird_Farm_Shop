@@ -87,21 +87,21 @@
                         <div class="card-font-img">
 
                             <div class="header-font-img-admin" style="margin-left: 20px;">
-                                <h4 class="title">Hóa đơn</h4>
+                                <h4 class="title">Theo dõi đơn đặt hàng</h4>
                                 <p class="category">Staff & Manager</p>
                             </div>
                             <div class="content-font-img">
                                 <div class="table-responsive">
-                                    <c:set var="result" value="${requestScope.ORDER_LIST}"/>
+                                    <c:set var="result" value="${requestScope.TRACKING_BIRD_LIST}"/>
                                     <c:if test="${not empty result}">
                                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                             <thead>
                                                 <tr>
-                                                    <th>Mã đơn hàng</th>
+                                                    <th>Mã đơn </th>
                                                     <th>Tên người đặt</th>
-                                                    <th>Ngày đặt</th>
+                                                    <th>Chim bố & chim mẹ</th>
                                                     <th>Trạng thái đơn hàng</th>
-                                                    <th>Tổng tiền</th>
+                                                    <th>Ngày cập nhật</th>
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
@@ -111,71 +111,25 @@
                                                     <tr>
                                                         <td style="text-align: center">
 
-                                                            ${dto.idOrder}                                                     
+                                                            ${dto.idRequiredOrder}                                                     
                                                         </td>
                                                         <td>${dto.fullName}</td>
                                                         <td>
-                                                            ${dto.createdDate}
+                                                            ${dto.name} & ${dto.name}  
                                                         </td>
                                                         <td>
                                                             ${dto.status}
                                                         </td>
                                                         <td>
-                                                            <fmt:formatNumber value="${dto.total}" maxFractionDigits="0"/> VND                                                        
+                                                             ${dto.trackingDate}                                                      
                                                         </td>
                                                         <td class="d-flex justify-content-around align-items-center">
                                                             <!-- Button trigger modal -->
-                                                            <i data-toggle="modal" data-target="#CheckModal" class="fa-regular fa-circle-check"></i>
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="CheckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h3 class="modal-title" id="exampleModalLongTitle">Xác nhận đơn hàng</h3>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Bạn có chắc muốn xác nhận đơn hàng này không
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
-
-                                                                            <button onclick="window.location.href = 'DispatchServlet?btAction=AcceptOrder&txtidOrder=${dto.idOrder}'" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                            <a href="DispatchServlet?btAction=DetailOrder&txtidOrder=${dto.idOrder}">
+                                                            
+                                                            <a href="DispatchServlet?btAction=DetailTrackingBird&txtidRequiredOrder=${dto.idRequiredOrder}">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </a>
-                                                            <!-- Button trigger modal -->
-                                                            <i data-toggle="modal" data-target="#CancelModal" class="fas fa-window-close" style="color: #ee3211;"></i>
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="CancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h3 class="modal-title" id="exampleModalLongTitle">Hủy đơn hàng</h3>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Bạn có chắc muốn hủy đơn hàng này không
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                                            <form action="DispatchServlet">
-                                                                                <input type="hidden" name="txtidOrder" value="${dto.idOrder}" />
-                                                                                <button name="btAction" value="RejectOrder" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                            
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

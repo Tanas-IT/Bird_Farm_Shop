@@ -59,7 +59,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Update_product.html">
+                    <a href="DispatchServlet?btAction=ManagerViewTrackingList">
                         <i class="pe-7s-note"></i>
                         <p>Theo dõi đơn hàng</p>
                     </a>
