@@ -125,56 +125,56 @@
                                                         </td>
                                                         <td class="d-flex justify-content-around align-items-center">
                                                             <!-- Button trigger modal -->
-                                                           <i data-toggle="modal" data-target="#CheckModal" class="fa-regular fa-circle-check"></i>
+                                                            <i data-toggle="modal" data-target="#CheckModal" class="fa-regular fa-circle-check"></i>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="CheckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                  <div class="modal-header">
-                                                                    <h3 class="modal-title" id="exampleModalLongTitle">Xác nhận đơn hàng</h3>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                      <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                  </div>
-                                                                  <div class="modal-body">
-                                                                    Bạn có chắc muốn xác nhận đơn hàng này không
-                                                                  </div>
-                                                                  <div class="modal-footer">
-                                                                    <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                             
-                                                                        <button onclick="window.location.href='DispatchServlet?btAction=AcceptOrder&txtidOrder=${dto.idOrder}'" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h3 class="modal-title" id="exampleModalLongTitle">Xác nhận đơn hàng</h3>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Bạn có chắc muốn xác nhận đơn hàng này không
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
 
-                                                                  </div>
+                                                                            <button onclick="window.location.href = 'DispatchServlet?btAction=AcceptOrder&txtidOrder=${dto.idOrder}'" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
+
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                              </div>
                                                             </div>
                                                             <a href="DispatchServlet?btAction=DetailOrder&txtidOrder=${dto.idOrder}">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </a>
-                                                             <!-- Button trigger modal -->
-                                                           <i data-toggle="modal" data-target="#CancelModal" class="fas fa-window-close" style="color: #ee3211;"></i>
+                                                            <!-- Button trigger modal -->
+                                                            <i data-toggle="modal" data-target="#CancelModal" class="fas fa-window-close" style="color: #ee3211;"></i>
                                                             <!-- Modal -->
                                                             <div class="modal fade" id="CancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                              <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                <div class="modal-content">
-                                                                  <div class="modal-header">
-                                                                    <h3 class="modal-title" id="exampleModalLongTitle">Hủy đơn hàng</h3>
-                                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                      <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                  </div>
-                                                                  <div class="modal-body">
-                                                                    Bạn có chắc muốn hủy đơn hàng này không
-                                                                  </div>
-                                                                  <div class="modal-footer">
-                                                                    <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                                    <form action="DispatchServlet">
-                                                                        <input type="hidden" name="txtidOrder" value="${dto.idOrder}" />
-                                                                        <button name="btAction" value="RejectOrder" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
-                                                                    </form>
-                                                                  </div>
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h3 class="modal-title" id="exampleModalLongTitle">Hủy đơn hàng</h3>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            Bạn có chắc muốn hủy đơn hàng này không
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                                            <form action="DispatchServlet">
+                                                                                <input type="hidden" name="txtidOrder" value="${dto.idOrder}" />
+                                                                                <button name="btAction" value="RejectOrder" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                              </div>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -183,6 +183,10 @@
                                         </table>
 
                                     </c:if>
+                                    
+                                    <c:if test="${empty result}">
+                                        <h2>Không có đơn hàng</h2>
+                                    </c:if>  
 
                                 </div>
                             </div>

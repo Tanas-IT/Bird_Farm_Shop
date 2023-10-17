@@ -97,16 +97,16 @@
                                                     <div class="col-md-4 pr-1">
                                                         <div class="form-group">
                                                             <label>Chim bố </label>
-                                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="${dto.name}">
-                                                            <input type="hidden" name="txtpriceBirdDad" value="${dto.importPrice}" />
+                                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="${dto.birdFather}">
+                                                            <input type="hidden" name="txtpriceBirdDad" value="${dto.importPriceBirdDad}" />
 
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 px-1 ">
                                                         <div class="form-group">
                                                             <label>Chim mẹ</label>
-                                                            <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.name}">
-                                                            <input type="hidden" name="txtpriceBirdMom" value="${dto.importPrice}" />
+                                                            <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.birdMother}">
+                                                            <input type="hidden" name="txtpriceBirdMom" value="${dto.importPriceBirdMom}" />
                                                             <input type="hidden" name="txtfeePairing" value="${dto.feePairing}" />
                                                         </div>
                                                     </div>
@@ -122,7 +122,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                              
+
                                                 <c:if test="${dto.status eq 'Chim đã đẻ'|| dto.status eq 'Đang xử lý'}">
                                                     <style>
                                                         #chimcon {
@@ -170,13 +170,7 @@
                                                 <div class="row">
                                                     <div class="col-md-12">
 
-                                                        <!--                                                        <button style="margin-right: 10px" type="submit" class="btn-danger btn btn-fill pull-right" 
-                                                                                                                        name="btAction" value="CancelTrackingBird">
-                                                                                                                    Hủy đơn
-                                                           
-                                                        </button>-->
-                                                        <!-- Button trigger modal -->
-                                                        <!-- Button trigger modal -->
+
                                                         <button type="button" class="btn btn-primary btn-danger btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter">
                                                             Hủy đơn
                                                         </button>
@@ -206,10 +200,31 @@
                                                                 name="btAction" value="UpdateTrackingBird">
                                                             Cập nhật
                                                         </button>
-                                                        <button style="margin-right: 10px" type="submit" class="btn-success btn btn-fill pull-right" 
-                                                                name="btAction" value="DoneTrackingBird">
+
+                                                        <button type="button" class="btn btn-primary btn-success btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter_2">
                                                             Hoàn thành
                                                         </button>
+                                                        <div class="modal fade" id="exampleModalCenter_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Hủy đơn hàng</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Bạn có chắc muốn hoàn thành đơn hàng không ?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button  name="btAction" value="DoneTrackingBird"
+                                                                                 type="submit" class="btn btn-primary btn-danger ">Xác nhận</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                       
                                                     </div>
                                                 </div>
 

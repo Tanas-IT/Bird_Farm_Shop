@@ -89,8 +89,8 @@ public class ManagerTrackingBirdDAO implements Serializable {
             if (con != null) {
                 String sql = "Select ro.idRequiredOrder, u.fullName, "
                         + "ro.status, ro.reason,ro.imgTracking, "
-                        + "ro.trackingDate,b1.importPrice,b2.importPrice, "
-                        + "b1.name, b2.name, rd.feePairing, rd.birdNestMale , rd.birdNestFemale  "
+                        + "ro.trackingDate,b1.importPrice as priceBirdDad,b2.importPrice as priceBirdMom, "
+                        + "b1.name as birdFather , b2.name as birdMother, rd.feePairing, rd.birdNestMale , rd.birdNestFemale  "
                         + "from  RequiredOrder ro \n"
                         + "join RequiredOrderDetail rd \n"
                         + "on ro.idRequiredOrder = rd.idRequiredOrder\n"
@@ -110,17 +110,21 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     String trackingDate = rs.getString("trackingDate");
                     String reason = rs.getString("reason");
                     String imgTracking = rs.getString("imgTracking");
-                    String name = rs.getString("name");
+                    String birdFather = rs.getString("birdFather");
+                    String birdMother = rs.getString("birdMother");
                     String status = rs.getString("status");
-                    Double importPrice = rs.getDouble("importPrice");
                     Double feePairing = rs.getDouble("feePairing");
                     int birdNestMale = rs.getInt("birdNestMale");
                     int birdNestFemale = rs.getInt("birdNestFemale");
+                    Double importPriceBirdDad = rs.getDouble("priceBirdDad");
+                    Double importPriceBirdMom = rs.getDouble("priceBirdMom");
 
                     ManagerTrackingBirdDTO dto
                             = new ManagerTrackingBirdDTO(idRequiredOrder, 
-                                    status, reason, imgTracking, feePairing, 
-                                    fullName, name, importPrice, birdNestMale, birdNestFemale);
+                                    status, reason, imgTracking, birdFather, 
+                                    birdMother, feePairing, fullName, 
+                                    importPriceBirdDad, importPriceBirdMom,
+                                    birdNestMale, birdNestFemale);
 
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
