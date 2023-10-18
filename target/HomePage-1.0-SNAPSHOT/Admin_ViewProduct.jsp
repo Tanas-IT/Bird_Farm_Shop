@@ -65,7 +65,7 @@
 
                             <a href="DispatchServlet?btAction=AdminControlAccount">
                                 <i class="pe-7s-user"></i>
-                                <p>Tai khoan</p>
+                                <p>Tài khoản</p>
                             </a> 
 
 
@@ -74,7 +74,7 @@
                         <li>
                             <a href="DispatchServlet?btAction=AdminViewProduct">
                                 <i class="pe-7s-note2"></i>
-                                <p>Danh Muc San Pham</p>
+                                <p>Các phương thức thanh toán</p>
                             </a>
                         </li>
 
@@ -119,22 +119,18 @@
                             <div class="card-font-img">
 
                                 <div class="header-font-img-admin" style="margin-left: 20px;">
-                                    <h4 class="title">Products</h4>
-                                    <p class="category">List of Product</p>
+                                    <h4 class="title">Thanh toán</h4>
+                                    <p class="category">Danh sách các phương thức thanh toán</p>
                                 </div>
                                 <div class="content-font-img">
-                                    <c:set var="result" value="${requestScope.PRODUCT_LIST}"/>
+                                    <c:set var="result" value="${requestScope.PAYMENT_LIST}"/>
                                     <c:if test="${not empty result}">
                                         <table>
                                             <thead>
                                                 <tr>
                                                     <th>STT</th>
                                                     <th>ID</th>
-                                                    <th>Tên</th>
-                                                    <th>Số lượng</th>
-                                                    <th>Giá bán</th>
-                                                    <th>Tổ chim</th>
-                                                    <th>Trạng thái</th>
+                                                    <th>Phương thức</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -143,14 +139,9 @@
                                                         <td style="text-align: center">
                                                             ${counter.count}
                                                         </td>
-                                                        <td>${dto.idBird}</td>
-                                                        <td>${dto.name}</td>
-                                                        <td>${dto.quantity}</td>
-                                                        <td>${dto.salePrice}</td>
-                                                        <td>${dto.isBirdNest}</td>
-                                                        <td>${dto.status}</td>
+                                                        <td>${dto.idPayment}</td>
+                                                        <td>${dto.paymentMethod}</td>
                                                     </tr>
-
                                                 </c:forEach>
                                             </tbody>
                                         </table>

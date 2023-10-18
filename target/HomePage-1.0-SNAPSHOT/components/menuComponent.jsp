@@ -22,7 +22,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html" onclick="handleButtonClick(this)">
+                            <a class="nav-link active" aria-current="page" href="home.jsp" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Home</h5>
                             </a>
                         </li>

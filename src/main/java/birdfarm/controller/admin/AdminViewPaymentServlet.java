@@ -8,6 +8,7 @@ package birdfarm.controller.admin;
 import birdfarm.dao.AdminDAO;
 import birdfarm.dto.AdminDTO;
 import birdfarm.dto.AdminProductDTO;
+import birdfarm.dto.PaymentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -27,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author HP
  */
 @WebServlet(name = "AdminViewProductServlet", urlPatterns = {"/AdminViewProductServlet"})
-public class AdminViewProductServlet extends HttpServlet {
+public class AdminViewPaymentServlet extends HttpServlet {
 private final String ADMIN_VIEW_PRODUCT_PAGE = "Admin_ViewProduct.jsp";
 private final String ERROR_PAGE = "error.html";
     /**
@@ -45,9 +46,9 @@ private final String ERROR_PAGE = "error.html";
         String url = ERROR_PAGE;
         try {
             AdminDAO dao = new AdminDAO();
-            dao.showProduct();
-            List<AdminProductDTO> dto = dao.getProductList();
-            request.setAttribute("PRODUCT_LIST", dto);
+            dao.showPayment();
+            List<PaymentDTO> dto = dao.getPaymentList();
+            request.setAttribute("PAYMENT_LIST", dto);
             url = ADMIN_VIEW_PRODUCT_PAGE;
 
         } finally {
@@ -71,11 +72,11 @@ private final String ERROR_PAGE = "error.html";
     try {
         processRequest(request, response);
     } catch (SQLException ex) {
-        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AdminViewPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
     } catch (NamingException ex) {
-        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AdminViewPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
     } catch (ClassNotFoundException ex) {
-        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AdminViewPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 
@@ -93,11 +94,11 @@ private final String ERROR_PAGE = "error.html";
     try {
         processRequest(request, response);
     } catch (SQLException ex) {
-        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AdminViewPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
     } catch (NamingException ex) {
-        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AdminViewPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
     } catch (ClassNotFoundException ex) {
-        Logger.getLogger(AdminViewProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(AdminViewPaymentServlet.class.getName()).log(Level.SEVERE, null, ex);
     }
     }
 

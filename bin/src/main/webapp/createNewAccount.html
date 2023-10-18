@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Create</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="Register.css">
+    </head>
+    <body>
+        <div class="container">
+            <div class="wrapper">
+                <div class="title"><span>Register</span></div>
+                <form action="DispatchServlet" method="POST">
+                    <div class="row">          
+                        <input name="txtUsername" type="text" placeholder="UserName(6-15 chars)" required>
+                        <input name="txtPassword" type="text" placeholder="Password(8-15 chars)" required>
+                        <input name="txtConfirm" type="text" placeholder="Confirm Password" required>
+                        <input name="txtEmail" type="text" placeholder="Email" required>
+                        <input name="txtAddress" type="text" placeholder="Address" required>
+                        <input name="txtPhonenumber" type="text" placeholder="Phonenumber" required>
+                    </div>
+                    <div class="row button">
+                    <input type="submit" value="createAcount" name="btAction" />
+                    
+                    </div>
+                </form>
+            </div>
+        </div>
+    </body>
+</html>
