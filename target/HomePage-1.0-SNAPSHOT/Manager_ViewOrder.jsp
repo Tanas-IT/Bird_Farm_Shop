@@ -124,10 +124,14 @@
                                                             <fmt:formatNumber value="${dto.total}" maxFractionDigits="0"/> VND                                                        
                                                         </td>
                                                         <td class="d-flex justify-content-around align-items-center">
-                                                            <!-- Button trigger modal -->
+<!--                                                             Button trigger modal 
                                                             <i data-toggle="modal" data-target="#CheckModal" class="fa-regular fa-circle-check"></i>
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="CheckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                             Modal -->
+
+                                                            <a href="DispatchServlet?btAction=AcceptOrder&txtidOrder=${dto.idOrder}">
+                                                                <i data-toggle="modal" data-target="#CheckModal" class="fa-regular fa-circle-check"></i>
+                                                            </a>
+<!--                                                            <div class="modal fade" id="CheckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered" role="document">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
@@ -147,7 +151,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div>-->
                                                             <a href="DispatchServlet?btAction=DetailOrder&txtidOrder=${dto.idOrder}">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </a>
@@ -183,7 +187,7 @@
                                         </table>
 
                                     </c:if>
-                                    
+
                                     <c:if test="${empty result}">
                                         <h2>Không có đơn hàng</h2>
                                     </c:if>  

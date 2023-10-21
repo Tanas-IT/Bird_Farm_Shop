@@ -155,7 +155,7 @@
                                                         <div class="form-group">
                                                             <label>Cập nhật Video</label>
                                                             <input type="text" class="form-control" placeholder="url" 
-                                                                   name="txtImageURL" value="" >
+                                                                   name="txtvideoURL" value="${dto.videoURL}" >
                                                         </div>
                                                     </div>
                                                 </div>
@@ -187,7 +187,7 @@
                                             <img src="${dto.imageURL}" style="width: 200px; height: 200px">
 
                                         </div>
-                                    </c:forEach>    
+                                   
 
 
                                     <div class="card-body">
@@ -202,14 +202,10 @@
 
                                             </p>
 
-                                            <div class="card card-image1">
-
-                                                <iframe width="400" height="220"
-                                                        src="https://www.youtube.com/embed/0WeG4_kYh6s" 
-                                                        frameborder="0" allowfullscreen></iframe>
-
+                                            <div class="card card-image1" >
+                                                      ${dto.videoURL}
                                             </div>
-
+  </c:forEach>   
                                         </div>
                                         <p class="description text-center">
 
@@ -226,11 +222,11 @@
                     <div class="container-fluid">
                         <nav>
                             <ul class="footer-menu">
-                                
+
                             </ul>
                             <p class="copyright text-center">
-                               
-                                
+
+
                             </p>
                         </nav>
                     </div>

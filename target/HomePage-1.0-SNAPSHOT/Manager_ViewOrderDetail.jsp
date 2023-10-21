@@ -106,7 +106,7 @@
                                     <c:forEach var="dto1" items="${result1}" varStatus="counter">
 
                                         <h1 class="page-title text-secondary-d1">
-                                            Hóa đơn
+                                            Đơn hàng
                                             <small class="page-info">
                                                 <i class="fa fa-angle-double-right text-80"></i>
                                                 ${dto1.idOrder}

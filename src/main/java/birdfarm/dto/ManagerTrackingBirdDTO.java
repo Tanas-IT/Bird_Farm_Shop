@@ -35,20 +35,31 @@ public class ManagerTrackingBirdDTO implements Serializable{
     private Double importPrice;
     private Double importPriceBirdDad;
     private Double importPriceBirdMom;
+    private Double fee;
 
     private int birdNestMale;
     private int birdNestFemale;
     
-    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String fullName, String name) {
+//    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String fullName, String name) {
+//        this.idRequiredOrder = idRequiredOrder;
+//        this.status = status;
+//        this.trackingDate = trackingDate;
+//        this.fullName = fullName;
+//        this.name = name;
+//    }
+
+    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String birdFather, String birdMother, String fullName) {
         this.idRequiredOrder = idRequiredOrder;
         this.status = status;
         this.trackingDate = trackingDate;
+        this.birdFather = birdFather;
+        this.birdMother = birdMother;
         this.fullName = fullName;
-        this.name = name;
     }
 
 
-    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String reason, String imgTracking, String birdFather, String birdMother, Double feePairing, String fullName, Double importPriceBirdDad, Double importPriceBirdMom, int birdNestMale, int birdNestFemale) {
+
+    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String reason, String imgTracking, String birdFather, String birdMother, Double feePairing, String fullName, Double importPriceBirdDad, Double importPriceBirdMom, Double fee, int birdNestMale, int birdNestFemale) {
         this.idRequiredOrder = idRequiredOrder;
         this.status = status;
         this.reason = reason;
@@ -59,11 +70,19 @@ public class ManagerTrackingBirdDTO implements Serializable{
         this.fullName = fullName;
         this.importPriceBirdDad = importPriceBirdDad;
         this.importPriceBirdMom = importPriceBirdMom;
+        this.fee = fee;
         this.birdNestMale = birdNestMale;
         this.birdNestFemale = birdNestFemale;
     }
-    
-    
+
+    public Double getFee() {
+        return fee;
+    }
+
+    public void setFee(Double fee) {
+        this.fee = fee;
+    }
+      
 
     public int getBirdNestMale() {
         return birdNestMale;

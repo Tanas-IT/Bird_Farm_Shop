@@ -50,14 +50,16 @@ public class ManagerDoneTrackingBirdServlet extends HttpServlet {
             String birdNestFemale = request.getParameter("txtquantityBirdFemaleChild");
             String birdNestMale = request.getParameter("txtquantityBirdMaleChild");
 
-            String fee = request.getParameter("txtfeePairing");
+            String feePairing = request.getParameter("txtfeePairing");
             String priceBirdDad = request.getParameter("txtpriceBirdDad");
             String priceBirdMom = request.getParameter("txtpriceBirdMom");
+            String fee = request.getParameter("txtfee");
             
             int idRequiredOrder1 = Integer.parseInt(idRequiredOrder);
             int birdNestFemale1 = Integer.parseInt(birdNestFemale);
             int birdNestMale1 = Integer.parseInt(birdNestMale);
             
+            Double feePairing_1 = Double.parseDouble(feePairing);
             Double fee_1 = Double.parseDouble(fee);
             Double priceBirdDad_1 = Double.parseDouble(priceBirdDad);
             Double priceBirdMom_1 = Double.parseDouble(priceBirdMom);
@@ -65,8 +67,8 @@ public class ManagerDoneTrackingBirdServlet extends HttpServlet {
             Double a,b,c, total;
             
             a = (priceBirdDad_1 + priceBirdMom_1)/2;
-            b = birdNestMale1*(priceBirdDad_1*0.7) + birdNestFemale1*(priceBirdMom_1*0.3);
-            c =  fee_1;
+            b =  fee_1;
+            c =  feePairing_1;
             
             total = a + b + c;
 

@@ -49,24 +49,27 @@ public class ManagerUpdateProductServlet extends HttpServlet {
             String importPrice = request.getParameter("txtImportPrice");
             String salePrice = request.getParameter("txtSalePrice");
             String imageURL = request.getParameter("txtImageURL");
+            String videoURL = request.getParameter("txtvideoURL");
+
             String overview = request.getParameter("txtOverview");
-            
-            boolean status1 = false; 
+
+            boolean status1 = false;
             int quantity1 = Integer.parseInt(quantity);
             Double importPrice1 = Double.parseDouble(importPrice);
             Double salePrice1 = Double.parseDouble(salePrice);
 
-            if (status != null) { 
+            if (status != null) {
                 status1 = true;
             }
+            
             ManagerProductDAO dao = new ManagerProductDAO();
-            boolean result = dao.updateProduct(idBird, status1, period, quantity1, 
-                    importPrice1, salePrice1, imageURL, overview);
+            boolean result = dao.updateProduct(idBird, status1, period, quantity1,
+                    importPrice1, salePrice1, imageURL, overview, videoURL);
             if (result) {
-                url = "DispatchServlet?btAction=ViewUpdateProduct&txtIdBird="+idBird;
+                url = "DispatchServlet?btAction=ViewUpdateProduct&txtIdBird=" + idBird;
 
             }
-        
+
         } finally {
             response.sendRedirect(url);
             out.close();

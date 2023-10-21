@@ -115,7 +115,7 @@
                                                         </td>
                                                         <td>${dto.fullName}</td>
                                                         <td>
-                                                            ${dto.name} & ${dto.name}  
+                                                            ${dto.birdFather} & ${dto.birdMother}  
                                                         </td>
                                                         <td>
                                                             ${dto.status}

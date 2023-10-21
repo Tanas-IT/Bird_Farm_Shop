@@ -77,7 +77,7 @@
                                     <div class="card-body">
                                         <c:set var="result" value="${requestScope.TRACKING_ORDER_DETAIL_LIST}"/>
                                         <c:forEach items="${result}" var="dto" varStatus="counter">
-                                            <form action="DispatchServlet">                                         
+                                            <form action="DispatchServlet"  method="post" enctype="multipart/form-data" >                                         
                                                 <div class="row">
                                                     <div class="col-md-4" >
                                                         <div class="form-group" >
@@ -108,6 +108,7 @@
                                                             <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.birdMother}">
                                                             <input type="hidden" name="txtpriceBirdMom" value="${dto.importPriceBirdMom}" />
                                                             <input type="hidden" name="txtfeePairing" value="${dto.feePairing}" />
+                                                            <input type="hidden" name="txtfee" value="${dto.fee}" />
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 pl-1 pull-right" >
@@ -115,7 +116,7 @@
                                                             <label>Trạng thái</label>
                                                             <select class="form-control" name="txtstatus" style="height: 40px">
 
-                                                                <option>${dto.status}</option>
+                                                                <option value="${dto.status}">${dto.status}</option>
                                                                 <option value="Chim đã đẻ">Chim đã đẻ</option>
                                                                 <option value="Chim đã nở">Chim đã nở</option>
                                                             </select>
@@ -150,8 +151,14 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Cập nhật hình ảnh</label>
-                                                            <input type="text" class="form-control" placeholder="url" 
-                                                                   name="txtimgTracking" value="${dto.imgTracking}" >
+                                                            <!--                                                            <input type="text" class="form-control" placeholder="url" 
+                                                                                                                               name="txtimgTracking" value="${dto.imgTracking}" >-->
+
+
+                                                            <input type="file" name="file" accept="image/*" >
+
+
+
                                                         </div>
 
                                                     </div>
@@ -208,7 +215,7 @@
                                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header">
-                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Hủy đơn hàng</h5>
+                                                                        <h5 class="modal-title" id="exampleModalLongTitle">Hoàn thành đơn hàng</h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
@@ -224,7 +231,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                       
+
                                                     </div>
                                                 </div>
 
@@ -243,17 +250,18 @@
                                                  style="width: 200px ;height: 200px; border-radius: 50% ">
 
                                         </div>
-                                    </c:forEach>    
 
 
-                                    <div class="card-body">
-                                        <div class="author">
 
-                                            <br>
-                                            <br>
-                                            <br><br>
+                                        <div class="card-body">
+                                            <div class="author">
+
+                                                <br>
+                                                <br>
+                                                <br><br>
 
 
+                                            </c:forEach>    
                                             <p class="description">
 
                                             </p>

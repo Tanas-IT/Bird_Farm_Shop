@@ -16,6 +16,7 @@ D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manag
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewDetailBillServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dispatchservlet\DispatchServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dao\AdminDAO.java
+D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\UploadServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerShowUpdateProductServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dao\ManagerDAO.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminDTO.java

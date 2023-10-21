@@ -78,35 +78,21 @@
 
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
-                    <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#navigation-example-2">
-
-                            </button>
-                            <a class="navbar-brand" href="#">Table List</a>
-                        </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-left">
-
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                        </div>
-                    </div>
+                    
                 </nav>
 
 
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="page-content container">
-                            <div class="page-header text-blue-d2">
+                        <div class="page-content container"style="border: 1px solid #888; border-radius: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
+                            <div class="page-header text-blue-d2" >
 
                                 <c:set var="result1" value="${requestScope.BILL_CUSTOMER_DETAIL_LIST}"/>
                                 <c:if test="${not empty result1}">
                                     <c:forEach var="dto1" items="${result1}" varStatus="counter">
 
-                                        <h1 class="page-title text-secondary-d1">
-                                            Hóa đơn
+                                        <h1 class="page-title text-secondary-d1 " style="text-align: center;font-weight: bold">
+                                            Hóa đơn bán hàng
                                             <small class="page-info">
                                                 <i class="fa fa-angle-double-right text-80"></i>
                                                 ${dto1.idOrder}
@@ -120,35 +106,42 @@
 
                                                 <hr class="row brc-default-l1 mx-n1 mb-4" />
 
-                                                <div style="font-size: 18px" class="row">
+                                                <div style="font-size: 15px; font-weight: bold" class="row">
                                                     <div class="col-sm-6">
-                                                        <div>
-                                                            <span class="text-sm text-grey-m2 align-middle">Tên: </span>
-                                                            <span class="text-600 text-110 text-blue align-middle">${dto1.fullName}</span>
-                                                        </div>
-                                                        <div class="text-grey-m2">
-                                                            <div class="my-1">
-                                                                Địa chỉ: ${dto1.receiverAddress}
+                                                        <div class="card" style="border: 1px solid #000;border-radius: 10px; margin: 10px; padding: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
+                                                            <div class="my-2">
+                                                                <div class="my-2" style="font-size: 18px">
+                                                                    Thông tin khách hàng
+                                                                </div>
+                                                                <div class="my-2">
+                                                                    Tên: ${dto1.fullName}
+                                                                </div>
+                                                                <div class="my-2">
+                                                                    Địa chỉ: ${dto1.receiverAddress}
+                                                                </div>
+
+                                                                <div class="my-2">Số điện thoại: ${dto1.receiverPhoneNumber}</div>
                                                             </div>
 
-                                                            <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600 ">${dto1.receiverPhoneNumber}</b></div>
                                                         </div>
+
                                                     </div>
                                                     <!-- /.col -->
 
-                                                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-                                                        <hr class="d-sm-none" />
-                                                        <div class="text-grey-m2">
-                                                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                                    <div class="col-sm-6 ">
 
+
+                                                        <div class="card" style="border: 1px solid #000;border-radius: 10px; margin: 10px; padding: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
+                                                            <div class="my-2" style="font-size: 18px">
+                                                                Thông tin khách hàng
                                                             </div>
+                                                            <div class="my-2">ID Order: ${dto1.idOrder}</div>
 
-                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID Order:</span> ${dto1.idOrder}</div>
+                                                            <div class="my-2"> Ngày:</span> ${dto1.createdDate}</div>
 
-                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Ngày:</span> ${dto1.createdDate}</div>
-
-                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Trạng thái:</span> <span class="badge badge-warning badge-pill px-25">xxx</span></div>
+                                                            <div class="my-2"> Trạng thái: <span class="badge badge-warning badge-pill px-25">${dto1.status}</span></div>
                                                         </div>
+
                                                     </div>
                                                 </c:forEach>
                                             </c:if>
@@ -157,9 +150,10 @@
 
                                         <div style="font-size: 15px" class="mt-4">
                                             <table>
-                                                <thead class="style-thead" style="background-color: #84b0ca; color: white;">
-                                                    <tr style="padding: 10px;">
+                                                <thead class="style-thead" style="background-color: #84b0ca; color: white;border: 1px solid #000;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
+                                                    <tr style="padding: 10px;" >
                                                         <th>STT</th>
+                                                        <th>Ảnh</th>
                                                         <th>Tên mặt hàng</th>
                                                         <th>Số lượng</th>
                                                         <th>Giá</th>
@@ -179,6 +173,9 @@
                                                                 <td>
                                                                     ${counter.count}
                                                                 </td>
+                                                                <td>
+                                                                     <img src="${dto.imageURL}"style="width: 50px ;height: 50px; border-radius: 50% "> 
+                                                                </td>
                                                                 <td>${dto.name}</td>
                                                                 <td>${dto.quantity}</td>
                                                                 <td>${dto.price}</td>
@@ -193,31 +190,25 @@
 
 
                                                 <div class="row mt-3">
-                                                    <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+                                                    <div class="col-12 col-sm-6 text-grey-d2 text-95 mt-2 mt-lg-0">
+                                                        <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                                            <div class="card" style="border-radius: 10px; margin: 10px; padding: 10px;">
+                                                                <div class="my-2" style="font-size: 18px">
+                                                                    Nội dung đơn hàng
+                                                                </div>
+                                                                <div class="my-2"> Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng</div>
+
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                                                        <div class="row my-2">
-                                                            <div class="col-7 text-right">
-
-                                                            </div>
-                                                            <div class="col-5">
-                                                                <span class="text-120 text-secondary-d1"></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row my-2">
-                                                            <div class="col-7 text-right">
-
-                                                            </div>
-                                                            <div class="col-5">
-                                                                <span class="text-110 text-secondary-d1"></span>
-                                                            </div>
-                                                        </div>
+                                                    <div class="col-12 col-sm-6 text-grey text-90 order-first order-sm-last">
+                                                        
 
                                                         <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                                            <div class="col-7 text-right">
-                                                                Total Amount: 
+                                                            <br>
+                                                            <div class="col-7 text-right" style="font-size: 25px">
+                                                                Tổng tiền: 
                                                             </div>
                                                             <div class="col-5">
                                                                 <span class="text-150 text-success-d3 opacity-2"><fmt:formatNumber value="${total}" maxFractionDigits="0"/>đ</span>

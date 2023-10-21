@@ -39,7 +39,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
             con = DBConnection.makeConnection();
             if (con != null) {
                 String sql = "Select ro.idRequiredOrder, u.fullName, ro.status,"
-                        + " ro.trackingDate, b1.name, b2.name from  RequiredOrder ro\n"
+                        + " ro.trackingDate, b1.name as birdFather, b2.name as birdMother from  RequiredOrder ro\n"
                         + "join RequiredOrderDetail rd \n"
                         + "on ro.idRequiredOrder = rd.idRequiredOrder\n"
                         + "join BirdProduct b1 \n"
@@ -56,11 +56,13 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     int idRequiredOrder = rs.getInt("idRequiredOrder");
                     String fullName = rs.getString("fullName");
                     String trackingDate = rs.getString("trackingDate");
-                    String name = rs.getString("name");
+                    String birdFather = rs.getString("birdFather");
+                    String birdMother = rs.getString("birdMother");
                     String status = rs.getString("status");
 
                     ManagerTrackingBirdDTO dto
-                            = new ManagerTrackingBirdDTO(idRequiredOrder, status, trackingDate, fullName, name);
+                            = new ManagerTrackingBirdDTO(idRequiredOrder,
+                                    status, trackingDate, birdFather, birdMother, fullName);
 
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
@@ -90,7 +92,8 @@ public class ManagerTrackingBirdDAO implements Serializable {
                 String sql = "Select ro.idRequiredOrder, u.fullName, "
                         + "ro.status, ro.reason,ro.imgTracking, "
                         + "ro.trackingDate,b1.importPrice as priceBirdDad,b2.importPrice as priceBirdMom, "
-                        + "b1.name as birdFather , b2.name as birdMother, rd.feePairing, rd.birdNestMale , rd.birdNestFemale  "
+                        + "b1.name as birdFather , b2.name as birdMother, rd.feePairing, rd.birdNestMale , "
+                        + "rd.birdNestFemale , rd.fee "
                         + "from  RequiredOrder ro \n"
                         + "join RequiredOrderDetail rd \n"
                         + "on ro.idRequiredOrder = rd.idRequiredOrder\n"
@@ -118,13 +121,13 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     int birdNestFemale = rs.getInt("birdNestFemale");
                     Double importPriceBirdDad = rs.getDouble("priceBirdDad");
                     Double importPriceBirdMom = rs.getDouble("priceBirdMom");
+                    Double fee = rs.getDouble("fee");
 
                     ManagerTrackingBirdDTO dto
-                            = new ManagerTrackingBirdDTO(idRequiredOrder, 
-                                    status, reason, imgTracking, birdFather, 
-                                    birdMother, feePairing, fullName, 
-                                    importPriceBirdDad, importPriceBirdMom,
-                                    birdNestMale, birdNestFemale);
+                            = new ManagerTrackingBirdDTO(idRequiredOrder, status,
+                                    reason, imgTracking, birdFather, birdMother,
+                                    feePairing, fullName, importPriceBirdDad,
+                                    importPriceBirdMom, fee, birdNestMale, birdNestFemale);
 
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
@@ -142,7 +145,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
     }
 
-    public boolean updateTrackingBird(int idRequiredOrder, String status, String reason, String imgTracking)
+    public boolean updateTrackingBirdImg(int idRequiredOrder, String imgTracking)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -154,17 +157,57 @@ public class ManagerTrackingBirdDAO implements Serializable {
             if (con != null) {
 
                 String sql = "UPDATE RequiredOrder\n"
-                        + "SET [status] = ? ,\n"
-                        + "trackingDate = CAST(GETDATE() AS DATE),\n"
-                        + "[reason] = ? ,\n"
+                        + "SET trackingDate = CAST(GETDATE() AS DATE),\n"
                         + "imgTracking = ? \n"
                         + "WHERE idRequiredOrder = ? ";
 
                 stm = con.prepareStatement(sql);
+
+                stm.setString(1, imgTracking);
+                stm.setInt(2, idRequiredOrder);
+
+                int effectRows = stm.executeUpdate();
+
+                //5. Process
+                if (effectRows > 0) {
+                    result = true;
+                }
+
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+
+    public boolean updateTrackingBird(int idRequiredOrder, String status, String reason)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+
+        try {
+
+            con = DBConnection.makeConnection();
+            if (con != null) {
+
+                String sql = " UPDATE RequiredOrder\n"
+                        + "                       SET [status] = ?,\n"
+                        + "                       trackingDate = CAST(GETDATE() AS DATE),\n"
+                        + "                       [reason] = ?\n"
+                        + "                      \n"
+                        + "                       WHERE idRequiredOrder = ?";
+
+                stm = con.prepareStatement(sql);
                 stm.setString(1, status);
                 stm.setString(2, reason);
-                stm.setString(3, imgTracking);
-                stm.setInt(4, idRequiredOrder);
+                stm.setInt(3, idRequiredOrder);
 
                 int effectRows = stm.executeUpdate();
 

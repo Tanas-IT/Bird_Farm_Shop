@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -11,7 +11,8 @@ import java.io.Serializable;
  *
  * @author HP
  */
-public class ManagerOrderDTO implements Serializable{
+public class ManagerOrderDTO implements Serializable {
+
     private int idOrder;
     private String idUser;
     private String createdDate;
@@ -25,13 +26,14 @@ public class ManagerOrderDTO implements Serializable{
     private String receiverPhoneNumber;
     private String receiverName;
     private String name;
-    
+    private String imageURL;
+
     private int idOrderDetail;
     private String idBirdProduct;
     private int quantity;
     private Double price;
-    
-    private String fullName; 
+
+    private String fullName;
     private String phoneNumber;
 
     public ManagerOrderDTO(int idOrder, String createdDate, String status, Double total, String receiverPhoneNumber, String fullName) {
@@ -43,8 +45,6 @@ public class ManagerOrderDTO implements Serializable{
         this.fullName = fullName;
     }
 
-    
-
     public ManagerOrderDTO(int idOrder, String createdDate, String status, String receiverAddress, String receiverPhoneNumber, String fullName) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
@@ -53,10 +53,6 @@ public class ManagerOrderDTO implements Serializable{
         this.receiverPhoneNumber = receiverPhoneNumber;
         this.fullName = fullName;
     }
-
-
-
-    
 
     public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress, String receiverPhoneNumber, String name, int quantity, Double price, String fullName) {
         this.idOrder = idOrder;
@@ -72,9 +68,30 @@ public class ManagerOrderDTO implements Serializable{
     public ManagerOrderDTO() {
     }
 
+    public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress, String receiverPhoneNumber, String name, String imageURL, int quantity, Double price, String fullName) {
+        this.idOrder = idOrder;
+        this.createdDate = createdDate;
+        this.receiverAddress = receiverAddress;
+        this.receiverPhoneNumber = receiverPhoneNumber;
+        this.name = name;
+        this.imageURL = imageURL;
+        this.quantity = quantity;
+        this.price = price;
+        this.fullName = fullName;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
     public int getIdOrder() {
         return idOrder;
     }
+
 
     public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
@@ -224,6 +241,4 @@ public class ManagerOrderDTO implements Serializable{
         this.phoneNumber = phoneNumber;
     }
 
- 
-    
 }

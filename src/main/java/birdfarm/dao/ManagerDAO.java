@@ -158,7 +158,7 @@ public class ManagerDAO implements Serializable {
                         + "   u.fullName,\n"
                         + "   OD.price,\n"
                         + "   OD.quantity,\n"
-                        + "	BP.name\n"
+                        + "	BP.name, BP.imageURL \n"
                         + "    FROM\n"
                         + "   [Order] AS O\n"
                         + "   Join [User] As u ON u.idUser = O.idUser\n"
@@ -178,10 +178,12 @@ public class ManagerDAO implements Serializable {
                     String name = rs.getString("name");
                     int quantity = rs.getInt("quantity");
                     Double price = rs.getDouble("price");
+                    String imageURL = rs.getString("imageURL");
 
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate,
-                                    receiverAddress, receiverPhoneNumber, name, quantity, price, fullName);
+                            = new ManagerOrderDTO(idOrder, createdDate, 
+                                    receiverAddress, receiverPhoneNumber, name,
+                                    imageURL, quantity, price, fullName);
 
                     if (this.orderListDetail == null) {
                         this.orderListDetail = new ArrayList<>();
@@ -247,7 +249,5 @@ public class ManagerDAO implements Serializable {
             }
         }
     }
-    
-    
 
 }

@@ -52,7 +52,7 @@
 <body>
 
     <div class="wrapper">
-        <%@include file="ManagerComponent.jsp" %>
+        <%@include file="components//ManagerComponent.jsp" %>
 
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-fixed">
@@ -194,5 +194,11 @@
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
 <script src="js/demo/datatables-demo.js"></script>
+
+<script>
+    
+    
+    
+</script>
 
 </html>

@@ -115,7 +115,7 @@ public class ManagerProductDAO implements Serializable {
     }
 
     public boolean updateProduct(String idBird, boolean status, String period, int quantity,
-            Double importPrice, Double salePrice, String imageURL, String overview)
+            Double importPrice, Double salePrice, String imageURL, String overview, String videoURL)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -133,7 +133,8 @@ public class ManagerProductDAO implements Serializable {
                         + "    importPrice = ?, \n"
                         + "    salePrice = ?, \n"
                         + "    imageURL = ?, \n"
-                        + "    overview = ? \n"
+                        + "    overview = ?,"
+                        + " videoURL = ? \n"
                         + "WHERE idBird = ? ";
 
                 stm = con.prepareStatement(sql);
@@ -144,7 +145,8 @@ public class ManagerProductDAO implements Serializable {
                 stm.setDouble(5, salePrice);
                 stm.setString(6, imageURL);
                 stm.setString(7, overview);
-                stm.setString(8, idBird);
+                stm.setString(8, videoURL);           
+                stm.setString(9, idBird);
 
                 int effectRows = stm.executeUpdate();
 
@@ -177,7 +179,7 @@ public class ManagerProductDAO implements Serializable {
             if (con != null) {
                 String sql = "SELECT idBird, name, overview, "
                         + "quantity, importPrice, salePrice, "
-                        + "imageURL, period, status\n"
+                        + "imageURL, videoURL, period, status\n"
                         + "FROM BirdProduct\n"
                         + "WHERE idBird = ? ";
                 stm = con.prepareStatement(sql);
@@ -191,11 +193,13 @@ public class ManagerProductDAO implements Serializable {
                     Double importPrice = rs.getDouble("importPrice");
                     Double salePrice = rs.getDouble("salePrice");
                     String imageURL = rs.getString("imageURL");
+                    String videoURL = rs.getString("videoURL");
                     String period = rs.getString("period");
                     boolean status = rs.getBoolean("status");
                     ManagerProductDTO dto
-                            = new ManagerProductDTO(idBird, name, overview,
-                                    quantity, importPrice, salePrice, imageURL, period, status);
+                            = new ManagerProductDTO(idBird, name, overview, 
+                                    quantity, importPrice, salePrice, imageURL,
+                                    period, status, videoURL);
 
                     if (this.productList == null) {
                         this.productList = new ArrayList<>();

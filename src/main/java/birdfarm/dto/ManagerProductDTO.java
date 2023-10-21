@@ -21,10 +21,10 @@ public class ManagerProductDTO implements Serializable{
     private String imageURL;
     private String period;
     private boolean status;
+    private String videoURL;
 
-    public ManagerProductDTO(String idBird, String name, String overview, 
-            int quantity, Double importPrice, Double salePrice, String imageURL, 
-            String period, boolean status) {
+
+    public ManagerProductDTO(String idBird, String name, String overview, int quantity, Double importPrice, Double salePrice, String imageURL, String period, boolean status, String videoURL) {
         this.idBird = idBird;
         this.name = name;
         this.overview = overview;
@@ -34,6 +34,7 @@ public class ManagerProductDTO implements Serializable{
         this.imageURL = imageURL;
         this.period = period;
         this.status = status;
+        this.videoURL = videoURL;
     }
   
     
@@ -43,6 +44,14 @@ public class ManagerProductDTO implements Serializable{
         this.salePrice = salePrice;
         this.period = period;
         this.idBird = idBird;
+    }
+
+    public String getVideoURL() {
+        return videoURL;
+    }
+
+    public void setVideoURL(String videoURL) {
+        this.videoURL = videoURL;
     }
 
     public String getName() {
