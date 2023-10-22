@@ -43,7 +43,7 @@
     <body>
 
         <div class="wrapper">
-             <%@include file="ManagerComponent.jsp" %>
+        <%@include file="components//ManagerComponent.jsp" %>
 
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">

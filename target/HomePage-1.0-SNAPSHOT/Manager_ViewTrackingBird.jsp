@@ -54,20 +54,13 @@
 <body>
 
     <div class="wrapper">
-        <%@include file="ManagerComponent.jsp" %>
+        <%@include file="components//ManagerComponent.jsp" %>
 
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-fixed">
                 <div class="container-fluid">
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                data-target="#navigation-example-2">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Table List</a>
+                       
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-left">
@@ -87,10 +80,10 @@
                         <div class="card-font-img">
 
                             <div class="header-font-img-admin" style="margin-left: 20px;">
-                                <h4 class="title">Theo dõi đơn đặt hàng</h4>
-                                <p class="category">Staff & Manager</p>
+                                <h4 class="title" style="font-size: 30px">Theo dõi đơn đặt hàng</h4>
+                                <p class="category" style="font-size: 25px">Staff & Manager</p>
                             </div>
-                            <div class="content-font-img">
+                            <div class="content-font-img" style="font-size: 25px !important">
                                 <div class="table-responsive">
                                     <c:set var="result" value="${requestScope.TRACKING_BIRD_LIST}"/>
                                     <c:if test="${not empty result}">
@@ -147,10 +140,7 @@
             </div>
 
             <footer class="footer">
-                <div class="container-fluid">
-
-
-                </div>
+              
             </footer>
 
 

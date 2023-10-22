@@ -89,6 +89,103 @@ public class ManagerOrderDAO implements Serializable {
             }
         }
     }
+    public void showCancelOrder()
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "  SELECT\n"
+                        + "   O.idOrder,\n"
+                        + "   O.createdDate,\n"
+                        + "   O.receiverPhoneNumber,\n"
+                        + "   O.Total, O.status,\n"
+                        + "   u.fullName\n"
+                        + "FROM\n"
+                        + "   [Order] AS O\n"
+                        + "   JOIN [User] AS u ON u.idUser = O.idUser\n"
+                        + "WHERE\n"
+                        + "   O.status = N'Đã hủy'";
+                stm = con.prepareCall(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int idOrder = rs.getInt("idOrder");
+                    String createdDate = rs.getString("createdDate");
+                    String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
+                    Double Total = rs.getDouble("Total");
+                    String status = rs.getString("status");
+                    String fullName = rs.getString("fullName");
+
+                    ManagerOrderDTO dto
+                            = new ManagerOrderDTO(idOrder, createdDate, status, Total, receiverPhoneNumber, fullName);
+
+                    if (this.orderList == null) {
+                        this.orderList = new ArrayList<>();
+                    }
+                    this.orderList.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+    
+       public void showCustomerCancelOrder()
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "  SELECT\n"
+                        + "   O.idOrder,\n"
+                        + "   O.createdDate,\n"
+                        + "   O.receiverPhoneNumber,\n"
+                        + "   O.Total, O.status,\n"
+                        + "   u.fullName\n"
+                        + "FROM\n"
+                        + "   [Order] AS O\n"
+                        + "   JOIN [User] AS u ON u.idUser = O.idUser\n"
+                        + "WHERE\n"
+                        + "   O.status = N'Bị hủy'";
+                stm = con.prepareCall(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int idOrder = rs.getInt("idOrder");
+                    String createdDate = rs.getString("createdDate");
+                    String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
+                    Double Total = rs.getDouble("Total");
+                    String status = rs.getString("status");
+                    String fullName = rs.getString("fullName");
+
+                    ManagerOrderDTO dto
+                            = new ManagerOrderDTO(idOrder, createdDate, status, Total, receiverPhoneNumber, fullName);
+
+                    if (this.orderList == null) {
+                        this.orderList = new ArrayList<>();
+                    }
+                    this.orderList.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
 
     public void showOrderDetail(int searchIdOrder)
             throws SQLException, NamingException, ClassNotFoundException {
@@ -103,11 +200,11 @@ public class ManagerOrderDAO implements Serializable {
                         + "   O.idOrder,\n"
                         + "   O.createdDate,\n"
                         + "   O.receiverPhoneNumber, "
-                        + "O.receiverAddress,\n"
+                        + "O.receiverAddress, O.Note,\n"
                         + "   u.fullName,\n"
                         + "   OD.price,\n"
                         + "   OD.quantity,\n"
-                        + "	BP.name\n"
+                        + "	BP.name, BP.imageURL \n"
                         + "    FROM\n"
                         + "   [Order] AS O\n"
                         + "   Join [User] As u ON u.idUser = O.idUser\n"
@@ -127,10 +224,11 @@ public class ManagerOrderDAO implements Serializable {
                     String name = rs.getString("name");
                     int quantity = rs.getInt("quantity");
                     Double price = rs.getDouble("price");
-
+                    String imageURL = rs.getString("imageURL");
+                    String Note = rs.getString("Note");
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate,
-                                    receiverAddress, receiverPhoneNumber, name, quantity, price, fullName);
+                            = new ManagerOrderDTO(idOrder, createdDate, receiverAddress,
+                                    receiverPhoneNumber, name, imageURL, quantity, price, fullName, Note);
 
                     if (this.orderListDetail == null) {
                         this.orderListDetail = new ArrayList<>();
@@ -202,7 +300,7 @@ public class ManagerOrderDAO implements Serializable {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
-        try {        
+        try {
             con = DBConnection.makeConnection();
             if (con != null) {
                 String sql = "UPDATE [Order] "
@@ -226,12 +324,13 @@ public class ManagerOrderDAO implements Serializable {
         }
         return result;
     }
-        public boolean rejectOrder(int idOrder)
+
+    public boolean rejectOrder(int idOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
-        try {        
+        try {
             con = DBConnection.makeConnection();
             if (con != null) {
                 String sql = "UPDATE [Order] "

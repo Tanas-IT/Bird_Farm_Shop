@@ -74,11 +74,11 @@
     <body>
 
         <div class="wrapper">
-            <%@include file="ManagerComponent.jsp" %>
+            <%@include file="components//ManagerComponent.jsp" %>
 
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
-                    
+
                 </nav>
 
 
@@ -168,21 +168,22 @@
                                                             <c:set var="price" value="${dto.price}" />
                                                             <c:set var="priceANDquantity" value="${quantity*price}" />
 
-                                                            <c:set var="total" value="${total + quantity * price}" />   
+                                                            <c:set var="total" value="${total + quantity * price}" />  
+                                                            <c:set var="NOTE" value="${dto.note}" />
                                                             <tr >
                                                                 <td>
                                                                     ${counter.count}
                                                                 </td>
                                                                 <td>
-                                                                     <img src="${dto.imageURL}"style="width: 50px ;height: 50px; border-radius: 50% "> 
+                                                                    <img src="${dto.imageURL}"style="width: 50px ;height: 50px; border-radius: 50% "> 
                                                                 </td>
                                                                 <td>${dto.name}</td>
                                                                 <td>${dto.quantity}</td>
                                                                 <td>${dto.price}</td>
                                                                 <td>${priceANDquantity}</td>
                                                             </tr>
-
                                                         </c:forEach>
+
                                                     </tbody>
                                                 </table>
 
@@ -193,24 +194,24 @@
                                                     <div class="col-12 col-sm-6 text-grey-d2 text-95 mt-2 mt-lg-0">
                                                         <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                                             <div class="card" style="border-radius: 10px; margin: 10px; padding: 10px;">
-                                                                <div class="my-2" style="font-size: 18px">
+                                                                <div class="my-2" style="font-size: 18px ">
                                                                     Nội dung đơn hàng
                                                                 </div>
-                                                                <div class="my-2"> Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng Nội dung đơn hàng</div>
+                                                                <div class="my-2">${NOTE}</div>
 
                                                             </div>
                                                         </div>
                                                     </div>
 
                                                     <div class="col-12 col-sm-6 text-grey text-90 order-first order-sm-last">
-                                                        
+
 
                                                         <div class="row my-2 align-items-center bgc-primary-l3 p-2">
                                                             <br>
                                                             <div class="col-7 text-right" style="font-size: 25px">
                                                                 Tổng tiền: 
                                                             </div>
-                                                            <div class="col-5">
+                                                            <div class="col-5"  style="font-size: 20px">
                                                                 <span class="text-150 text-success-d3 opacity-2"><fmt:formatNumber value="${total}" maxFractionDigits="0"/>đ</span>
                                                             </div>
                                                         </div>

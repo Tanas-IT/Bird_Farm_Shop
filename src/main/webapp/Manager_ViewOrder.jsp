@@ -54,7 +54,7 @@
 <body>
 
     <div class="wrapper">
-        <%@include file="ManagerComponent.jsp" %>
+        <%@include file="components//ManagerComponent.jsp" %>
 
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-fixed">
@@ -67,7 +67,7 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Table List</a>
+
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-left">
@@ -81,16 +81,27 @@
 
             <div class="content">
                 <div class="container-fluid">
+                    <div class="col-md-pull-12" style="display: block; transform: translateX(30%);" >
+                        <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewOrder">Đơn hàng đang xử lý</a>
 
+                        <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCancelOrder">Đơn hàng đã hủy</a>
+
+                        <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCustomerCancelOrder">Đơn hàng bị hủy</a>
+
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
                     <div class="col-md-pull-12">
                         <div class="card-font-img">
 
-                            <div class="header-font-img-admin" style="margin-left: 20px;">
-                                <h4 class="title">Hóa đơn</h4>
-                                <p class="category">Staff & Manager</p>
+                            <div class="header-font-img-admin" style="margin-left: 20px">
+                                <h4 class="title" style="font-size: 30px">Đơn hàng đang xử lý</h4>
+                                <p class="category" style="font-size: 25px">Staff & Manager</p>
                             </div>
-                            <div class="content-font-img">
+                            <div class="content-font-img" style="font-size: 25px !important">
                                 <div class="table-responsive">
                                     <c:set var="result" value="${requestScope.ORDER_LIST}"/>
                                     <c:if test="${not empty result}">
@@ -105,7 +116,7 @@
                                                     <th>Action</th>
                                                 </tr>
                                             </thead>
-                                            <tbody>
+                                            <tbody >
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
 
                                                     <tr>
@@ -124,62 +135,11 @@
                                                             <fmt:formatNumber value="${dto.total}" maxFractionDigits="0"/> VND                                                        
                                                         </td>
                                                         <td class="d-flex justify-content-around align-items-center">
-<!--                                                             Button trigger modal 
-                                                            <i data-toggle="modal" data-target="#CheckModal" class="fa-regular fa-circle-check"></i>
-                                                             Modal -->
 
-                                                            <a href="DispatchServlet?btAction=AcceptOrder&txtidOrder=${dto.idOrder}">
-                                                                <i data-toggle="modal" data-target="#CheckModal" class="fa-regular fa-circle-check"></i>
-                                                            </a>
-<!--                                                            <div class="modal fade" id="CheckModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h3 class="modal-title" id="exampleModalLongTitle">Xác nhận đơn hàng</h3>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Bạn có chắc muốn xác nhận đơn hàng này không
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
-
-                                                                            <button onclick="window.location.href = 'DispatchServlet?btAction=AcceptOrder&txtidOrder=${dto.idOrder}'" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
-
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>-->
                                                             <a href="DispatchServlet?btAction=DetailOrder&txtidOrder=${dto.idOrder}">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </a>
-                                                            <!-- Button trigger modal -->
-                                                            <i data-toggle="modal" data-target="#CancelModal" class="fas fa-window-close" style="color: #ee3211;"></i>
-                                                            <!-- Modal -->
-                                                            <div class="modal fade" id="CancelModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h3 class="modal-title" id="exampleModalLongTitle">Hủy đơn hàng</h3>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                                <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            Bạn có chắc muốn hủy đơn hàng này không
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="bg-danger btn btn-secondary" data-dismiss="modal">Hủy</button>
-                                                                            <form action="DispatchServlet">
-                                                                                <input type="hidden" name="txtidOrder" value="${dto.idOrder}" />
-                                                                                <button name="btAction" value="RejectOrder" type="button" class="bg-primary btn btn-primary">Xác nhận</button>
-                                                                            </form>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -188,8 +148,8 @@
 
                                     </c:if>
 
-                                    <c:if test="${empty result}">
-                                        <h2>Không có đơn hàng</h2>
+                                     <c:if test="${empty result}">
+                                         <h2 class="d-flex justify-content-around align-items-center" style="font-size: 50px"s>Không có đơn hàng</h2>
                                     </c:if>  
 
                                 </div>
@@ -217,15 +177,6 @@
 <!--   Core JS Files   -->
 <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
-
-<!--  Charts Plugin -->
-<script src="js/chartist.min.js"></script>
-
-<!--  Notifications Plugin    -->
-<script src="js/bootstrap-notify.js"></script>
-
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="js/light-bootstrap-dashboard.js?v=1.4.0"></script>

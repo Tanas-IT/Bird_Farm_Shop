@@ -46,35 +46,77 @@
     <body>
 
         <div class="wrapper">
-            <%@include file="ManagerComponent.jsp" %>
+            <div class="sidebar" data-color="green" data-image="assets/img/sidebar-5.jpg">
+
+                <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
+
+
+                <div class="sidebar-wrapper">
+                    <div class="logo" style="height: 91px">
+                        <a href="#" class="simple-text">
+                            Bird Farm
+                        </a>
+                    </div>
+
+                    <div class="user-image" style="text-align: center;">
+                        <i class="pe-7s-user" style="font-size: 100px;"></i>
+                        <p>Nguyen Duc Anh</p>
+                        <p>Admin</p>
+                    </div>
+
+                    <ul class="nav">
+
+                        <li>
+                            <a href="DispatchServlet?btAction=ManagerViewOrder">
+                                <i class="pe-7s-news-paper"></i>
+                                <p>Đơn hàng</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="DispatchServlet?btAction=ManagerViewBill">
+                                <i class="pe-7s-note2"></i>
+                                <p>Hóa Đơn</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="Manager_Chart.jsp">
+                                <i class="pe-7s-graph1"></i>
+                                <p>Dashboard</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="DispatchServlet?btAction=ManagerViewProduct">
+                                <i class="pe-7s-drawer"></i>
+                                <p>Tất cả sản phẩm</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="DispatchServlet?btAction=ManagerViewFeedback">
+                                <i class="pe-7s-repeat"></i>
+                                <p>Phản hồi người dùng</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="DispatchServlet?btAction=ManagerViewTrackingList">
+                                <i class="pe-7s-note"></i>
+                                <p>Theo dõi đơn hàng</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <div style="text-align: center;">
+                        <a href="#">
+                            <i class="pe-7s-back pe-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
 
 
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
-                        <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#navigation-example-2">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Thong ke</a>
-                        </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-left">
-                                <li>
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                        <p class="hidden-lg hidden-md">Dashboard</p>
-                                    </a>
-                                </li>
+                        
 
-
-                            </ul>
-
-
-                        </div>
                     </div>
                 </nav>
 
@@ -83,16 +125,26 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="container-fluid px-4">
-                                <h1 class="mt-4 text-center mb-4">Bảng điều khiển quản trị viên</h1>
-                                <div class="dateFromTo">
+                                <h1 class="title text-center">Bảng số liệu thống kê</h1>
+                                <br>
+                                        
+                                        <br>
+                                        
+                                        <br>
+                                <div class="dateFromTo" style="font-size: 15px ">
                                     <form action="DispatchServlet">
                                         Từ: 
                                         <input class="" type="date" id="start" name="start" value="${start}">
                                         Đến: 
                                         <input type="date" id="end" name="end" value="${end}">
-                                        <input class="ml-4 btn btn-danger" name="btAction" type="submit" value="Check"/>
+                                        <input class="ml-4 btn btn-danger" style="font-size: 15px " name="btAction" type="submit" value="Check"/>
                                     </form>
                                 </div>
+                                        <br>
+                                        
+                                        <br>
+                                        
+                                        <br>
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="card mb-4">
@@ -159,7 +211,7 @@
                         var myLineChart1 = new Chart(ctx1, {
                         type: 'line',
                                 data: {
-                                      labels: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.date}",</c:forEach>],
+                                labels: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.date}",</c:forEach>],
                                         datasets: [{
                                         label: "Daonh Thu",
                                                 lineTension: 0.3,
@@ -172,7 +224,7 @@
                                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                                 pointHitRadius: 50,
                                                 pointBorderWidth: 2,
-                                                      data: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.value}",</c:forEach>],
+                                                data: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.value}",</c:forEach>],
                                         }],
                                 },
                                 options: {
@@ -191,7 +243,7 @@
                                         yAxes: [{
                                         ticks: {
                                         min: 0,
-                                                      max: ${maxListChartRevenueArea},
+                                                max: ${maxListChartRevenueArea},
                                                 maxTicksLimit: 5
                                         },
                                                 gridLines: {
@@ -208,7 +260,7 @@
                         var myLineChart2 = new Chart(ctx2, {
                         type: 'line',
                                 data: {
-                                      labels: [<c:forEach  items="${listOrder}" var="customer" > "${customer.date}",</c:forEach>],
+                                labels: [<c:forEach  items="${listOrder}" var="customer" > "${customer.date}",</c:forEach>],
                                         datasets: [{
                                         label: "Khách hàng",
                                                 lineTension: 0.3,
@@ -221,7 +273,7 @@
                                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                                 pointHitRadius: 50,
                                                 pointBorderWidth: 2,
-                                                      data: [<c:forEach  items="${listOrder}" var="customer" > "${customer.value}",</c:forEach>],
+                                                data: [<c:forEach  items="${listOrder}" var="customer" > "${customer.value}",</c:forEach>],
                                         }],
                                 },
                                 options: {
@@ -240,7 +292,7 @@
                                         yAxes: [{
                                         ticks: {
                                         min: 0,
-                                                      max: ${maxListOrderArea},
+                                                max: ${maxListOrderArea},
                                                 maxTicksLimit: 5
                                         },
                                                 gridLines: {
@@ -263,7 +315,7 @@
                         var myLineChart1 = new Chart(ctx1, {
                         type: 'line',
                                 data: {
-                                      labels: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.date}",</c:forEach>],
+                                labels: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.date}",</c:forEach>],
                                         datasets: [{
                                         label: "Daonh Thu",
                                                 lineTension: 0.3,
@@ -276,7 +328,7 @@
                                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                                 pointHitRadius: 50,
                                                 pointBorderWidth: 2,
-                                                      data: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.value}",</c:forEach>],
+                                                data: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.value}",</c:forEach>],
                                         }],
                                 },
                                 options: {
@@ -295,7 +347,7 @@
                                         yAxes: [{
                                         ticks: {
                                         min: 0,
-                                                      max: ${maxListChartRevenueArea},
+                                                max: ${maxListChartRevenueArea},
                                                 maxTicksLimit: 5
                                         },
                                                 gridLines: {
@@ -312,7 +364,7 @@
                         var myLineChart2 = new Chart(ctx2, {
                         type: 'line',
                                 data: {
-                                      labels: [<c:forEach  items="${listOrder}" var="customer" > "${customer.date}",</c:forEach>],
+                                labels: [<c:forEach  items="${listOrder}" var="customer" > "${customer.date}",</c:forEach>],
                                         datasets: [{
                                         label: "Đơn hàng",
                                                 lineTension: 0.3,
@@ -325,7 +377,7 @@
                                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                                 pointHitRadius: 50,
                                                 pointBorderWidth: 2,
-                                                      data: [<c:forEach  items="${listOrder}" var="customer" > "${customer.value}",</c:forEach>],
+                                                data: [<c:forEach  items="${listOrder}" var="customer" > "${customer.value}",</c:forEach>],
                                         }],
                                 },
                                 options: {
@@ -344,7 +396,7 @@
                                         yAxes: [{
                                         ticks: {
                                         min: 0,
-                                                      max: ${maxListOrderArea},
+                                                max: ${maxListOrderArea},
                                                 maxTicksLimit: 5
                                         },
                                                 gridLines: {
@@ -361,7 +413,7 @@
                         var myLineChart3 = new Chart(ctx3, {
                         type: 'line',
                                 data: {
-                                      labels: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.date}",</c:forEach>],
+                                labels: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.date}",</c:forEach>],
                                         datasets: [{
                                         label: "Sao Trung Bình",
                                                 lineTension: 0.3,
@@ -374,7 +426,7 @@
                                                 pointHoverBackgroundColor: "rgba(2,117,216,1)",
                                                 pointHitRadius: 50,
                                                 pointBorderWidth: 2,
-                                                      data: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.value}",</c:forEach>],
+                                                data: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.value}",</c:forEach>],
                                         }],
                                 },
                                 options: {

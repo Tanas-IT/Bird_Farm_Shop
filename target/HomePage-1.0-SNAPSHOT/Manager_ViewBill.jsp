@@ -33,9 +33,10 @@
 
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
     <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -65,7 +66,6 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="#">Table List</a>
                     </div>
                     <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav navbar-left">
@@ -85,10 +85,10 @@
                         <div class="card-font-img">
 
                             <div class="header-font-img-admin" style="margin-left: 20px;">
-                                <h4 class="title">Hóa đơn</h4>
-                                <p class="category">Staff & Manager</p>
+                                <h4 class="title" style="font-size: 30px">Hóa đơn</h4>
+                                <p class="category" style="font-size: 25px">Staff & Manager</p>
                             </div>
-                            <div class="content-font-img">
+                            <div class="content-font-img" style="font-size: 25px !important">
                                 <div class="table-responsive">
                                     <c:set var="result" value="${requestScope.BILL_LIST}"/>
                                     <c:if test="${not empty result}">
@@ -121,14 +121,14 @@
                                                         <td>
                                                             <fmt:formatNumber value="${dto.total}" maxFractionDigits="0"/> VND                                                       
                                                         </td>
-                                                        
+
                                                         <td class="d-flex justify-content-around align-items-center">
                                                             <!-- Button trigger modal -->
-                                                            
+
                                                             <a href="DispatchServlet?btAction=DetailBill&txtidOrder=${dto.idOrder}">
-                                                                <i class="pe-7s-look"></i>
+                                                                <i class="fa-solid fa-eye"></i>
                                                             </a>
-                                                            
+
                                                         </td>
                                                     </tr>
 
@@ -138,6 +138,9 @@
                                         </table>
 
                                     </c:if>
+                                     <c:if test="${empty result}">
+                                         <h2 class="d-flex justify-content-around align-items-center" style="font-size: 50px"s>Không có hóa đơn</h2>
+                                    </c:if>  
 
                                 </div>
                             </div>
@@ -165,14 +168,7 @@
 <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
 <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
-<!--  Charts Plugin -->
-<script src="js/chartist.min.js"></script>
 
-<!--  Notifications Plugin    -->
-<script src="js/bootstrap-notify.js"></script>
-
-<!--  Google Maps Plugin    -->
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 <script src="js/light-bootstrap-dashboard.js?v=1.4.0"></script>
@@ -196,9 +192,9 @@
 <script src="js/demo/datatables-demo.js"></script>
 
 <script>
-    
-    
-    
+
+
+
 </script>
 
 </html>

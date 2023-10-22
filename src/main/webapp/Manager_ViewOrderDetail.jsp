@@ -18,6 +18,9 @@
         <meta name="viewport" content="width=device-width" />
 
         <!-- Font & img CSS     -->
+        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
         <link href="css/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -37,6 +40,7 @@
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
         <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" >
         <style>
             .striped-table {
@@ -74,17 +78,13 @@
     <body>
 
         <div class="wrapper">
-            <%@include file="ManagerComponent.jsp" %>
+            <%@include file="components//ManagerComponent.jsp" %>
 
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#navigation-example-2">
-
-                            </button>
-                            <a class="navbar-brand" href="#">Table List</a>
+                            
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left">
@@ -95,18 +95,30 @@
                     </div>
                 </nav>
 
-
                 <div class="content">
                     <div class="container-fluid">
+                        <div class="col-md-pull-12" style="display: block; transform: translateX(30%);" >
+                            <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewOrder">Đơn hàng đang xử lý</a>
+
+                            <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCancelOrder">Đơn hàng đã hủy</a>
+
+                            <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCustomerCancelOrder">Đơn hàng bị hủy</a>
+
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
                         <div class="page-content container">
                             <div class="page-header text-blue-d2">
 
                                 <c:set var="result1" value="${requestScope.ORDER_CUSTOMER_DETAIL_LIST}"/>
                                 <c:if test="${not empty result1}">
                                     <c:forEach var="dto1" items="${result1}" varStatus="counter">
+                                        <c:set var="status" value="${dto1.status}" />
 
-                                        <h1 class="page-title text-secondary-d1">
-                                            Đơn hàng
+                                        <h1 class="page-title text-secondary-d1 " style="text-align: center;font-weight: bold">
+                                            Đơn hàng 
                                             <small class="page-info">
                                                 <i class="fa fa-angle-double-right text-80"></i>
                                                 ${dto1.idOrder}
@@ -120,36 +132,50 @@
 
                                                 <hr class="row brc-default-l1 mx-n1 mb-4" />
 
-                                                <div style="font-size: 18px" class="row">
+                                                <div style="font-size: 15px; font-weight: bold" class="row">
                                                     <div class="col-sm-6">
-                                                        <div>
-                                                            <span class="text-sm text-grey-m2 align-middle">Tên: </span>
-                                                            <span class="text-600 text-110 text-blue align-middle">${dto1.fullName}</span>
-                                                        </div>
-                                                        <div class="text-grey-m2">
-                                                            <div class="my-1">
-                                                                Địa chỉ: ${dto1.receiverAddress}
+                                                        <div class="card" style="border: 1px solid #000;border-radius: 10px; margin: 10px; padding: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
+                                                            <div class="my-2">
+                                                                <div class="my-2" style="font-size: 18px">
+                                                                    Thông tin khách hàng
+                                                                </div>
+                                                                <div class="my-2">
+                                                                    Tên: ${dto1.fullName}
+                                                                </div>
+                                                                <div class="my-2">
+                                                                    Địa chỉ: ${dto1.receiverAddress}
+                                                                </div>
+
+                                                                <div class="my-2">Số điện thoại: ${dto1.receiverPhoneNumber}</div>
                                                             </div>
 
-                                                            <div class="my-1"><i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600 ">${dto1.receiverPhoneNumber}</b></div>
                                                         </div>
+
                                                     </div>
                                                     <!-- /.col -->
 
-                                                    <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
-                                                        <hr class="d-sm-none" />
-                                                        <div class="text-grey-m2">
-                                                            <div class="mt-1 mb-2 text-secondary-m1 text-600 text-125">
+                                                    <div class="col-sm-6 ">
 
+
+                                                        <div class="card" style="border: 1px solid #000;border-radius: 10px; margin: 10px; padding: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
+                                                            <div class="my-2" style="font-size: 18px">
+                                                                Thông tin khách hàng
                                                             </div>
+                                                            <div class="my-2">ID Order: ${dto1.idOrder}</div>
 
-                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID Order:</span> ${dto1.idOrder}</div>
+                                                            <div class="my-2"> Ngày:</span> ${dto1.createdDate}</div>
 
-                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Ngày:</span> ${dto1.createdDate}</div>
-
-                                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Trạng thái:</span> <span class="badge badge-warning badge-pill px-25">${dto1.status}</span></div>
+                                                            <div class="my-2"> Trạng thái: <span class="badge badge-warning badge-pill px-25" style="font-size: 15px">${dto1.status}</span></div>
                                                         </div>
+
                                                     </div>
+                                                    <c:if test="${dto1.status eq 'Đã hủy'|| dto1.status eq 'Bị hủy'}">
+                                                        <style>
+                                                            #status {
+                                                                display: none;
+                                                            }
+                                                        </style>
+                                                    </c:if>
                                                 </c:forEach>
                                             </c:if>
                                             <!-- /.col -->
@@ -157,27 +183,33 @@
 
                                         <div style="font-size: 15px" class="mt-4">
                                             <table>
-                                                <thead class="style-thead" style="background-color: #84b0ca; color: white;">
-                                                    <tr style="padding: 10px;">
+                                                <thead class="style-thead" style="background-color: #84b0ca; color: white;border: 1px solid #000;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
+                                                    <tr style="padding: 10px;" >
                                                         <th>STT</th>
+                                                        <th>Ảnh</th>
                                                         <th>Tên mặt hàng</th>
                                                         <th>Số lượng</th>
                                                         <th>Giá</th>
                                                         <th>Tổng</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody class="striped-table" >
+                                                <tbody class="striped-table" style="font-size: 18px !important">
                                                     <c:set var="result" value="${requestScope.ORDER_DETAIL_LIST}"/>
                                                     <c:if test="${not empty result}">
                                                         <c:forEach var="dto" items="${result}" varStatus="counter">
+                                                            <c:set var="idOrder" value="${dto.idOrder}" />
                                                             <c:set var="quantity" value="${dto.quantity}" />
                                                             <c:set var="price" value="${dto.price}" />
                                                             <c:set var="priceANDquantity" value="${quantity*price}" />
 
                                                             <c:set var="total" value="${total + quantity * price}" />   
+                                                            <c:set var="NOTE" value="${dto.note}" />
                                                             <tr >
                                                                 <td>
                                                                     ${counter.count}
+                                                                </td>
+                                                                <td>
+                                                                    <img src="${dto.imageURL}"style="width: 50px ;height: 50px; border-radius: 50% "> 
                                                                 </td>
                                                                 <td>${dto.name}</td>
                                                                 <td>${dto.quantity}</td>
@@ -193,64 +225,71 @@
 
 
                                                 <div class="row mt-3">
-                                                    <div class="col-12 col-sm-7 text-grey-d2 text-95 mt-2 mt-lg-0">
+                                                    <div class="col-12 col-sm-6 text-grey-d2 text-95 mt-2 mt-lg-0">
+                                                        <div class="row my-2 align-items-center bgc-primary-l3 p-2">
+                                                            <div class="card" style="border-radius: 10px; margin: 10px; padding: 10px;">
+                                                                <div class="my-2" style="font-size: 18px">
+                                                                    Nội dung đơn hàng
+                                                                </div>
+                                                                <div class="my-2">${NOTE}</div>
+
+                                                            </div>
+                                                        </div>
                                                     </div>
 
-                                                    <div class="col-12 col-sm-5 text-grey text-90 order-first order-sm-last">
-                                                        <div class="row my-2">
-                                                            <div class="col-7 text-right">
+                                                    <div class="col-12 col-sm-6 text-grey text-90 order-first order-sm-last">
 
-                                                            </div>
-                                                            <div class="col-5">
-                                                                <span class="text-120 text-secondary-d1"></span>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="row my-2">
-                                                            <div class="col-7 text-right">
-
-                                                            </div>
-                                                            <div class="col-5">
-                                                                <span class="text-110 text-secondary-d1"></span>
-                                                            </div>
-                                                        </div>
 
                                                         <div class="row my-2 align-items-center bgc-primary-l3 p-2">
-                                                            <div class="col-7 text-right">
-                                                                Total Amount: 
+                                                            <br>
+                                                            <div class="col-7 text-right" style="font-size: 25px">
+                                                                Tổng tiền: 
                                                             </div>
                                                             <div class="col-5">
                                                                 <span class="text-150 text-success-d3 opacity-2"><fmt:formatNumber value="${total}" maxFractionDigits="0"/>đ</span>
                                                             </div>
+
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <div class="col-lg-4" id="status">
+                                                            <a href="DispatchServlet?btAction=AcceptOrder&txtidOrder=${idOrder}">
+                                                                Chấp nhận đơn hàng
+                                                            </a>
+
+                                                            <a href="DispatchServlet?btAction=RejectOrder&txtidOrder=${idOrder}">
+                                                                Từ chối đơn hàng
+                                                            </a>
+
+
                                                         </div>
                                                     </c:if>
-
                                                 </div>
+
+                                                <hr />
+
                                             </div>
-
-                                            <hr />
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
+
+
                         </div>
-
-
-
                     </div>
+
+                    <footer class="footer">
+                        <div class="container-fluid">
+
+
+                        </div>
+                    </footer>
+
+
                 </div>
-
-                <footer class="footer">
-                    <div class="container-fluid">
-
-
-                    </div>
-                </footer>
-
-
             </div>
-        </div>
 
 
     </body>

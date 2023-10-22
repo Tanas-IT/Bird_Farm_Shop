@@ -40,6 +40,9 @@ public class DispatchServlet extends HttpServlet {
     private final String MANAGER_DELETE_PRODUCT_CONTROLLER = "ManagerDeleteProductServlet";
 
     private final String MANAGER_VIEW_ORDER_CONTROLLER = "ManagerViewOrderServlet";
+    private final String MANAGER_VIEW_CANCEL_ORDER_CONTROLLER = "ManagerViewCancelOrderServlet";
+    private final String MANAGER_VIEW_CUSTOMER_CANCEL_ORDER_CONTROLLER = "ManagerViewCustomerCancelOrderServlet";
+
     private final String MANAGER_VIEW_DETAIL_ORDER_CONTROLLER = "ManagerViewDetailOrderServlet";
     private final String MANAGER_ACCEPT_ORDER_CONTROLLER = "ManagerAcceptOrderServlet";
     private final String MANAGER_REJECT_ORDER_CONTROLLER = "ManagerRejectOrderServlet";
@@ -84,10 +87,18 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_VIEW_BILL_CONTROLLER;
             } else if (button.equals("ManagerViewProduct")) {
                 url = MANAGER_VIEW_PRODUCT_CONTROLLER;
+//------------------------------------------------------------------------------                
             } else if (button.equals("ManagerViewOrder")) {
                 url = MANAGER_VIEW_ORDER_CONTROLLER;
+            } else if (button.equals("ManagerViewCancelOrder")) {
+                url = MANAGER_VIEW_CANCEL_ORDER_CONTROLLER;
+            } else if (button.equals("ManagerViewCustomerCancelOrder")) {
+                url = MANAGER_VIEW_CUSTOMER_CANCEL_ORDER_CONTROLLER;
+
+//------------------------------------------------------------------------------ 
             } else if (button.equals("ManagerViewTrackingList")) {
                 url = MANAGER_VIEW_TRACKING_LIST_CONTROLLER;
+
 //------------------------------------------------------------------------------             
             } else if (button.equals("AcceptOrder")) {
                 url = MANAGER_ACCEPT_ORDER_CONTROLLER;

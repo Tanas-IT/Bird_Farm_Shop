@@ -51,7 +51,7 @@
     </head>
     <body>
         <div class="wrapper">
-            <%@include file="ManagerComponent.jsp" %>
+        <%@include file="components//ManagerComponent.jsp" %>
 
             <div class="main-panel">
                 <!-- Navbar -->
@@ -151,14 +151,9 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Cập nhật hình ảnh</label>
-                                                            <!--                                                            <input type="text" class="form-control" placeholder="url" 
-                                                                                                                               name="txtimgTracking" value="${dto.imgTracking}" >-->
-
+                                                                                                               
 
                                                             <input type="file" name="file" accept="image/*" >
-
-
-
                                                         </div>
 
                                                     </div>
@@ -208,7 +203,7 @@
                                                             Cập nhật
                                                         </button>
 
-                                                        <button type="button" class="btn btn-primary btn-success btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter_2">
+                                                        <button style="margin-right: 12px;" type="button" class="btn btn-primary btn-success btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter_2">
                                                             Hoàn thành
                                                         </button>
                                                         <div class="modal fade" id="exampleModalCenter_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">

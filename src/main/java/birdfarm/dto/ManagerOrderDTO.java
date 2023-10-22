@@ -18,11 +18,9 @@ public class ManagerOrderDTO implements Serializable {
     private String createdDate;
     private String status;
     private Double total;
-    private Double deliveryCost;
-    private String deliveryDate;
-    private int usePoint;
+
     private String receiverAddress;
-    private String Note;
+    private String note;
     private String receiverPhoneNumber;
     private String receiverName;
     private String name;
@@ -54,21 +52,12 @@ public class ManagerOrderDTO implements Serializable {
         this.fullName = fullName;
     }
 
-    public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress, String receiverPhoneNumber, String name, int quantity, Double price, String fullName) {
-        this.idOrder = idOrder;
-        this.createdDate = createdDate;
-        this.receiverAddress = receiverAddress;
-        this.receiverPhoneNumber = receiverPhoneNumber;
-        this.name = name;
-        this.quantity = quantity;
-        this.price = price;
-        this.fullName = fullName;
-    }
-
     public ManagerOrderDTO() {
     }
 
-    public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress, String receiverPhoneNumber, String name, String imageURL, int quantity, Double price, String fullName) {
+    public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress,
+            String receiverPhoneNumber, String name, String imageURL, int quantity,
+            Double price, String fullName, String note) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
         this.receiverAddress = receiverAddress;
@@ -78,6 +67,15 @@ public class ManagerOrderDTO implements Serializable {
         this.quantity = quantity;
         this.price = price;
         this.fullName = fullName;
+        this.note = note;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public String getImageURL() {
@@ -91,7 +89,6 @@ public class ManagerOrderDTO implements Serializable {
     public int getIdOrder() {
         return idOrder;
     }
-
 
     public void setIdOrder(int idOrder) {
         this.idOrder = idOrder;
@@ -129,44 +126,12 @@ public class ManagerOrderDTO implements Serializable {
         this.total = total;
     }
 
-    public Double getDeliveryCost() {
-        return deliveryCost;
-    }
-
-    public void setDeliveryCost(Double deliveryCost) {
-        this.deliveryCost = deliveryCost;
-    }
-
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    public int getUsePoint() {
-        return usePoint;
-    }
-
-    public void setUsePoint(int usePoint) {
-        this.usePoint = usePoint;
-    }
-
     public String getReceiverAddress() {
         return receiverAddress;
     }
 
     public void setReceiverAddress(String receiverAddress) {
         this.receiverAddress = receiverAddress;
-    }
-
-    public String getNote() {
-        return Note;
-    }
-
-    public void setNote(String Note) {
-        this.Note = Note;
     }
 
     public String getReceiverPhoneNumber() {
