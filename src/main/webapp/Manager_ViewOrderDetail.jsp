@@ -169,6 +169,7 @@
                                                         </div>
 
                                                     </div>
+                                                        
                                                     <c:if test="${dto1.status eq 'Đã hủy'|| dto1.status eq 'Bị hủy'}">
                                                         <style>
                                                             #status {
@@ -176,6 +177,7 @@
                                                             }
                                                         </style>
                                                     </c:if>
+                                                        
                                                 </c:forEach>
                                             </c:if>
                                             <!-- /.col -->

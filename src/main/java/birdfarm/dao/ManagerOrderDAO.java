@@ -355,7 +355,7 @@ public class ManagerOrderDAO implements Serializable {
         return result;
     }
 
-    public List<Chart> getChartRevenueArea(String idOrder, String start, int day) throws SQLException, NamingException, ClassNotFoundException {
+    public List<Chart> totalMoneyOrder(String idOrder, String start, int day) throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;

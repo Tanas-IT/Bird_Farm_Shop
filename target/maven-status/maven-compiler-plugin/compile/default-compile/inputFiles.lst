@@ -11,6 +11,7 @@ D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manag
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerUpdateProductServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminViewProductServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewDetailOrderServlet.java
+D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerSendMailTrackingBirdServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminControlAccountServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewProductServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewDetailBillServlet.java
@@ -20,12 +21,14 @@ D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manag
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerShowUpdateProductServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dao\ManagerDAO.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminDTO.java
+D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewCancelOrderServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dto\ManagerViewFeedbackDTO.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewOrderServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dao\ManagerProductDAO.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerUpdateTrackingBirdServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerCancelTrackingBirdServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerDeleteProductServlet.java
+D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewCustomerCancelOrderServlet.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dao\DateDAO.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminProductDTO.java
 D:\FPT\HK5\SWP\fix by tan\Bird_Farm_Shop\src\main\java\birdfarm\dto\Category.java

@@ -5,6 +5,7 @@
  */
 package birdfarm.dao;
 
+import birdfarm.dto.Chart;
 import birdfarm.dto.ManagerProductDTO;
 import birdfarm.dto.ManagerTrackingBirdDTO;
 import birdfarm.util.DBConnection;
@@ -89,21 +90,23 @@ public class ManagerTrackingBirdDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "Select ro.idRequiredOrder, u.fullName, "
-                        + "ro.status, ro.reason,ro.imgTracking, "
-                        + "ro.trackingDate,b1.importPrice as priceBirdDad,b2.importPrice as priceBirdMom, "
-                        + "b1.name as birdFather , b2.name as birdMother, rd.feePairing, rd.birdNestMale , "
-                        + "rd.birdNestFemale , rd.fee "
-                        + "from  RequiredOrder ro \n"
-                        + "join RequiredOrderDetail rd \n"
-                        + "on ro.idRequiredOrder = rd.idRequiredOrder\n"
-                        + "join BirdProduct b1 \n"
-                        + "on rd.idBirdFather=b1.idBird \n"
-                        + "join BirdProduct b2\n"
-                        + "on rd.idBirdMother = b2.idBird\n"
-                        + "join [User] u \n"
-                        + "on ro.idUser = u.idUser\n"
-                        + "Where ro.idRequiredOrder = ? ";
+                String sql = "    Select ro.idRequiredOrder, u.fullName, \n"
+                        + "        ro.status, ro.reason,ro.imgTracking, \n"
+                        + "        ro.trackingDate,b1.importPrice as priceBirdDad,b2.importPrice as priceBirdMom, \n"
+                        + "         b1.name as birdFather , b2.name as birdMother,  rd.birdNestMale ,\n"
+                        + "        rd.birdNestFemale , rd.fee , cu.email\n"
+                        + "         from  RequiredOrder ro \n"
+                        + "        join RequiredOrderDetail rd \n"
+                        + "         on ro.idRequiredOrder = rd.idRequiredOrder\n"
+                        + "        join BirdProduct b1 \n"
+                        + "           on rd.idBirdFather=b1.idBird \n"
+                        + "          join BirdProduct b2\n"
+                        + "          on rd.idBirdMother = b2.idBird\n"
+                        + "         join [User] u \n"
+                        + "            on ro.idUser = u.idUser\n"
+                        + "        join [Customer] cu\n"
+                        + "          on ro.idUser = cu.idCustomer\n"
+                        + "              Where ro.idRequiredOrder = ?";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, searchValue);
                 rs = stm.executeQuery();
@@ -116,18 +119,19 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     String birdFather = rs.getString("birdFather");
                     String birdMother = rs.getString("birdMother");
                     String status = rs.getString("status");
-                    Double feePairing = rs.getDouble("feePairing");
                     int birdNestMale = rs.getInt("birdNestMale");
                     int birdNestFemale = rs.getInt("birdNestFemale");
                     Double importPriceBirdDad = rs.getDouble("priceBirdDad");
                     Double importPriceBirdMom = rs.getDouble("priceBirdMom");
                     Double fee = rs.getDouble("fee");
+                    String email = rs.getString("email");
 
                     ManagerTrackingBirdDTO dto
                             = new ManagerTrackingBirdDTO(idRequiredOrder, status,
                                     reason, imgTracking, birdFather, birdMother,
-                                    feePairing, fullName, importPriceBirdDad,
-                                    importPriceBirdMom, fee, birdNestMale, birdNestFemale);
+                                     fullName, importPriceBirdDad,
+                                    importPriceBirdMom, fee, birdNestMale,
+                                    birdNestFemale, email);
 
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
@@ -143,6 +147,49 @@ public class ManagerTrackingBirdDAO implements Serializable {
                 con.close();
             }
         }
+    }
+
+    public List<Chart> totalMoneyRequiredOrder(String idOrder, String start, int day) throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        List<Chart> list = new ArrayList<>();
+        for (int i = 0; i < day; i++) {
+            int value = 0;
+            try {
+                con = DBConnection.makeConnection();
+                if (con != null) {
+                    String sql = "SELECT SUM(Total)\n"
+                            + "FROM [RequiredOrder]\n"
+                            + "WHERE idRequiredOrder " + idOrder + "\n"
+                            + "  AND createdDate <= DATEADD(DAY, ?, ?) AND createdDate >= ?";
+
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, i);
+                    stm.setString(2, start);
+                    stm.setString(3, start);
+                    rs = stm.executeQuery();
+                    while (rs.next()) {
+                        value = rs.getInt(1);
+                    }
+                    sql = "select  DATEADD(DAY, ?, ?)";
+                    stm = con.prepareStatement(sql);
+                    stm.setInt(1, i);
+                    stm.setString(2, start);
+                    rs = stm.executeQuery();
+                    while (rs.next()) {
+                        Chart c = Chart.builder()
+                                .date(rs.getDate(1))
+                                .value(value)
+                                .build();
+                        list.add(c);
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+        }
+        return list;
     }
 
     public boolean updateTrackingBirdImg(int idRequiredOrder, String imgTracking)

@@ -11,23 +11,23 @@ import java.io.Serializable;
  *
  * @author HP
  */
-public class ManagerTrackingBirdDTO implements Serializable{
+public class ManagerTrackingBirdDTO implements Serializable {
+
     private int idRequiredOrder;
     private String idUser;
     private String createdDate;
-    private String status; 
-    private Double total; 
+    private String status;
+    private Double total;
     private String deliveryDate;
     private String reason;
     private String imgTracking;
     private String trackingDate;
-    
+
     private int idRequiredOrderDetail;
     private String birdFather;
     private String birdMother;
-    private Double feePairing;
     private Double finalPricePairing;
-    
+
     private String fullName;
     private String phoneNumber;
 
@@ -36,10 +36,11 @@ public class ManagerTrackingBirdDTO implements Serializable{
     private Double importPriceBirdDad;
     private Double importPriceBirdMom;
     private Double fee;
+    private String email;
 
     private int birdNestMale;
     private int birdNestFemale;
-    
+
 //    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String fullName, String name) {
 //        this.idRequiredOrder = idRequiredOrder;
 //        this.status = status;
@@ -47,7 +48,6 @@ public class ManagerTrackingBirdDTO implements Serializable{
 //        this.fullName = fullName;
 //        this.name = name;
 //    }
-
     public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String birdFather, String birdMother, String fullName) {
         this.idRequiredOrder = idRequiredOrder;
         this.status = status;
@@ -57,22 +57,32 @@ public class ManagerTrackingBirdDTO implements Serializable{
         this.fullName = fullName;
     }
 
-
-
-    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String reason, String imgTracking, String birdFather, String birdMother, Double feePairing, String fullName, Double importPriceBirdDad, Double importPriceBirdMom, Double fee, int birdNestMale, int birdNestFemale) {
+    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, 
+            String reason, String imgTracking, String birdFather, 
+            String birdMother,  String fullName, 
+            Double importPriceBirdDad, Double importPriceBirdMom, 
+            Double fee, int birdNestMale, int birdNestFemale, String email) {
         this.idRequiredOrder = idRequiredOrder;
         this.status = status;
         this.reason = reason;
         this.imgTracking = imgTracking;
         this.birdFather = birdFather;
         this.birdMother = birdMother;
-        this.feePairing = feePairing;
         this.fullName = fullName;
         this.importPriceBirdDad = importPriceBirdDad;
         this.importPriceBirdMom = importPriceBirdMom;
         this.fee = fee;
         this.birdNestMale = birdNestMale;
         this.birdNestFemale = birdNestFemale;
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Double getFee() {
@@ -82,7 +92,6 @@ public class ManagerTrackingBirdDTO implements Serializable{
     public void setFee(Double fee) {
         this.fee = fee;
     }
-      
 
     public int getBirdNestMale() {
         return birdNestMale;
@@ -99,8 +108,6 @@ public class ManagerTrackingBirdDTO implements Serializable{
     public void setBirdNestFemale(int birdNestFemale) {
         this.birdNestFemale = birdNestFemale;
     }
-  
-    
 
     public String getTrackingDate() {
         return trackingDate;
@@ -116,8 +123,8 @@ public class ManagerTrackingBirdDTO implements Serializable{
 
     public void setImportPrice(Double importPrice) {
         this.importPrice = importPrice;
-    }        
-    
+    }
+
     public ManagerTrackingBirdDTO() {
     }
 
@@ -132,6 +139,7 @@ public class ManagerTrackingBirdDTO implements Serializable{
     public void setName(String name) {
         this.name = name;
     }
+
     public void setIdRequiredOrder(int idRequiredOrder) {
         this.idRequiredOrder = idRequiredOrder;
     }
@@ -233,14 +241,6 @@ public class ManagerTrackingBirdDTO implements Serializable{
     }
 
 
-    public Double getFeePairing() {
-        return feePairing;
-    }
-
-    public void setFeePairing(Double feePairing) {
-        this.feePairing = feePairing;
-    }
-
     public Double getFinalPricePairing() {
         return finalPricePairing;
     }
@@ -264,8 +264,5 @@ public class ManagerTrackingBirdDTO implements Serializable{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-    
-    
-    
-    
+
 }

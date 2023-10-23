@@ -23,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 @MultipartConfig
 public class DispatchServlet extends HttpServlet {
 
+    private final String SEND_MAIL_TRACKING = "ManagerSendMailTrackingBirdServlet";
+
     private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
     private final String ADMIN_VIEW_PRODUCT_CONTROLLER = "AdminViewProductServlet";
     private final String ADMIN_UPDATE_ACCOUNT_CONTROLLER = "AdminUpdateAccountServlet";
@@ -74,6 +76,10 @@ public class DispatchServlet extends HttpServlet {
         try {
             if (button == null) { //trigger welcome file
                 //do nothing
+                //--------------------------------------------
+            } else if (button.equals("ManagerSendMail")) {
+                url = SEND_MAIL_TRACKING;
+                //--------------------------------------------
             } else if (button.equals("AdminControlAccount")) {
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;
             } else if (button.equals("AdminViewProduct")) {

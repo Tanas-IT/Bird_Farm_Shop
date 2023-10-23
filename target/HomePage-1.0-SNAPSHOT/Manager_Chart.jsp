@@ -115,7 +115,7 @@
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
-                        
+
 
                     </div>
                 </nav>
@@ -127,10 +127,10 @@
                             <div class="container-fluid px-4">
                                 <h1 class="title text-center">Bảng số liệu thống kê</h1>
                                 <br>
-                                        
-                                        <br>
-                                        
-                                        <br>
+
+                                <br>
+
+                                <br>
                                 <div class="dateFromTo" style="font-size: 15px ">
                                     <form action="DispatchServlet">
                                         Từ: 
@@ -140,11 +140,11 @@
                                         <input class="ml-4 btn btn-danger" style="font-size: 15px " name="btAction" type="submit" value="Check"/>
                                     </form>
                                 </div>
-                                        <br>
-                                        
-                                        <br>
-                                        
-                                        <br>
+                                <br>
+
+                                <br>
+
+                                <br>
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="card mb-4">
@@ -160,7 +160,7 @@
                                         <div class="card mb-4">
                                             <div class="card-header">
                                                 <i class="fas fa-chart-bar me-1"></i>
-                                                Thống kê doanh thu
+                                                Thống kê doanh thu Order
                                             </div>
                                             <div class="card-body"><canvas id="myAreaChart-1" width="100%" height="40"></canvas></div>
                                         </div>
@@ -178,7 +178,7 @@
                                         <div class="card mb-4">
                                             <div class="card-header">
                                                 <i class="fas fa-chart-bar me-4"></i>
-                                                Thống kê đánh giá
+                                                Thống kê doanh thu RequiredOrder
                                             </div>
                                             <div class="card-body"><canvas id="myAreaChart-3" width="100%" height="40"></canvas></div>
                                         </div>
@@ -200,10 +200,10 @@
                         var myPieChart = new Chart(ctx, {
                         type: 'pie',
                                 data: {
-                                labels: ["Tố chim", "Chim", ],
+                                labels: ["Dòng phổ thông", "Tổ chim", "Premium", "BestSeller", "Chim giống" ],
                                         datasets: [{
-                                        data: [${totalProduct1}, ${totalProduct2}, ],
-                                                backgroundColor: ['#ffc107', '#28a745', '#7e3bad', '#d91a53'],
+                                        data: [${totalProduct0},${totalProduct1}, ${totalProduct2},${totalProduct3},${totalProduct4} ],
+                                                backgroundColor: ['#ffc107', '#28a745', '#7e3bad', '#d91a53', '#FFC1C1'],
                                         }],
                                 },
                         });
@@ -305,43 +305,30 @@
                                         }
                                 }
                         });
-                    </script>  
-                    <script>
-                        // Set new default font family and font color to mimic Bootstrap's default styling
-                        Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
-                        Chart.defaults.global.defaultFontColor = '#292b2c';
-                        // Area Chart Example
-                        var ctx1 = document.getElementById("myAreaChart-1");
-                        var myLineChart1 = new Chart(ctx1, {
-                        type: 'line',
+                        
+                        var ctx3 = document.getElementById("myAreaChart-3");
+                        var myLineChart = new Chart(ctx3, {
+                        type: 'bar',
                                 data: {
-                                labels: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.date}",</c:forEach>],
+                                labels: [<c:forEach  items="${listChartRevenueArea}" var="product" > "${product.date}",</c:forEach>],
                                         datasets: [{
-                                        label: "Daonh Thu",
-                                                lineTension: 0.3,
-                                                backgroundColor: "rgba(2,117,216,0.2)",
+                                        label: "Bài Đăng",
+                                                backgroundColor: "rgba(2,117,216,1)",
                                                 borderColor: "rgba(2,117,216,1)",
-                                                pointRadius: 5,
-                                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                                pointHoverRadius: 5,
-                                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                                pointHitRadius: 50,
-                                                pointBorderWidth: 2,
-                                                data: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.value}",</c:forEach>],
+                                                data: [<c:forEach  items="${listChartRevenueArea}" var="product" > "${product.value}",</c:forEach>],
                                         }],
                                 },
                                 options: {
                                 scales: {
                                 xAxes: [{
                                 time: {
-                                unit: 'date'
+                                unit: 'month'
                                 },
                                         gridLines: {
                                         display: false
                                         },
                                         ticks: {
-                                        maxTicksLimit: 7
+                                        maxTicksLimit: 6
                                         }
                                 }],
                                         yAxes: [{
@@ -351,7 +338,7 @@
                                                 maxTicksLimit: 5
                                         },
                                                 gridLines: {
-                                                color: "rgba(0, 0, 0, .125)",
+                                                display: true
                                                 }
                                         }],
                                 },
@@ -360,105 +347,8 @@
                                         }
                                 }
                         });
-                        var ctx2 = document.getElementById("myAreaChart-2");
-                        var myLineChart2 = new Chart(ctx2, {
-                        type: 'line',
-                                data: {
-                                labels: [<c:forEach  items="${listOrder}" var="customer" > "${customer.date}",</c:forEach>],
-                                        datasets: [{
-                                        label: "Đơn hàng",
-                                                lineTension: 0.3,
-                                                backgroundColor: "rgba(2,117,216,0.2)",
-                                                borderColor: "rgba(2,117,216,1)",
-                                                pointRadius: 5,
-                                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                                pointHoverRadius: 5,
-                                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                                pointHitRadius: 50,
-                                                pointBorderWidth: 2,
-                                                data: [<c:forEach  items="${listOrder}" var="customer" > "${customer.value}",</c:forEach>],
-                                        }],
-                                },
-                                options: {
-                                scales: {
-                                xAxes: [{
-                                time: {
-                                unit: 'date'
-                                },
-                                        gridLines: {
-                                        display: false
-                                        },
-                                        ticks: {
-                                        maxTicksLimit: 7
-                                        }
-                                }],
-                                        yAxes: [{
-                                        ticks: {
-                                        min: 0,
-                                                max: ${maxListOrderArea},
-                                                maxTicksLimit: 5
-                                        },
-                                                gridLines: {
-                                                color: "rgba(0, 0, 0, .125)",
-                                                }
-                                        }],
-                                },
-                                        legend: {
-                                        display: false
-                                        }
-                                }
-                        });
-                        var ctx3 = document.getElementById("myAreaChart-3");
-                        var myLineChart3 = new Chart(ctx3, {
-                        type: 'line',
-                                data: {
-                                labels: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.date}",</c:forEach>],
-                                        datasets: [{
-                                        label: "Sao Trung Bình",
-                                                lineTension: 0.3,
-                                                backgroundColor: "rgba(2,117,216,0.2)",
-                                                borderColor: "rgba(2,117,216,1)",
-                                                pointRadius: 5,
-                                                pointBackgroundColor: "rgba(2,117,216,1)",
-                                                pointBorderColor: "rgba(255,255,255,0.8)",
-                                                pointHoverRadius: 5,
-                                                pointHoverBackgroundColor: "rgba(2,117,216,1)",
-                                                pointHitRadius: 50,
-                                                pointBorderWidth: 2,
-                                                data: [<c:forEach  items="${listChartAvgStar}" var="star" > "${star.value}",</c:forEach>],
-                                        }],
-                                },
-                                options: {
-                                scales: {
-                                xAxes: [{
-                                time: {
-                                unit: 'date'
-                                },
-                                        gridLines: {
-                                        display: false
-                                        },
-                                        ticks: {
-                                        maxTicksLimit: 7
-                                        }
-                                }],
-                                        yAxes: [{
-                                        ticks: {
-                                        min: 0,
-                                                max: 5,
-                                                maxTicksLimit: 5
-                                        },
-                                                gridLines: {
-                                                color: "rgba(0, 0, 0, .125)",
-                                                }
-                                        }],
-                                },
-                                        legend: {
-                                        display: false
-                                        }
-                                }
-                        });
-                    </script>
+                    </script>  
+
                     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
                     <script src="js/datatables-simple-demo.js"></script>
                     </body>

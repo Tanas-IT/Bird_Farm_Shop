@@ -99,7 +99,7 @@ public class ManagerProductDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "select COUNT(*) from BirdProduct where isBirdNest = ? ";
+                String sql = "select COUNT(*) from BirdProduct where type = ? ";
 
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, i);

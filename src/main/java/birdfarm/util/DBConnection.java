@@ -25,7 +25,7 @@ public class DBConnection {
         //2. Create Connection String
         String url = "jdbc:sqlserver://"
                 + "localhost:1433;"
-                + "databaseName=BIRD_FARM_SHOP;"
+                + "databaseName=BIRD_FARM_SHOP_1;"
                 + "instanceName=SQLEXPRESS";
         Connection con = DriverManager.getConnection(url, "sa", "12345");
         return con;

@@ -51,7 +51,7 @@
     </head>
     <body>
         <div class="wrapper">
-        <%@include file="components//ManagerComponent.jsp" %>
+            <%@include file="components//ManagerComponent.jsp" %>
 
             <div class="main-panel">
                 <!-- Navbar -->
@@ -67,9 +67,9 @@
                 </nav>
                 <!-- End Navbar -->
                 <div class="content">
-                    <div class="container-fluid">
+                    <div class="container-fluid" >
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8" style="font-size: 18px !important">
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Update Tracking</h4>
@@ -107,7 +107,6 @@
                                                             <label>Chim mẹ</label>
                                                             <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.birdMother}">
                                                             <input type="hidden" name="txtpriceBirdMom" value="${dto.importPriceBirdMom}" />
-                                                            <input type="hidden" name="txtfeePairing" value="${dto.feePairing}" />
                                                             <input type="hidden" name="txtfee" value="${dto.fee}" />
                                                         </div>
                                                     </div>
@@ -151,7 +150,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Cập nhật hình ảnh</label>
-                                                                                                               
+
 
                                                             <input type="file" name="file" accept="image/*" >
                                                         </div>
@@ -198,6 +197,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                         <button style="margin-right: 10px" type="submit" class="btn btn-info btn-fill pull-right" 
                                                                 name="btAction" value="UpdateTrackingBird">
                                                             Cập nhật
@@ -226,12 +226,54 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        </form>  
+                                                        <button type="button" style="margin-right: 10px" 
+                                                                class="btn btn-primary btn-default btn-fill pull-right" data-toggle="modal" 
+                                                                data-target="#exampleModal_1" data-whatever="${dto.email}">Gửi Email</button>
+                                                        <form action="DispatchServlet" method="POST" enctype="multipart/form-data"> 
 
+                                                            <div class="modal fade" id="exampleModal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content" style="font-size: 18px">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Gửi lời nhắn tới</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="form-group">
+                                                                                <label for="recipient-name" class="col-form-label">Email Người nhận:</label>
+                                                                                <input type="email" class="form-control accountGmail" name="to" size="50" id="recipient-name">
+                                                                                <input type="hidden" name="txtidRequiredOrder" value="${dto.idRequiredOrder}" />
+
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label >Chủ đề:</label>
+                                                                                <input type="text" name="subject" size="50" class="form-control">
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <label for="message-text" class="col-form-label">Nội dung:</label>
+                                                                                <textarea class="form-control" rows="10" cols="39" name="message" id="message-text"></textarea>
+                                                                            </div>
+                                                                            <div class="form-group">
+                                                                                <input type="file" name="file">
+                                                                            </div>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary btn-danger" data-dismiss="modal">Thoát</button>
+                                                                            <button type="submit" class="btn btn-primary" value="ManagerSendMail" name="btAction">Gửi mail</button>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
 
                                                 <div class="clearfix"></div>
-                                            </form>  
+
 
 
                                         </div>
@@ -261,13 +303,7 @@
 
                                             </p>
 
-                                            <div class="card card-image1">
 
-                                                <iframe width="100%" height="250"
-                                                        src="https://www.youtube.com/embed/0WeG4_kYh6s" 
-                                                        frameborder="0" allowfullscreen></iframe>
-
-                                            </div>
 
                                         </div>
                                         <p class="description text-center">
@@ -284,13 +320,7 @@
                 <footer class="footer">
                     <div class="container-fluid">
                         <nav>
-                            <ul class="footer-menu">
 
-                            </ul>
-                            <p class="copyright text-center">
-
-
-                            </p>
                         </nav>
                     </div>
                 </footer>
@@ -303,14 +333,7 @@
     <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
 
-    <!--  Charts Plugin -->
-    <script src="js/chartist.min.js"></script>
 
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -349,6 +372,18 @@
                 numberInput.value = 0; // Nếu giá trị là số âm, đặt lại giá trị là 1
             }
         });
+    </script>
+
+    <script>
+        $('#exampleModal_1').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget) // Button that triggered the modal
+            var recipient = button.data('whatever') // Extract info from data-* attributes
+            // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
+            // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
+            var modal = $(this)
+            modal.find('.modal-title').text('Gửi lời nhắn tới ' + recipient)
+            modal.find('.modal-body .form-control.accountGmail').val(recipient)
+        })
     </script>
 
 
