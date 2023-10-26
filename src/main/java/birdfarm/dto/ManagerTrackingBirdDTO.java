@@ -26,7 +26,12 @@ public class ManagerTrackingBirdDTO implements Serializable {
     private int idRequiredOrderDetail;
     private String birdFather;
     private String birdMother;
-    private Double finalPricePairing;
+    
+    private String imageBirdFather;
+    private String imageBirdMother;
+    
+    private String shortDescriptionBirdFather;
+    private String shortDescriptionBirdMother;
 
     private String fullName;
     private String phoneNumber;
@@ -37,17 +42,11 @@ public class ManagerTrackingBirdDTO implements Serializable {
     private Double importPriceBirdMom;
     private Double fee;
     private String email;
+    private String idBirdNest;
 
     private int birdNestMale;
     private int birdNestFemale;
 
-//    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String fullName, String name) {
-//        this.idRequiredOrder = idRequiredOrder;
-//        this.status = status;
-//        this.trackingDate = trackingDate;
-//        this.fullName = fullName;
-//        this.name = name;
-//    }
     public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String birdFather, String birdMother, String fullName) {
         this.idRequiredOrder = idRequiredOrder;
         this.status = status;
@@ -57,11 +56,13 @@ public class ManagerTrackingBirdDTO implements Serializable {
         this.fullName = fullName;
     }
 
-    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, 
-            String reason, String imgTracking, String birdFather, 
-            String birdMother,  String fullName, 
-            Double importPriceBirdDad, Double importPriceBirdMom, 
-            Double fee, int birdNestMale, int birdNestFemale, String email) {
+    public ManagerTrackingBirdDTO(int idRequiredOrder, String status,
+            String reason, String imgTracking, String birdFather,
+            String birdMother, String fullName,
+            Double importPriceBirdDad, Double importPriceBirdMom,
+            Double fee, int birdNestMale, int birdNestFemale, String email ,
+            String idBirdNest, String imageBirdFather, String imageBirdMother,
+            String shortDescriptionBirdFather ,  String shortDescriptionBirdMother) {
         this.idRequiredOrder = idRequiredOrder;
         this.status = status;
         this.reason = reason;
@@ -75,6 +76,52 @@ public class ManagerTrackingBirdDTO implements Serializable {
         this.birdNestMale = birdNestMale;
         this.birdNestFemale = birdNestFemale;
         this.email = email;
+        this.idBirdNest = idBirdNest;
+        this.imageBirdFather = imageBirdFather;
+        this.imageBirdMother = imageBirdMother;
+        this.shortDescriptionBirdFather = shortDescriptionBirdFather;
+        this.shortDescriptionBirdMother = shortDescriptionBirdMother;
+        
+    }
+
+    public String getImageBirdFather() {
+        return imageBirdFather;
+    }
+
+    public void setImageBirdFather(String imageBirdFather) {
+        this.imageBirdFather = imageBirdFather;
+    }
+
+    public String getImageBirdMother() {
+        return imageBirdMother;
+    }
+
+    public void setImageBirdMother(String imageBirdMother) {
+        this.imageBirdMother = imageBirdMother;
+    }
+
+    public String getShortDescriptionBirdFather() {
+        return shortDescriptionBirdFather;
+    }
+
+    public void setShortDescriptionBirdFather(String shortDescriptionBirdFather) {
+        this.shortDescriptionBirdFather = shortDescriptionBirdFather;
+    }
+
+    public String getShortDescriptionBirdMother() {
+        return shortDescriptionBirdMother;
+    }
+
+    public void setShortDescriptionBirdMother(String shortDescriptionBirdMother) {
+        this.shortDescriptionBirdMother = shortDescriptionBirdMother;
+    }
+
+    public String getIdBirdNest() {
+        return idBirdNest;
+    }
+
+    public void setIdBirdNest(String idBirdNest) {
+        this.idBirdNest = idBirdNest;
     }
 
     public String getEmail() {
@@ -238,15 +285,6 @@ public class ManagerTrackingBirdDTO implements Serializable {
 
     public void setImportPriceBirdMom(Double importPriceBirdMom) {
         this.importPriceBirdMom = importPriceBirdMom;
-    }
-
-
-    public Double getFinalPricePairing() {
-        return finalPricePairing;
-    }
-
-    public void setFinalPricePairing(Double finalPricePairing) {
-        this.finalPricePairing = finalPricePairing;
     }
 
     public String getFullName() {

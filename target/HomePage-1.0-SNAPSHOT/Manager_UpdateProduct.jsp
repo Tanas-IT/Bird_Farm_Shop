@@ -12,25 +12,25 @@
     <head>
         <meta charset="utf-8" />
         <!-- Font & img CSS     -->
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
 
         <!-- Animation library for notifications   -->
-        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css_admin/animate.min.css" rel="stylesheet" />
 
         <!--  Light Bootstrap Table core CSS    -->
-        <link href="css/light-bootstrap-dashboard-1.css?v=1.4.0" rel="stylesheet" />
+        <link href="css_admin/light-bootstrap-dashboard-1.css?v=1.4.0" rel="stylesheet" />
 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css_admin/demo.css" rel="stylesheet" />
 
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
         <style>
             .card-image1 {
                 display: flex;
@@ -79,7 +79,7 @@
                 <div class="content">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-md-8">
+                            <div class="col-md-8" >
                                 <div class="card">
                                     <div class="card-header">
                                         <h4 class="card-title">Edit Profile</h4>
@@ -164,7 +164,7 @@
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Thông tin của Chim</label>
-                                                            <textarea rows="4" cols="80" class="form-control" placeholder="Overview" 
+                                                            <textarea rows="15" cols="80" class="form-control" placeholder="Overview" 
                                                                       name="txtOverview" value="${dto.overview}">${dto.overview}</textarea>
                                                         </div>
                                                     </div>
@@ -182,8 +182,10 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card card-user">
+                                        
                                         <div class="card card-image1">
-
+                                            
+                                            
                                             <img src="${dto.imageURL}" style="width: 200px; height: 200px">
 
                                         </div>

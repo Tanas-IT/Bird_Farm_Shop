@@ -18,23 +18,23 @@
     <!-- Font & img CSS     -->
     <link href="font-img.css" rel="stylesheet" />
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap1.min.css" rel="stylesheet" />
+    <link href="css_admin/bootstrap1.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css_admin/animate.min.css" rel="stylesheet" />
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+    <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="css/demo.css" rel="stylesheet" />
+    <link href="css_admin/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -42,7 +42,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css_admin/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">

@@ -33,6 +33,7 @@ public class ManagerOrderDTO implements Serializable {
 
     private String fullName;
     private String phoneNumber;
+    private String paymentName;
 
     public ManagerOrderDTO(int idOrder, String createdDate, String status, Double total, String receiverPhoneNumber, String fullName) {
         this.idOrder = idOrder;
@@ -43,13 +44,15 @@ public class ManagerOrderDTO implements Serializable {
         this.fullName = fullName;
     }
 
-    public ManagerOrderDTO(int idOrder, String createdDate, String status, String receiverAddress, String receiverPhoneNumber, String fullName) {
+    public ManagerOrderDTO(int idOrder, String createdDate, String status, 
+            String receiverAddress, String receiverPhoneNumber, String fullName, String paymentName) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
         this.status = status;
         this.receiverAddress = receiverAddress;
         this.receiverPhoneNumber = receiverPhoneNumber;
         this.fullName = fullName;
+        this.paymentName = paymentName;
     }
 
     public ManagerOrderDTO() {
@@ -57,7 +60,7 @@ public class ManagerOrderDTO implements Serializable {
 
     public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress,
             String receiverPhoneNumber, String name, String imageURL, int quantity,
-            Double price, String fullName, String note) {
+            Double price, String fullName, String note, String paymentName) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
         this.receiverAddress = receiverAddress;
@@ -68,6 +71,15 @@ public class ManagerOrderDTO implements Serializable {
         this.price = price;
         this.fullName = fullName;
         this.note = note;
+        this.paymentName = paymentName;
+    }
+
+    public String getPaymentName() {
+        return paymentName;
+    }
+
+    public void setPaymentName(String paymentName) {
+        this.paymentName = paymentName;
     }
 
     public String getNote() {

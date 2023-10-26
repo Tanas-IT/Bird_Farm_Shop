@@ -19,22 +19,22 @@
     <!-- Font & img CSS     -->
     <link href="font-img.css" rel="stylesheet" />
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!-- Animation library for notifications   -->
-    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css_admin/animate.min.css" rel="stylesheet" />
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="css/light-bootstrap-dashboard-1.css?v=1.4.0" rel="stylesheet" />
+    <link href="css_admin/light-bootstrap-dashboard-1.css?v=1.4.0" rel="stylesheet" />
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="css/demo.css" rel="stylesheet" />
+    <link href="css_admin/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 
@@ -45,7 +45,7 @@
 
     <!-- Custom styles for this template -->
     <!--<link href="css/bootstrap.min.css" rel="stylesheet">-->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css_admin/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -81,19 +81,7 @@
 
             <div class="content">
                 <div class="container-fluid">
-                    <div class="col-md-pull-12" style="display: block; transform: translateX(30%);" >
-                        <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewOrder">Đơn hàng đang xử lý</a>
-
-                        <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCancelOrder">Đơn hàng đã hủy</a>
-
-                        <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCustomerCancelOrder">Đơn hàng bị hủy</a>
-
-                    </div>
-                    <br>
-                    <br>
-                    <br>
-                    <br>
-
+                    <%@include file="components//Manager_Order_Component.jsp" %>
                     <div class="col-md-pull-12">
                         <div class="card-font-img">
 

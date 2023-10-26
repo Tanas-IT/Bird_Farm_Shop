@@ -158,10 +158,11 @@ public class ManagerDAO implements Serializable {
                         + "   u.fullName,\n"
                         + "   OD.price,\n"
                         + "   OD.quantity,\n"
-                        + "	BP.name, BP.imageURL \n"
+                        + "	BP.name, BP.imageURL, pm.methodName \n"
                         + "    FROM\n"
                         + "   [Order] AS O\n"
                         + "   Join [User] As u ON u.idUser = O.idUser\n"
+                        + "Join [Payment] As pm ON O.paymentID = pm.idPayment \n"
                         + "Join [OrderDetail] As OD on O.idOrder = OD.idOrder \n"
                         + "JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird "
                         + "Where O.idOrder = ? ";
@@ -180,10 +181,13 @@ public class ManagerDAO implements Serializable {
                     Double price = rs.getDouble("price");
                     String imageURL = rs.getString("imageURL");
                     String Note = rs.getString("Note");
+                    String methodName = rs.getString("methodName");
 
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate, receiverAddress, 
-                                    receiverPhoneNumber, name, imageURL, quantity, price, fullName, Note);
+                            = new ManagerOrderDTO(idOrder, createdDate,
+                                    receiverAddress, receiverPhoneNumber, name,
+                                    imageURL, quantity, price, fullName, Note,
+                                    methodName);
 
                     if (this.orderListDetail == null) {
                         this.orderListDetail = new ArrayList<>();
@@ -215,9 +219,10 @@ public class ManagerDAO implements Serializable {
                         + " O.createdDate,\n"
                         + " O.receiverPhoneNumber, \n"
                         + " O.receiverAddress, O.status,\n"
-                        + " u.fullName\n"
+                        + " u.fullName, pm.methodName\n"
                         + "FROM [Order] AS O\n"
                         + "Join [User] As u ON u.idUser = O.idUser\n"
+                        + "Join [Payment] As pm ON O.paymentID = pm.idPayment \n"
                         + "Where O.idOrder = ?";
                 stm = con.prepareCall(sql);
 
@@ -230,9 +235,12 @@ public class ManagerDAO implements Serializable {
                     String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
                     String fullName = rs.getString("fullName");
                     String status = rs.getString("status");
+                    String methodName = rs.getString("methodName");
+
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate, status,
-                                    receiverAddress, receiverPhoneNumber, fullName);
+                            = new ManagerOrderDTO(idOrder, 
+                                    createdDate, status, receiverAddress,
+                                    receiverPhoneNumber, fullName, methodName);
 
                     if (this.orderListDetailCustomer == null) {
                         this.orderListDetailCustomer = new ArrayList<>();

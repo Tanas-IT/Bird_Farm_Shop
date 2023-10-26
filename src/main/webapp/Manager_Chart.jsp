@@ -12,26 +12,26 @@
         <meta name="viewport" content="width=device-width" />
 
         <!-- Font & img CSS     -->
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
-        <link href="css/bootstrap1.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap1.min.css" rel="stylesheet" />
 
         <!-- Animation library for notifications   -->
-        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css_admin/animate.min.css" rel="stylesheet" />
 
         <!--  Light Bootstrap Table core CSS    -->
-        <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+        <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css_admin/demo.css" rel="stylesheet" />
 
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="css_admin/styles.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css_admin/styles.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="fonts/themify-icons/themify-icons.css">
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
@@ -40,7 +40,7 @@
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
     </head>
 
     <body>
@@ -60,8 +60,8 @@
 
                     <div class="user-image" style="text-align: center;">
                         <i class="pe-7s-user" style="font-size: 100px;"></i>
-                        <p>Nguyen Duc Anh</p>
-                        <p>Admin</p>
+                        <p>Chỗ này chỉnh người đăng nhập </p>
+                        <p>Chỗ này chỉnh quyền là staff hoặc manager</p>
                     </div>
 
                     <ul class="nav">
@@ -72,12 +72,7 @@
                                 <p>Đơn hàng</p>
                             </a>
                         </li>
-                        <li>
-                            <a href="DispatchServlet?btAction=ManagerViewBill">
-                                <i class="pe-7s-note2"></i>
-                                <p>Hóa Đơn</p>
-                            </a>
-                        </li>
+
                         <li>
                             <a href="Manager_Chart.jsp">
                                 <i class="pe-7s-graph1"></i>
@@ -125,19 +120,19 @@
                     <div class="container-fluid">
                         <div class="row">
                             <div class="container-fluid px-4">
-                                <h1 class="title text-center">Bảng số liệu thống kê</h1>
+                                <h1 class="title text-center" style="font-size: 40px">Bảng số liệu thống kê</h1>
                                 <br>
 
                                 <br>
 
                                 <br>
-                                <div class="dateFromTo" style="font-size: 15px ">
+                                <div class="dateFromTo" style="font-size: 20px ">
                                     <form action="DispatchServlet">
                                         Từ: 
                                         <input class="" type="date" id="start" name="start" value="${start}">
                                         Đến: 
                                         <input type="date" id="end" name="end" value="${end}">
-                                        <input class="ml-4 btn btn-danger" style="font-size: 15px " name="btAction" type="submit" value="Check"/>
+                                        <input class="ml-4 btn btn-danger" style="font-size: 18px " name="btAction" type="submit" value="Check"/>
                                     </form>
                                 </div>
                                 <br>
@@ -148,7 +143,7 @@
                                 <div class="row">
                                     <div class="col-xl-6">
                                         <div class="card mb-4">
-                                            <div class="card-header">
+                                            <div class="card-header" style="font-size: 18px">
                                                 <i class="fas fa-chart-bar me-1"></i>
                                                 Thống kê sản phẩm
                                             </div>
@@ -158,16 +153,16 @@
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="card mb-4">
-                                            <div class="card-header">
+                                            <div class="card-header" style="font-size: 18px">
                                                 <i class="fas fa-chart-bar me-1"></i>
-                                                Thống kê doanh thu Order
+                                                Thống kê doanh thu Đơn hàng
                                             </div>
                                             <div class="card-body"><canvas id="myAreaChart-1" width="100%" height="40"></canvas></div>
                                         </div>
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="card mb-6">
-                                            <div class="card-header">
+                                            <div class="card-header" style="font-size: 18px">
                                                 <i class="fas fa-chart-pie me-1"></i>
                                                 Thống kê đơn hàng
                                             </div>
@@ -176,9 +171,9 @@
                                     </div>
                                     <div class="col-xl-6">
                                         <div class="card mb-4">
-                                            <div class="card-header">
+                                            <div class="card-header" style="font-size: 18px">
                                                 <i class="fas fa-chart-bar me-4"></i>
-                                                Thống kê doanh thu RequiredOrder
+                                                Thống kê doanh thu Ghép Chim
                                             </div>
                                             <div class="card-body"><canvas id="myAreaChart-3" width="100%" height="40"></canvas></div>
                                         </div>
@@ -213,7 +208,7 @@
                                 data: {
                                 labels: [<c:forEach  items="${listChartRevenueArea}" var="revenue" > "${revenue.date}",</c:forEach>],
                                         datasets: [{
-                                        label: "Daonh Thu",
+                                        label: "Doanh Thu",
                                                 lineTension: 0.3,
                                                 backgroundColor: "rgba(2,117,216,0.2)",
                                                 borderColor: "rgba(2,117,216,1)",
@@ -262,7 +257,7 @@
                                 data: {
                                 labels: [<c:forEach  items="${listOrder}" var="customer" > "${customer.date}",</c:forEach>],
                                         datasets: [{
-                                        label: "Khách hàng",
+                                        label: "Đơn hàng",
                                                 lineTension: 0.3,
                                                 backgroundColor: "rgba(2,117,216,0.2)",
                                                 borderColor: "rgba(2,117,216,1)",
@@ -305,14 +300,13 @@
                                         }
                                 }
                         });
-                        
                         var ctx3 = document.getElementById("myAreaChart-3");
                         var myLineChart = new Chart(ctx3, {
                         type: 'bar',
                                 data: {
                                 labels: [<c:forEach  items="${listChartRevenueArea}" var="product" > "${product.date}",</c:forEach>],
                                         datasets: [{
-                                        label: "Bài Đăng",
+                                        label: "Tổng thu nhập TrackingBird",
                                                 backgroundColor: "rgba(2,117,216,1)",
                                                 borderColor: "rgba(2,117,216,1)",
                                                 data: [<c:forEach  items="${listChartRevenueArea}" var="product" > "${product.value}",</c:forEach>],

@@ -12,27 +12,27 @@
     <head>
         <meta charset="utf-8" />
         <!-- Font & img CSS     -->
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
         <!-- Animation library for notifications   -->
-        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css_admin/animate.min.css" rel="stylesheet" />
 
         <!--  Light Bootstrap Table core CSS    -->
-        <link href="css/light-bootstrap-dashboard-1.css?v=1.4.0" rel="stylesheet" />
+        <link href="css_admin/light-bootstrap-dashboard-1.css?v=1.4.0" rel="stylesheet" />
 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css_admin/demo.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
         <style>
             .card-image1 {
                 display: flex;
@@ -72,7 +72,7 @@
                             <div class="col-md-8" style="font-size: 18px !important">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Update Tracking</h4>
+                                        <h4 class="card-title" style="font-size: 25px">Update Tracking</h4>
                                     </div>
                                     <div class="card-body">
                                         <c:set var="result" value="${requestScope.TRACKING_ORDER_DETAIL_LIST}"/>
@@ -86,7 +86,13 @@
                                                             <input type="hidden" name="txtidRequiredOrder" value="${dto.idRequiredOrder}" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-8 pr-1 pull-right" >
+                                                    <div class="col-md-4 pr-1 pull-right" >
+                                                        <div class="form-group">
+                                                            <label>Gmail</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Username" value="${dto.email}">
+                                                        </div>
+                                                    </div> 
+                                                    <div class="col-md-4 pr-1 pull-right" >
                                                         <div class="form-group">
                                                             <label>Tên Khách</label>
                                                             <input type="text" class="form-control" disabled="" placeholder="Username" value="${dto.fullName}">
@@ -108,6 +114,8 @@
                                                             <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.birdMother}">
                                                             <input type="hidden" name="txtpriceBirdMom" value="${dto.importPriceBirdMom}" />
                                                             <input type="hidden" name="txtfee" value="${dto.fee}" />
+                                                            <input type="hidden" name="txtidBirdNest" value="${dto.idBirdNest}" />
+
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 pl-1 pull-right" >
@@ -122,6 +130,87 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="row">
+                                                    <div class="col-md-3 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Giá chim bố </label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="${dto.importPriceBirdDad}">
+                                                            <input type="hidden" name="txtpriceBirdDad" value="${dto.importPriceBirdDad}" />
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 px-1 ">
+                                                        <div class="form-group">
+                                                            <label>Giá chim mẹ</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.importPriceBirdMom}">
+                                                            <input type="hidden" name="txtpriceBirdMom" value="${dto.importPriceBirdMom}" />
+                                                            <input type="hidden" name="txtfee" value="${dto.fee}" />
+                                                            <input type="hidden" name="txtidBirdNest" value="${dto.idBirdNest}" />
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 pl-1 pull-right" >
+                                                        <div class="form-group">
+                                                            <label>ID tổ chim</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.idBirdNest}">
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 pl-1 pull-right" >
+                                                        <div class="form-group">
+                                                            <label>Phí</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.fee}">
+
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Ảnh chim bố</label>
+                                                            <br>
+                                                            <img src="${dto.imageBirdFather}" 
+                                                                 style="width: 150px ;height: 150px; border-radius: 50% ">
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 px-1 ">
+                                                        <div class="form-group">
+                                                            <label>Ảnh chim mẹ </label>
+                                                            <br>
+                                                            <img src="${dto.imageBirdMother}" 
+                                                                 style="width: 150px ;height: 150px; border-radius: 50% ">
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Mô tả</label>
+                                                            <br>
+                                                            <textarea disabled="" rows="4" cols="80" class="form-control" placeholder="Overview" 
+                                                                      name="txtreason">${dto.shortDescriptionBirdFather}</textarea>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 px-1 ">
+                                                        <div class="form-group">
+                                                            <label>Mô tả</label>
+                                                            <br>
+                                                            <textarea disabled="" rows="4" cols="80" class="form-control" placeholder="Overview" 
+                                                                      >${dto.shortDescriptionBirdMother}</textarea>
+
+
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
 
                                                 <c:if test="${dto.status eq 'Chim đã đẻ'|| dto.status eq 'Đang xử lý'}">
                                                     <style>
@@ -152,7 +241,7 @@
                                                             <label>Cập nhật hình ảnh</label>
 
 
-                                                            <input type="file" name="file" accept="image/*" >
+                                                            <input type="file" name="file" accept="image/*" required>
                                                         </div>
 
                                                     </div>
@@ -160,10 +249,10 @@
                                                 </div>
 
                                                 <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
+                                                    <div class="col-md-12" >
+                                                        <div class="form-group" >
                                                             <label>Nội dung</label>
-                                                            <textarea rows="4" cols="80" class="form-control" placeholder="Overview" 
+                                                            <textarea  rows="6" cols="80" class="form-control" placeholder="Overview" 
                                                                       name="txtreason" value="${dto.reason}">${dto.reason}</textarea>
                                                         </div>
                                                     </div>
@@ -172,7 +261,7 @@
                                                     <div class="col-md-12">
 
 
-                                                        <button type="button" class="btn btn-primary btn-danger btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter">
+                                                        <button style="font-size: 15px" type="button" class="btn btn-primary btn-danger btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter">
                                                             Hủy đơn
                                                         </button>
 
@@ -190,20 +279,20 @@
                                                                         Bạn có chắc muốn hủy đơn hàng không ?
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                        <button  name="btAction" value="CancelTrackingBird"
-                                                                                 type="submit" class="btn btn-primary btn-danger ">Xác nhận</button>
+                                                                        <button style="font-size: 15px" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button style="font-size: 15px" name="btAction" formnovalidate value="CancelTrackingBird"
+                                                                                type="submit" class="btn btn-primary btn-danger ">Xác nhận</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
 
-                                                        <button style="margin-right: 10px" type="submit" class="btn btn-info btn-fill pull-right" 
-                                                                name="btAction" value="UpdateTrackingBird">
+                                                        <button style="margin-right: 10px;font-size: 15px" type="submit" class="btn btn-info btn-fill pull-right" 
+                                                                name="btAction"  value="UpdateTrackingBird">
                                                             Cập nhật
                                                         </button>
 
-                                                        <button style="margin-right: 12px;" type="button" class="btn btn-primary btn-success btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter_2">
+                                                        <button style="margin-right: 12px;font-size: 15px" type="button" class="btn btn-primary btn-success btn-fill pull-right" data-toggle="modal" data-target="#exampleModalCenter_2">
                                                             Hoàn thành
                                                         </button>
                                                         <div class="modal fade" id="exampleModalCenter_2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -219,24 +308,24 @@
                                                                         Bạn có chắc muốn hoàn thành đơn hàng không ?
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                        <button  name="btAction" value="DoneTrackingBird"
-                                                                                 type="submit" class="btn btn-primary btn-danger ">Xác nhận</button>
+                                                                        <button style="font-size: 15px" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                        <button style="font-size: 15px"  name="btAction" value="DoneTrackingBird"
+                                                                                type="submit" formnovalidate class="btn btn-primary btn-danger ">Xác nhận</button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         </form>  
-                                                        <button type="button" style="margin-right: 10px" 
+                                                        <button type="button" style="margin-right: 10px;font-size: 15px" 
                                                                 class="btn btn-primary btn-default btn-fill pull-right" data-toggle="modal" 
-                                                                data-target="#exampleModal_1" data-whatever="${dto.email}">Gửi Email</button>
+                                                                data-target="#exampleModal_1" data-whatever="${dto.email}" data-ever="${dto.fullName}">Gửi Email</button>
                                                         <form action="DispatchServlet" method="POST" enctype="multipart/form-data"> 
 
                                                             <div class="modal fade" id="exampleModal_1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content" style="font-size: 18px">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalLabel">Gửi lời nhắn tới</h5>
+                                                                            <h5 class="modal-title" id="exampleModalLabel" style="font-size: 20px">Gửi lời nhắn tới</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
@@ -257,13 +346,13 @@
                                                                                 <textarea class="form-control" rows="10" cols="39" name="message" id="message-text"></textarea>
                                                                             </div>
                                                                             <div class="form-group">
-                                                                                <input type="file" name="file">
+                                                                                <input type="file" name="file" requireds>
                                                                             </div>
 
                                                                         </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary btn-danger" data-dismiss="modal">Thoát</button>
-                                                                            <button type="submit" class="btn btn-primary" value="ManagerSendMail" name="btAction">Gửi mail</button>
+                                                                            <button style="font-size: 15px" type="button" class="btn btn-secondary btn-danger" data-dismiss="modal">Thoát</button>
+                                                                            <button style="font-size: 15px" type="submit" class="btn btn-primary" value="ManagerSendMail" name="btAction">Gửi mail</button>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -282,7 +371,7 @@
                                 <div class="col-md-4">
                                     <div class="card card-user">
                                         <div class="card card-image1"d>
-
+                                            <label style="font-size: 20px">Hình ảnh cập nhật</label>
                                             <img src="${dto.imgTracking}" 
                                                  style="width: 200px ;height: 200px; border-radius: 50% ">
 
@@ -297,7 +386,9 @@
                                                 <br>
                                                 <br><br>
 
-
+                                                <a href="DispatchServlet?btAction=History&txtidBirdNest=${dto.idBirdNest}">
+                                                    History
+                                                </a>
                                             </c:forEach>    
                                             <p class="description">
 
@@ -320,6 +411,7 @@
                 <footer class="footer">
                     <div class="container-fluid">
                         <nav>
+
 
                         </nav>
                     </div>
@@ -378,10 +470,12 @@
         $('#exampleModal_1').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget) // Button that triggered the modal
             var recipient = button.data('whatever') // Extract info from data-* attributes
+            var recipient_2 = button.data('ever') // Extract info from data-* attributes
+
             // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
             // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
             var modal = $(this)
-            modal.find('.modal-title').text('Gửi lời nhắn tới ' + recipient)
+            modal.find('.modal-title').text('Gửi lời nhắn tới ' + recipient_2)
             modal.find('.modal-body .form-control.accountGmail').val(recipient)
         })
     </script>

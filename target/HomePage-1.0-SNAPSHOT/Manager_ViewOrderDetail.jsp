@@ -18,28 +18,28 @@
         <meta name="viewport" content="width=device-width" />
 
         <!-- Font & img CSS     -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
 
         <!-- Animation library for notifications   -->
-        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css_admin/animate.min.css" rel="stylesheet" />
 
         <!--  Light Bootstrap Table core CSS    -->
-        <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+        <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css_admin/demo.css" rel="stylesheet" />
 
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" >
         <style>
@@ -84,7 +84,7 @@
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            
+
                         </div>
                         <div class="collapse navbar-collapse">
                             <ul class="nav navbar-nav navbar-left">
@@ -97,18 +97,7 @@
 
                 <div class="content">
                     <div class="container-fluid">
-                        <div class="col-md-pull-12" style="display: block; transform: translateX(30%);" >
-                            <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewOrder">Đơn hàng đang xử lý</a>
-
-                            <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCancelOrder">Đơn hàng đã hủy</a>
-
-                            <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCustomerCancelOrder">Đơn hàng bị hủy</a>
-
-                        </div>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
+                        <%@include file="components//Manager_Order_Component.jsp" %>
                         <div class="page-content container">
                             <div class="page-header text-blue-d2">
 
@@ -147,6 +136,7 @@
                                                                 </div>
 
                                                                 <div class="my-2">Số điện thoại: ${dto1.receiverPhoneNumber}</div>
+                                                                <div class="my-2">Thanh toán bằng: ${dto1.paymentName}</div>
                                                             </div>
 
                                                         </div>
@@ -159,25 +149,38 @@
 
                                                         <div class="card" style="border: 1px solid #000;border-radius: 10px; margin: 10px; padding: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
                                                             <div class="my-2" style="font-size: 18px">
-                                                                Thông tin khách hàng
+                                                                Thông tin đơn hàng
                                                             </div>
                                                             <div class="my-2">ID Order: ${dto1.idOrder}</div>
 
                                                             <div class="my-2"> Ngày:</span> ${dto1.createdDate}</div>
 
                                                             <div class="my-2"> Trạng thái: <span class="badge badge-warning badge-pill px-25" style="font-size: 15px">${dto1.status}</span></div>
+                                                            <br>
                                                         </div>
 
                                                     </div>
-                                                        
-                                                    <c:if test="${dto1.status eq 'Đã hủy'|| dto1.status eq 'Bị hủy'}">
+
+                                                    <c:if test="${dto1.status eq 'Đã hủy'|| dto1.status eq 'Bị hủy' || dto1.status eq 'Đang giao' || dto1.status eq 'Đã xong'}">
                                                         <style>
                                                             #status {
                                                                 display: none;
                                                             }
                                                         </style>
                                                     </c:if>
-                                                        
+
+                                                    <c:if test="${dto1.status eq 'Đã hủy'
+                                                                  || dto1.status eq 'Bị hủy'
+
+                                                                  || dto1.status eq 'Đã xong'
+                                                                  || dto1.status eq 'Đang xử lý'}">
+                                                          <style>
+                                                              #successOrder {
+                                                                  display: none;
+                                                              }
+                                                          </style>
+                                                    </c:if>
+
                                                 </c:forEach>
                                             </c:if>
                                             <!-- /.col -->
@@ -215,8 +218,11 @@
                                                                 </td>
                                                                 <td>${dto.name}</td>
                                                                 <td>${dto.quantity}</td>
-                                                                <td>${dto.price}</td>
-                                                                <td>${priceANDquantity}</td>
+                                                                <td>
+                                                                    <fmt:formatNumber value="${dto.price}" maxFractionDigits="0"/></td>
+                                                                <td>
+                                                                    <fmt:formatNumber value="${priceANDquantity}" maxFractionDigits="0"/>
+                                                                </td>
                                                             </tr>
 
                                                         </c:forEach>
@@ -264,8 +270,18 @@
                                                                 Từ chối đơn hàng
                                                             </a>
 
+                                                        </div>
+                                                        <div class="col-lg-4" id="successOrder">
+                                                            <a href="DispatchServlet?btAction=SuccessOrder&txtidOrder=${idOrder}">
+                                                                Đã giao
+                                                            </a>
+                                                                <br>
+                                                            <a href="DispatchServlet?btAction=RejectOrder&txtidOrder=${idOrder}">
+                                                                Giao hàng thất bại
+                                                            </a>
 
                                                         </div>
+
                                                     </c:if>
                                                 </div>
 

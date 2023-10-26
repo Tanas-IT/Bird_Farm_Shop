@@ -94,8 +94,8 @@ public class ManagerSendMailTrackingBirdServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        final String from = "nekomoenya@gmail.com";
-        final String pass = "pfflfktdmmeoscpe";
+        final String from = "birdfarmshop581@gmail.com";
+        final String pass = "tvjqdblqqvccbwcs";
 
         String idRequiredOrder = request.getParameter("txtidRequiredOrder");
         String to = request.getParameter("to");

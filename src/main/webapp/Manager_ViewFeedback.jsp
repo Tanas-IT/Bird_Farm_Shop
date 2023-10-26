@@ -18,25 +18,25 @@
         <meta name="viewport" content="width=device-width" />
 
         <!-- Font & img CSS     -->
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
 
         <!-- Animation library for notifications   -->
-        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css_admin/animate.min.css" rel="stylesheet" />
 
         <!--  Light Bootstrap Table core CSS    -->
-        <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+        <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css_admin/demo.css" rel="stylesheet" />
 
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" >
     </head>
 
@@ -49,21 +49,9 @@
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
                         <div class="navbar-header">
-                            <button type="button" class="navbar-toggle" data-toggle="collapse"
-                                    data-target="#navigation-example-2">
-                                <span class="sr-only">Toggle navigation</span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                                <span class="icon-bar"></span>
-                            </button>
-                            <a class="navbar-brand" href="#">Feedback</a>
+                           
                         </div>
-                        <div class="collapse navbar-collapse">
-                            <ul class="nav navbar-nav navbar-left">
-
-                                <li class="separator hidden-lg hidden-md"></li>
-                            </ul>
-                        </div>
+                        
                     </div>
                 </nav>
 
@@ -72,12 +60,12 @@
                     <div class="container-fluid">
 
 
-                        <div class="col-md-pull-12">
+                        <div class="col-md-pull-12" style="font-size: 18px">
                             <div class="card-font-img">
 
                                 <div class="header-font-img-admin" style="margin-left: 20px;">
-                                    <h4 class="title">Feedback</h4>
-                                    <p class="category">Staff &Manager</p>
+                                    <h4 class="title" style="font-size: 30px">Feedback</h4>
+                                    <p class="category" style="font-size: 18px">Staff &Manager</p>
                                 </div>
                                 <div class="content-font-img">
                                     <c:set var="result" value="${requestScope.FEEDBACK_LIST}"/>

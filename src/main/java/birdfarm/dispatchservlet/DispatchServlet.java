@@ -44,16 +44,22 @@ public class DispatchServlet extends HttpServlet {
     private final String MANAGER_VIEW_ORDER_CONTROLLER = "ManagerViewOrderServlet";
     private final String MANAGER_VIEW_CANCEL_ORDER_CONTROLLER = "ManagerViewCancelOrderServlet";
     private final String MANAGER_VIEW_CUSTOMER_CANCEL_ORDER_CONTROLLER = "ManagerViewCustomerCancelOrderServlet";
+    private final String MANAGER_VIEW_DELIVERY_ORDER_CONTROLLER = "ManagerViewDeliveryOrderServlet";
+    private final String MANAGER_VIEW_SUCCESS_ORDER_CONTROLLER = "ManagerViewSuccessOrderServlet";
 
     private final String MANAGER_VIEW_DETAIL_ORDER_CONTROLLER = "ManagerViewDetailOrderServlet";
     private final String MANAGER_ACCEPT_ORDER_CONTROLLER = "ManagerAcceptOrderServlet";
     private final String MANAGER_REJECT_ORDER_CONTROLLER = "ManagerRejectOrderServlet";
+    private final String MANAGER_ACCEPT_DELIVERY_ORDER_CONTROLLER = "ManagerAcceptDeliveryOrderServlet";
+    private final String MANAGER_SUCCESS_ORDER_CONTROLLER = "ManagerSuccessOrderServlet";
 
     private final String MANAGER_VIEW_TRACKING_LIST_CONTROLLER = "ManagerViewTrackingListServlet";
     private final String MANAGER_VIEW_TRACKING_DETAIL_CONTROLLER = "ManagerViewTrackingDetailServlet";
     private final String MANAGER_UPDATE_TRACKING_BIRD_CONTROLLER = "ManagerUpdateTrackingBirdServlet";
     private final String MANAGER_CANCEL_TRACKING_BIRD_CONTROLLER = "ManagerCancelTrackingBirdServlet";
     private final String MANAGER_DONE_TRACKING_BIRD_CONTROLLER = "ManagerDoneTrackingBirdServlet";
+
+    private final String HISTORY = "HistoryServlet";
 
     private final String LOGIN_PAGE = "";
 
@@ -79,7 +85,9 @@ public class DispatchServlet extends HttpServlet {
                 //--------------------------------------------
             } else if (button.equals("ManagerSendMail")) {
                 url = SEND_MAIL_TRACKING;
-                //--------------------------------------------
+            } else if (button.equals("History")) {
+                url = HISTORY;
+//================================================================
             } else if (button.equals("AdminControlAccount")) {
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;
             } else if (button.equals("AdminViewProduct")) {
@@ -100,6 +108,10 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_VIEW_CANCEL_ORDER_CONTROLLER;
             } else if (button.equals("ManagerViewCustomerCancelOrder")) {
                 url = MANAGER_VIEW_CUSTOMER_CANCEL_ORDER_CONTROLLER;
+            } else if (button.equals("ManagerViewDeliveryOrder")) {
+                url = MANAGER_VIEW_DELIVERY_ORDER_CONTROLLER;
+            } else if (button.equals("ManagerSuccessOrder")) {
+                url = MANAGER_VIEW_SUCCESS_ORDER_CONTROLLER;
 
 //------------------------------------------------------------------------------ 
             } else if (button.equals("ManagerViewTrackingList")) {
@@ -114,6 +126,10 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_CANCEL_TRACKING_BIRD_CONTROLLER;
             } else if (button.equals("DoneTrackingBird")) {
                 url = MANAGER_DONE_TRACKING_BIRD_CONTROLLER;
+            } else if (button.equals("DeliveryOrder")) {
+                url = MANAGER_ACCEPT_DELIVERY_ORDER_CONTROLLER;
+            } else if (button.equals("SuccessOrder")) {
+                url = MANAGER_SUCCESS_ORDER_CONTROLLER;
 
 //------------------------------------------------------------------------------
             } else if (button.equals("DetailBill")) {
@@ -141,7 +157,7 @@ public class DispatchServlet extends HttpServlet {
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *

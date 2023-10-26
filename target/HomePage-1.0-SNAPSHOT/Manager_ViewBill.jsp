@@ -19,22 +19,22 @@
     <!-- Font & img CSS     -->
     <link href="font-img.css" rel="stylesheet" />
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap1.min.css" rel="stylesheet" />
+    <link href="css_admin/bootstrap1.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css_admin/animate.min.css" rel="stylesheet" />
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+    <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="css/demo.css" rel="stylesheet" />
+    <link href="css_admin/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" rel="stylesheet">
 
@@ -44,7 +44,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css_admin/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -79,13 +79,13 @@
 
             <div class="content">
                 <div class="container-fluid">
-
+                    <%@include file="components//Manager_Order_Component.jsp" %>
 
                     <div class="col-md-pull-12">
                         <div class="card-font-img">
 
                             <div class="header-font-img-admin" style="margin-left: 20px;">
-                                <h4 class="title" style="font-size: 30px">Hóa đơn</h4>
+                                <h4 class="title" style="font-size: 30px">Đơn hàng đã xử lý</h4>
                                 <p class="category" style="font-size: 25px">Staff & Manager</p>
                             </div>
                             <div class="content-font-img" style="font-size: 25px !important">
@@ -98,7 +98,7 @@
                                                     <th>ID Order</th>
                                                     <th>Tên</th>
                                                     <th>Ngày</th>
-                                                    <th>SĐT</th>
+                                                    <th>Trạng thái đơn hàng</th>
                                                     <th>Tổng tiền</th>
                                                     <th>Action</th>
                                                 </tr>
@@ -116,7 +116,7 @@
                                                             ${dto.createdDate}
                                                         </td>
                                                         <td>
-                                                            ${dto.receiverPhoneNumber}
+                                                            ${dto.status}
                                                         </td>
                                                         <td>
                                                             <fmt:formatNumber value="${dto.total}" maxFractionDigits="0"/> VND                                                       
@@ -138,8 +138,8 @@
                                         </table>
 
                                     </c:if>
-                                     <c:if test="${empty result}">
-                                         <h2 class="d-flex justify-content-around align-items-center" style="font-size: 50px"s>Không có hóa đơn</h2>
+                                    <c:if test="${empty result}">
+                                        <h2 class="d-flex justify-content-around align-items-center" style="font-size: 50px"s>Không có hóa đơn</h2>
                                     </c:if>  
 
                                 </div>

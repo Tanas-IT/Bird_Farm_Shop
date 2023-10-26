@@ -18,25 +18,25 @@
         <meta name="viewport" content="width=device-width" />
 
         <!-- Font & img CSS     -->
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
 
         <!-- Animation library for notifications   -->
-        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css_admin/animate.min.css" rel="stylesheet" />
 
         <!--  Light Bootstrap Table core CSS    -->
-        <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+        <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css_admin/demo.css" rel="stylesheet" />
 
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" >
         <style>
             .striped-table {
@@ -84,6 +84,7 @@
 
                 <div class="content">
                     <div class="container-fluid">
+                        <%@include file="components//Manager_Order_Component.jsp" %>
                         <div class="page-content container"style="border: 1px solid #888; border-radius: 10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.3)">
                             <div class="page-header text-blue-d2" >
 
@@ -92,7 +93,7 @@
                                     <c:forEach var="dto1" items="${result1}" varStatus="counter">
 
                                         <h1 class="page-title text-secondary-d1 " style="text-align: center;font-weight: bold">
-                                            Hóa đơn bán hàng
+                                            Đơn hàng
                                             <small class="page-info">
                                                 <i class="fa fa-angle-double-right text-80"></i>
                                                 ${dto1.idOrder}
@@ -121,6 +122,8 @@
                                                                 </div>
 
                                                                 <div class="my-2">Số điện thoại: ${dto1.receiverPhoneNumber}</div>
+                                                                <div class="my-2">Thanh toán bằng: ${dto1.paymentName}</div>
+
                                                             </div>
 
                                                         </div>
@@ -140,6 +143,7 @@
                                                             <div class="my-2"> Ngày:</span> ${dto1.createdDate}</div>
 
                                                             <div class="my-2"> Trạng thái: <span class="badge badge-warning badge-pill px-25">${dto1.status}</span></div>
+                                                            <br>
                                                         </div>
 
                                                     </div>
@@ -164,6 +168,7 @@
                                                     <c:set var="result" value="${requestScope.BILL_DETAIL_LIST}"/>
                                                     <c:if test="${not empty result}">
                                                         <c:forEach var="dto" items="${result}" varStatus="counter">
+                                                            <c:set var="idOrder" value="${dto.idOrder}" />
                                                             <c:set var="quantity" value="${dto.quantity}" />
                                                             <c:set var="price" value="${dto.price}" />
                                                             <c:set var="priceANDquantity" value="${quantity*price}" />
@@ -214,6 +219,16 @@
                                                             <div class="col-5"  style="font-size: 20px">
                                                                 <span class="text-150 text-success-d3 opacity-2"><fmt:formatNumber value="${total}" maxFractionDigits="0"/>đ</span>
                                                             </div>
+                                                        </div>
+                                                        <br>
+                                                        <br>
+                                                        <br>
+                                                        <div class="col-lg-4" id="status">
+                                                            <a href="DispatchServlet?btAction=DeliveryOrder&txtidOrder=${idOrder}">
+                                                                Giao hàng
+                                                            </a>
+
+
                                                         </div>
                                                     </c:if>
 

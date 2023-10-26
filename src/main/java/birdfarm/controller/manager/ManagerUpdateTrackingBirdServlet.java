@@ -68,12 +68,15 @@ public class ManagerUpdateTrackingBirdServlet extends HttpServlet {
         String filePath = uploadDirectory + File.separator + fileName;
         try {
             String idRequiredOrder = request.getParameter("txtidRequiredOrder");
+            String idBirdNest = request.getParameter("txtidBirdNest");
 
             String imgTracking = request.getParameter("txtimgTracking");
             String reason = request.getParameter("txtreason");
 
             String birdNestFemale = request.getParameter("txtquantityBirdFemaleChild");
             String birdNestMale = request.getParameter("txtquantityBirdMaleChild");
+            
+            String noDataImg = null;
 
             int idRequiredOrder1 = Integer.parseInt(idRequiredOrder);
             int birdNestFemale1 = Integer.parseInt(birdNestFemale);
@@ -83,6 +86,7 @@ public class ManagerUpdateTrackingBirdServlet extends HttpServlet {
                 ManagerTrackingBirdDAO dao = new ManagerTrackingBirdDAO();
                 dao.updateTrackingBirdDetail(idRequiredOrder1, birdNestFemale1, birdNestMale1);
                 dao.updateTrackingBird(idRequiredOrder1, status, reason);
+
                 if (filePart != null && filePart.getSize() > 0) {
                     File directory = new File(uploadDirectory);
                     if (!directory.exists()) {
@@ -97,8 +101,12 @@ public class ManagerUpdateTrackingBirdServlet extends HttpServlet {
                         Map uploadResult = cloudinary.uploader().upload(filePath, ObjectUtils.emptyMap());
                         String imageUrl = (String) uploadResult.get("secure_url");
                         dao.updateTrackingBirdImg(idRequiredOrder1, imageUrl);
-
+                        dao.insertTrackingBird(idBirdNest, imageUrl, status, reason);
                     }
+
+                } else {
+                    dao.insertTrackingBird(idBirdNest,noDataImg , status, reason);
+
                 }
 
                 //2.2 call method of DAO 

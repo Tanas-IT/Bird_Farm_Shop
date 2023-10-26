@@ -89,6 +89,7 @@ public class ManagerOrderDAO implements Serializable {
             }
         }
     }
+
     public void showCancelOrder()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -137,8 +138,8 @@ public class ManagerOrderDAO implements Serializable {
             }
         }
     }
-    
-       public void showCustomerCancelOrder()
+
+    public void showCustomerCancelOrder()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -187,6 +188,104 @@ public class ManagerOrderDAO implements Serializable {
         }
     }
 
+    public void showDeliveryOrder()
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "  SELECT\n"
+                        + "   O.idOrder,\n"
+                        + "   O.createdDate,\n"
+                        + "   O.receiverPhoneNumber,\n"
+                        + "   O.Total, O.status,\n"
+                        + "   u.fullName\n"
+                        + "FROM\n"
+                        + "   [Order] AS O\n"
+                        + "   JOIN [User] AS u ON u.idUser = O.idUser\n"
+                        + "WHERE\n"
+                        + "   O.status = N'Đang giao'";
+                stm = con.prepareCall(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int idOrder = rs.getInt("idOrder");
+                    String createdDate = rs.getString("createdDate");
+                    String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
+                    Double Total = rs.getDouble("Total");
+                    String status = rs.getString("status");
+                    String fullName = rs.getString("fullName");
+
+                    ManagerOrderDTO dto
+                            = new ManagerOrderDTO(idOrder, createdDate, status, Total, receiverPhoneNumber, fullName);
+
+                    if (this.orderList == null) {
+                        this.orderList = new ArrayList<>();
+                    }
+                    this.orderList.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
+    public void showSucessOrder()
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "  SELECT\n"
+                        + "   O.idOrder,\n"
+                        + "   O.createdDate,\n"
+                        + "   O.receiverPhoneNumber,\n"
+                        + "   O.Total, O.status,\n"
+                        + "   u.fullName\n"
+                        + "FROM\n"
+                        + "   [Order] AS O\n"
+                        + "   JOIN [User] AS u ON u.idUser = O.idUser\n"
+                        + "WHERE\n"
+                        + "   O.status = N'Đã xong'";
+                stm = con.prepareCall(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    int idOrder = rs.getInt("idOrder");
+                    String createdDate = rs.getString("createdDate");
+                    String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
+                    Double Total = rs.getDouble("Total");
+                    String status = rs.getString("status");
+                    String fullName = rs.getString("fullName");
+
+                    ManagerOrderDTO dto
+                            = new ManagerOrderDTO(idOrder, createdDate, status, Total, receiverPhoneNumber, fullName);
+
+                    if (this.orderList == null) {
+                        this.orderList = new ArrayList<>();
+                    }
+                    this.orderList.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+    }
+
     public void showOrderDetail(int searchIdOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -204,10 +303,11 @@ public class ManagerOrderDAO implements Serializable {
                         + "   u.fullName,\n"
                         + "   OD.price,\n"
                         + "   OD.quantity,\n"
-                        + "	BP.name, BP.imageURL \n"
+                        + "	BP.name, BP.imageURL , pm.methodName\n"
                         + "    FROM\n"
                         + "   [Order] AS O\n"
                         + "   Join [User] As u ON u.idUser = O.idUser\n"
+                        + "Join [Payment] As pm ON O.paymentID = pm.idPayment \n"
                         + "Join [OrderDetail] As OD on O.idOrder = OD.idOrder \n"
                         + "JOIN BirdProduct AS BP ON OD.idBirdProduct = BP.idBird "
                         + "Where O.idOrder = ? ";
@@ -226,9 +326,13 @@ public class ManagerOrderDAO implements Serializable {
                     Double price = rs.getDouble("price");
                     String imageURL = rs.getString("imageURL");
                     String Note = rs.getString("Note");
+                    String methodName = rs.getString("methodName");
+
                     ManagerOrderDTO dto
-                            = new ManagerOrderDTO(idOrder, createdDate, receiverAddress,
-                                    receiverPhoneNumber, name, imageURL, quantity, price, fullName, Note);
+                            = new ManagerOrderDTO(idOrder, createdDate,
+                                    receiverAddress, receiverPhoneNumber,
+                                    name, imageURL, quantity, price, fullName,
+                                    Note, methodName);
 
                     if (this.orderListDetail == null) {
                         this.orderListDetail = new ArrayList<>();
@@ -260,9 +364,10 @@ public class ManagerOrderDAO implements Serializable {
                         + " O.createdDate,\n"
                         + " O.receiverPhoneNumber, \n"
                         + " O.receiverAddress, O.status,\n"
-                        + " u.fullName\n"
+                        + " u.fullName, pm.methodName\n"
                         + "FROM [Order] AS O\n"
                         + "Join [User] As u ON u.idUser = O.idUser\n"
+                        + "Join [Payment] As pm ON O.paymentID = pm.idPayment \n"
                         + "Where O.idOrder = ?";
                 stm = con.prepareCall(sql);
 
@@ -275,9 +380,12 @@ public class ManagerOrderDAO implements Serializable {
                     String receiverPhoneNumber = rs.getString("receiverPhoneNumber");
                     String fullName = rs.getString("fullName");
                     String status = rs.getString("status");
+                    String methodName = rs.getString("methodName");
+
                     ManagerOrderDTO dto
                             = new ManagerOrderDTO(idOrder, createdDate, status,
-                                    receiverAddress, receiverPhoneNumber, fullName);
+                                    receiverAddress, receiverPhoneNumber, fullName,
+                                    methodName);
 
                     if (this.orderListDetailCustomer == null) {
                         this.orderListDetailCustomer = new ArrayList<>();
@@ -335,6 +443,66 @@ public class ManagerOrderDAO implements Serializable {
             if (con != null) {
                 String sql = "UPDATE [Order] "
                         + " SET status = N'Đã hủy' "
+                        + "WHERE idOrder = ? ";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, idOrder);
+                int effectRows = stm.executeUpdate();
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+
+    public boolean deliveryOrder(int idOrder)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "UPDATE [Order] "
+                        + " SET status = N'Đang giao' "
+                        + "WHERE idOrder = ? ";
+                stm = con.prepareStatement(sql);
+                stm.setInt(1, idOrder);
+                int effectRows = stm.executeUpdate();
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+
+    public boolean successOrder(int idOrder)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "UPDATE [Order] "
+                        + " SET status = N'Đã xong' "
                         + "WHERE idOrder = ? ";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, idOrder);

@@ -22,8 +22,8 @@
 
             <div class="user-image" style="text-align: center;">
                 <i class="pe-7s-user" style="font-size: 100px;"></i>
-                <p>Nguyen Duc Anh</p>
-                <p>Admin</p>
+                <p>Chỗ này chỉnh người đăng nhập </p>
+                <p>Chỗ này chỉnh quyền là staff hoặc manager</p>
             </div>
 
             <ul class="nav">
@@ -34,12 +34,12 @@
                         <p>Đơn hàng</p>
                     </a>
                 </li>
-                <li>
+<!--                <li>
                     <a href="DispatchServlet?btAction=ManagerViewBill">
                         <i class="pe-7s-note2"></i>
                         <p>Hóa Đơn</p>
                     </a>
-                </li>
+                </li>-->
                 <li>
                     <a href="Manager_Chart.jsp">
                         <i class="pe-7s-graph1"></i>

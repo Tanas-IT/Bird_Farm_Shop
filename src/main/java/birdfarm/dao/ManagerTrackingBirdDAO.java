@@ -94,7 +94,10 @@ public class ManagerTrackingBirdDAO implements Serializable {
                         + "        ro.status, ro.reason,ro.imgTracking, \n"
                         + "        ro.trackingDate,b1.importPrice as priceBirdDad,b2.importPrice as priceBirdMom, \n"
                         + "         b1.name as birdFather , b2.name as birdMother,  rd.birdNestMale ,\n"
-                        + "        rd.birdNestFemale , rd.fee , cu.email\n"
+                        + "        rd.birdNestFemale , rd.fee , cu.email, rd.idBirdNest, "
+                        + "b1.imageURL as imageBirdFather, b2.imageURL as imageBirdMother,"
+                        + "b1.shortDescription as shortDescriptionBirdFather,"
+                        + " b2.shortDescription as shortDescriptionBirdMother \n"
                         + "         from  RequiredOrder ro \n"
                         + "        join RequiredOrderDetail rd \n"
                         + "         on ro.idRequiredOrder = rd.idRequiredOrder\n"
@@ -125,13 +128,20 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     Double importPriceBirdMom = rs.getDouble("priceBirdMom");
                     Double fee = rs.getDouble("fee");
                     String email = rs.getString("email");
+                    String idBirdNest = rs.getString("idBirdNest");
+                    
+                    String imageBirdFather = rs.getString("imageBirdFather");
+                    String imageBirdMother = rs.getString("imageBirdMother");
+                    String shortDescriptionBirdFather = rs.getString("shortDescriptionBirdFather");
+                    String shortDescriptionBirdMother = rs.getString("shortDescriptionBirdMother");
 
                     ManagerTrackingBirdDTO dto
-                            = new ManagerTrackingBirdDTO(idRequiredOrder, status,
-                                    reason, imgTracking, birdFather, birdMother,
-                                     fullName, importPriceBirdDad,
-                                    importPriceBirdMom, fee, birdNestMale,
-                                    birdNestFemale, email);
+                            = new ManagerTrackingBirdDTO(idRequiredOrder, 
+                                    status, reason, imgTracking, birdFather,
+                                    birdMother, fullName, importPriceBirdDad,
+                                    importPriceBirdMom, fee, birdNestMale, birdNestFemale,
+                                    email, idBirdNest, imageBirdFather, imageBirdMother, 
+                                    shortDescriptionBirdFather, shortDescriptionBirdMother);
 
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
@@ -463,4 +473,43 @@ public class ManagerTrackingBirdDAO implements Serializable {
         return result;
     }
 
+    public boolean insertTrackingBird(String idBirdNest, String imageURL, String status, String reason)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+
+        try {
+
+            con = DBConnection.makeConnection();
+            if (con != null) {
+
+                String sql = "  INSERT INTO TrackingBirdNest (idBirdNest, imageURL, status, trackingDate, reason)\n"
+                        + "VALUES (?, ?, ?,  CAST(CONVERT(datetime2(0), GETDATE()) AS datetime2(0)), ?)";
+
+                stm = con.prepareStatement(sql);
+                stm.setString(1, idBirdNest);
+                stm.setString(2, imageURL);
+                stm.setString(3, status);
+                stm.setString(4, reason);
+
+                int effectRows = stm.executeUpdate();
+
+                //5. Process
+                if (effectRows > 0) {
+                    result = true;
+                }
+
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
 }
