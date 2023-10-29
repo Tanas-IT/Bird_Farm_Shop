@@ -100,21 +100,18 @@
                             <div class="card-font-img">
 
                                 <div class="header-font-img-admin" style="margin-left: 20px;">
-                                    <h4 class="title" style="font-size: 30px">Tài khoản</h4>
+                                    <h4 class="title" style="font-size: 30px">Phương thức thanh toán</h4>
                                     <p class="category" style="font-size: 25px">Admin</p>
                                 </div>
                                 <br><br><br><br>
                                 <div class="content-font-img">
-                                    <c:set var="result" value="${requestScope.ACCOUNT_LIST}"/>
+                                    <c:set var="result" value="${requestScope.PAYMENT_LIST}"/>
                                     <c:if test="${not empty result}">
                                         <table>
                                             <thead>
                                                 <tr>
                                                     <th>ID</th>
-                                                    <th>Tên đăng nhập</th>
-                                                    <th>Họ và tên</th>
-                                                    <th>Vai trò</th>
-                                                    <th>Mật khẩu</th>
+                                                    <th>Phương thức thanh toán</th>
                                                     <th>Đặt lại</th>
                                                 </tr>
                                             </thead>
@@ -122,26 +119,19 @@
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
                                                 <form action="DispatchServlet">
                                                     <tr>
-                                                        <td>${dto.idUser}</td>
-                                                        <td>
-                                                            ${dto.userName}
+                                                        <td>${dto.idPayment}
                                                             <input type="hidden" 
-                                                                   name="txtUsername" 
-                                                                   value="${dto.userName}" />
+                                                                   name="txtidPayment" 
+                                                                   value="${dto.idPayment}" />
                                                         </td>
                                                         <td>
                                                             <input type="text" 
-                                                                   name="txtfullName" 
-                                                                   value="${dto.fullName}" />
+                                                                   name="txtmethodName" 
+                                                                   value="${dto.methodName}" />
                                                         </td>
-                                                        <td>${dto.roleName}</td>
+
                                                         <td>
-                                                            <input type="text" 
-                                                                   name="txtpassword" 
-                                                                   value="${dto.password}" />
-                                                        </td>
-                                                        <td>
-                                                            <button type="submit" value="Update" name="btAction">
+                                                            <button type="submit" value="UpdatePaymentMethod" name="btAction">
                                                                 Update</button>
                                                         </td>
                                                     </tr>

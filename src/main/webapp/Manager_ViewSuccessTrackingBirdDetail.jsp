@@ -19,7 +19,9 @@
         <title>Manager</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
-
+        <title>View Success Tracking Bird</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <!-- Animation library for notifications   -->
         <link href="css_admin/animate.min.css" rel="stylesheet" />
 
@@ -53,7 +55,12 @@
     </head>
     <body>
         <div class="wrapper">
-            <%@include file="components//ManagerComponent.jsp" %>
+        <c:if test="${sessionScope.user.roleName == 'Manager'}">
+                <%@include file="components//ManagerComponent.jsp" %>
+        </c:if>
+        <c:if test="${sessionScope.user.roleName == 'Staff'}">
+            <%@include file="components//StaffComponent.jsp" %>
+        </c:if>
 
             <div class="main-panel">
                 <!-- Navbar -->

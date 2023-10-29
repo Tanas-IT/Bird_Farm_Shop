@@ -37,9 +37,9 @@ public class LoginServlet extends HttpServlet {
 
     private static final String LOGIN_PAGE = "Login.jsp";
     private static final String HOME_PAGE = "home.jsp";
-    private static final String ADMIN_PAGE = "Admin_ControlAccount.jsp";
+    private static final String ADMIN_PAGE = "AdminControlAccountServlet";
     private static final String MANAGER_PAGE = "ManagerViewOrderServlet";
-    private static final String STAFF_PAGE = "Update_product_Staff.html";
+    private static final String STAFF_PAGE = "ManagerViewOrderServlet";
     private static final String ERROR_PAGE = "error.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

@@ -38,6 +38,9 @@ catch(SQLException e){
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Dashboard</title>
+        <!-- Favicon-->
+<link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
 <script type="text/javascript">
 window.onload = function() { 
  

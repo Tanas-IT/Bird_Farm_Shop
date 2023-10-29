@@ -53,7 +53,12 @@
     </head>
     <body>
         <div class="wrapper">
-            <%@include file="components//ManagerComponent.jsp" %>
+            <c:if test="${sessionScope.user.roleName == 'Manager'}">
+                    <%@include file="components//ManagerComponent.jsp" %>
+            </c:if>
+            <c:if test="${sessionScope.user.roleName == 'Staff'}">
+                <%@include file="components//StaffComponent.jsp" %>
+            </c:if>
 
             <div class="main-panel">
                 <!-- Navbar -->

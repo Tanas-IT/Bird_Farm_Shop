@@ -7,7 +7,6 @@ package birdfarm.controller.admin;
 
 import birdfarm.dao.AdminDAO;
 import birdfarm.dto.AdminDTO;
-import birdfarm.dto.AdminProductDTO;
 import birdfarm.dto.PaymentDTO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,9 +26,9 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author HP
  */
-@WebServlet(name = "AdminViewProductServlet", urlPatterns = {"/AdminViewProductServlet"})
+@WebServlet(name = "AdminViewPaymentServlet", urlPatterns = {"/AdminViewPaymentServlet"})
 public class AdminViewPaymentServlet extends HttpServlet {
-private final String ADMIN_VIEW_PRODUCT_PAGE = "Admin_ViewProduct.jsp";
+private final String ADMIN_VIEW_PRODUCT_PAGE = "Admin_ViewPaymentMethod.jsp";
 private final String ERROR_PAGE = "error.html";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -46,9 +45,9 @@ private final String ERROR_PAGE = "error.html";
         String url = ERROR_PAGE;
         try {
             AdminDAO dao = new AdminDAO();
-//            dao.showPayment();
-//            List<PaymentDTO> dto = dao.getPaymentList();
-//            request.setAttribute("PAYMENT_LIST", dto);
+            dao.showPaymentMethod();
+            List<AdminDTO> dto = dao.getAccountList();
+            request.setAttribute("PAYMENT_LIST", dto);
             url = ADMIN_VIEW_PRODUCT_PAGE;
 
         } finally {

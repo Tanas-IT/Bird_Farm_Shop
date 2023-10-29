@@ -43,18 +43,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="Manager_Chart.jsp">
-                        <i class="pe-7s-graph1"></i>
-                        <p>Dashboard</p>
-                    </a>
-                </li>
-                <li>
-                    <a href="DispatchServlet?btAction=ManagerViewProduct">
-                        <i class="pe-7s-drawer"></i>
-                        <p>Tất cả sản phẩm</p>
-                    </a>
-                </li>
-                <li>
                     <a href="DispatchServlet?btAction=ManagerViewFeedback">
                         <i class="pe-7s-repeat"></i>
                         <p>Phản hồi người dùng</p>

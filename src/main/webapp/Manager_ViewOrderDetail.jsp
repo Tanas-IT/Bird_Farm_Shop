@@ -16,7 +16,9 @@
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
-
+        <title>View Order Detail</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <!-- Font & img CSS     -->
         <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -78,8 +80,12 @@
     <body>
 
         <div class="wrapper">
-            <%@include file="components//ManagerComponent.jsp" %>
-
+            <c:if test="${sessionScope.user.roleName == 'Manager'}">
+                <%@include file="components//ManagerComponent.jsp" %>
+            </c:if>
+            <c:if test="${sessionScope.user.roleName == 'Staff'}">
+                <%@include file="components//StaffComponent.jsp" %>
+            </c:if>
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">

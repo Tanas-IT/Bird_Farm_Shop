@@ -3,29 +3,35 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package birdfarm.controller.cart;
+package birdfarm.controller.admin;
 
-import birdfarm.dao.UserDAO;
-import birdfarm.dto.BirdDTO;
-import birdfarm.dto.UserDTO;
+import birdfarm.dao.AdminDAO;
+import birdfarm.dto.AdminDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
+import static java.lang.System.out;
 import java.sql.SQLException;
-import java.util.Map;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ASUS
+ * @author HP
  */
-@WebServlet(name = "ViewRequiredController", urlPatterns = {"/ViewRequiredController"})
-public class ViewRequiredController extends HttpServlet {
-    private final String VIEW_RCART_PAGE = "viewRequiredCart.jsp";
+@WebServlet(name = "AdminUpdatePayment", urlPatterns = {"/AdminUpdatePayment"})
+public class AdminUpdatePayment extends HttpServlet {
+
+    private final String ADMIN_CONTROL_ACCOUNT_PAGE = "Admin_ControlAccount.jsp";
+    private final String ERROR_PAGE = "error.html";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,25 +42,26 @@ public class ViewRequiredController extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = VIEW_RCART_PAGE;
-        HttpSession session = request.getSession();
-        try  {
-            String idUser = request.getParameter("userID");
-            UserDAO userDAO = new UserDAO();
-            UserDTO user = userDAO.getUser(idUser);
-            request.setAttribute("user", user);
-            int quantityOfCart = (int) session.getAttribute("quantityOfCart");
-            Map<String, BirdDTO> cart = (Map<String, BirdDTO>) session.getAttribute("RCART");
-            session.setAttribute("RCART", cart);
-            session.setAttribute("RquantityOfCart", quantityOfCart);
-        } catch (SQLException ex) {
-           ex.printStackTrace();
+        String url = ERROR_PAGE;
+        try {
+            String txtidPayment = request.getParameter("txtidPayment");
+            String txtmethodName = request.getParameter("txtmethodName");
+            int idPayment = Integer.parseInt(txtidPayment);
+            AdminDAO dao = new AdminDAO();
+            boolean result = dao.updatePaymentMethod(idPayment, txtmethodName);
+            if (result) {
+                url = "DispatchServlet?btAction=AdminViewPaymentMethod";
+
+            }
         } catch (NamingException ex) {
-            ex.printStackTrace();
+            log("UpdatePassRoleServlet _ SQL " + ex.getMessage());
+        } catch (SQLException ex) {
+            log("UpdatePassRoleServlet _ Naming " + ex.getMessage());
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            response.sendRedirect(url);
+            out.close();
         }
     }
 
@@ -70,7 +77,11 @@ public class ViewRequiredController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminUpdatePayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -84,7 +95,11 @@ public class ViewRequiredController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AdminUpdatePayment.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
