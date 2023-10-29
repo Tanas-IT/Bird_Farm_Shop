@@ -9,9 +9,11 @@ import birdfarm.dao.UserDAO;
 import birdfarm.dto.BirdDTO;
 import birdfarm.dto.UserDTO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.naming.NamingException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,7 +49,7 @@ public class ViewController extends HttpServlet {
             UserDTO user = userDAO.getUser(idUser);
             request.setAttribute("user", user);
             int quantityOfCart = (int) session.getAttribute("quantityOfCart");
-            Map<String, BirdDTO> cart = (HashMap<String, BirdDTO>) session.getAttribute("CART");
+            Map<String, BirdDTO> cart = (Map<String, BirdDTO>) session.getAttribute("CART");
             session.setAttribute("CART", cart);
             session.setAttribute("quantityOfCart", quantityOfCart);
         } catch (SQLException ex) {

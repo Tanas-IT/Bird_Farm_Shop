@@ -11,7 +11,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Login</title> 
-		<link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
+	<link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <link rel="stylesheet" href="css/Google.css">
         <link rel="stylesheet" href="css/Login.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>

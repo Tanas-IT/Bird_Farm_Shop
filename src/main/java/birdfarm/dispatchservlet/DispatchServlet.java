@@ -240,6 +240,8 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_UPDATE_TRACKING_BIRD_CONTROLLER;
             } else if (button.equals("DeleteProduct")) {
                 url = MANAGER_DELETE_PRODUCT_CONTROLLER;
+            } else if(button.equals("AdminViewPaymentMethod")) {
+                url = ADMIN_VIEW_PAYMENT_CONTROLLER;
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
