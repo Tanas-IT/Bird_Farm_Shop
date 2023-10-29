@@ -1,0 +1,84 @@
+.card-font-img {
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.content-font-img table {
+    width: 100%;
+    table-layout: fixed;
+}
+
+.content-font-img th,
+.content-font-img td {
+    text-align: center;
+    padding: 10px;
+    word-break: break-word;
+}
+
+.header-font-img-admin {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 20px;
+}
+
+.logo-font-img {
+    font-size: 30px;
+}
+
+
+
+.right-panel {
+    flex: 1;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.invoice {
+    margin-bottom: 10px;
+    border: 2px solid transparent;
+    transition: border-color 0.3s ease;
+}
+
+
+
+.invoice button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-decoration: underline;
+    color: blue;
+}
+
+.invoice-details {
+    display: none;
+    margin-top: 10px;
+}
+
+tr.invoice:hover {
+    background-color: #f5f5f5;
+    cursor: pointer;
+}
+
+.invoice-details.active {
+    display: block;
+}
+
+.invoice-details button.cancel {
+    margin-top: 10px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.card {
+    border: 1px solid #ccc;
+
+
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
