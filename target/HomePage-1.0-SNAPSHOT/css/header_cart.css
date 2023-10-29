@@ -1,0 +1,148 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 15, 2023, 10:55:00 AM
+    Author     : ASUS
+*/
+
+.header_cart {
+    width: 150px;
+    position: absolute;
+}
+
+.header__cart-list {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 50px;
+    background-color: #fff;
+    width: 450px;
+    border-radius: 2px;
+    box-shadow: 0 1px 3.125rem 0 rgba(0,0,0,0.2);
+    display: none;
+    animation: fadein ease-in 0.2s;
+    cursor: default;
+}
+.header__cart-list::after {
+   cursor: pointer;
+   content: "";
+   position: absolute;
+   right: 4px;
+   top:-30px;
+   border-width: 20px 26px;
+   border-style: solid;
+   border-color: transparent transparent #fff transparent;
+}
+.header__cart-no-cart-img {
+    display: none;
+    width: 54%;
+    
+}
+.header_cart-list--no-cart {
+    padding: 24px 0;
+    
+}
+.header_cart-list--no-cart .header__cart-no-cart-img,
+.header_cart-list--no-cart .header__cart-list-no-cart-msg {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+.header__cart-list-no-cart-msg {
+    display: none;
+    font-size: 14px;
+    margin-top: 14px;
+    color: #000;
+}
+.cart:hover .header__cart-list{
+    display: block;
+}
+.header__cart-heading {
+    text-align: left;
+    margin: 8px 0 8px 12px;
+    font-size: 16px;
+    color: #999;
+    font-weight: 400;
+}
+.header__cart-list-item {
+    padding-left: 0;
+    list-style: none;
+}
+.header__cart-item {
+    display: flex;
+    align-items: center;
+}
+.header__cart-item:hover {
+    background-color: #f8f8f8;
+}
+.header__cart-img {
+    width: 50px;
+    height: 50px;
+    margin: 12px;
+    border: 1px solid #E8E8E8;
+}
+.header__cart-item-info {
+   width: 100%;
+   margin-right: 12px;
+}
+.header__cart-item-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+   
+}
+.header__cart-item-name {
+    font-size: 16px;
+    font-weight: 500;
+    color: #000;
+    margin: 0;
+    max-width: 160px;
+    text-align: left;
+}
+.header__cart-item-price {
+     font-size: 16px;
+    font-weight: 500;
+    color: #fa4f30;
+}
+.header__cart-item-multiply {
+    font-size: 12px;
+    margin: 0 4px;
+    color: #757575;
+}
+.header__cart-item-quantity {
+    font-size: 14px;
+    color: #757575;
+}
+.header__cart-item-body {
+   display: flex;
+   justify-content: space-between;
+}
+.header__cart-item-description {
+    color: #757575;
+    font-size: 14px;
+}
+.header__cart-item-remove {
+    color: #000;
+    font-size: 16px;
+}
+.header__cart-item-remove:hover {
+    cursor: pointer;
+    color: #fa4f30;
+}
+.header__cart-view-cart {
+    float: right;
+    margin: 0 12px 12px 0;
+}
+.header__cart-view-cart:hover {
+    background-color: #F05D41;
+}
+@keyframes fadein {
+    from {
+        opacity: 0
+    }
+    to {
+        opacity: 1
+    }
+}
