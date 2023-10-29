@@ -5,22 +5,31 @@
  */
 package birdfarm.dto;
 
+import java.io.Serializable;
+
 /**
  *
  * @author ASUS
  */
-public class CustomerDTO {
+public class CustomerDTO implements Serializable{
     private String idCustomer;
     private String address;
     private String phoneNumber;
     private String email;
-    
+    private String image;
     public CustomerDTO() {
         
     }
 
-    public CustomerDTO(String idCustomer, String address, String phoneNumber, String email) {
+    public CustomerDTO(String idCustomer, String address, String phoneNumber, String email, String image) {
         this.idCustomer = idCustomer;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.image = image;
+    }
+
+    public CustomerDTO(String address, String phoneNumber, String email) {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -80,6 +89,17 @@ public class CustomerDTO {
      */
     public void setEmail(String email) {
         this.email = email;
+    }
+    
+    public String getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the email to set
+     */
+    public void setImage(String image) {
+        this.image = image;
     }
     
 }

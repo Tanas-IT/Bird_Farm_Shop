@@ -17,8 +17,7 @@ public class RegistrationCreateError implements Serializable{
     private String fullNameLengthErr;
     private String confirmNotMatched;
     private String usernameIsExisted;
-    private String phoneNumberLengthErr;
-    
+
     public RegistrationCreateError() {
     }
 
@@ -60,14 +59,6 @@ public class RegistrationCreateError implements Serializable{
 
     public void setUsernameIsExisted(String usernameIsExisted) {
         this.usernameIsExisted = usernameIsExisted;
-    }
-
-    public String getPhoneNumberLengthErr() {
-        return phoneNumberLengthErr;
-    }
-
-    public void setPhoneNumberLengthErr(String phoneNumberLengthErr) {
-        this.phoneNumberLengthErr = phoneNumberLengthErr;
     }
     
     

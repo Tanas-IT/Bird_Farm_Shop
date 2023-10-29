@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
 import birdfarm.dto.AdminDTO;
+import birdfarm.dto.AdminProductDTO;
 
 /**
  *
@@ -35,45 +36,7 @@ public class AdminDAO implements Serializable {
         return productList;
     }
 
-    public void showProduct()
-            throws SQLException, NamingException, ClassNotFoundException {
-        Connection con = null;
-        PreparedStatement stm = null;
-        ResultSet rs = null;
-
-        try {
-            con = DBConnection.makeConnection();
-            if (con != null) {
-                String sql = " Select [idBird] "
-                        + ",[name],[salePrice],[quantity],[lifeExpectancy]\n"
-                        + "From BirdProduct";
-                stm = con.prepareCall(sql);
-                rs = stm.executeQuery();
-                while (rs.next()) {
-                    String idBird = rs.getString("idBird");
-                    String name = rs.getString("name");
-                    String lifeExpectancy = rs.getString("lifeExpectancy");
-                    Double salePrice = rs.getDouble("salePrice");
-                    int quantity = rs.getInt("quantity");
-
-                    AdminProductDTO dto
-                            = new AdminProductDTO(name, quantity, salePrice, lifeExpectancy, idBird);
-
-                    if (this.productList == null) {
-                        this.productList = new ArrayList<>();
-                    }
-                    this.productList.add(dto);
-                }
-            }
-        } finally {
-            if (stm != null) {
-                stm.close();
-            }
-            if (con != null) {
-                con.close();
-            }
-        }
-    }
+    
 
     public void showAccount()
             throws SQLException, NamingException, ClassNotFoundException {
@@ -108,9 +71,6 @@ public class AdminDAO implements Serializable {
                 }
             }
         } finally {
-            if(rs != null) {
-                rs.close();
-            }
             if (stm != null) {
                 stm.close();
             }

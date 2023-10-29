@@ -19,7 +19,7 @@
     <body>
         <div class="container">
             <div class="wrapper">
-                <div class="title"><span>Login</span></div>
+                <div class="title"><span>Đăng nhập</span></div>
                 <form action="DispatchServlet" method="post">
                     <div class="row">
                         <i class="fas fa-user"></i>
@@ -29,11 +29,11 @@
                         <i class="fas fa-lock"></i>
                         <input name="txtPassword" type="password" placeholder="Password" required>
                     </div>
-                    <div class="pass"><a href="#">Forgot password?</a></div>
+                    <div class="pass"><a href="#">Quên mật khẩu?</a></div>
                     <div class="row button">
                         <input type="submit" value="Login" name="btAction">
                     </div>
-                    <div class="signup-link">Not a member? <a href="Register.jsp">Register</a></div>
+                    <div class="signup-link">Chưa tạo tài khoản? <a href="Register.jsp">Đăng kí</a></div>
                     <div class="conainer">
                         <a href="https://accounts.google.com/o/oauth2/auth?scope=email profile&redirect_uri=http://localhost:8084/HomePage/LoginGoogleHandler&response_type=code
                            &client_id=91807241555-hv99gc5grvs76rj1nv4p26igusmtn6g7.apps.googleusercontent.com&approval_prompt=force">
@@ -43,7 +43,7 @@
                                         <img src="https://developers.google.com/identity/images/g-logo.png">
                                     </div>
                                     <span class="text-container">
-                                        <span>Sign in with Google</span>
+                                        <span>Đăng nhập bằng Google</span>
                                     </span>
                                 </div>
                             </div>

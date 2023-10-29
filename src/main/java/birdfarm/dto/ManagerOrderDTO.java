@@ -11,47 +11,91 @@ import java.io.Serializable;
  *
  * @author HP
  */
-public class ManagerOrderDTO implements Serializable{
+public class ManagerOrderDTO implements Serializable {
+
     private int idOrder;
     private String idUser;
     private String createdDate;
     private String status;
-    private Double Total;
-    private Double deliveryCost;
-    private String deliveryDate;
-    private int usePoint;
+    private Double total;
+
     private String receiverAddress;
-    private String Note;
+    private String note;
     private String receiverPhoneNumber;
     private String receiverName;
     private String name;
-    
+    private String imageURL;
+
     private int idOrderDetail;
     private String idBirdProduct;
     private int quantity;
     private Double price;
-    
-    private String fullName; 
+
+    private String fullName;
     private String phoneNumber;
+    private String paymentName;
 
-
-
-    public ManagerOrderDTO(int idOrder, String createdDate, String receiverPhoneNumber, String fullName) {
+    public ManagerOrderDTO(int idOrder, String createdDate, String status, Double total, String receiverPhoneNumber, String fullName) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
+        this.status = status;
+        this.total = total;
         this.receiverPhoneNumber = receiverPhoneNumber;
         this.fullName = fullName;
     }
 
-    public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress, String receiverPhoneNumber, String name, int quantity, Double price, String fullName) {
+    public ManagerOrderDTO(int idOrder, String createdDate, String status, 
+            String receiverAddress, String receiverPhoneNumber, String fullName, String paymentName) {
+        this.idOrder = idOrder;
+        this.createdDate = createdDate;
+        this.status = status;
+        this.receiverAddress = receiverAddress;
+        this.receiverPhoneNumber = receiverPhoneNumber;
+        this.fullName = fullName;
+        this.paymentName = paymentName;
+    }
+
+    public ManagerOrderDTO() {
+    }
+
+    public ManagerOrderDTO(int idOrder, String createdDate, String receiverAddress,
+            String receiverPhoneNumber, String name, String imageURL, int quantity,
+            Double price, String fullName, String note, String paymentName) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
         this.receiverAddress = receiverAddress;
         this.receiverPhoneNumber = receiverPhoneNumber;
         this.name = name;
+        this.imageURL = imageURL;
         this.quantity = quantity;
         this.price = price;
         this.fullName = fullName;
+        this.note = note;
+        this.paymentName = paymentName;
+    }
+
+    public String getPaymentName() {
+        return paymentName;
+    }
+
+    public void setPaymentName(String paymentName) {
+        this.paymentName = paymentName;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public int getIdOrder() {
@@ -87,35 +131,11 @@ public class ManagerOrderDTO implements Serializable{
     }
 
     public Double getTotal() {
-        return Total;
+        return total;
     }
 
     public void setTotal(Double Total) {
-        this.Total = Total;
-    }
-
-    public Double getDeliveryCost() {
-        return deliveryCost;
-    }
-
-    public void setDeliveryCost(Double deliveryCost) {
-        this.deliveryCost = deliveryCost;
-    }
-
-    public String getDeliveryDate() {
-        return deliveryDate;
-    }
-
-    public void setDeliveryDate(String deliveryDate) {
-        this.deliveryDate = deliveryDate;
-    }
-
-    public int getUsePoint() {
-        return usePoint;
-    }
-
-    public void setUsePoint(int usePoint) {
-        this.usePoint = usePoint;
+        this.total = total;
     }
 
     public String getReceiverAddress() {
@@ -124,14 +144,6 @@ public class ManagerOrderDTO implements Serializable{
 
     public void setReceiverAddress(String receiverAddress) {
         this.receiverAddress = receiverAddress;
-    }
-
-    public String getNote() {
-        return Note;
-    }
-
-    public void setNote(String Note) {
-        this.Note = Note;
     }
 
     public String getReceiverPhoneNumber() {
@@ -206,6 +218,4 @@ public class ManagerOrderDTO implements Serializable{
         this.phoneNumber = phoneNumber;
     }
 
- 
-    
 }

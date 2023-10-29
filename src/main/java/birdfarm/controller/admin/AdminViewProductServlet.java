@@ -45,7 +45,7 @@ private final String ERROR_PAGE = "error.html";
         String url = ERROR_PAGE;
         try {
             AdminDAO dao = new AdminDAO();
-            dao.showProduct();
+//            dao.showProduct();
             List<AdminProductDTO> dto = dao.getProductList();
             request.setAttribute("PRODUCT_LIST", dto);
             url = ADMIN_VIEW_PRODUCT_PAGE;

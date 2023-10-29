@@ -1,0 +1,59 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 29, 2023, 4:13:50 PM
+    Author     : ASUS
+*/
+
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 29, 2023, 3:14:03 PM
+    Author     : ASUS
+*/
+.btn-item:hover {
+    color: #fff;
+    background-color: #7DB32B;
+    border: 1px solid #7DB32B;
+}
+.product-actions {
+   display: flex;
+   justify-content: center;
+}
+.btn-addCart {
+    display: inline-block;
+}
+.btn-viewMore {
+    display: inline-block;
+}
+.card-img-resize {
+    width: 450px; 
+    height: 300px; 
+    background-size: cover; 
+    border-radius: 3px;
+ }
+@media (max-width: 1117px) {
+    .product-actions {
+        display: block;
+    }
+    .btn-addCart{
+        display: block;
+        width: 120px !important;
+        margin: 0 auto !important;
+    }
+    .btn-viewMore {
+        display: block;
+        width: 120px !important;
+        margin: 0 auto !important;
+    }
+    h6 {
+        font-size: 13px;
+    }
+    
+}
