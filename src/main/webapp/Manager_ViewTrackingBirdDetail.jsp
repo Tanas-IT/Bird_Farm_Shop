@@ -395,7 +395,7 @@
                                                 <br>
                                                 <br><br>
 
-                                                <a href="DispatchServlet?btAction=History&txtidBirdNest=${dto.idBirdNest}">
+                                                <a href="DispatchServlet?btAction=HistoryManager&txtidBirdNest=${dto.idBirdNest}">
                                                     History
                                                 </a>
                                             </c:forEach>    

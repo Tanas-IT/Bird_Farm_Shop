@@ -274,8 +274,8 @@
         <%@include file="components/sliderComponent.jsp" %>
         <section id="content" class="py-5">
             <div style="max-width: 1920px !important; padding-left: 3.5rem !important" class="container px-4 w-100">
-                <div style="display: flex; justify-content: space-between">
-                    <h2 id="birdPremium" class="title-category">Chim Cao Cấp</h2>
+                <div id="birdPremiumId" style="display: flex; justify-content: space-between">
+                    <h2 class="title-category">Chim Cao Cấp</h2>
                     <button class="bg-white" onclick="viewAll(this)" value="<%= listPremiumBird.get(0).getType() %>" style="border: none;color: #7DB32B; text-decoration: none; font-size: 20px; font-weight: bold;">Xem tất cả<i class="fa-solid fa-arrow-right" style="color: #7db32b; margin-left: 10px"></i></button>
                 </div>
                 <div class="row-item row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 align-items-center w-100">
@@ -329,8 +329,8 @@
                     </div>
                     <% } %>
                 </div>
-                <div style="display: flex; justify-content: space-between">
-                    <h2 id="birdNest" class="title-category">Tổ Chim</h2>
+                <div id="birdNestId"  style="display: flex; justify-content: space-between">
+                    <h2 class="title-category">Tổ Chim</h2>
                     <button class="bg-white" onclick="viewAll(this)" value="<%= listBirdNest.get(0).getType() %>" style="border: none;color: #7DB32B; text-decoration: none; font-size: 20px; font-weight: bold;">Xem tất cả<i class="fa-solid fa-arrow-right" style="color: #7db32b; margin-left: 10px"></i></button>
                 </div>
                 <div class="row-item row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 align-items-center w-100">
@@ -392,8 +392,8 @@
                     <% } %>
                 </div>
 
-                <div style="display: flex; justify-content: space-between">
-                    <h2 id="birdLots" class="title-category">Chim Phổ Thông</h2>
+                <div id="birdCommonId" style="display: flex; justify-content: space-between">
+                    <h2  class="title-category">Chim Phổ Thông</h2>
                     <button class="bg-white" onclick="viewAll(this)" value="<%= listBirdsInLots.get(0).getType() %>" style="border: none;color: #7DB32B; text-decoration: none; font-size: 20px; font-weight: bold;">Xem tất cả<i class="fa-solid fa-arrow-right" style="color: #7db32b; margin-left: 10px"></i></button>
                 </div>
                 <div class="row-item row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-5 align-items-center w-100">

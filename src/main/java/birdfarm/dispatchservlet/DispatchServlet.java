@@ -170,7 +170,7 @@ public class DispatchServlet extends HttpServlet {
             } else if(button.equals("SendOrderFeedback")) {
                 url = FEEDBACK_ORDER_CONTROLLER;
             }
-            else if (button.equals("History")) {
+            else if (button.equals("HistoryManager")) {
                 url = HISTORY;
 //================================================================
             } else if(button.equals("HistoryBill")) {
