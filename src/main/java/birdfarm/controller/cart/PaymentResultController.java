@@ -80,19 +80,25 @@ public class PaymentResultController extends HttpServlet {
                 //COD cung cap nhat quantity va tinh trang thanh toan, va gui mail
                 boolean checkQuantity = false;
                 if (cart != null) {
-                    for (BirdDTO product : cart.getCart().values()) {
-                        checkQuantity = bdao.updateQuantity(product);
-                    }
-                    order.setIsPay(true);
-                    odao.updateIsPay(order);
-                    sendMail_Method(order, email, orderDetail);
+                     ArrayList<String> removeProductInCart = new ArrayList<>();
+                        for (String productKey : cart.getCart().keySet()) {
+                            checkQuantity = bdao.updateQuantity(cart.getCart().get(productKey));
+                            cart.getCart().get(productKey).setQuantityOfUser(0);
+                            removeProductInCart.add(productKey);
+                        }
+                        for(String productKey : removeProductInCart) {
+                            cart.getCart().remove(productKey);
+                        }
+                        order.setIsPay(true);
+                        odao.updateIsPay(order);
+                        sendMail_Method(order, email, orderDetail);
                     url = COD;
-                    session.setAttribute("PAYMENT", "COD");
+                    session.setAttribute("PAYMENT", "Lỗi");
                     session.setAttribute("CART",cart);
                     session.removeAttribute("quantityOfCart");
                 } else {
                     url = COD;
-                    session.setAttribute("PAYMENT", "COD");
+                    session.setAttribute("PAYMENT", "Lỗi");
                     session.removeAttribute("quantityOfCart");
                 }
             } else {
