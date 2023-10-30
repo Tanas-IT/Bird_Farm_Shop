@@ -133,7 +133,7 @@ public class DispatchServlet extends HttpServlet {
                 url = COMPARE_BIRD_CONTROLLER;
             } else if (button.equals("filter")) {
                 url = FILTER_CONTROLLER;
-            } else if (button.equals("Thêm Vào Giỏ Hàng")) {
+            } else if (button.equals("Thêm Vào Giỏ Hàng") || button.equals("Thêm vào giỏ hàng")) {
                 url = ADD_TO_CART_CONTROLLER;
             } else if (button.equals("Mua Hàng")) {
                 url = CHECK_OUT_CONTROLLER;

@@ -101,7 +101,7 @@ public class BirdSearchServlet extends HttpServlet {
             }
             out.println("</div>"); 
             } else {
-                out.println("<img style='width: 100px;display: inline-block;position: relative;left: 50%;transform: translate(-330px, 76%);' alt='Not found' src='img/oops.png'/>"
+                out.println("<img style='width: 100px;display: inline-block;position: relative;left: 48%;transform: translate(-330px, 76%);' alt='Not found' src='img/oops.png'/>"
                         + "<h3 style='color:red; text-align: center'>Không tìm thấy "+ txtSearch +" trong cửa hàng</h3>");
             }
         } 

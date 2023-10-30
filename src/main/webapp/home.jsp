@@ -700,9 +700,7 @@
                 <span>So sánh</span>
             </a>
         </div>
-        <c:if test="${requestScope.MESSAGE != null}">
-            <div id="notification">${MESSAGE}</div>
-        </c:if>
+        <div id="notification"></div>
         <!-- Back to top -->
         <div class="btn-back-to-top" id="myBtn">
             <span class="symbol-btn-back-to-top">
