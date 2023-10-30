@@ -31,3 +31,6 @@ Trang web này được thiết kế để dành cho các khách hàng có nhu c
 ### Admin
 - Quản lí tài khoản (ManageAccount)
 - Quản lí các phương thức thanh toán (ManagePayment)
+
+##### Copyright&#169; 2023 Group3 | birdfarm581@gmail.com
+
