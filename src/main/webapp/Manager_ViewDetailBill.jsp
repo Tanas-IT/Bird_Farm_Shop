@@ -68,6 +68,13 @@
             .striped-table tr:nth-child(odd) {
                 background-color: #ffffff; /* Màu nền cho dòng lẻ */
             }
+            #status a {
+                background-color: #29cd29;
+                color: white;
+                padding: 11px;
+                border-radius: 10px;
+                text-decoration: none;
+            }
         </style>
     </head>
 

@@ -47,6 +47,24 @@
 
         <!-- Custom styles for this page -->
         <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <style>
+            table {
+                border-collapse: separate;
+                border-spacing: 0 10px;
+                border: 1px solid #000; /* Viền cho bảng */
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 10px;
+            }
+            table {
+                box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3); /* Màu xung quanh viền bảng */
+            }
+
+            td, th {
+                padding: 10px;
+            }
+        </style>
+
     </head>
 
     <body>
@@ -82,9 +100,10 @@
                             <div class="card-font-img">
 
                                 <div class="header-font-img-admin" style="margin-left: 20px;">
-                                    <h4 class="title">Tai khoan</h4>
-                                    <p class="category">Staff & Manager</p>
+                                    <h4 class="title" style="font-size: 30px">Tài khoản</h4>
+                                    <p class="category" style="font-size: 25px">Admin</p>
                                 </div>
+                                <br><br><br><br>
                                 <div class="content-font-img">
                                     <c:set var="result" value="${requestScope.ACCOUNT_LIST}"/>
                                     <c:if test="${not empty result}">

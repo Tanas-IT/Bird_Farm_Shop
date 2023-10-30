@@ -10,7 +10,9 @@
 
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
-
+        <title>Dashboard</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <!-- Font & img CSS     -->
         <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->

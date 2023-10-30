@@ -167,11 +167,11 @@
             <button class="sort" id="processingFilterButton" onclick="">
                 Đang xử lý
             </button>
-             <button class="sort" id="processedFilterButton" onclick="">
-                Đã hoàn thành
-            </button>
             <button class="sort" id="deliveryFilterButton" onclick="">
                 Đang giao hàng
+            </button>
+             <button class="sort" id="processedFilterButton" onclick="">
+                Đã hoàn thành
             </button>
             <button class="sort" id="cancelledFilterButton" onclick="">
                 Đã hủy
@@ -193,7 +193,7 @@
                 <tbody>
                     <c:forEach items ="${LIST_ROD}" var="c">
                         <tr>
-                            <td><a href="DispatchServlet?btAction=HistoryDetail&idOrder=${c.idRequireOrder}">
+                            <td><a href="#">
                                     ${c.idRequireOrder}</a></td>
                             <td>
                                 <fmt:formatDate value="${c.createdDate}" pattern="dd/MM/yyyy" var="formattedDateString" />

@@ -18,8 +18,6 @@
 
         <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCancelOrder">Đơn hàng đã hủy</a>
 
-        <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCustomerCancelOrder">Đơn hàng bị hủy</a>
-
     </div>
     <br>
     <br>

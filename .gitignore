@@ -163,3 +163,4 @@ nbdist/
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/maven,netbeans,visualstudiocode,intellij
+/nbproject/

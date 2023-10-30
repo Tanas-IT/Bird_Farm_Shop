@@ -73,7 +73,6 @@ E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\payment\Payment_COD_DTO.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\RemoveController.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\dto\RequiredOrderDetailDTO.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\dao\OrderDAO.java
-E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminViewProductServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerSuccessOrderServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerRejectOrderServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\birdproduct\ViewAllBirdServlet.java
@@ -85,6 +84,7 @@ E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\dto\PaymentDTO.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewTrackingListServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\dao\UserDAO.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\googlelogin\LoginGoogleHandler.java
+E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\feedback\FeedbackOrderServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminControlAccountServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerUpdateProductServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\birdproduct\BirdProductServlet.java
@@ -99,6 +99,7 @@ E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\dao\RequiredOrderDetailDAO.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewSuccessTrackingBirdServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\dao\AdminDAO.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewSuccessTrackingDetailServlet.java
+E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminUpdatePayment.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\dto\BirdDTO.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerUpdateTrackingBirdServlet.java
 E:\SWP391\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\EditController.java
