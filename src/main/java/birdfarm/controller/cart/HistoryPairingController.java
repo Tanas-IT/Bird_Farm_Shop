@@ -7,7 +7,6 @@ package birdfarm.controller.cart;
 
 import birdfarm.dao.RequiredOrderDetailDAO;
 import birdfarm.dto.RequiredOrderDetailDTO;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
