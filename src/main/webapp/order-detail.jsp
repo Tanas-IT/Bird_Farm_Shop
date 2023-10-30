@@ -144,6 +144,9 @@
         </style>
     </head>
     <body>
+        <c:set var="checkStatus" value="" />
+        <c:set var="idOrder" value="" />
+        <c:set var="idBird" value="" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
         <div class="page-content container">
             <div class="page-header text-blue-d2">
@@ -153,6 +156,7 @@
                         <c:forEach var="orderItem" items="${requestScope.listMyOrderinDetail}" varStatus="count">
                             <c:if test="${count.index == 0}">
                                 Mã hóa đơn: ${orderItem.idOrder}
+                                 <c:set var="idOrder" value="${orderItem.idOrder}" />
                             </small>
                         </h1>
                     </div>
@@ -190,7 +194,11 @@
                                             </div>
                                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">ID:</span> ${orderItem.idOrder}</div>
                                             <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Ngày tạo:</span> ${orderItem.createdDate}</div>
-                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Trạng thái: </span> <span class="badge badge-warning badge-pill px-25">${orderItem.status}</span></div>
+                                            <div class="my-2"><i class="fa fa-circle text-blue-m2 text-xs mr-1"></i> <span class="text-600 text-90">Trạng thái: </span> <span class="badge badge-warning badge-pill px-25">
+                                                    ${orderItem.status}
+                                                    <c:set var="checkStatus" value="${orderItem.status}" />
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -209,6 +217,7 @@
                             <c:forEach var="orderDetailItem" items="${requestScope.Order_Detail}" varStatus="counter">
                                 <div class="text-95 text-secondary-d3">
                                     <c:if test="${counter.count % 2 != 0}">
+                                        <c:set var="idBird" value="${orderDetailItem.bird.idBird}" />
                                         <div class="row mb-2 mb-sm-0 py-25 bgc-default-l4 py-25">
                                             <div class="col-1 d-none d-sm-block">${counter.count}</div>
                                             <div class="col-2 d-none d-sm-block">
@@ -281,7 +290,10 @@
                                     <hr/>
                                     <div>
                                         <span class="text-secondary-d1 text-105">Cảm ơn vì đã mua hàng</span>
-                                        <a href="DispatchServlet?btAction=History" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Quay về trang lịch sử</a>
+                                        <a href="DispatchServlet?btAction=History" style="padding: 8px" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Quay về trang lịch sử</a>
+                                        <c:if test="${checkStatus  eq 'Đã xử lý'}">
+                                                <%@include file="components/FeedbackOrderBirdComponent.jsp" %>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>

@@ -15,11 +15,8 @@ import static org.junit.Assert.*;
  *
  * @author ASUS
  */
-public class BirdDAOTest {
-    
-    public BirdDAOTest() {
-    }
 
+public class BirdDAOTest {
     /**
      * Test of getBirdList method, of class BirdDAO.
      */

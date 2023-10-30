@@ -35,7 +35,7 @@ public class DBConnection {
         //1.Load Driver
         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
         //2. Create Connection String
-        String url = "jdbc:sqlserver://"
+         String url = "jdbc:sqlserver://"
                 + "localhost:1433;"
                 + "databaseName=BIRD_FARM_SHOP";
         //3. Open Connection
