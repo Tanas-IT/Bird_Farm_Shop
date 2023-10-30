@@ -4,6 +4,8 @@
     Author     : ASUS
 --%>
 
+<%@page import="birdfarm.shopping.Cart"%>
+<%@page import="java.util.Map"%>
 <%@page import="java.text.DecimalFormat"%>
 <%@page import="birdfarm.dto.BirdDTO"%>
 <%@page import="birdfarm.dto.UserDTO"%>
@@ -47,6 +49,7 @@
         <link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
         <link rel="stylesheet" type="text/css" href="css/Home.css">
         <link rel="stylesheet" type="text/css" href="css/Compare.css">
+        <link rel="stylesheet" type="text/css" href="css/header_cart.css">
     </head>
     <style>
         .productname-cp {
@@ -80,7 +83,7 @@
             border:none;
         }
         .btn-viewMore {
-             display: block;
+            display: block;
             overflow: hidden;
             background: #2f80ed;
             border-radius: 3px;
@@ -103,6 +106,7 @@
             UserDTO user = (UserDTO) session.getAttribute("user");
             BirdDTO bird1 = (BirdDTO) request.getAttribute("bird1");
             BirdDTO bird2 = (BirdDTO) request.getAttribute("bird2");
+            Cart cart = (Cart) session.getAttribute("CART");
         %>
         <!-- Header Section Begin -->
         <nav style="background-color:#f3e4e4 !important; position:fixed; width: 100%; z-index: 100; padding-bottom: 0; cursor: pointer;" class="navbar navbar-expand-lg navbar-light bg-light">
@@ -114,7 +118,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-4">
                         <li class="nav-item">
-                           <%  String url = "DispatchServlet";
+                            <%  String url = "DispatchServlet";
                                 String userId = null;
                                 if (user != null) {
                                     userId = user.getIdUser();
@@ -122,24 +126,31 @@
                                 }
                             %>
                             <form action=<%= url%>>
-                                <% if(user != null) { %>
-                                    <input type="hidden" name="userID" value="<%= userId %>" />
+                                <% if (user != null) {%>
+                                <input type="hidden" name="userID" value="<%= userId%>" />
                                 <%}%>
                                 <input style="background-color: #f3e4e4;border: none;font-weight: 600;font-size: 18px;" id="home-link" type="submit" class="nav-link nav-active" aria-current="page" value="Trang chủ"/>
                             </form>
                         </li>
                         <li class="nav-item">
+                            <% if (user != null) {%>
                             <a id="about-link" class="nav-link" href="about.jsp?userID=<%= user.getIdUser()%>" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Về chúng tôi</h5>
                             </a>
+                            <%}%>
+                            <% if (user == null) {%>
+                            <a id="about-link" class="nav-link" href="about.jsp" onclick="handleButtonClick(this)">
+                                <h5 class="background-hover">Về chúng tôi</h5>
+                            </a>
+                            <%}%>
                         </li>
                         <li class="nav-item">
-                            <a id="about-link" class="nav-link" href="pairingBird.html" onclick="handleButtonClick(this)">
+                            <a id="about-link" class="nav-link" href="DispatchServlet?btAction=Pairing&userID=<%= user.getIdUser()%>" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Ghép cặp</h5>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
+                            <a class="nav-link" href="DispatchServlet?btAction=HistoryBill" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Hàng đã mua</h5>
                             </a>
                         </li>
@@ -151,8 +162,65 @@
                     </div>
                     <form action="DispatchServlet">
                         <input type="hidden" name="userID" value="<%= user.getIdUser().trim()%>" />
-                        <button class="cart btn btn-outline-dark" type="submit" name="btAction" value="Xem giỏ hàng">
+                        <button id="cart-content"  class="cart btn" type="submit" name="btAction" value="Xem giỏ hàng">
                             <i class="fa-solid fa-cart-shopping"></i>
+                            <!--No cart:  header_cart-list--no-cart-->
+                                    <% if(cart == null || cart.getCart().isEmpty()) {%>
+                                    <div class="header_cart">
+                                        <div class="header__cart-list header_cart-list--no-cart">
+                                        <img class="header__cart-no-cart-img" src="img/no_cart.png"/>
+                                        <span class="header__cart-list-no-cart-msg">Chưa có sản phẩm</span>
+                                        </div>
+                                    </div>
+                                    <% } else { %>
+                                    <div  class="header_cart">
+                                    <div class="header__cart-list">
+                                    <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
+                                    <ul  class="header__cart-list-item">
+                                        <!--Cart Item-->
+                                        <%for (Map.Entry<String, BirdDTO> entry : cart.getCart().entrySet()) {
+                                                String type = "Chim phổ thông";
+                                               if(entry.getValue().getType() == 1) type = "Tổ chim";
+                                               else if(entry.getValue().getType() == 2) type = "Chim cao cấp";
+                                               else if(entry.getValue().getType() == 3) type = "Chim giống"; 
+                                        %>
+                                        <li class="header__cart-item">
+                                            <img class="header__cart-img" src="<%= entry.getValue().getImageURL() %>">
+                                            <div class="header__cart-item-info">
+                                                <div class="header__cart-item-head">
+                                                    <h5 class="header__cart-item-name"><%= entry.getValue().getName()%></h5>
+                                                    <div class="header__cart-item-price-wrap">
+                                                        <span class="header__cart-item-price">
+                                                             <%
+                                                                DecimalFormat decimalFormat = new DecimalFormat("###,###");
+                                                                String formattedNumber = decimalFormat.format(entry.getValue().getSalePrice());
+                                                            %> 
+                                                            <%= formattedNumber + " VND" %>
+                                                        </span>
+                                                        <span class="header__cart-item-multiply">x</span>
+                                                        <span class="header__cart-item-quantity"><%= entry.getValue().getQuantityOfUser() %></span>
+                                                    </div>
+                                                </div>
+                                                <div class="header__cart-item-body">
+                                                    <span class="header__cart-item-description">
+                                                        Phân loại hàng: <%= type %>
+                                                    </span>
+                                                    <span class="header__cart-item-remove">
+                                                        <span data-idRemove="<%= entry.getKey() %>" onclick="RemoveItemFromCart(this)" >Xóa</span>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <% } %>
+                                    </ul>
+                                    <form action="DispatchServlet">
+                                            <input id="userID" type="hidden" name="userID" value="<%= user.getIdUser()%>" />
+                                            <input id="birdID" type="hidden" name="birdID" value="<%= idBird %>" />
+                                            <input type="submit" name="btAction" class="header__cart-view-cart btn btn-danger" value="Xem chi tiết" />
+                                    </form>
+                                    </div>
+                                </div>
+                           <%}%>
                             Giỏ hàng
                             <span class="badge bg-warning text-white ms-1 rounded-pill">
                                 <% if (session.getAttribute("quantityOfCart") != null) {%>
@@ -163,6 +231,7 @@
                             </span>
                         </button>
                     </form>
+                    
                             <% String image = "img/user-image.png";
                                 if(user.getImage() != null) {
                                     image = user.getImage();
@@ -180,6 +249,7 @@
                 </div>
             </div>
         </nav>
+
         <section style="max-width: 1200px; margin: auto;" class="w-100 py-5">
             <table style="margin-top: 130px;" class="table">
                 <thead>
@@ -187,15 +257,15 @@
                         <th>
                             <div style="transform: translateY(-61px)" class="product-cp">
                                 <p style="font-size: 16px;line-height: 150%;color: #666;">So sánh 2 chim:</p>
-                                <p  class="text-primary productname-cp"><%= bird1.getName() %></p>
+                                <p  class="text-primary productname-cp"><%= bird1.getName()%></p>
                                 &
-                                <p class="text-primary productname-cp"> <%= bird2.getName() %></p>
+                                <p class="text-primary productname-cp"> <%= bird2.getName()%></p>
                             </div>
-                           
-                           
+
+
                         </th>
                         <td class="text-center">
-                           <img style="max-width: 275px; object-fit: contain; width: 100%; height: 300px; background-size: cover; border-top-left-radius: 3px; border-top-right-radius: 3px" class="card-img-top" src="<%=bird1.getImageURL()%>" alt="<%=bird1.getName()%>" />
+                            <img style="max-width: 275px; object-fit: contain; width: 100%; height: 300px; background-size: cover; border-top-left-radius: 3px; border-top-right-radius: 3px" class="card-img-top" src="<%=bird1.getImageURL()%>" alt="<%=bird1.getName()%>" />
                         </td>
                         <td class="text-center ">
                             <img style="max-width: 275px; object-fit: contain;width: 100%; height: 300px; background-size: cover; border-top-left-radius: 3px; border-top-right-radius: 3px" class="card-img-top" src="<%=bird2.getImageURL()%>" alt="<%=bird2.getName()%>" />
@@ -203,23 +273,23 @@
                     </tr>
                 </thead>
                 <tbody style="border: 1px solid rgb(0 0 0 / 10%);">
-                    <% if(bird1.getType() == 1 || bird1.getType() == 0) {%>
-                        <tr>
-                            <td class="fw-bold">Số lượng</td>
-                            <td class="text-center"><%= bird1.getQuantity()%> con</td>
-                            <td style="border: 1px solid rgb(0 0 0 / 10%);" class="text-center"><%= bird1.getQuantity()%> con</td>
-                        </tr>
+                    <% if (bird1.getType() == 1 || bird1.getType() == 0) {%>
+                    <tr>
+                        <td class="fw-bold">Số lượng</td>
+                        <td class="text-center"><%= bird1.getQuantity()%> con</td>
+                        <td style="border: 1px solid rgb(0 0 0 / 10%);" class="text-center"><%= bird1.getQuantity()%> con</td>
+                    </tr>
                     <%} else {%>
-                        <tr>
-                            <td class="fw-bold">Giới tính</td>
-                            <td class="text-center"><%= bird1.getGender() %></td>
-                            <td style="border: 1px solid rgb(0 0 0 / 10%);" class="text-center"><%= bird2.getGender() %></td>
-                        </tr>
+                    <tr>
+                        <td class="fw-bold">Giới tính</td>
+                        <td class="text-center"><%= bird1.getGender()%></td>
+                        <td style="border: 1px solid rgb(0 0 0 / 10%);" class="text-center"><%= bird2.getGender()%></td>
+                    </tr>
                     <%}%>
                     <tr>
                         <td class="fw-bold">Mô tả</td>
                         <td>- <%= bird1.getShortDescription()%></td>
-                        <td>- <%= bird2.getShortDescription() %></td>
+                        <td>- <%= bird2.getShortDescription()%></td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Loài</td>
@@ -234,50 +304,50 @@
                     <tr>
                         <td class="fw-bold">Giá tiền</td>
                         <%
-                                        DecimalFormat decimalFormat = new DecimalFormat("###,###");
-                                        String formattedBird1Number = decimalFormat.format(bird1.getSalePrice());
-                                        String formattedBird2Number = decimalFormat.format(bird2.getSalePrice());
+                            DecimalFormat decimalFormat = new DecimalFormat("###,###");
+                            String formattedBird1Number = decimalFormat.format(bird1.getSalePrice());
+                            String formattedBird2Number = decimalFormat.format(bird2.getSalePrice());
                         %> 
                         <td class="text-danger" style="font-size:18px; font-weight: bold;"><%= formattedBird1Number + " VND"%></td>
                         <td class="text-danger" style="font-size:18px; font-weight:bold;"><%= formattedBird2Number + " VND"%> </td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Đột biến</td>
-                        <td class="text-danger" style="font-size:18px; font-weight: bold;"><%if(bird1.isMutation()){%>Có<%}else{%>Không<%}%></td>
-                        <td class="text-danger" style="font-size:18px; font-weight: bold;"><%if(bird2.isMutation()){%>Có<%}else{%>Không<%}%></td>
+                        <td class="text-danger" style="font-size:18px; font-weight: bold;"><%if (bird1.isMutation()) {%>Có<%} else {%>Không<%}%></td>
+                        <td class="text-danger" style="font-size:18px; font-weight: bold;"><%if (bird2.isMutation()) {%>Có<%} else {%>Không<%}%></td>
                     </tr>
-                    
+
                     <tr>
                         <td class="fw-bold">Thành tích thi đấu</td>
                         <td class="text-danger" style="font-size:18px; font-weight: bold;">
-                            <% if(bird1.getAchievement() != null) {%>
-                                    <%= bird1.getAchievement() %>
+                            <% if (bird1.getAchievement() != null) {%>
+                            <%= bird1.getAchievement()%>
                             <%} else { %>
-                             Không có
+                            Không có
                             <%}%>
                         </td>
                         <td class="text-danger" style="font-size:18px; font-weight: bold;">
-                            <% if(bird2.getAchievement() != null) {%>
-                                    <%= bird2.getAchievement() %>
+                            <% if (bird2.getAchievement() != null) {%>
+                            <%= bird2.getAchievement()%>
                             <%} else { %>
-                             Không có
+                            Không có
                             <%}%>
                         </td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Lịch sử sinh sản</td>
                         <td>
-                            <% if(bird1.getReproductiveHistory() != null) {%>
-                                    <%= bird1.getReproductiveHistory()%>
+                            <% if (bird1.getReproductiveHistory() != null) {%>
+                            <%= bird1.getReproductiveHistory()%>
                             <%} else { %>
-                             Không có
+                            Không có
                             <%}%>
                         </td>
                         <td>
-                            <% if(bird2.getReproductiveHistory() != null) {%>
-                                    <%= bird2.getReproductiveHistory()%>
+                            <% if (bird2.getReproductiveHistory() != null) {%>
+                            <%= bird2.getReproductiveHistory()%>
                             <%} else { %>
-                             Không có
+                            Không có
                             <%}%>
                         </td>
                     </tr>
@@ -289,140 +359,140 @@
                     <tr>
                         <td class="fw-bold">Chim Bố</td>
                         <td>
-                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird1.getFatherBird().getImageURL() %>" alt="<%= bird1.getFatherBird().getName() %>">
-                                <h5 class="text-center mt-3"><%= bird1.getFatherBird().getName() %></h5>
-                                <ul style="font-size: 18px">
-                                    <li><span style="color: red; font-weight: bold;">Giới tính: </span><%= bird1.getFatherBird().getGender() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if(bird1.getFatherBird().isMutation()) {%>Có<%}%>Không</li>
-                                    <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird1.getFatherBird().getPeriod() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird1.getFatherBird().getAge() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
-                                        <% if(bird1.getFatherBird().getAchievement() != null) {%>
-                                            <%= bird1.getFatherBird().getAchievement()%>
-                                        <%} else { %>
-                                        Không có
-                                       <%}%>
-                                    </li>
-                                    <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
-                                        <% if(bird1.getFatherBird().getReproductiveHistory() != null) {%>
-                                            <%= bird1.getFatherBird().getReproductiveHistory()%>
-                                        <%} else { %>
-                                            Không có
-                                           <%}%>
-                                    </li>
-                                </ul>
+                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird1.getFatherBird().getImageURL()%>" alt="<%= bird1.getFatherBird().getName()%>">
+                            <h5 class="text-center mt-3"><%= bird1.getFatherBird().getName()%></h5>
+                            <ul style="font-size: 18px">
+                                <li><span style="color: red; font-weight: bold;">Giới tính: </span><%= bird1.getFatherBird().getGender()%></li>
+                                <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if (bird1.getFatherBird().isMutation()) {%>Có<%}%>Không</li>
+                                <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird1.getFatherBird().getPeriod()%></li>
+                                <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird1.getFatherBird().getAge()%></li>
+                                <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
+                                    <% if (bird1.getFatherBird().getAchievement() != null) {%>
+                                    <%= bird1.getFatherBird().getAchievement()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                                <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
+                                    <% if (bird1.getFatherBird().getReproductiveHistory() != null) {%>
+                                    <%= bird1.getFatherBird().getReproductiveHistory()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                            </ul>
                         </td>
                         <td>
-                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird2.getFatherBird().getImageURL() %>" alt="<%= bird2.getFatherBird().getName() %>">
-                                <h5 class="text-center mt-3"><%= bird2.getFatherBird().getName() %></h5>
-                                <ul style="font-size: 18px">
-                                    <li><span style="color: red; font-weight: bold;">Giới tính: </span><%= bird2.getFatherBird().getGender() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if(bird2.getFatherBird().isMutation()) {%>Có<%}%>Không</li>
-                                    <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird2.getFatherBird().getPeriod() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird2.getFatherBird().getAge() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
-                                        <% if(bird2.getFatherBird().getAchievement() != null) {%>
-                                            <%= bird2.getFatherBird().getAchievement()%>
-                                        <%} else { %>
-                                            Không có
-                                           <%}%>
-                                    </li>
-                                    <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
-                                        <% if(bird2.getFatherBird().getReproductiveHistory() != null) {%>
-                                            <%= bird2.getFatherBird().getReproductiveHistory()%>
-                                        <%} else { %>
-                                            Không có
-                                           <%}%>
-                                    </li>
-                                </ul>
+                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird2.getFatherBird().getImageURL()%>" alt="<%= bird2.getFatherBird().getName()%>">
+                            <h5 class="text-center mt-3"><%= bird2.getFatherBird().getName()%></h5>
+                            <ul style="font-size: 18px">
+                                <li><span style="color: red; font-weight: bold;">Giới tính: </span><%= bird2.getFatherBird().getGender()%></li>
+                                <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if (bird2.getFatherBird().isMutation()) {%>Có<%}%>Không</li>
+                                <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird2.getFatherBird().getPeriod()%></li>
+                                <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird2.getFatherBird().getAge()%></li>
+                                <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
+                                    <% if (bird2.getFatherBird().getAchievement() != null) {%>
+                                    <%= bird2.getFatherBird().getAchievement()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                                <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
+                                    <% if (bird2.getFatherBird().getReproductiveHistory() != null) {%>
+                                    <%= bird2.getFatherBird().getReproductiveHistory()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                     <tr>
                         <td class="fw-bold">Chim Mẹ</td>
                         <td>
-                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird1.getMotherBird().getImageURL() %>" alt="<%= bird1.getMotherBird().getName() %>">
-                                <h5 class="text-center mt-3"><%= bird1.getMotherBird().getName() %></h5>
-                                <ul style="font-size: 18px">
-                                    <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if(bird1.getMotherBird().isMutation()) {%>Có<%}%>Không</li>
-                                    <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird1.getMotherBird().getPeriod() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird1.getMotherBird().getAge() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
-                                        <% if(bird1.getMotherBird().getAchievement() != null) {%>
-                                            <%= bird1.getMotherBird().getAchievement()%>
-                                        <%} else { %>
-                                            Không có
-                                           <%}%>
-                                    </li>
-                                    <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
-                                        <% if(bird1.getMotherBird().getReproductiveHistory() != null) {%>
-                                            <%= bird1.getMotherBird().getReproductiveHistory()%>
-                                        <%} else { %>
-                                            Không có
-                                           <%}%>
-                                    </li>
-                                </ul>
+                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird1.getMotherBird().getImageURL()%>" alt="<%= bird1.getMotherBird().getName()%>">
+                            <h5 class="text-center mt-3"><%= bird1.getMotherBird().getName()%></h5>
+                            <ul style="font-size: 18px">
+                                <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if (bird1.getMotherBird().isMutation()) {%>Có<%}%>Không</li>
+                                <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird1.getMotherBird().getPeriod()%></li>
+                                <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird1.getMotherBird().getAge()%></li>
+                                <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
+                                    <% if (bird1.getMotherBird().getAchievement() != null) {%>
+                                    <%= bird1.getMotherBird().getAchievement()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                                <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
+                                    <% if (bird1.getMotherBird().getReproductiveHistory() != null) {%>
+                                    <%= bird1.getMotherBird().getReproductiveHistory()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                            </ul>
                         </td>
                         <td>
-                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird2.getMotherBird().getImageURL() %>" alt="<%= bird2.getMotherBird().getName() %>">
-                                <h5 class="text-center mt-3"><%= bird2.getMotherBird().getName() %></h5>
-                                <ul style="font-size: 18px">
-                                    <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if(bird2.getMotherBird().isMutation()) {%>Có<%}%>Không</li>
-                                    <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird2.getMotherBird().getPeriod() %></li>
-                                    <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird2.getMotherBird().getAge() %></li>
-                                     <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
-                                          <% if(bird2.getMotherBird().getAchievement() != null) {%>
-                                            <%= bird2.getMotherBird().getAchievement()%>
-                                        <%} else { %>
-                                            Không có
-                                           <%}%>
-                                     </li>
-                                    <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
-                                        <% if(bird2.getMotherBird().getReproductiveHistory() != null) {%>
-                                            <%= bird2.getMotherBird().getReproductiveHistory()%>
-                                        <%} else { %>
-                                            Không có
-                                           <%}%>
-                                    </li>
-                                </ul>
+                            <img style="display: block; margin: 0 auto;height: 200px" class="w-50 text-center" src="<%= bird2.getMotherBird().getImageURL()%>" alt="<%= bird2.getMotherBird().getName()%>">
+                            <h5 class="text-center mt-3"><%= bird2.getMotherBird().getName()%></h5>
+                            <ul style="font-size: 18px">
+                                <li><span style="color: red; font-weight: bold;">Đột biến: </span><%if (bird2.getMotherBird().isMutation()) {%>Có<%}%>Không</li>
+                                <li><span style="color: red; font-weight: bold;">Loại chim: </span><%= bird2.getMotherBird().getPeriod()%></li>
+                                <li><span style="color: red; font-weight: bold;">Tuổi: </span><%= bird2.getMotherBird().getAge()%></li>
+                                <li><span style="color: red; font-weight: bold;">Thành tích thi đấu: </span>
+                                    <% if (bird2.getMotherBird().getAchievement() != null) {%>
+                                    <%= bird2.getMotherBird().getAchievement()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                                <li><span style="color: red; font-weight: bold;">Lịch sử sinh sản: </span>
+                                    <% if (bird2.getMotherBird().getReproductiveHistory() != null) {%>
+                                    <%= bird2.getMotherBird().getReproductiveHistory()%>
+                                    <%} else { %>
+                                    Không có
+                                    <%}%>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
                             <div class="product-actions justify-content-between card-footer p-4 pb-2 pt-0 border-top-0 bg-transparent">
-                                <% if(userId != null) { %> 
-                                    <div class="btn-add">
+                                <% if (userId != null) {%> 
+                                <div class="btn-add">
                                     <form action="DispatchServlet">
                                         <input type="hidden" name="userID" value="<%= user.getIdUser()%>" />
                                         <input type="hidden" name="birdID" value="<%= bird1.getIdBird()%>" />
                                         <input type="hidden" name="birdName" value="<%= bird1.getName()%>" />
                                         <input type="hidden" name="birdQuantity" value="<%= bird1.getQuantity()%>" />
-                                        <input type="hidden" name="birdPrice" value="<%= bird1.getSalePrice()%>" />
-                                        <input type="hidden" name="birdImage" value="<%= bird1.getImageURL()%>" />
-                                        <input type="submit" name="btAction" value = "Add to Cart" class="btn-addCart btn-item btn btn-outline-dark mt-auto"/>
+                                        <input type="hidden" name="birdID1" value="<%= bird1.getIdBird()%>" />
+                                        <input type="hidden" name="birdID2" value="<%= bird2.getIdBird()%>" />
+                                        <input type="submit" name="btAction" value = "Thêm vào giỏ hàng" class="btn-addCart btn-item btn btn-outline-dark mt-auto"/>
                                     </form>
-                                    </div>
-                                    <%} else {%>
-                                         <div class="btn-add"><a class="btn-addCart btn-item btn btn-outline-dark mt-auto" href="Login.jsp">Mua ngay</a></div>
+                                </div>
+                                <%} else {%>
+                                <div class="btn-add"><a class="btn-addCart btn-item btn btn-outline-dark mt-auto" href="Login.jsp">Thêm vào giỏ hàng</a></div>
                                 <%}%>
                             </div>
                         </td>
                         <td>
                             <div class="product-actions justify-content-between card-footer p-4 pb-2 pt-0 border-top-0 bg-transparent">
-                                <% if(userId != null) { %> 
-                                    <div class="btn-add">
+                                <% if (userId != null) {%> 
+                                <div class="btn-add">
                                     <form action="DispatchServlet">
                                         <input type="hidden" name="userID" value="<%= user.getIdUser()%>" />
                                         <input type="hidden" name="birdID" value="<%= bird2.getIdBird()%>" />
                                         <input type="hidden" name="birdName" value="<%= bird2.getName()%>" />
                                         <input type="hidden" name="birdQuantity" value="<%= bird2.getQuantity()%>" />
-                                        <input type="hidden" name="birdPrice" value="<%= bird2.getSalePrice()%>" />
-                                        <input type="hidden" name="birdImage" value="<%= bird2.getImageURL()%>" />
-                                        <input type="submit" name="btAction" value = "Add to Cart" class="btn-addCart btn-item btn btn-outline-dark mt-auto"/>
+                                        <input type="hidden" name="birdID1" value="<%= bird1.getIdBird()%>" />
+                                        <input type="hidden" name="birdID2" value="<%= bird2.getIdBird()%>" />
+                                        <input type="submit" name="btAction" value = "Thêm vào giỏ hàng" class="btn-addCart btn-item btn btn-outline-dark mt-auto"/>
                                     </form>
-                                    </div>
-                                    <%} else {%>
-                                         <div class="btn-add"><a class="btn-addCart btn-item btn btn-outline-dark mt-auto" href="Login.jsp">Mua ngay</a></div>
+                                </div>
+                                <%} else {%>
+                                <div class="btn-add"><a class="btn-addCart btn-item btn btn-outline-dark mt-auto" href="Login.jsp">Thêm vào giỏ hàng</a></div>
                                 <%}%>
                             </div>
                         </td>
@@ -431,18 +501,18 @@
                         <td></td>
                         <td>
                             <div class="product-actions justify-content-between card-footer p-4 pb-2 pt-0 border-top-0 bg-transparent">
-                                <div><a class="btn-viewMore btn-item btn btn-outline-dark mt-auto" href="DispatchServlet?btAction=View More&id=<%=bird1.getIdBird()%>">Xem thêm</a></div>
+                                <div><a class="btn-viewMore btn-item btn btn-outline-dark mt-auto" href="DispatchServlet?btAction=View More&id=<%=bird1.getIdBird()%>&userID=<%= user.getIdUser() %>">Xem thêm</a></div>
                             </div>
                         </td>
                         <td>
                             <div class="product-actions justify-content-between card-footer p-4 pb-2 pt-0 border-top-0 bg-transparent">
-                                <div><a class="btn-viewMore btn-item btn btn-outline-dark mt-auto" href="DispatchServlet?btAction=View More&id=<%=bird2.getIdBird()%>">Xem thêm</a></div>
+                                <div><a class="btn-viewMore btn-item btn btn-outline-dark mt-auto" href="DispatchServlet?btAction=View More&id=<%=bird2.getIdBird()%>&userID=<%= user.getIdUser() %>">Xem thêm</a></div>
                             </div>
                         </td>
                     </tr>
                 </tbody>
             </table>
-                                
+
 
         </section>
 

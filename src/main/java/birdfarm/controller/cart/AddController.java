@@ -30,7 +30,7 @@ import javax.servlet.http.HttpSession;
 public class AddController extends HttpServlet {
 
     private final String BIRD_DETAIL_PAGE = "birdDetail.jsp";
-
+    private final String BIRD_COMPARE_PAGE = "CompareBirdProductServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -108,7 +108,12 @@ public class AddController extends HttpServlet {
                 if (!check) {
                     request.setAttribute("MESSAGE", "Xin lỗi, số lượng chim bạn yêu cầu vượt quá số lượng hiện có trong trang trại.");
                 }
-
+                String button = request.getParameter("btAction");
+                if(button.equals("Thêm vào giỏ hàng")) {
+                    url = BIRD_COMPARE_PAGE;
+                } else {
+                    url = BIRD_DETAIL_PAGE;
+                }
             } catch (SQLException ex) {
                 ex.printStackTrace();
             } catch (NamingException ex) {
