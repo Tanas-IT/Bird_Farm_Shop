@@ -51,6 +51,7 @@ public class DispatchServlet extends HttpServlet {
     private final String PAIRING_CONTROLLER = "PairingController";
     private final String REMOVE_ITEM_FROM_CART = "RemoveItemFromCart";
     private final String FEEDBACK_CONTROLLER = "FeedbackServlet";
+    private final String FEEDBACK_ORDER_CONTROLLER = "FeedbackOrderServlet";
 
     private final String SEND_MAIL_TRACKING = "ManagerSendMailTrackingBirdServlet";
 
@@ -166,6 +167,8 @@ public class DispatchServlet extends HttpServlet {
             } 
             else if(button.equals("SendFeedback")) { 
                 url = FEEDBACK_CONTROLLER;
+            } else if(button.equals("SendOrderFeedback")) {
+                url = FEEDBACK_ORDER_CONTROLLER;
             }
             else if (button.equals("History")) {
                 url = HISTORY;

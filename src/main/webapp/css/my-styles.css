@@ -1242,6 +1242,7 @@ footer .logo {
     margin: 45px 0;
     border: 1px solid #ccc;
     color: #050505;
+    height: 215px;
 }
 
 .client_section .detail_box:hover {

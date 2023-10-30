@@ -83,7 +83,8 @@ public class OrderDetailDAO {
                         String shortDescription = rs.getString("shortDescription");
                         String oBirdUrl = rs.getString("imageURL");
                         double totalPrice = rs.getDouble("totalPrice");
-                        BirdDTO bird = new BirdDTO(quantity, price, oBirdName,shortDescription,oBirdUrl);
+                        String idBird = rs.getString("idBird");
+                        BirdDTO bird = new BirdDTO(idBird,quantity, price, oBirdName,shortDescription,oBirdUrl);
                         detail = new OrderDetailDTO(orderId, bird, receiverName, email, phoneNumber,totalPrice);
                         list.add(detail);
                     }

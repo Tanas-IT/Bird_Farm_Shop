@@ -196,8 +196,8 @@ public BirdDTO(String name, String shortDescription, String imageURL) {
         this.reproductiveHistory = reproductiveHistory;
     }
     
-
-    public BirdDTO(int quantity, double salePrice, String oBirdName, String shortDescription, String oBirdUrl) {
+    public BirdDTO(String idBird,int quantity, double salePrice, String oBirdName, String shortDescription, String oBirdUrl) {
+        this.idBird = idBird;
         this.quantity = quantity;
         this.salePrice = salePrice;
         this.name = oBirdName;

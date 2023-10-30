@@ -42,9 +42,14 @@ public class OrderDetailController extends HttpServlet {
             throws ServletException, IOException, NamingException, ClassNotFoundException {
         response.setContentType("text/html;charset=UTF-8");
         HttpSession session = request.getSession();
-
+        String idOrder = (String) request.getAttribute("idOrder");
         String orderId_raw = request.getParameter("idOrder");
-        int orderId = Integer.parseInt(orderId_raw);
+        int orderId = 0;
+        if (idOrder != null) {
+            orderId = Integer.parseInt(idOrder);
+        } else {
+            orderId = Integer.parseInt(orderId_raw);
+        }
 
         OrderDAO orderDAO = new OrderDAO();
         List<OrderDetailDTO> Order_Detail = new OrderDetailDAO().getDetailAllOrder(orderId);
