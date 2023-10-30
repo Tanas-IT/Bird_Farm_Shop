@@ -53,7 +53,7 @@ public class ManagerSuccessOrderServlet extends HttpServlet {
                 //2.2 call method of DAO 
                 dao.successOrder(searchVal);
 
-                url = "DispatchServlet?btAction=ManagerViewDeliveryOrderServlet";
+                url = "DispatchServlet?btAction=ManagerSuccessOrder";
             }
         } finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);

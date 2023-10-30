@@ -113,6 +113,16 @@
                 font-size: 17px;
                 font-weight: 500;
             }
+            .done {
+                background-color: orange;
+                display: block;
+                text-align: center;
+                width: 80%;
+                border-radius: 5px;
+                padding: 7px;
+                font-size: 17px;
+                font-weight: 500;
+            }
             .cancel {
                 background-color: red;
                 display: block;
@@ -175,7 +185,10 @@
                 Đã xử lý
             </button>
             <button class="sort" id="deliveryFilterButton" onclick="">
-                Đang giao đến
+                Đang giao
+            </button>
+            <button class="sort" id="DoneFilterButton" onclick="">
+                Đã xong
             </button>
             <button class="sort" id="cancelledFilterButton" onclick="">
                 Đã hủy
@@ -222,10 +235,13 @@
                                     <c:when test="${c.status eq 'Đã xử lý'}">
                                         <span class="processed">${c.status}</span>
                                     </c:when>
-                                    <c:when test="${c.status eq 'Đang giao đến'}">
+                                    <c:when test="${c.status eq 'Đang giao'}">
                                         <span class="delivery">${c.status}</span>
                                     </c:when>
-                                    
+                                   
+                                        <c:when test="${c.status eq 'Đã xong'}">
+                                        <span class="done">${c.status}</span>
+                                    </c:when>
                                      <c:when test="${c.status eq 'Đã hủy'}">
                                         <span class="cancel" style="background-color:  red;">${c.status}</span>
                                     </c:when>
@@ -296,12 +312,18 @@
                     $('#deliveryFilterButton').click(function () {
                         // Show only rows with the "Đang giao đến" status
                         $('#sortTable tbody tr').hide();
-                        $('#sortTable tbody tr td:nth-child(5):contains("Đang giao đến")').closest('tr').show();
+                        $('#sortTable tbody tr td:nth-child(5):contains("Đang giao")').closest('tr').show();
                     });
                     
                     $('#allFilterButton').click(function () {
                         // Show all rows
                         $('#sortTable tbody tr').show();
+                    });
+                    
+                    $('#DoneFilterButton').click(function () {
+                       // Show only rows with the "Đang giao đến" status
+                        $('#sortTable tbody tr').hide();
+                        $('#sortTable tbody tr td:nth-child(5):contains("Đã xong")').closest('tr').show();
                     });
                 });
             </script>

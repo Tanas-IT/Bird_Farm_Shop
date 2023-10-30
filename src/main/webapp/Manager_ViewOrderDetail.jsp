@@ -74,6 +74,23 @@
             .striped-table tr:nth-child(odd) {
                 background-color: #ffffff; /* Màu nền cho dòng lẻ */
             }
+            #doneDelivery {
+                background-color: #4444e1;
+                color: white;
+                padding: 10px;
+                border-radius: 10px;
+                text-align: center;
+                margin-right: 15px;
+                text-decoration: none;
+            }
+            #failDelivery {
+                background-color: red;
+                color: white;
+                padding: 10px;
+                border-radius: 10px;
+                text-align: center;
+                text-decoration: none;
+            }
         </style>
     </head>
 
@@ -277,14 +294,17 @@
                                                             </a>
 
                                                         </div>
-                                                        <div class="col-lg-4" id="successOrder">
-                                                            <a href="DispatchServlet?btAction=SuccessOrder&txtidOrder=${idOrder}">
+                                                        <div class="col-lg-7" id="successOrder">
+                                                            <div class="row">
+                                                                <a id="doneDelivery" class="col-lg-4" href="DispatchServlet?btAction=SuccessOrder&txtidOrder=${idOrder}">
                                                                 Đã giao
                                                             </a>
                                                                 <br>
-                                                            <a href="DispatchServlet?btAction=RejectOrder&txtidOrder=${idOrder}">
+                                                            <a id="failDelivery" class="col-lg-7" href="DispatchServlet?btAction=RejectOrder&txtidOrder=${idOrder}">
                                                                 Giao hàng thất bại
                                                             </a>
+                                                            </div>
+                                                            
 
                                                         </div>
 
