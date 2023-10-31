@@ -199,7 +199,6 @@
             <a class="myOrderPairing" href="myOrderPairing.jsp">
                     Xem lịch sử đơn ghép chim <i class="fa-solid fa-arrow-right" style="color: red; margin:0 10px"></i>
                 </a>
-            </form>
         </div>
                 
         <div class="container" style="max-width:98%">
@@ -209,7 +208,7 @@
                         <th>ID</th>
                         <th>Ngày&nbspmua&nbsphàng</th>
                         <th>Sản&nbspphẩm</th>
-                        <th>Tổng&nbspchi&nbspphí</th>
+                        <th>Tổng&nbsptiền</th>
                         <th>Tình&nbsptrạng</th>
                         <th>Chi tiết</th>
                     </tr>
@@ -257,9 +256,6 @@
                     </c:forEach>
                 </tbody>
             </table>
-            <c:if test="${not empty LIST_ROD}">
-         
-            </c:if>
             <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
             <script>
                 $(document).ready(function () {

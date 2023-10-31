@@ -188,7 +188,7 @@
                                 </div>
                                 <div class="col-10">
                                     <input id="fullname" type="text" name="fullname" value="${user.fullName}"required="" style="width: 100%; margin-bottom: 10px; border: none; border-bottom: 2px solid black;"/><br>
-                                    <input disabled="" id="email" type="email" name="email" value="${user.email}"required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" style="width: 100%; margin-bottom: 10px; border: none; border-bottom: 2px solid black;"/><br>
+                                    <input id="email" type="email" name="email" value="${user.email}"required="" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" style="width: 100%; margin-bottom: 10px; border: none; border-bottom: 2px solid black;"/><br>
                                     <input id="phone" type="text" name="phone" value="${user.phoneNumber}"required="" style="width: 100%; margin-bottom: 10px; border: none; border-bottom: 2px solid black;"/><br>
                                     <input type="text" name="address" value="${user.address}" required="" style="width: 100%; margin-bottom: 10px; border: none; border-bottom: 2px solid black;"/><br>
                                     <input type="text" name="note" style="height: 100px; padding-bottom: 63px; font-weight: bold; width: 100%; margin-bottom: 10px; border: none; border-bottom: 2px solid black;" placeholder="Note"></input>

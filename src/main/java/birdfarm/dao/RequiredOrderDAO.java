@@ -9,11 +9,14 @@ import birdfarm.dto.RequiredOrderDTO;
 import birdfarm.dto.RequiredOrderDetailDTO;
 import birdfarm.util.DBConnection;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 
 /**
  *
@@ -204,5 +207,52 @@ public class RequiredOrderDAO {
                 conn.close();
             }
         }
+    }
+     
+      public List<RequiredOrderDTO> getAllRequiredOrderInDetail(int requiredOrderId) 
+            {
+        Connection conn = null;
+        RequiredOrderDTO requiredOrder = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        List<RequiredOrderDTO> list = new ArrayList<>();
+        try {
+            conn = DBConnection.makeConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement("Select ro.idRequiredOrder, bp1.name as BirdFatherName, bp2.name as BirdMotherName, ro.receiverName, ro.receiverAddress, ro.receiverPhoneNumber,ro.Note, ro.createdDate,ro.status, rod.fee From [RequiredOrder] ro\n" +
+"                                                 Join [User] u\n" +
+"                                                 ON ro.idUser = u.idUser\n" +
+"                                                 Join RequiredOrderDetail rod\n" +
+"                                                 ON ro.idRequiredOrder = rod.idRequiredOrder\n" +
+"                                                  Join BirdProduct bp1\n" +
+"                                                On bp1.idBird = rod.idBirdFather\n" +
+"												Join BirdProduct bp2\n" +
+"                                                On bp2.idBird = rod.idBirdMother\n" +
+"                                                Where ro.idRequiredOrder =  ?");
+                ptm.setInt(1, requiredOrderId);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int roId = rs.getInt("idRequiredOrder");
+                    String roBirdFatherName = rs.getString("BirdFatherName");
+                    String roBirdMotherName = rs.getString("BirdMotherName");
+                    String cName = rs.getString("receiverName");
+                    String cAddress = rs.getString("receiverAddress");
+                    String cPhone = rs.getString("receiverPhoneNumber");
+                    String cNote = rs.getString("Note");
+                    Date roDate = rs.getDate("createdDate");
+                    String roStatus = rs.getString("status");
+                    double oFee = rs.getDouble("fee");
+                    requiredOrder = new RequiredOrderDTO(roId, roDate, roStatus, cAddress, cName, cPhone, cNote, roBirdFatherName, roBirdMotherName, oFee);
+                    list.add(requiredOrder);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch(NamingException e) {
+            e.printStackTrace();
+        } catch(ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return list;
     }
 }

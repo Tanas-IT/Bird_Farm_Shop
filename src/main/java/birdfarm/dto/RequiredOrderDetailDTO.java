@@ -32,11 +32,33 @@ public class RequiredOrderDetailDTO implements Serializable{
     private String imageURL;
     private Date trackingDate;
     private String birdNestName;
-    
+    private String descriptionOfBirdFather;
+    private String descriptionOfBirdMother;
+    private boolean isPairing;
+    private double feeBirdNestMale;
+    private double feeBirdNestFemale;
+    private String birdFatherImage;
+    private String BirdMotherImage;
     public RequiredOrderDetailDTO() {
         
     }
 
+    public RequiredOrderDetailDTO(int idRequireOrder, String idBirdNest, int birdNestMale, int birdNestFemale, String descriptionOfBirdFather, String descriptionOfBirdMother, boolean isPairing, double feeBirdNestMale, double feeBirdNestFemale, String birdFatherImage, String birdMotherImage, String birdFatherName, String birdMotherName) {
+        this.idRequireOrder = idRequireOrder;
+        this.idBirdNest = idBirdNest;
+        this.birdNestMale = birdNestMale;
+        this.birdNestFemale = birdNestFemale;
+        this.descriptionOfBirdFather = descriptionOfBirdFather;
+        this.descriptionOfBirdMother = descriptionOfBirdMother;
+        this.isPairing = isPairing;
+        this.feeBirdNestMale = feeBirdNestMale;
+        this.feeBirdNestFemale = feeBirdNestFemale;
+        this.birdFatherImage = birdFatherImage;
+        this.BirdMotherImage = birdMotherImage;
+        this.birdFatherName = birdFatherName;
+        this.birdMotherName = birdMotherName;
+    }
+    
     public RequiredOrderDetailDTO(int idRequiredOrderDetail, int idRequireOrder, String idBirdFather, String idBirdNest, String idBirdMother, double price, double fee, double feePairing, int birdNestMale, int birdNestFemale) {
         this.idRequiredOrderDetail = idRequiredOrderDetail;
         this.idRequireOrder = idRequireOrder;
@@ -225,6 +247,62 @@ public class RequiredOrderDetailDTO implements Serializable{
 
     public void setBirdNestName(String birdNestName) {
         this.birdNestName = birdNestName;
+    }
+
+    public String getDescriptionOfBirdFather() {
+        return descriptionOfBirdFather;
+    }
+
+    public void setDescriptionOfBirdFather(String descriptionOfBirdFather) {
+        this.descriptionOfBirdFather = descriptionOfBirdFather;
+    }
+
+    public String getDescriptionOfBirdMother() {
+        return descriptionOfBirdMother;
+    }
+
+    public void setDescriptionOfBirdMother(String descriptionOfBirdMother) {
+        this.descriptionOfBirdMother = descriptionOfBirdMother;
+    }
+
+    public boolean isIsPairing() {
+        return isPairing;
+    }
+
+    public void setIsPairing(boolean isPairing) {
+        this.isPairing = isPairing;
+    }
+
+    public double getFeeBirdNestMale() {
+        return feeBirdNestMale;
+    }
+
+    public void setFeeBirdNestMale(double feeBirdNestMale) {
+        this.feeBirdNestMale = feeBirdNestMale;
+    }
+
+    public double getFeeBirdNestFemale() {
+        return feeBirdNestFemale;
+    }
+
+    public void setFeeBirdNestFemale(double feeBirdNestFemale) {
+        this.feeBirdNestFemale = feeBirdNestFemale;
+    }
+
+    public String getBirdFatherImage() {
+        return birdFatherImage;
+    }
+
+    public void setBirdFatherImage(String birdFatherImage) {
+        this.birdFatherImage = birdFatherImage;
+    }
+
+    public String getBirdMotherImage() {
+        return BirdMotherImage;
+    }
+
+    public void setBirdMotherImage(String BirdMotherImage) {
+        this.BirdMotherImage = BirdMotherImage;
     }
     
 

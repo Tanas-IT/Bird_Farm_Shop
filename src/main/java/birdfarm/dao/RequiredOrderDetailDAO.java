@@ -14,6 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.naming.NamingException;
 
 /**
  *
@@ -191,4 +192,55 @@ public class RequiredOrderDetailDAO {
             if(rs != null) rs.close();
         }
     }
+     public List<RequiredOrderDetailDTO> getDetailAllOrder(int requiredOrderId) 
+        {
+            Connection conn = null;
+            RequiredOrderDetailDTO detail = null;
+            PreparedStatement ptm = null;
+            ResultSet rs = null;
+            List<RequiredOrderDetailDTO> list = new ArrayList<>();
+            try {
+                conn = DBConnection.makeConnection();
+                if (conn != null) {
+                    ptm = conn.prepareStatement(" select ro.idRequiredOrder, idBirdNest, bp1.name as BirdFatherName, bp1.imageURL as BirdFatherImage, bp2.name as BirdMotherName, bp2.imageURL as BirdMotherImage,  birdNestMale, birdNestFemale, bp1.shortDescription as DescriptionOfBirdFather, bp2.shortDescription as DescriptionOfBirdMother, bp1.isPairing, bf1.feeBirdNestMale, bf2.feeBirdNestFemale  from [RequiredOrderDetail] join BirdProduct as bp1 \n" +
+"                        on [RequiredOrderDetail].idBirdFather = bp1.idBird\n" +
+"						join BirdProduct as bp2 \n" +
+"                        on [RequiredOrderDetail].idBirdMother = bp2.idBird\n" +
+"						Join [RequiredOrder] ro ON ro.idRequiredOrder = RequiredOrderDetail.idRequiredOrder\n" +
+"						Join Customer c On ro.idUser = c.idCustomer\n" +
+"						Join BirdProfile bf1 \n" +
+"						ON bf1.idBird = bp1.idBird\n" +
+"						Join BirdProfile bf2\n" +
+"						On bf2.idBird = bp2.idBird\n" +
+"            			where ro.idRequiredOrder = ?");
+                    ptm.setInt(1, requiredOrderId);
+                    rs = ptm.executeQuery();
+                    while (rs.next()) {
+                        int roId = rs.getInt("idRequiredOrder");
+                        String idBirdNest = rs.getString("idBirdNest");
+                        int numOfBirdNestMale = rs.getInt("birdNestMale");
+                        int numOfBirdNestFemale = rs.getInt("birdNestFemale");
+                        String shortDescriptionBirdFather = rs.getString("DescriptionOfBirdFather");
+                        String shortDescriptionBirdMother = rs.getString("DescriptionOfBirdMother");
+                        boolean isPairing = rs.getBoolean("isPairing");
+                        double feeBirdNestMale = rs.getDouble("feeBirdNestMale");
+                        double feeBirdNestFemale = rs.getDouble("feeBirdNestFemale");
+                        String birdFatherImage = rs.getString("BirdFatherImage");
+                        String birdMotherImage = rs.getString("BirdMotherImage");
+                        String birdFatherName = rs.getString("BirdFatherName");
+                        String birdMotherName = rs.getString("BirdMotherName");
+                        detail = new RequiredOrderDetailDTO(roId, idBirdNest, numOfBirdNestMale, numOfBirdNestFemale, shortDescriptionBirdFather, shortDescriptionBirdMother, isPairing, feeBirdNestMale, feeBirdNestFemale, birdFatherImage, birdMotherImage, birdFatherName, birdMotherName);
+                        list.add(detail);
+                    }
+                }
+            } catch (SQLException e) {
+                System.out.println(e);
+
+            } catch(NamingException e) {
+                System.out.println(e);
+            } catch(ClassNotFoundException e) {
+                System.out.println(e);
+            }
+            return list;
+        }
 }

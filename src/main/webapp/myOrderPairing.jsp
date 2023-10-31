@@ -193,7 +193,7 @@
                 <tbody>
                     <c:forEach items ="${LIST_ROD}" var="c">
                         <tr>
-                            <td><a href="#">
+                            <td><a href="DispatchServlet?btAction=HistoryViewPairingDetail&idRequiredOrder=${c.idRequireOrder}">
                                     ${c.idRequireOrder}</a></td>
                             <td>
                                 <fmt:formatDate value="${c.createdDate}" pattern="dd/MM/yyyy" var="formattedDateString" />

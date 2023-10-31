@@ -6,6 +6,7 @@
 package birdfarm.controller.login;
 
 import birdfarm.dao.UserDAO;
+import birdfarm.dto.CustomerDTO;
 import birdfarm.dto.UserDTO;
 import birdfarm.util.RegistrationCreateError;
 import java.io.IOException;
@@ -28,7 +29,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "CreateAccountServlet", urlPatterns = {"/CreateAccountServlet"})
 public class CreateAccountServlet extends HttpServlet {
 
-    private final String RESULT_PAGE = "Register.html";
+    private final String RESULT_PAGE = "Register.jsp";
     private final String LOGIN_PAGE = "Login.jsp";
 
     /**
@@ -50,10 +51,20 @@ public class CreateAccountServlet extends HttpServlet {
         String password = request.getParameter("txtPassword");
         String confirm = request.getParameter("txtConfirm");
         String fullName = request.getParameter("txtFullName");
+        String email = request.getParameter("txtEmail");
+        String address = request.getParameter("txtAddress");
+        String phoneNumber = request.getParameter("txtPhonenumber");
         boolean foundErr = false;
         RegistrationCreateError Error = new RegistrationCreateError();
         try {
+            UserDAO dao = new UserDAO();
+
+            UserDTO user = dao.checkLogin(username, password);
+            
             //1.Check all user's errors
+            if(user != null) {
+                url = RESULT_PAGE;
+            } else {
             if (username.trim().length() < 6
                     || username.trim().length() > 20) {
                 foundErr = true;
@@ -76,14 +87,16 @@ public class CreateAccountServlet extends HttpServlet {
                 request.setAttribute("CREATE_ERROR", Error);
             } else {
                 //2.Call DAO
-                UserDAO dao = new UserDAO();
                 UserDTO account = new UserDTO(idUser,username, password, fullName,4);
+                CustomerDTO customer = new CustomerDTO(idUser, address, phoneNumber, email);
                 boolean result = dao.createAccount(account);
+                boolean customerResult = dao.createCustomerAccountWithoutImage(customer);
                 //3.Process Result 
-                if (result) {
+                if (result && customerResult) {
                     url = LOGIN_PAGE;
-                }//Creating action is successful
-            }//do nothhing 
+                    }//Creating action is successful
+                }//do nothhing 
+            }
         } catch (NamingException ex) {
             log("CreateNewAccount_naming" + ex.getMessage());
         } catch (SQLException ex) {

@@ -5,18 +5,12 @@
  */
 package birdfarm.controller.cart;
 
+import birdfarm.dao.RequiredOrderDAO;
 import birdfarm.dao.RequiredOrderDetailDAO;
+import birdfarm.dto.RequiredOrderDTO;
 import birdfarm.dto.RequiredOrderDetailDTO;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,8 +22,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ASUS
  */
-@WebServlet(name = "HistoryPairingController", urlPatterns = {"/HistoryPairingController"})
-public class HistoryPairingController extends HttpServlet {
+@WebServlet(name = "PairingRequiredOrderDetailController", urlPatterns = {"/PairingRequiredOrderDetailController"})
+public class PairingRequiredOrderDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,36 +37,25 @@ public class HistoryPairingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
-            HttpSession session = request.getSession();
-            String idOrder = (String) request.getAttribute("idOrder");
-            String orderId_raw = request.getParameter("idOrder");
-            int orderId = 0;
-            if(idOrder != null) {
-                orderId = Integer.parseInt(idOrder);
-            } else {
-                orderId = Integer.parseInt(orderId_raw);
-            }
-            
-            RequiredOrderDetailDAO requiredDAO = new RequiredOrderDetailDAO();
-            requiredDAO.getTrackingBird(orderId);
-            List<RequiredOrderDetailDTO> requiredOrder_Detail = requiredDAO.getListTracking();
-            Map<Date, List<RequiredOrderDetailDTO>> listFilter = new HashMap<>();
-            for(RequiredOrderDetailDTO rod : requiredOrder_Detail) {
-                if(!listFilter.containsKey(rod.getTrackingDate())) {
-                    listFilter.put(rod.getTrackingDate(),new ArrayList<RequiredOrderDetailDTO>());
-                } 
-                listFilter.get(rod.getTrackingDate()).add(rod);
-            }
-            request.setAttribute("Order_Detail", listFilter);
+         HttpSession session = request.getSession();
+        String idRequiredOrder = (String) request.getAttribute("idRequiredOrder");
+        String orderId_raw = request.getParameter("idRequiredOrder");
+        int orderId = 0;
+        if (idRequiredOrder != null) {
+            orderId = Integer.parseInt(idRequiredOrder);
+        } else {
+            orderId = Integer.parseInt(orderId_raw);
+        }
+
+        RequiredOrderDAO requiredOrderDAO = new RequiredOrderDAO();
+        List<RequiredOrderDetailDTO> Required_Order_Detail = new RequiredOrderDetailDAO().getDetailAllOrder(orderId);
+        request.setAttribute("Required_Order_Detail", Required_Order_Detail);
+
+        List<RequiredOrderDTO> listMyRequiredOrderinDetail = requiredOrderDAO.getAllRequiredOrderInDetail(orderId);
+        request.setAttribute("listMyRequiredOrderinDetail", listMyRequiredOrderinDetail);
 
         session.setAttribute("historyUrl", "order-detail?idOrder=" + orderId_raw);
-        } catch (SQLException ex) {
-           ex.printStackTrace();
-        } finally {
-            request.getRequestDispatcher("TrackingPairing.jsp").forward(request, response);
-        }
-        
+        request.getRequestDispatcher("pairingOrderDetail.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
