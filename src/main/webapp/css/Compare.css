@@ -1,0 +1,211 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 3, 2023, 10:22:18 AM
+    Author     : ASUS
+*/
+.clearall {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: -39px;
+    padding: 10px;
+    border-radius: 8px 8px 0 0;
+    color: #000;
+    background: #fff;
+    box-shadow: 0 -2px 10px #0000001f;
+    text-decoration: none;
+}
+.clearall:hover {
+    color: #000;
+}
+.stickCompare {
+    display: none;
+    width: 70%;
+    height: 150px;
+    position: fixed;
+    z-index: 100;
+    bottom: 0;
+    left:0;
+    right: 0;
+    border-top: 1px solid #e5e5e5;
+    background-color: #fff;
+    margin: 0 auto;
+    box-shadow: 0 -2px 10px #0000001f;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    transition: all ease-in 0.5s;ôi 
+}
+.remove-ic-compare {
+    position: absolute;
+    top: 1%;
+    left: 33.3%;
+}
+.listcompare {
+    display: inline-flex;
+    width: calc(100% - 33.333333333%);
+    border: unset;
+    height: 100%;
+}
+.listcompare li {
+    width: 100%;
+    border-right: 1px solid #e0e0e0;
+    padding-top: 0;
+    margin: 0 auto;
+}
+li.formsg {
+    margin: initial;
+    border-left: unset;
+    border-top: unset;
+    border-bottom: unset;
+    border-right: 1px solid #e0e0e0;
+    border-radius: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    flex-flow: column;
+    position: relative;
+}
+li.formsg h6 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+.listcompare .cp-plus {
+    text-align: center;
+    color: #666;
+    background: #fff;
+    border-radius: 5px;
+    cursor: default;
+    margin: 0 auto;
+    text-decoration: none;
+    cursor: pointer;
+}
+.icImageCompareNew {
+    display: block;
+    margin: 0 auto;
+    background: url('https://cdn.tgdd.vn/mwgcart/mwg-site/ContentMwg/images/iconcompare/icon_add_desktop.png') no-repeat top center;
+    background-size: 45px 45px;
+    width: 45px;
+    height: 45px;
+}
+.closecompare {
+    display: inline-block;
+    vertical-align: middle;
+    width: 25%;
+    margin-top: 21px;
+    overflow: hidden;
+    position: absolute;
+    top: 20%;
+    right: 5%;
+}
+.closecompare a.doss.prevent {
+    display: block;
+    background: #bdbdbd;
+    color: #fff;
+    opacity: 1;
+    margin: 0 auto;
+    text-align: center;
+    width: 45%;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+.closecompare input.doss.prevent {
+    display: block;
+    background: #bdbdbd;
+    color: #fff;
+    opacity: 1;
+    margin: 0 auto;
+    text-align: center;
+    width: 45%;
+    padding: 10px 20px;
+    text-decoration: none;
+}
+.txtremoveall {
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+}
+.popup-button {
+    display: none;
+    position: fixed;
+    bottom: 25px;
+    left: 15px;
+    z-index: 2;
+    padding: 10px 10px;
+    background: #fff;
+    border-radius: 30px;
+    box-shadow: 0 0 15px #999;
+    text-decoration: none;
+    cursor: pointer;
+}
+#notification {
+  display:none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000e3;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  font-size: 16px;
+  color: #fff;
+  border: 0.5px solid #000000e3;
+}
+#notificationPairing {
+  display:none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ff623d;
+  border: 1px solid #ff623d;
+  padding: 10px;
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.08);
+  z-index: 9999;
+  font-size: 16px;
+  color: #fff;
+  transition: all linear 0.3s;
+  border-radius: 10px;
+}
+#notificationText-quantity {
+  display:block;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #000000e3;
+  border: 1px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  font-size: 16px;
+  color: #fff;
+  border: 0.5px solid #000000e3;
+}
+.fade-in-out {
+  animation: fade 5s linear;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+

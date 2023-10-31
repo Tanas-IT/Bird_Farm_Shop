@@ -18,6 +18,16 @@ public class AdminDTO implements Serializable {
     private String fullName;
     private String phoneNumber;
     private String roleName;
+    
+    private String methodName; 
+    private int idPayment;
+
+    public AdminDTO(String methodName, int idPayment) {
+        this.methodName = methodName;
+        this.idPayment = idPayment;
+    }
+    
+    
 
     public AdminDTO(String idUser, String userName, String password, String fullName, String phoneNumber, String roleName) {
         this.idUser = idUser;
@@ -27,6 +37,7 @@ public class AdminDTO implements Serializable {
         this.phoneNumber = phoneNumber;
         this.roleName = roleName;
     }
+
     public AdminDTO(String idUser, String userName, String password, String fullName, String roleName) {
         this.idUser = idUser;
         this.userName = userName;
@@ -34,7 +45,24 @@ public class AdminDTO implements Serializable {
         this.fullName = fullName;
         this.roleName = roleName;
     }
+
     public AdminDTO() {
+    }
+
+    public String getMethodName() {
+        return methodName;
+    }
+
+    public void setMethodName(String methodName) {
+        this.methodName = methodName;
+    }
+
+    public int getIdPayment() {
+        return idPayment;
+    }
+
+    public void setIdPayment(int idPayment) {
+        this.idPayment = idPayment;
     }
 
     public String getIdUser() {

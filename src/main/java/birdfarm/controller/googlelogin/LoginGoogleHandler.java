@@ -9,6 +9,8 @@ import birdfarm.dao.UserDAO;
 import birdfarm.dto.CustomerDTO;
 import birdfarm.dto.GoogleDTO;
 import birdfarm.dto.UserDTO;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.UUID;
@@ -19,6 +21,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Form;
+import org.apache.http.client.fluent.Request;
 
 /**
  *
@@ -29,7 +34,7 @@ public class LoginGoogleHandler extends HttpServlet {
 
     private final String RESULT_PAGE = "Register.jsp";
     private final String LOGIN_PAGE = "Login.jsp";
-    private final String HOME_PAGE = "index.html";
+    private final String HOME_PAGE = "LoginServlet";
     
 
     /**
@@ -54,18 +59,27 @@ public class LoginGoogleHandler extends HttpServlet {
                 String accessToken = GoogleUtils.getToken(code);
                 GoogleDTO userToken = GoogleUtils.getUserInfo(accessToken);
                 String uniqueID = UUID.randomUUID().toString();
-                String idUser = uniqueID.substring(0, 5);
+                String idUser = uniqueID.substring(0, 5).trim();
                 String username = userToken.getEmail();
+                String password = "123";
                 String email = userToken.getEmail();
                 String fullName = userToken.getGiven_name();
+                String image = userToken.getPicture();
                 UserDAO dao = new UserDAO();
-                UserDTO account = new UserDTO(idUser, username, "123", fullName, 4);;
-                CustomerDTO customer = new CustomerDTO(idUser, "123", "123", email);
-                boolean result = dao.createAccount(account);
-                boolean customerResult = dao.createCustomerAccount(customer);
-                if (result && customerResult) {
-                    url = HOME_PAGE;
+                UserDTO checkAccount = dao.checkLogin(username, password);
+                UserDTO currentUser = null;
+                if(checkAccount == null) {
+                    checkAccount = new UserDTO(idUser, username, password, fullName, 4, image);
+                    CustomerDTO customer = new CustomerDTO(idUser, "TPHCM", password, email, image);
+                    boolean result = dao.createAccount(checkAccount);
+                    boolean customerResult = dao.createCustomerAccount(customer);
+                    if (result && customerResult) {
+                        currentUser = dao.getUser(idUser);
+                        url = "LoginServlet?txtUsername="+currentUser.getUsername()+"&txtPassword="+currentUser.getPassword();
+                    }
                 }
+                currentUser = dao.getUser(checkAccount.getIdUser());
+                url = "LoginServlet?txtUsername="+currentUser.getUsername()+"&txtPassword="+currentUser.getPassword();
             }
         } catch (NamingException ex) {
             log("CreateNewAccount_naming" + ex.getMessage());
@@ -76,7 +90,7 @@ public class LoginGoogleHandler extends HttpServlet {
             rd.forward(request, response);
         }
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

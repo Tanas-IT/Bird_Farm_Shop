@@ -15,112 +15,167 @@ public class UserDTO {
      private String password;
      private String fullName;
      private int idRole;    
-     private RoleDTO roleDTO;
+     private String image;
+     private String phoneNumber;
+     private String address;
+     private String email;
+     private String roleName;
     public UserDTO() {
-        
     }
 
-    public UserDTO(String idUser, String username, String password, String fullName, int idRole, RoleDTO roleDTO) {
-        this.idUser = idUser;
-        this.username = username;
-        this.password = password;
-        this.fullName = fullName;
-        this.idRole = idRole;
-        this.roleDTO = roleDTO;
-    }
-     public UserDTO(String idUser, String username, String password, String fullName, int idRole) {
+    public UserDTO(String idUser, String username, String password, String fullName, int idRole) {
         this.idUser = idUser;
         this.username = username;
         this.password = password;
         this.fullName = fullName;
         this.idRole = idRole;
     }
-    /**
-     * @return the idUser
-     */
+    public UserDTO(String idUser, String username, String password, String fullName, int idRole, String image) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.idRole = idRole;
+        this.image = image;
+    }
+
+    public UserDTO(String idUser, String username, String password, String fullName, int idRole, String image, String roleName) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.idRole = idRole;
+        this.image = image;
+        this.roleName = roleName;
+    }
+
+    public UserDTO(String idUser, String username, String password, String fullName, int idRole, String image, String phoneNumber, String address, String email) {
+        this.idUser = idUser;
+        this.username = username;
+        this.password = password;
+        this.fullName = fullName;
+        this.idRole = idRole;
+        this.image = image;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.email = email;
+    }
+
+    
+
+   
+    
     public String getIdUser() {
         return idUser;
     }
 
-    /**
-     * @param idUser the idUser to set
-     */
     public void setIdUser(String idUser) {
         this.idUser = idUser;
     }
 
-    /**
-     * @return the username
-     */
     public String getUsername() {
         return username;
     }
 
-    /**
-     * @param username the username to set
-     */
     public void setUsername(String username) {
         this.username = username;
     }
 
-    /**
-     * @return the password
-     */
     public String getPassword() {
         return password;
     }
 
-    /**
-     * @param password the password to set
-     */
     public void setPassword(String password) {
         this.password = password;
     }
 
-    /**
-     * @return the fullName
-     */
     public String getFullName() {
         return fullName;
     }
 
-    /**
-     * @param fullName the fullName to set
-     */
     public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 
-    /**
-     * @return the idRole
-     */
     public int getIdRole() {
         return idRole;
     }
 
-    /**
-     * @param idRole the idRole to set
-     */
     public void setIdRole(int idRole) {
         this.idRole = idRole;
     }
 
-    /**
-     * @return the roleDTO
+    public String getRoleName() {
+        return roleName;
+    }
+
+    public void setRoleName(String roleName) {
+        this.roleName = roleName;
+    }
+    
+      /**
+     * @return the image
      */
-    public RoleDTO getRoleDTO() {
-        return roleDTO;
+    public String getImage() {
+        return image;
     }
 
     /**
-     * @param roleDTO the roleDTO to set
+     * @param image the image to set
      */
-    public void setRoleDTO(RoleDTO roleDTO) {
-        this.roleDTO = roleDTO;
+    public void setImage(String image) {
+        this.image = image;
     }
-
+    
+    
     @Override
     public String toString() {
-        return "UserDTO{" + "idUser=" + getIdUser() + ", username=" + getUsername() + ", password=" + getPassword() + ", fullName=" + getFullName() + ", idRole=" + getIdRole() + '}';
+        return "UserDTO{" + "idUser=" + idUser + ", username=" + username + ", password=" + password + ", fullName=" + fullName + ", idRole=" + idRole + '}';
     }
+
+    /**
+     * @return the phoneNumber
+     */
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    /**
+     * @param phoneNumber the phoneNumber to set
+     */
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * @return the address
+     */
+    public String getAddress() {
+        return address;
+    }
+
+    /**
+     * @param address the address to set
+     */
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    
+  
+
+
 }

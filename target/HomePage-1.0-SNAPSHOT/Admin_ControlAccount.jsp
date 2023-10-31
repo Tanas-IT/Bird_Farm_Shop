@@ -12,77 +12,65 @@
         <meta charset="utf-8" />
         <link rel="icon" type="image/png" href="img/favicon.ico">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
         <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
         <meta name="viewport" content="width=device-width" />
 
         <!-- Font & img CSS     -->
-        <link href="css/font-img.css" rel="stylesheet" />
+        <link href="font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css_admin/bootstrap1.min.css" rel="stylesheet" />
 
         <!-- Animation library for notifications   -->
-        <link href="css/animate.min.css" rel="stylesheet" />
+        <link href="css_admin/animate.min.css" rel="stylesheet" />
 
         <!--  Light Bootstrap Table core CSS    -->
-        <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+        <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
         <!--  CSS for Demo Purpose, don't include it in your project     -->
-        <link href="css/demo.css" rel="stylesheet" />
+        <link href="css_admin/demo.css" rel="stylesheet" />
 
 
         <!--     Fonts and icons     -->
         <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-        <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+        <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
+
+        <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+            rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="css_admin/sb-admin-2.min.css" rel="stylesheet">
+
+        <!-- Custom styles for this page -->
+        <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+        <style>
+            table {
+                border-collapse: separate;
+                border-spacing: 0 10px;
+                border: 1px solid #000; /* Viền cho bảng */
+                margin-left: auto;
+                margin-right: auto;
+                border-radius: 10px;
+            }
+            table {
+                box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.3); /* Màu xung quanh viền bảng */
+            }
+
+            td, th {
+                padding: 10px;
+            }
+        </style>
+
     </head>
 
     <body>
 
         <div class="wrapper">
-            <div class="sidebar" data-color="green" data-image="img/sidebar-5.jpg">
-
-                <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-                <div class="sidebar-wrapper">
-                    <div class="logo">
-                        <a href="#" class="simple-text">
-                            Bird Farm
-                        </a>
-                    </div>
-
-                    <div class="user-image" style="text-align: center;">
-                        <i class="pe-7s-user" style="font-size: 100px;"></i>
-                        <p>Nguyen Duc Anh</p>
-                        <p>Admin</p>
-                    </div>
-
-                    <ul class="nav">
-                        <li>
-                            <a href="DispatchServlet?btAction=AdminControlAccount">
-                                <i class="pe-7s-user"></i>
-                                <p>Tai khoan</p>
-                            </a> 
-                        </li>
-
-                        <li>
-                            <a href="List_san_pham.html">
-                                <i class="pe-7s-note2"></i>
-                                <p>Danh Muc San Pham</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                    <div style="text-align: center;">
-                        <a href="Login.jsp">
-                            <i class="fa fa-sign-out fa-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
-
-                        </a>
-                    </div>
-                </div>
-            </div>
-
+            <%@include file="components//adminComponent.jsp" %>
             <div class="main-panel">
                 <nav class="navbar navbar-default navbar-fixed">
                     <div class="container-fluid">
@@ -108,15 +96,14 @@
 
                 <div class="content">
                     <div class="container-fluid">
-
-
                         <div class="col-md-pull-12">
                             <div class="card-font-img">
 
                                 <div class="header-font-img-admin" style="margin-left: 20px;">
-                                    <h4 class="title">Tai khoan</h4>
-                                    <p class="category">Staff & Manager</p>
+                                    <h4 class="title" style="font-size: 30px">Tài khoản</h4>
+                                    <p class="category" style="font-size: 25px">Admin</p>
                                 </div>
+                                <br><br><br><br>
                                 <div class="content-font-img">
                                     <c:set var="result" value="${requestScope.ACCOUNT_LIST}"/>
                                     <c:if test="${not empty result}">
@@ -138,16 +125,25 @@
                                                         <td>${dto.idUser}</td>
                                                         <td>
                                                             ${dto.userName}
-                                                            <input type="hidden" name="txtUsername" value="${dto.userName}" />
+                                                            <input type="hidden" 
+                                                                   name="txtUsername" 
+                                                                   value="${dto.userName}" />
                                                         </td>
                                                         <td>
-                                                            <input type="text" name="txtfullName" value="${dto.fullName}" />
+                                                            <input type="text" 
+                                                                   name="txtfullName" 
+                                                                   value="${dto.fullName}" />
                                                         </td>
                                                         <td>${dto.roleName}</td>
                                                         <td>
-                                                            <input type="text" name="txtpassword" value="${dto.password}" />
+                                                            <input type="text" 
+                                                                   name="txtpassword" 
+                                                                   value="${dto.password}" />
                                                         </td>
-                                                        <td><input type="submit" value="Update" name="btAction"/></td>
+                                                        <td>
+                                                            <button type="submit" value="Update" name="btAction">
+                                                                Update</button>
+                                                        </td>
                                                     </tr>
                                                 </form>
                                             </c:forEach>
@@ -157,42 +153,38 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
-
                 <footer class="footer">
                     <div class="container-fluid">
-
-
                     </div>
                 </footer>
-
-
             </div>
         </div> 
-
-
-
-
     </body>
-
-    <script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--  Charts Plugin -->
-    <script src="js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="js/bootstrap-notify.js"></script>
+    <script src="js_admin/bootstrap-notify.js"></script>
 
     <!--  Google Maps Plugin    -->
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+    <script src="js_admin/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
     <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="js/demo.js"></script>
+    <script src="js_admin/demo.js"></script>
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js_admin/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+    <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+    <script src="js_admin/demo/datatables-demo.js"></script>
 </html>

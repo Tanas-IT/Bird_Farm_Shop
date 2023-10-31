@@ -18,23 +18,23 @@
     <!-- Font & img CSS     -->
     <link href="font-img.css" rel="stylesheet" />
     <!-- Bootstrap core CSS     -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css_admin/bootstrap1.min.css" rel="stylesheet" />
 
     <!-- Animation library for notifications   -->
-    <link href="css/animate.min.css" rel="stylesheet" />
+    <link href="css_admin/animate.min.css" rel="stylesheet" />
 
     <!--  Light Bootstrap Table core CSS    -->
-    <link href="css/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
+    <link href="css_admin/light-bootstrap-dashboard.css?v=1.4.0" rel="stylesheet" />
 
 
     <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="css/demo.css" rel="stylesheet" />
+    <link href="css_admin/demo.css" rel="stylesheet" />
 
 
     <!--     Fonts and icons     -->
     <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-    <link href="css/pe-icon-7-stroke.css" rel="stylesheet" />
+    <link href="css_admin/pe-icon-7-stroke.css" rel="stylesheet" />
 
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
@@ -42,7 +42,7 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="css_admin/sb-admin-2.min.css" rel="stylesheet">
 
     <!-- Custom styles for this page -->
     <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -51,48 +51,8 @@
 <body>
 
     <div class="wrapper">
-        <div class="sidebar" data-color="green" data-image="img/sidebar-5.jpg" style="width: 26rem !important;">
 
-            <!--   you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple" -->
-
-
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="#" class="simple-text">
-                        Bird Farm
-                    </a>
-                </div>
-
-                <div class="user-image" style="text-align: center;">
-                        <i class="pe-7s-user" style="font-size: 100px;"></i>
-                        <p>Nguyen Duc Anh</p>
-                        <p>Admin</p>
-                    </div>
-
-                    <ul class="nav">
-                        <li>
-                            <a href="DispatchServlet?btAction=AdminControlAccount">
-                                <i class="pe-7s-user"></i>
-                                <p>Tai khoan</p>
-                            </a> 
-                        </li>
-
-                        <li>
-                            <a href="DispatchServlet?btAction=AdminViewProduct">
-                                <i class="pe-7s-note2"></i>
-                                <p>Danh Muc San Pham</p>
-                            </a>
-                        </li>
-
-                    </ul>
-                <div style="text-align: center;">
-                    <a href="#">
-                        <i class="pe-7s-back pe-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-
+        <%@include file="components/adminComponent.jsp" %>
         <div class="main-panel">
             <nav class="navbar navbar-default navbar-fixed">
                 <div class="container-fluid">
@@ -155,7 +115,7 @@
                                                         <td>${dto.quantity}</td>
                                                         <td>${dto.salePrice}</td>
                                                         <td>${dto.lifeExpectancy}</td>
-                                                        
+
                                                     </tr>
 
                                                 </c:forEach>
@@ -186,23 +146,23 @@
 </body>
 
 <!--   Core JS Files   -->
-<script src="js/jquery.3.2.1.min.js" type="text/javascript"></script>
-<script src="js/bootstrap.min.js" type="text/javascript"></script>
+<script src="js_admin/jquery.3.2.1.min.js" type="text/javascript"></script>
+<script src="js_admin/bootstrap.min.js" type="text/javascript"></script>
 
 <!--  Charts Plugin -->
-<script src="js/chartist.min.js"></script>
+<script src="js_admin/chartist.min.js"></script>
 
 <!--  Notifications Plugin    -->
-<script src="js/bootstrap-notify.js"></script>
+<script src="js_admin/bootstrap-notify.js"></script>
 
 <!--  Google Maps Plugin    -->
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
 
 <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-<script src="js/light-bootstrap-dashboard.js?v=1.4.0"></script>
+<script src="js_admin/light-bootstrap-dashboard.js?v=1.4.0"></script>
 
 <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-<script src="js/demo.js"></script>
+<script src="js_admin/demo.js"></script>
 <!-- Bootstrap core JavaScript-->
 <script src="vendor/jquery/jquery.min.js"></script>
 <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -211,12 +171,12 @@
 <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="js/sb-admin-2.min.js"></script>
+<script src="js_admin/sb-admin-2.min.js"></script>
 
 <!-- Page level plugins -->
 <script src="vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
-<script src="js/demo/datatables-demo.js"></script>
+<script src="js_admin/demo/datatables-demo.js"></script>
 
 </html>

@@ -6,11 +6,88 @@ and open the template in the editor.
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Thông báo lỗi</title>
+        <link rel="stylesheet" type="text/css" href="style.css">
     </head>
     <body>
-        <div>wrong</div>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f5f5f5;
+            }
+
+            #error-container {
+                background-color: #fff;
+                max-width: 400px;
+                margin: 100px auto;
+                padding: 20px;
+                border-radius: 5px;
+                text-align: center;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            }
+
+            h1 {
+                color: #333;
+            }
+
+            #error-message {
+                margin-bottom: 20px;
+            }
+
+            #login-button {
+                padding: 10px 20px;
+                background-color: #337ab7;
+                color: #fff;
+                border: none;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+            #login-button:hover {
+                background-color: #286090;
+            }
+        </style>
+        <div id="error-container">
+            <h1>Có lỗi xảy ra</h1>
+            <p id="error-message"></p>
+            <button id="login-button">Đăng nhập lại</button>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                var errorMessage = document.getElementById("error-message");
+                var loginButton = document.getElementById("login-button");
+
+                // Tạo một đối tượng XMLHttpRequest
+                var xhr = new XMLHttpRequest();
+
+                // Thiết lập callback cho sự kiện khi yêu cầu hoàn thành
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        var errorFromServer = xhr.responseText;
+                        if (errorFromServer) {
+                            errorMessage.textContent = errorFromServer;
+                        } else {
+                            errorMessage.textContent = "Session đã hết hạn hoặc có lỗi 500.";
+                        }
+                    } else {
+                        errorMessage.textContent = "Có lỗi khi lấy thông báo lỗi từ server.";
+                    }
+                };
+
+                // Xử lý lỗi trong trường hợp yêu cầu không thành công
+                xhr.onerror = function () {
+                    console.log("Có lỗi khi gửi yêu cầu đến server.");
+                    errorMessage.textContent = "Có lỗi khi lấy thông báo lỗi từ server.";
+                };
+
+
+                // Xử lý sự kiện khi người dùng click vào nút đăng nhập lại
+                loginButton.addEventListener("click", function () {
+                    // Thực hiện chuyển hướng đến trang đăng nhập
+                    window.location.href = "Login.jsp";
+                });
+            });
+        </script>
     </body>
 </html>

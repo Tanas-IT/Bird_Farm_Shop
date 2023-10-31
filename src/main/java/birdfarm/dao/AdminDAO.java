@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.naming.NamingException;
 import birdfarm.dto.AdminDTO;
+import birdfarm.dto.AdminProductDTO;
 
 /**
  *
@@ -24,18 +25,19 @@ import birdfarm.dto.AdminDTO;
 public class AdminDAO implements Serializable {
 
     private List<AdminDTO> accountList;
+    
+    private List<AdminProductDTO> adminList;
 
     public List<AdminDTO> getAccountList() {
         return accountList;
     }
 
-    private List<AdminProductDTO> productList;
-
-    public List<AdminProductDTO> getProductList() {
-        return productList;
+    public List<AdminProductDTO> getAdminList() {
+        return adminList;
     }
-
-    public void showProduct()
+    
+    
+    public void showPaymentMethod()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -44,25 +46,21 @@ public class AdminDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = " Select [idBird] "
-                        + ",[name],[salePrice],[quantity],[lifeExpectancy]\n"
-                        + "From BirdProduct";
+                String sql = "Select * "
+                        + "FROM [Payment] ";
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
-                    String idBird = rs.getString("idBird");
-                    String name = rs.getString("name");
-                    String lifeExpectancy = rs.getString("lifeExpectancy");
-                    Double salePrice = rs.getDouble("salePrice");
-                    int quantity = rs.getInt("quantity");
+                    String methodName = rs.getString("methodName");
+                    int idPayment = rs.getInt("idPayment");
+                    
+                    AdminDTO dto
+                            = new AdminDTO(methodName, idPayment);
 
-                    AdminProductDTO dto
-                            = new AdminProductDTO(name, quantity, salePrice, lifeExpectancy, idBird);
-
-                    if (this.productList == null) {
-                        this.productList = new ArrayList<>();
+                    if (this.accountList == null) {
+                        this.accountList = new ArrayList<>();
                     }
-                    this.productList.add(dto);
+                    this.accountList.add(dto);
                 }
             }
         } finally {
@@ -108,9 +106,6 @@ public class AdminDAO implements Serializable {
                 }
             }
         } finally {
-            if(rs != null) {
-                rs.close();
-            }
             if (stm != null) {
                 stm.close();
             }
@@ -119,27 +114,25 @@ public class AdminDAO implements Serializable {
             }
         }
     }
-
-    public boolean updatePassRole(String username, String password, String fullName)
+    public boolean updatePaymentMethod(int idPayment, String methodName)
             throws SQLException, NamingException, ClassNotFoundException {
-        Connection con = null; 
-        PreparedStatement stm = null; 
+        Connection con = null;
+        PreparedStatement stm = null;
         boolean result = false;
 
         try {
             //1. Make connection
             con = DBConnection.makeConnection();
             if (con != null) {
-               
-                String sql = "  Update [User]\n"
-                        + "SET password = ? , fullName = ? \n"
-                        + "Where username = ? ";
-             
+
+                String sql = "  Update [Payment]\n"
+                        + "SET methodName = ? \n"
+                        + "Where idPayment = ? ";
+
                 stm = con.prepareStatement(sql);
-                stm.setString(1, password);
-                stm.setString(2, fullName);
-                stm.setString(3, username);
-            
+                stm.setString(1, methodName);
+                stm.setInt(2, idPayment);
+
                 int effectRows = stm.executeUpdate();
 
                 //5. Process
@@ -158,5 +151,88 @@ public class AdminDAO implements Serializable {
             }
         }
         return result;
+    }
+    public boolean updatePassRole(String username, String password, String fullName)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+
+        try {
+            //1. Make connection
+            con = DBConnection.makeConnection();
+            if (con != null) {
+
+                String sql = "  Update [User]\n"
+                        + "SET password = ? , fullName = ? \n"
+                        + "Where username = ? ";
+
+                stm = con.prepareStatement(sql);
+                stm.setString(1, password);
+                stm.setString(2, fullName);
+                stm.setString(3, username);
+
+                int effectRows = stm.executeUpdate();
+
+                //5. Process
+                if (effectRows > 0) {
+                    result = true;
+                }
+
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+    
+    public void getBirdListAdmin() 
+           throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+
+        try {
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "SELECT bp.[idBird]\n" +
+                        "      ,bp.[name]\n" +
+                        "      ,bp.[quantity]\n" +
+                        "      ,bp.[salePrice]\n" +
+                        "	  ,bf.Age\n" +
+                        "  FROM [BIRD_FARM_SHOP].[dbo].[BirdProduct] bp\n" +
+                        "  Join BirdProfile bf\n" +
+                        "  ON bp.idBird = bf.idBird";
+                stm = con.prepareCall(sql);
+                rs = stm.executeQuery();
+                while (rs.next()) {
+                    String idBird = rs.getString("idBird");
+                    String birdName = rs.getString("name");
+                    int birdQuantity = rs.getInt("quantity");
+                    double salePrice = rs.getDouble("salePrice");
+                    String lifeExpectancy = rs.getString("Age");
+                    AdminProductDTO dto
+                            = new AdminProductDTO(birdName, birdQuantity, salePrice, lifeExpectancy, idBird);
+
+                    if (this.adminList == null) {
+                        this.adminList = new ArrayList<>();
+                    }
+                    this.adminList.add(dto);
+                }
+            }
+        } finally {
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
     }
 }
