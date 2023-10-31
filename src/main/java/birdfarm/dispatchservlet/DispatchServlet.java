@@ -47,7 +47,8 @@ public class DispatchServlet extends HttpServlet {
     private final String RPAYMENT_CONTROLLER = "RpaymentController";
     private final String HISTORY_PAIRING_CONTROLLER = "HistoryPairingController";
     private final String REMOVE_ITEM_FROM_VIEW_CART = "RemoveItemFromViewCart";
-
+    private final String HISTORY_VIEW_DETAIL_PAIRING_BILL = "PairingRequiredOrderDetailController";
+    
     private final String PAIRING_CONTROLLER = "PairingController";
     private final String REMOVE_ITEM_FROM_CART = "RemoveItemFromCart";
     private final String FEEDBACK_CONTROLLER = "FeedbackServlet";
@@ -56,6 +57,7 @@ public class DispatchServlet extends HttpServlet {
     private final String SEND_MAIL_TRACKING = "ManagerSendMailTrackingBirdServlet";
 
     private final String ADMIN_UPDATE_ACCOUNT_CONTROLLER = "AdminUpdateAccountServlet";
+    private final String ADMIN_UPDATE_PAYMENT_CONTROLLER = "AdminUpdatePayment";
 
     private final String MANAGER_VIEW_BILL_CONTROLLER = "ManagerViewBillServlet";
     private final String MANAGER_VIEW_DETAIL_BILL_CONTROLLER = "ManagerViewDetailBillServlet";
@@ -162,7 +164,12 @@ public class DispatchServlet extends HttpServlet {
                 url = REMOVE_ITEM_FROM_CART;
             } else if (button.equals("Xóa")) {
                 url = REMOVE_ITEM_FROM_VIEW_CART;
-            } else if (button.equals("ManagerSendMail")) {
+            } else if(button.equals("HistoryViewPairingDetail")) {
+                url = HISTORY_VIEW_DETAIL_PAIRING_BILL;
+            } else if(button.equals("UpdatePaymentMethod")) {
+                url = ADMIN_UPDATE_PAYMENT_CONTROLLER;
+            }
+            else if (button.equals("ManagerSendMail")) {
                 url = SEND_MAIL_TRACKING;
             } 
             else if(button.equals("SendFeedback")) { 
