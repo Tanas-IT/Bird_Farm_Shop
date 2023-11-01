@@ -55,7 +55,15 @@ public class ManagerTrackingBirdDTO implements Serializable {
         this.birdMother = birdMother;
         this.fullName = fullName;
     }
-
+    public ManagerTrackingBirdDTO(int idRequiredOrder, String status, String trackingDate, String birdFather, String birdMother, String fullName, String createdDate) {
+            this.idRequiredOrder = idRequiredOrder;
+            this.status = status;
+            this.trackingDate = trackingDate;
+            this.birdFather = birdFather;
+            this.birdMother = birdMother;
+            this.fullName = fullName;
+            this.createdDate = createdDate;
+        }
     public ManagerTrackingBirdDTO(int idRequiredOrder, String status,
             String reason, String imgTracking, String birdFather,
             String birdMother, String fullName,

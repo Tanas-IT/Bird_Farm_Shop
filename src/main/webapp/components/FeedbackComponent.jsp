@@ -19,6 +19,7 @@
             color: white;
             border: none;
             cursor: pointer;
+            z-index: 999;
         }
 
         #feedback-overlay {

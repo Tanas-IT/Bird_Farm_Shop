@@ -133,7 +133,12 @@
                                                             ${dto.status}
                                                         </td>
                                                         <td>
-                                                            ${dto.trackingDate}                                                      
+                                                            <c:if test="${dto.trackingDate eq null || empty dto.trackingDate}">
+                                                                ${dto.createdDate}
+                                                            </c:if>
+                                                            <c:if test="${dto.trackingDate ne null || not empty dto.trackingDate}">
+                                                                ${dto.trackingDate}                                                      
+                                                            </c:if>
                                                         </td>
                                                         <td class="d-flex justify-content-around align-items-center">
                                                             <!-- Button trigger modal -->
