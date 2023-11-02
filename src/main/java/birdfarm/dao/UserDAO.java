@@ -118,7 +118,7 @@ public class UserDAO implements Serializable {
         }
         return result;
     }
-     public boolean createCustomerAccount(CustomerDTO customer)
+    public boolean createCustomerAccount(CustomerDTO customer)
             throws SQLException, NamingException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -137,6 +137,44 @@ public class UserDAO implements Serializable {
                 stm.setString(3, customer.getPhoneNumber());
                 stm.setString(4, customer.getEmail());
                 stm.setString(5, customer.getImage());
+                //4.execute
+                int effectRows = stm.executeUpdate();
+                //5.process (Note: Luu y Khi SU DUNG IF/WHILE)
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            if (stm != null) {
+                con.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+
+        }
+        return result;
+    }
+     public boolean createCustomerAccountWithoutImage(CustomerDTO customer)
+            throws SQLException, NamingException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        try {
+            //1.make connection
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                //2.create sql string
+                String sql = "Insert Into [Customer](idCustomer, address, phoneNumber, email)"
+                        + " Values(?, ?, ?, ?)";
+                //3.create stm obj
+                stm = con.prepareStatement(sql);
+                stm.setString(1, customer.getIdCustomer());
+                stm.setString(2, customer.getAddress());
+                stm.setString(3, customer.getPhoneNumber());
+                stm.setString(4, customer.getEmail());
                 //4.execute
                 int effectRows = stm.executeUpdate();
                 //5.process (Note: Luu y Khi SU DUNG IF/WHILE)

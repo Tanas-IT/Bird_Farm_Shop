@@ -83,13 +83,13 @@
                                 </c:otherwise>
                             </c:choose>
                         </li>
-                        <li class="nav-item">
-                            <a id="about-link" class="nav-link" href="pairingBird.html" onclick="handleButtonClick(this)">
+                         <li class="nav-item">
+                            <a id="about-link" class="nav-link" href="DispatchServlet?btAction=Pairing&userID=${user.idUser}" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Ghép cặp</h5>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
+                            <a class="nav-link" href="DispatchServlet?btAction=HistoryBill" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
                                 <h5 class="background-hover">Hàng đã mua</h5>
                             </a>
                         </li>
@@ -191,7 +191,7 @@
                         <p style="display:inline; font-weight: 500;width: 154px">Xin chào,</p><br/>
                         <p style="display:inline; font-weight: 500;width: 154px"><c:out value="${user.getFullName()}" /></p>
                     </div>
-                    <form action="Login.jsp">
+                    <form action="LogoutServlet">
                         <button style="margin-left: 10px;" type="submit" class="btn-register btn btn-danger">
                             Đăng xuất
                         </button>

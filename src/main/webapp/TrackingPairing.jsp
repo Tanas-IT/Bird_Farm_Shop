@@ -137,11 +137,32 @@
                 border-radius: 50%;
                 margin-right: 10px;
             }
+            .go-to-pairing {
+                margin: 30px 0 0 10px;
+            }
+            .myOrderPairing {
+                border: none;
+                color: red;
+                text-decoration: none;
+                font-size: 20px;
+                font-weight: bold;
+                background-color: transparent;
+               
+            }
+            .myOrderPairing:hover {
+                color: red;
+                text-decoration: none;
+            }
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
     <body>
+        <div class="go-to-pairing">
+            <a class="myOrderPairing" href="myOrderPairing.jsp">
+                 <i class="fa-solid fa-arrow-left" style="color: red; margin:0 10px"></i>   Quay lại trang lịch sử đơn ghép chim 
+                </a>
+        </div>
         <section class="timeline_area section_padding_130">
             <div class="container">
                 <div class="row justify-content-center">
@@ -212,13 +233,24 @@
                                                 </c:forEach>
                                             </div>
                                         </c:if>
+                                        <c:if test="${empty trackingItem.key || trackingItem.key eq null}">
+                                            <div class="row">        
+                                            <div class="col-12 col-md-6 col-lg-4">
+                                                        <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                                            <div class="img_noUpdate"><i class="fa-solid fa-image" style="color: #36dd58;"></i></div>
+                                                            <div class="timeline-text">
+                                                                <h6>Chưa có cập nhật</h6>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                            </div>
+                                        </c:if> 
                                     </div>
                                 </c:forEach>
                             </c:if>
-                            <c:if test="${empty requestScope.Order_Detail}">
+                            <c:if test="${empty requestScope.Order_Detail || requestScope.Order_Detail eq null}">
                                 <div class="single-timeline-area">
                                     <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                                        
                                     </div>
                                     <div class="col-12 col-md-6 col-lg-4">
                                             <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">

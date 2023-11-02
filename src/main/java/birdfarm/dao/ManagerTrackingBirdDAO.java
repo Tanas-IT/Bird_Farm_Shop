@@ -39,18 +39,18 @@ public class ManagerTrackingBirdDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "Select ro.idRequiredOrder, u.fullName, ro.status, ro.receiverName, "
-                        + " ro.trackingDate, b1.name as birdFather, b2.name as birdMother from  RequiredOrder ro\n"
-                        + "join RequiredOrderDetail rd \n"
-                        + "on ro.idRequiredOrder = rd.idRequiredOrder\n"
-                        + "join BirdProduct b1 \n"
-                        + "on rd.idBirdFather=b1.idBird \n"
-                        + "join BirdProduct b2\n"
-                        + "on rd.idBirdMother = b2.idBird\n"
-                        + "join [User] u \n"
-                        + "on ro.idUser = u.idUser\n"
-                        + "Where ro.status NOT IN (N'Đã hoàn thành', N'Đã hủy') \n"
-                        + "ORDER BY trackingDate DEsc";
+                String sql = "  Select ro.idRequiredOrder, u.fullName, ro.status, ro.receiverName, ro.createdDate,\n" +
+"                         ro.trackingDate, b1.name as birdFather, b2.name as birdMother from  RequiredOrder ro\n" +
+"                        join RequiredOrderDetail rd \n" +
+"                       on ro.idRequiredOrder = rd.idRequiredOrder\n" +
+"                        join BirdProduct b1\n" +
+"                        on rd.idBirdFather=b1.idBird \n" +
+"                        join BirdProduct b2\n" +
+"                        on rd.idBirdMother = b2.idBird\n" +
+"                        join [User] u\n" +
+"                        on ro.idUser = u.idUser\n" +
+"                        Where ro.status NOT IN (N'Đã hoàn thành', N'Đã hủy') \n" +
+"                        ORDER BY trackingDate DEsc";
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
@@ -60,10 +60,10 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     String birdFather = rs.getString("birdFather");
                     String birdMother = rs.getString("birdMother");
                     String status = rs.getString("status");
-
+                    String createdDate = rs.getString("createdDate");
                     ManagerTrackingBirdDTO dto
                             = new ManagerTrackingBirdDTO(idRequiredOrder,
-                                    status, trackingDate, birdFather, birdMother, fullName);
+                                    status, trackingDate, birdFather, birdMother, fullName,createdDate);
 
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
@@ -192,9 +192,9 @@ public class ManagerTrackingBirdDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "   Select ro.idRequiredOrder, u.fullName, ro.receiverName,\n" +
+                String sql = "  Select ro.idRequiredOrder, u.fullName, ro.receiverName,\n" +
 "                                ro.status, ro.reason,ro.imgTracking, \n" +
-"                                ro.trackingDate,b1.importPrice as priceBirdDad,b2.importPrice as priceBirdMom, \n" +
+"                                ro.trackingDate,bf1.feeBirdNestMale as priceBirdDad,bf2.feeBirdNestFemale as priceBirdMom, \n" +
 "                                 b1.name as birdFather , b2.name as birdMother,  rd.birdNestMale ,\n" +
 "                                rd.birdNestFemale , rd.fee , cu.email, rd.idBirdNest, \n" +
 "                        b1.imageURL as imageBirdFather, b2.imageURL as imageBirdMother,\n" +
@@ -207,6 +207,10 @@ public class ManagerTrackingBirdDAO implements Serializable {
 "                                   on rd.idBirdFather=b1.idBird \n" +
 "                                  join BirdProduct b2\n" +
 "                                  on rd.idBirdMother = b2.idBird\n" +
+"				   join BirdProfile bf1 \n" +
+"                                   on bf1.idBird=rd.idBirdFather\n" +
+"                                  join BirdProfile bf2\n" +
+"                                  on rd.idBirdMother = bf2.idBird\n" +
 "                                 join [User] u \n" +
 "                                   on ro.idUser = u.idUser\n" +
 "                                join [Customer] cu\n" +

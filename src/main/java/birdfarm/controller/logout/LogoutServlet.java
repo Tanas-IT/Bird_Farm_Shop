@@ -3,22 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package birdfarm.controller.cart;
+package birdfarm.controller.logout;
 
-import birdfarm.dao.RequiredOrderDetailDAO;
-import birdfarm.dto.RequiredOrderDetailDTO;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +19,8 @@ import javax.servlet.http.HttpSession;
  *
  * @author ASUS
  */
-@WebServlet(name = "HistoryPairingController", urlPatterns = {"/HistoryPairingController"})
-public class HistoryPairingController extends HttpServlet {
+@WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
+public class LogoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -43,36 +34,22 @@ public class HistoryPairingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
-            HttpSession session = request.getSession();
-            String idOrder = (String) request.getAttribute("idOrder");
-            String orderId_raw = request.getParameter("idOrder");
-            int orderId = 0;
-            if(idOrder != null) {
-                orderId = Integer.parseInt(idOrder);
-            } else {
-                orderId = Integer.parseInt(orderId_raw);
+       String url = "Login.jsp";
+        try {
+            HttpSession session = request.getSession(false);
+            if (session == null) {
+                return;
             }
-            
-            RequiredOrderDetailDAO requiredDAO = new RequiredOrderDetailDAO();
-            requiredDAO.getTrackingBird(orderId);
-            List<RequiredOrderDetailDTO> requiredOrder_Detail = requiredDAO.getListTracking();
-            Map<Date, List<RequiredOrderDetailDTO>> listFilter = new HashMap<>();
-            for(RequiredOrderDetailDTO rod : requiredOrder_Detail) {
-                if(!listFilter.containsKey(rod.getTrackingDate())) {
-                    listFilter.put(rod.getTrackingDate(),new ArrayList<RequiredOrderDetailDTO>());
-                } 
-                listFilter.get(rod.getTrackingDate()).add(rod);
-            }
-            request.setAttribute("Order_Detail", listFilter);
-
-        session.setAttribute("historyUrl", "order-detail?idOrder=" + orderId_raw);
-        } catch (SQLException ex) {
-           ex.printStackTrace();
-        } finally {
-            request.getRequestDispatcher("TrackingPairing.jsp").forward(request, response);
+        Cookie[] cookies = request.getCookies();
+        if (cookies != null) {
+            Cookie lastCookie = cookies[cookies.length - 1];
+            lastCookie.setMaxAge(0);
+            response.addCookie(lastCookie);
         }
-        
+            session.invalidate();
+        } finally {
+            response.sendRedirect(url);
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

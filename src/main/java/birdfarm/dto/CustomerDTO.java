@@ -28,6 +28,12 @@ public class CustomerDTO implements Serializable{
         this.email = email;
         this.image = image;
     }
+    public CustomerDTO(String idCustomer, String address, String phoneNumber, String email) {
+        this.idCustomer = idCustomer;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+    }
 
     public CustomerDTO(String address, String phoneNumber, String email) {
         this.address = address;

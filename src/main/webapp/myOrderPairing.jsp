@@ -74,7 +74,7 @@
             #sortTable_next {
                 margin-left: 0;
             }
-            #sortTable_paginate span {
+#sortTable_paginate span {
                 background-color: #fff;
                 padding: 10px 0;
             }
@@ -147,6 +147,28 @@
                 top: 6%;
                
             }
+            .reproductive {
+                background-color: pink;
+                display: block;
+                text-align: center;
+                width: 80%;
+                border-radius: 5px;
+                padding: 7px;
+                font-size: 17px;
+                font-weight: 500;
+                color: #fff;
+            }
+            .borned {
+                background-color: #4D4C7D;
+                display: block;
+                text-align: center;
+                width: 80%;
+                border-radius: 5px;
+                padding: 7px;
+                font-size: 17px;
+                font-weight: 500;
+                color: #fff;
+}
             .myOrderPairing:hover {
                 color: red;
                 text-decoration: none;
@@ -166,6 +188,12 @@
             </button>
             <button class="sort" id="processingFilterButton" onclick="">
                 Đang xử lý
+            </button>
+            <button class="sort" id="ReproductiveFilterButton" onclick="">
+                Chim đã đẻ
+            </button>
+            <button class="sort" id="BornedBirdFilterButton" onclick="">
+                Chim đã nở
             </button>
             <button class="sort" id="deliveryFilterButton" onclick="">
                 Đang giao hàng
@@ -193,7 +221,7 @@
                 <tbody>
                     <c:forEach items ="${LIST_ROD}" var="c">
                         <tr>
-                            <td><a href="#">
+                            <td><a href="DispatchServlet?btAction=HistoryViewPairingDetail&idRequiredOrder=${c.idRequireOrder}">
                                     ${c.idRequireOrder}</a></td>
                             <td>
                                 <fmt:formatDate value="${c.createdDate}" pattern="dd/MM/yyyy" var="formattedDateString" />
@@ -204,7 +232,7 @@
                                 <fmt:formatNumber var="formatTotalPrice" value="${c.fee}"  />
                                 ${formatTotalPrice}  VNĐ
                             </td>
-                            <td> <c:choose>
+<td> <c:choose>
                                     <c:when test="${c.status eq 'Đang xử lý'}">
                                         <span class="processing" style="background-color: yellow;">${c.status}</span>
                                     </c:when>
@@ -216,6 +244,12 @@
                                     </c:when>
                                      <c:when test="${c.status eq 'Đã hủy'}">
                                         <span class="cancel" style="background-color:  red;">${c.status}</span>
+                                    </c:when>
+                                    <c:when test="${c.status eq 'Chim đã đẻ'}">
+                                        <span class="reproductive">${c.status}</span>
+                                    </c:when>
+                                    <c:when test="${c.status eq 'Chim đã nở'}">
+                                        <span class="borned">${c.status}</span>
                                     </c:when>
                                     <c:otherwise>
                                         ${c.status}
@@ -236,7 +270,7 @@
                     $('#sortTable').DataTable({
                         "language": {
                             "decimal": "",
-                            "emptyTable": "No data available in table",
+                            "emptyTable": "Không có đơn hàng nào",
                             "info": " _START_ đến _END_ của _TOTAL_ bản ghi",
                             "infoEmpty": "HIển thị 0 to 0 of 0 bản ghi",
                             "infoFiltered": "(kết quả từ _MAX_ tổng số bản ghi)",
@@ -279,6 +313,18 @@
                         $('#sortTable tbody tr td:nth-child(5):contains("Đã hoàn thành")').closest('tr').show();
                     });
                     
+                    $('#ReproductiveFilterButton').click(function () {
+                        // Show only rows with the "Chim đã đẻ" status
+                        $('#sortTable tbody tr').hide();
+                        $('#sortTable tbody tr td:nth-child(5):contains("Chim đã đẻ")').closest('tr').show();
+                    });
+                    
+                    $('#BornedBirdFilterButton').click(function () {
+                        // Show only rows with the "Chim đã đẻ" status
+                        $('#sortTable tbody tr').hide();
+                        $('#sortTable tbody tr td:nth-child(5):contains("Chim đã nở")').closest('tr').show();
+                    });
+                    
                     $('#deliveryFilterButton').click(function () {
                         // Show only rows with the "Đang giao hàng" status
                         $('#sortTable tbody tr').hide();
@@ -293,7 +339,7 @@
             </script>
 
             <script>
-                // Get all the filter buttons
+// Get all the filter buttons
                 const filterButtons = document.querySelectorAll('.sort');
 
                 // Add click event listener to each filter button

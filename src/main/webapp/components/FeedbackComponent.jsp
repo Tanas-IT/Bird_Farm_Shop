@@ -11,7 +11,7 @@
     <style>
         #feedback-button {
             position: fixed;
-            top: 50%;
+            top: 60%;
             left: 50%;
             transform: translate(-50%, -50%);
             padding: 10px 20px;
@@ -19,6 +19,7 @@
             color: white;
             border: none;
             cursor: pointer;
+            z-index: 999;
         }
 
         #feedback-overlay {
@@ -29,7 +30,7 @@
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.3);
-            z-index: 100;
+            z-index: 1000;
         }
 
         #feedback-form {
@@ -90,7 +91,7 @@
                     <input type="hidden" name="birdNestName" value="${birdNestName}"/>
                     <input type="hidden" name="idRequireOrder" value="${idRequireOrder}"/>
                     <button type="submit" name="btAction" value="SendFeedback" id="submit-button">Gửi</button>
-                    <button id="cancel-button">Hủy</button>
+                    <button type="button"  id="cancel-button">Hủy</button>
                 </div>
             </div>
         </form>

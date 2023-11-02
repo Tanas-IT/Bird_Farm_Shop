@@ -332,7 +332,7 @@
                                     <input type="hidden" name="birdID" value="${birdDetail.getIdBird()}" />
                                     <input type="hidden" name="birdQuantity" value="1" />
                                     <input type="hidden" name="selectedItem" value="${birdDetail.getIdBird()}"/>
-                                    <input style="border:none;padding: 15px 28px 15px;" type="submit" name="btAction" value="Mua Ngay" class="primary-btn" />
+                                    <input style="border:none;padding: 15px 28px 15px;" type="submit" name="btAction" value="Mua ngay" class="primary-btn" />
                                 </form>
                             </c:if>
                             <c:if test="${user eq null}">

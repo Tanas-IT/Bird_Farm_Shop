@@ -33,10 +33,25 @@ public class RequiredOrderDTO implements Serializable{
     private String imageURL;
     private double feeBirdNest;
     private String name;
-    
+    private String BirdFatherName;
+    private String BirdMotherName;
+    private double fee;
     public RequiredOrderDTO() {
        
         
+    }
+
+    public RequiredOrderDTO(int idRequiredOrder, Date createdDate, String status, String receiverAddress, String receiverName, String receiverPhoneNumber, String note, String BirdFatherName, String BirdMotherName, double fee) {
+        this.idRequiredOrder = idRequiredOrder;
+        this.createdDate = createdDate;
+        this.status = status;
+        this.receiverAddress = receiverAddress;
+        this.receiverName = receiverName;
+        this.receiverPhoneNumber = receiverPhoneNumber;
+        this.note = note;
+        this.BirdFatherName = BirdFatherName;
+        this.BirdMotherName = BirdMotherName;
+        this.fee = fee;
     }
 
     public RequiredOrderDTO(int idRequiredOrder, String idUser, Date createdDate, String status, double total, Date deliveryDate, String receiverAddress, String receiverName, String receiverPhoneNumber, int paymentID, String reason, String imgTracking, Date trackingDate) {
@@ -366,6 +381,48 @@ public class RequiredOrderDTO implements Serializable{
      */
     public void setName(String name) {
         this.name = name;
+    }
+
+    /**
+     * @return the BirdFatherName
+     */
+    public String getBirdFatherName() {
+        return BirdFatherName;
+    }
+
+    /**
+     * @param BirdFatherName the BirdFatherName to set
+     */
+    public void setBirdFatherName(String BirdFatherName) {
+        this.BirdFatherName = BirdFatherName;
+    }
+
+    /**
+     * @return the BirdMotherName
+     */
+    public String getBirdMotherName() {
+        return BirdMotherName;
+    }
+
+    /**
+     * @param BirdMotherName the BirdMotherName to set
+     */
+    public void setBirdMotherName(String BirdMotherName) {
+        this.BirdMotherName = BirdMotherName;
+    }
+
+    /**
+     * @return the fee
+     */
+    public double getFee() {
+        return fee;
+    }
+
+    /**
+     * @param fee the fee to set
+     */
+    public void setFee(double fee) {
+        this.fee = fee;
     }
     
     
