@@ -15,7 +15,9 @@
         <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
         <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
-
+        <title>Update Product</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <!-- Animation library for notifications   -->
         <link href="css_admin/animate.min.css" rel="stylesheet" />
 
@@ -136,13 +138,15 @@
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
                                                             <label>Giá nhập vào</label>
-                                                            <input type="text" class="form-control" placeholder="Country" name="txtImportPrice" value="${dto.importPrice}">
+                                                            <fmt:formatNumber var="importPrice" value="${dto.importPrice}" pattern="###,### VND"/>
+                                                            <input type="text" class="form-control" placeholder="Country" name="txtImportPrice" value="${importPrice}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 pl-1">
                                                         <div class="form-group">
                                                             <label>Giá bán ra</label>
-                                                            <input type="text" class="form-control" placeholder="ZIP Code" name="txtSalePrice" value="${dto.salePrice}">
+                                                            <fmt:formatNumber var="salePrice" value="${dto.salePrice}" pattern="###,### VND"/>
+                                                            <input type="text" class="form-control" placeholder="ZIP Code" name="txtSalePrice" value="${salePrice}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -159,8 +163,8 @@
 
                                                         <div class="form-group">
                                                             <label>Cập nhật Video</label>
-                                                            <input type="text" class="form-control text-elipis" placeholder="url" 
-                                                                   name="txtvideoURL" value="${dto.videoURL}" >
+                                                            <textarea style="height: 41px" type="text" class="form-control text-elipis" placeholder="url" 
+                                                                      name="txtvideoURL">${dto.videoURL}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
