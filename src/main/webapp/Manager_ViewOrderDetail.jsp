@@ -74,6 +74,24 @@
             .striped-table tr:nth-child(odd) {
                 background-color: #ffffff; /* Màu nền cho dòng lẻ */
             }
+            .acceptOrder, .acceptOrder:hover {
+                margin-right: 28px;
+                background-color: #29cd29;
+                border-radius: 5px;
+                padding: 10px;
+                color: #fff;
+                text-decoration: none;
+            }
+            .rejectOrder, .rejectOrder:hover {
+                    background-color: red;
+                    padding: 10px;
+                    border-radius: 5px;
+                    color: #fff;
+                    text-decoration: none;
+                    position: relative;
+                    top: -23px;
+                    left: 126%
+            }
             #doneDelivery {
                 background-color: #4444e1;
                 color: white;
@@ -285,11 +303,11 @@
                                                         <br>
                                                         <br>
                                                         <div class="col-lg-4" id="status">
-                                                            <a href="DispatchServlet?btAction=AcceptOrder&txtidOrder=${idOrder}">
+                                                            <a class="acceptOrder" href="DispatchServlet?btAction=AcceptOrder&txtidOrder=${idOrder}">
                                                                 Chấp nhận đơn hàng
                                                             </a>
 
-                                                            <a href="DispatchServlet?btAction=RejectOrder&txtidOrder=${idOrder}">
+                                                            <a class="rejectOrder" href="DispatchServlet?btAction=RejectOrder&txtidOrder=${idOrder}">
                                                                 Từ chối đơn hàng
                                                             </a>
 

@@ -206,7 +206,7 @@
                         <p style="display:inline; font-weight: 500;width: 154px">Xin chào,</p><br/>
                         <p style="display:inline; font-weight: 500;width: 154px"> <%=user.getFullName()%></p>
                     </div>
-                    <form action="Login.jsp">
+                    <form action="LogoutServlet">
                         <button style="margin-left: 10px;" type="submit" class="btn-register btn btn-danger">
                             Đăng xuất
                         </button>
