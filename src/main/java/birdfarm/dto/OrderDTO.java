@@ -49,7 +49,7 @@ public class OrderDTO {
         this.birdName = birdName;
     }
 
-    public OrderDTO(int idOrder, Date createdDate, String status, double total, String receiverAddress, String note, String receiverPhoneNumber, String receiverName, String birdName) {
+    public OrderDTO(int idOrder, Date createdDate, String status, double total, String receiverAddress, String note, String receiverPhoneNumber, String receiverName, String birdName,int paymentID) {
         this.idOrder = idOrder;
         this.createdDate = createdDate;
         this.status = status;
@@ -59,6 +59,7 @@ public class OrderDTO {
         this.receiverPhoneNumber = receiverPhoneNumber;
         this.receiverName = receiverName;
         this.birdName = birdName;
+        this.paymentId = paymentID;
     }
 
      

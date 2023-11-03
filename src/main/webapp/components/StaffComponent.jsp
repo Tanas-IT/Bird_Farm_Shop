@@ -56,7 +56,7 @@
                 </li>
             </ul>
             <div style="text-align: center;">
-                <a href="LogoutServlet">
+                <a href="Login.jsp">
                     <i class="pe-7s-back pe-rotate-180" style="font-size: 50px; margin-top: 50px; color: black;"></i>
                 </a>
             </div>

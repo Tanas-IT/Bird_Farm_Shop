@@ -74,7 +74,7 @@ public class ManagerDashBoardServlet extends HttpServlet {
 
         //Tong tien Order thu duoc
         List<Chart> listChartRevenueArea = od.totalMoneyOrder(salerId, start, day);
-        int maxListChartRevenueArea = -1;
+        double maxListChartRevenueArea = -1;
         for (Chart o : listChartRevenueArea) {
             if (o.getValue() > maxListChartRevenueArea) {
                 maxListChartRevenueArea = o.getValue();
@@ -94,7 +94,7 @@ public class ManagerDashBoardServlet extends HttpServlet {
         maxListOrderArea = (maxListOrderArea / 10 + 1) * 10;
 
         List<Chart> totalMoneyRequiredOrder = ot.totalMoneyRequiredOrder(salerId, start, day);
-        int maxListTotalMoneyReuiredOrder = -1;
+        double maxListTotalMoneyReuiredOrder = -1;
         for (Chart o : totalMoneyRequiredOrder) {
             if (o.getValue() > maxListTotalMoneyReuiredOrder) {
                 maxListTotalMoneyReuiredOrder = o.getValue();

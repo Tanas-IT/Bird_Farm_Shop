@@ -184,6 +184,14 @@
                                                 Địa chỉ: ${orderItem.receiverAddress}
                                             </div>
                                             <div class="my-1">Số điện thoại: <i class="fa fa-phone fa-flip-horizontal text-secondary"></i> <b class="text-600">${orderItem.receiverPhoneNumber}</b></div>
+                                             <div class="my-1">
+                                                <c:if test="${orderItem.paymentID == 2}">
+                                                     Hình thức thanh toán: Online Banking qua VNPAY
+                                                </c:if>
+                                                <c:if test="${orderItem.paymentID == 1}">
+                                                     Hình thức thanh toán: Thanh toán trực tiếp
+                                                </c:if>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="text-95 col-sm-6 align-self-start d-sm-flex justify-content-end">
@@ -286,11 +294,6 @@
                                     <div>
                                         <span class="text-secondary-d1 text-105">Cảm ơn vì đã mua hàng</span>
                                         <a href="myOrderPairing.jsp" style="padding: 8px" class="btn btn-info btn-bold px-4 float-right mt-3 mt-lg-0">Quay về trang lịch sử ghép chim</a>
-                                        <c:if test="${checkStatus  eq 'Đã hoàn thành'}">
-                                            <div style="transform: translate(-76px,-170px);">
-                                                <%@include file="components/FeedbackOrderBirdComponent.jsp" %>
-                                            </div>    
-                                        </c:if>
                                     </div>
                                 </div>
                             </div>

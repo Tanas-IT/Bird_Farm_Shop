@@ -149,7 +149,7 @@ public class RequiredOrderDetailDAO {
 "                                        	  tbn.imageURL,\n" +
 "                                        	  tbn.reason,\n" +
 "                                        	  tbn.trackingDate,\n" +
-"                                        	  ro.status\n" +
+"                                        	  tbn.status\n" +
 "                                              ,[birdNestMale]\n" +
 "                                              ,[birdNestFemale],\n" +
 "                                         tbn.name as BirdNestName\n" +
@@ -172,7 +172,7 @@ public class RequiredOrderDetailDAO {
                     String BirdMotherName = rs.getString("BirdMotherName");
                     String imageURL = rs.getString("imageURL");
                     String reason = rs.getString("reason");
-                    Date trackingDate = rs.getDate("trackingDate");
+                    String trackingDate = rs.getString("trackingDate");
                     String status = rs.getString("status");
                     int birdNestMale = rs.getInt("birdNestMale");
                     int birdNestFemale = rs.getInt("birdNestFemale");

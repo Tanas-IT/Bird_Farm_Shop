@@ -39,18 +39,18 @@ public class ManagerTrackingBirdDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "  Select ro.idRequiredOrder, u.fullName, ro.status, ro.receiverName, ro.createdDate,\n" +
-"                         ro.trackingDate, b1.name as birdFather, b2.name as birdMother from  RequiredOrder ro\n" +
-"                        join RequiredOrderDetail rd \n" +
-"                       on ro.idRequiredOrder = rd.idRequiredOrder\n" +
-"                        join BirdProduct b1\n" +
-"                        on rd.idBirdFather=b1.idBird \n" +
-"                        join BirdProduct b2\n" +
-"                        on rd.idBirdMother = b2.idBird\n" +
-"                        join [User] u\n" +
-"                        on ro.idUser = u.idUser\n" +
-"                        Where ro.status NOT IN (N'Đã hoàn thành', N'Đã hủy') \n" +
-"                        ORDER BY trackingDate DEsc";
+                String sql = "Select ro.idRequiredOrder, u.fullName, ro.status, ro.receiverName, ro.createdDate, "
+                        + " ro.trackingDate, b1.name as birdFather, b2.name as birdMother from  RequiredOrder ro\n"
+                        + "join RequiredOrderDetail rd \n"
+                        + "on ro.idRequiredOrder = rd.idRequiredOrder\n"
+                        + "join BirdProduct b1 \n"
+                        + "on rd.idBirdFather=b1.idBird \n"
+                        + "join BirdProduct b2\n"
+                        + "on rd.idBirdMother = b2.idBird\n"
+                        + "join [User] u \n"
+                        + "on ro.idUser = u.idUser\n"
+                        + "Where ro.status NOT IN (N'Đã hoàn thành', N'Đã hủy') \n"
+                        + "ORDER BY trackingDate DEsc";
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
@@ -63,7 +63,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     String createdDate = rs.getString("createdDate");
                     ManagerTrackingBirdDTO dto
                             = new ManagerTrackingBirdDTO(idRequiredOrder,
-                                    status, trackingDate, birdFather, birdMother, fullName,createdDate);
+                                    status, trackingDate, birdFather, birdMother, fullName, createdDate);
 
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
@@ -538,7 +538,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return result;
     }
-
+    
     public boolean successBirdProductTrackingBird(int idRequiredOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;

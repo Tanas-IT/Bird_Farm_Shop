@@ -10,6 +10,9 @@
 <!DOCTYPE html>
 <html>
     <head>
+          <title>View Success Tracking</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <meta charset="utf-8" />
         <!-- Font & img CSS     -->
         <link href="css_admin/font-img.css" rel="stylesheet" />
@@ -55,7 +58,7 @@
     </head>
     <body>
         <div class="wrapper">
-        <c:if test="${sessionScope.user.roleName == 'Manager'}">
+        <c:if test="${sessionScope.user.roleName == 'Quản lý'}">
                 <%@include file="components//ManagerComponent.jsp" %>
         </c:if>
         <c:if test="${sessionScope.user.roleName == 'Staff'}">

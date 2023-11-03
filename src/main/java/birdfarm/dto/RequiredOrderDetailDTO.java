@@ -30,7 +30,7 @@ public class RequiredOrderDetailDTO implements Serializable{
     private String birdMotherName;
     private String reason;
     private String imageURL;
-    private Date trackingDate;
+    private String trackingDate;
     private String birdNestName;
     private String descriptionOfBirdFather;
     private String descriptionOfBirdMother;
@@ -81,7 +81,7 @@ public class RequiredOrderDetailDTO implements Serializable{
         this.birdFatherName = birdFatherName;
         this.birdMotherName = birdMotherName;
     }
-    public RequiredOrderDetailDTO(int idRequireOrder, int birdNestMale, int birdNestFemale, String status, String birdFatherName, String birdMotherName, String reason, String imageURL, Date trackingDate) {
+    public RequiredOrderDetailDTO(int idRequireOrder, int birdNestMale, int birdNestFemale, String status, String birdFatherName, String birdMotherName, String reason, String imageURL, String trackingDate) {
         this.idRequireOrder = idRequireOrder;
         this.birdNestMale = birdNestMale;
         this.birdNestFemale = birdNestFemale;
@@ -92,7 +92,7 @@ public class RequiredOrderDetailDTO implements Serializable{
         this.imageURL = imageURL;
         this.trackingDate = trackingDate;
     }
-     public RequiredOrderDetailDTO(int idRequireOrder, int birdNestMale, int birdNestFemale, String status, String birdFatherName, String birdMotherName, String reason, String imageURL, Date trackingDate, String birdNestName) {
+     public RequiredOrderDetailDTO(int idRequireOrder, int birdNestMale, int birdNestFemale, String status, String birdFatherName, String birdMotherName, String reason, String imageURL, String trackingDate, String birdNestName) {
         this.idRequireOrder = idRequireOrder;
         this.birdNestMale = birdNestMale;
         this.birdNestFemale = birdNestFemale;
@@ -233,11 +233,11 @@ public class RequiredOrderDetailDTO implements Serializable{
         this.imageURL = imageURL;
     }
 
-    public Date getTrackingDate() {
+    public String getTrackingDate() {
         return trackingDate;
     }
 
-    public void setTrackingDate(Date trackingDate) {
+    public void setTrackingDate(String trackingDate) {
         this.trackingDate = trackingDate;
     }
 

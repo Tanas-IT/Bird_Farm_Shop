@@ -63,6 +63,28 @@
             td, th {
                 padding: 10px;
             }
+            
+            
+                        .custom-button {
+        background-color: #4CAF50; /* Màu nền xanh lá cây */
+        border: none; /* Xóa viền mặc định */
+        color: white; /* Màu chữ */
+        padding: 10px 24px; /* Thêm một số padding */
+        text-align: center; /* Căn giữa chữ */
+        text-decoration: none; /* Xóa gạch chân */
+        display: inline-block; /* Hiển thị dưới dạng khối inline */
+        font-size: 16px; /* Cỡ chữ */
+        border-radius: 5px; /* Góc bo tròn */
+        cursor: pointer; /* Thêm con trỏ khi di chuột */
+    }
+
+    .custom-button:hover {
+        background-color: #45a049; /* Màu xanh lá cây đậm khi di chuột qua */
+    }
+
+    .custom-button:active {
+        background-color: #367d39; /* Màu xanh là cây đậm khi được nhấn */
+    }
         </style>
 
     </head>
@@ -131,7 +153,7 @@
                                                         </td>
 
                                                         <td>
-                                                            <button type="submit" value="UpdatePaymentMethod" name="btAction">
+                                                            <button class="custom-button" type="submit" value="UpdatePaymentMethod" name="btAction">
                                                                 Update</button>
                                                         </td>
                                                     </tr>

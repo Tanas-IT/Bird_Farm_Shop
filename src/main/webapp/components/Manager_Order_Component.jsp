@@ -9,8 +9,8 @@
 <!DOCTYPE html>
 <html>
     <div class="col-md-pull-12" style="display: block; " >
-       <c:set var="button" value="${param.btAction}"/>
-        <c:if test="${button == 'ManagerViewOrder' || empty button || button == null}">
+        <c:set var="button" value="${param.btAction}"/>
+        <c:if test="${button == 'ManagerViewOrder'}">
             <a class="navbar-brand manager-active" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewOrder">Đang xử lý</a>
         </c:if>
         <c:if test="${button != 'ManagerViewOrder'}">
@@ -41,6 +41,7 @@
         <c:if test="${button != 'ManagerViewCancelOrder'}">
             <a class="navbar-brand" style="font-size: 20px" href="DispatchServlet?btAction=ManagerViewCancelOrder">Đơn hàng đã hủy</a>
         </c:if>
+        
     </div>
     <br>
     <br>

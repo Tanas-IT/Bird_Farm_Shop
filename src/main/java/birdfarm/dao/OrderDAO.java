@@ -39,7 +39,7 @@ public class OrderDAO {
                                                 + "  Join BirdProduct bp\n"
                                                 + "  On bp.idBird = od.idBirdProduct\n"
                                                 + "  Where o.idUser = ? ";
-    private static final String GET_ALL_ORDER_IN_DETAIL = "Select o.idOrder, bp.name, o.receiverName, o.receiverAddress, o.receiverPhoneNumber,o.Note, o.createdDate,o.status, o.total From [Order] o\n" +
+    private static final String GET_ALL_ORDER_IN_DETAIL = "Select o.idOrder, bp.name, o.receiverName, o.receiverAddress, o.receiverPhoneNumber,o.Note, o.createdDate,o.status, o.total ,o.paymentID From [Order] o\n" +
 "                                                 Join [User] u\n" +
 "                                                 ON o.idUser = u.idUser\n" +
 "                                                 Join OrderDetail od\n" +
@@ -284,10 +284,11 @@ public class OrderDAO {
                     String cAddress = rs.getString("receiverAddress");
                     String cPhone = rs.getString("receiverPhoneNumber");
                     String cNote = rs.getString("Note");
+                    int paymentID = rs.getInt("paymentID");
                     Date oDate = rs.getDate("createdDate");
                     String oStatus = rs.getString("status");
                     double oTotal = rs.getDouble("total");
-                    order = new OrderDTO(oId, oDate, oStatus, oTotal, cAddress,cNote,cPhone,cName,oBirdName);
+                    order = new OrderDTO(oId, oDate, oStatus, oTotal, cAddress,cNote,cPhone,cName,oBirdName,paymentID);
                     list.add(order);
                 }
             }

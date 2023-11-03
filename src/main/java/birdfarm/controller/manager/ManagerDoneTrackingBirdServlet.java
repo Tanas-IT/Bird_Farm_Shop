@@ -70,6 +70,10 @@ public class ManagerDoneTrackingBirdServlet extends HttpServlet {
             b = fee_1;
 
             total = a + b;
+            String button = request.getParameter("btAction");
+            if(button.equals("DoneTrackingBird")) {
+                status = "Đã hoàn thành";
+            }
 
             if (idRequiredOrder1 > 0) {
                 //2. call model 

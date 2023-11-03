@@ -10,14 +10,15 @@
 <!DOCTYPE html>
 <html>
     <head>
+          <title>Update</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <meta charset="utf-8" />
         <!-- Font & img CSS     -->
         <link href="css_admin/font-img.css" rel="stylesheet" />
         <!-- Bootstrap core CSS     -->
         <link href="css_admin/bootstrap.min.css" rel="stylesheet" />
-        <title>Update Product</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
+
         <!-- Animation library for notifications   -->
         <link href="css_admin/animate.min.css" rel="stylesheet" />
 
@@ -89,7 +90,7 @@
                             <div class="col-md-8" >
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4 class="card-title">Edit Profile</h4>
+                                        <h4 class="card-title">Cập nhật hồ sơ</h4>
                                     </div>
                                     <div class="card-body">
                                         <c:set var="result" value="${requestScope.SHOW_UPDATE_PRODUCT}"/>
@@ -138,15 +139,13 @@
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
                                                             <label>Giá nhập vào</label>
-                                                            <fmt:formatNumber var="importPrice" value="${dto.importPrice}" pattern="###,### VND"/>
-                                                            <input type="text" class="form-control" placeholder="Country" name="txtImportPrice" value="${importPrice}">
+                                                            <input type="text" class="form-control" placeholder="Country" name="txtImportPrice" value="${dto.importPrice}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 pl-1">
                                                         <div class="form-group">
                                                             <label>Giá bán ra</label>
-                                                            <fmt:formatNumber var="salePrice" value="${dto.salePrice}" pattern="###,### VND"/>
-                                                            <input type="text" class="form-control" placeholder="ZIP Code" name="txtSalePrice" value="${salePrice}">
+                                                            <input type="text" class="form-control" placeholder="ZIP Code" name="txtSalePrice" value="${dto.salePrice}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -163,7 +162,7 @@
 
                                                         <div class="form-group">
                                                             <label>Cập nhật Video</label>
-                                                            <textarea style="height: 41px" type="text" class="form-control text-elipis" placeholder="url" 
+                                                           <textarea style="height: 41px" type="text" class="form-control text-elipis" placeholder="url" 
                                                                       name="txtvideoURL">${dto.videoURL}</textarea>
                                                         </div>
                                                     </div>

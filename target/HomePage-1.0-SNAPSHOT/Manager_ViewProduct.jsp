@@ -9,6 +9,9 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <html>
+      <title>View All Product</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
     <meta charset="utf-8" />
     <link rel="icon" type="image/png" href="img/favicon.ico">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -50,6 +53,7 @@
 </head>
 
 <body>
+   
 
     <div class="wrapper">
         <%@include file="components//ManagerComponent.jsp" %>
@@ -122,8 +126,9 @@
                                                             ${dto.period}
                                                         </td>
                                                         <td>          
-                                                            <a href="DispatchServlet?btAction=ViewUpdateProduct&txtIdBird=${dto.idBird}">Update</a>
-                                                            <a href="DispatchServlet?btAction=DeleteProduct&txtIdBird=${dto.idBird}">Delete</a>
+                                                            <a href="DispatchServlet?btAction=ViewUpdateProduct&txtIdBird=${dto.idBird}">Cập nhập</a>
+                                                            <a>|</a>
+                                                            <a href="DispatchServlet?btAction=DeleteProduct&txtIdBird=${dto.idBird}">Xóa</a>
                                                         </td>
                                                     </tr>
 

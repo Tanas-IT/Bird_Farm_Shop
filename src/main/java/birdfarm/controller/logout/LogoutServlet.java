@@ -17,7 +17,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  *
- * @author ASUS
+ * @author Minh
  */
 @WebServlet(name = "LogoutServlet", urlPatterns = {"/LogoutServlet"})
 public class LogoutServlet extends HttpServlet {
@@ -34,9 +34,11 @@ public class LogoutServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       String url = "Login.jsp";
+        try (PrintWriter out = response.getWriter()) {
+        String url = "Login.jsp";
         try {
             HttpSession session = request.getSession(false);
+
             if (session == null) {
                 return;
             }
@@ -46,9 +48,11 @@ public class LogoutServlet extends HttpServlet {
             lastCookie.setMaxAge(0);
             response.addCookie(lastCookie);
         }
+
             session.invalidate();
         } finally {
             response.sendRedirect(url);
+        }
         }
     }
 

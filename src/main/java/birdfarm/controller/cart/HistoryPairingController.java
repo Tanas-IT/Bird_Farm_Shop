@@ -11,7 +11,6 @@ import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +56,7 @@ public class HistoryPairingController extends HttpServlet {
             RequiredOrderDetailDAO requiredDAO = new RequiredOrderDetailDAO();
             requiredDAO.getTrackingBird(orderId);
             List<RequiredOrderDetailDTO> requiredOrder_Detail = requiredDAO.getListTracking();
-            Map<Date, List<RequiredOrderDetailDTO>> listFilter = new HashMap<>();
+            Map<String, List<RequiredOrderDetailDTO>> listFilter = new HashMap<>();
             for(RequiredOrderDetailDTO rod : requiredOrder_Detail) {
                 if(!listFilter.containsKey(rod.getTrackingDate())) {
                     listFilter.put(rod.getTrackingDate(),new ArrayList<RequiredOrderDetailDTO>());

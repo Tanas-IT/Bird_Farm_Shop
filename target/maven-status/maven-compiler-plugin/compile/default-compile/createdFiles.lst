@@ -62,7 +62,6 @@ birdfarm\dto\BirdDTO.class
 birdfarm\controller\manager\ManagerViewBillServlet.class
 birdfarm\controller\manager\ManagerViewOrderServlet.class
 birdfarm\dto\CustomerDTO.class
-birdfarm\controller\login\DispatchServlet.class
 birdfarm\dao\OrderBirdDAO.class
 birdfarm\HistoryBillDAO\HistoryServlet.class
 birdfarm\controller\admin\AdminViewPaymentServlet.class
@@ -112,6 +111,7 @@ birdfarm\dto\BirdFeedbackDTO.class
 birdfarm\controller\manager\ManagerViewCustomerCancelOrderServlet.class
 birdfarm\controller\birdproduct\ViewMoreBirdServlet.class
 birdfarm\controller\cart\ViewController.class
+birdfarm\controller\logout\LogoutServlet.class
 birdfarm\dao\UserDAO.class
 birdfarm\payment\Payment_COD_DTO.class
 birdfarm\payment\Payment_VNP_DTO.class
@@ -123,4 +123,5 @@ birdfarm\controller\cart\MyOrderController.class
 birdfarm\dto\ManagerProductDTO.class
 birdfarm\dto\BirdDTO$BirdDTOBuilder.class
 birdfarm\dao\OrderDetailDAO.class
+birdfarm\controller\cart\PairingRequiredOrderDetailController.class
 birdfarm\controller\manager\ManagerAcceptOrderServlet.class

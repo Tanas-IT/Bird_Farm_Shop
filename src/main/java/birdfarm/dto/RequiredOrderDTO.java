@@ -41,7 +41,7 @@ public class RequiredOrderDTO implements Serializable{
         
     }
 
-    public RequiredOrderDTO(int idRequiredOrder, Date createdDate, String status, String receiverAddress, String receiverName, String receiverPhoneNumber, String note, String BirdFatherName, String BirdMotherName, double fee) {
+    public RequiredOrderDTO(int idRequiredOrder, Date createdDate, String status, String receiverAddress, String receiverName, String receiverPhoneNumber, String note, String BirdFatherName, String BirdMotherName, double fee, int paymentID) {
         this.idRequiredOrder = idRequiredOrder;
         this.createdDate = createdDate;
         this.status = status;
@@ -52,6 +52,7 @@ public class RequiredOrderDTO implements Serializable{
         this.BirdFatherName = BirdFatherName;
         this.BirdMotherName = BirdMotherName;
         this.fee = fee;
+        this.paymentID = paymentID;
     }
 
     public RequiredOrderDTO(int idRequiredOrder, String idUser, Date createdDate, String status, double total, Date deliveryDate, String receiverAddress, String receiverName, String receiverPhoneNumber, int paymentID, String reason, String imgTracking, Date trackingDate) {

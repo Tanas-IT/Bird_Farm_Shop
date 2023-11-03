@@ -39,7 +39,7 @@ public class PairingRequiredOrderDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          HttpSession session = request.getSession();
         String idRequiredOrder = (String) request.getAttribute("idRequiredOrder");
-        String orderId_raw = request.getParameter("idRequiredOrder");
+        String orderId_raw = request.getParameter("idRequireOrder");
         int orderId = 0;
         if (idRequiredOrder != null) {
             orderId = Integer.parseInt(idRequiredOrder);

@@ -99,14 +99,34 @@
                             </c:choose>
                         </li>
                          <li class="nav-item">
-                            <a id="about-link" class="nav-link" href="DispatchServlet?btAction=Pairing&userID=${user.idUser}" onclick="handleButtonClick(this)">
-                                <h5 class="background-hover">Ghép cặp</h5>
-                            </a>
+                             <c:choose>
+                                <c:when test="${not empty user}">
+                                    <a id="about-link" class="nav-link" href="DispatchServlet?btAction=Pairing&userID=${user.idUser}" onclick="handleButtonClick(this)">
+                                        <h5 class="background-hover">Ghép cặp</h5>
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a id="about-link" class="nav-link" href="Login.jsp" onclick="handleButtonClick(this)">
+                                        <h5 class="background-hover">Ghép cặp</h5>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
+                           
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="DispatchServlet?btAction=HistoryBill" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
-                                <h5 class="background-hover">Hàng đã mua</h5>
-                            </a>
+                             <c:choose>
+                                <c:when test="${not empty user}">
+                                    <a class="nav-link" href="DispatchServlet?btAction=HistoryBill" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
+                                        <h5 class="background-hover">Hàng đã mua</h5>
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a class="nav-link" href="Login.jsp" role="button" aria-expanded="false" onclick="handleButtonClick(this)">
+                                        <h5 class="background-hover">Hàng đã mua</h5>
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
+                            
                         </li>
                     </ul>
                     <div class=" input-group input-button">
@@ -203,10 +223,16 @@
                     </c:if>
                     <div style="width: 154px">
                         <img style="width: 30px; height: 30px; background-size: cover; border-radius: 50%;" src="${image}">
-                        <p style="display:inline; font-weight: 500;width: 154px">Xin chào,</p><br/>
-                        <p style="display:inline; font-weight: 500;width: 154px"><c:out value="${user.getFullName()}" /></p>
+                        <c:if test="${not empty user.getFullName()}">
+                            <p style="display:inline; font-weight: 500;width: 154px">Xin chào,</p><br/>
+                            <p style="display:inline; font-weight: 500;width: 154px"><c:out value="${user.getFullName()}" /></p>
+                        </c:if>
+                        <c:if test="${empty user.getFullName()}">
+                            <p style="display:inline; font-weight: 500;width: 154px">Xin chào, Khách</p><br/>
+                            <p style="display:inline; font-weight: 500;width: 154px"><c:out value="${user.getFullName()}" /></p>
+                        </c:if>
                     </div>
-                    <form action="Login.jsp">
+                    <form action="LogoutServlet">
                         <button style="margin-left: 10px;" type="submit" class="btn-register btn btn-danger">
                             Đăng xuất
                         </button>
@@ -231,10 +257,10 @@
                         <h3 class="text-center">Hãy ghé thăm chúng tôi ngay hôm nay:</h3>
                         <p class="text-center">Sẵn sàng khám phá thế giới loài chim cùng chúng tôi? Nhấp vào nút "Tìm hiểu thêm" để lên kế hoạch cho chuyến thăm của bạn và bay vào thế giới đặc biệt của các loài chim tại Bird Farm Shop của chúng tôi.</p>
                         <c:if test="${user != null}">
-                            <a href="DispatchServlet?btAction=Home&amp;txtUsername=${user.username}&amp;txtPassword=${user.password}" style="position: relative;left: 50%;transform: translateX(-50%);color: #fff; background-color: #7DB32B;" class="btn btn-light px-5 rounded-pill shadow-sm">Tìm hiểu thêm</a>
+                            <a href="DispatchServlet?btAction=Login&amp;txtUsername=${user.username}&amp;txtPassword=${user.password}" style="position: relative;left: 50%;transform: translateX(-50%);color: #fff; background-color: #7DB32B;" class="btn btn-light px-5 rounded-pill shadow-sm">Tìm hiểu thêm</a>
                         </c:if>
                         <c:if test="${user == null}">
-                            <a href="guest.jsp" style="position: relative;left: 50%;transform: translateX(-50%);color: #fff; background-color: #7DB32B;" class="btn btn-light px-5 rounded-pill shadow-sm">Tìm hiểu thêm</a>
+                            <a href="BirdProductServlet" style="position: relative;left: 50%;transform: translateX(-50%);color: #fff; background-color: #7DB32B;" class="btn btn-light px-5 rounded-pill shadow-sm">Tìm hiểu thêm</a>
                         </c:if>
                     </div>
                 </div>

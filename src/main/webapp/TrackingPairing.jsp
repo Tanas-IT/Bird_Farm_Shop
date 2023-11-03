@@ -175,7 +175,7 @@
                     </div>
                 </div>
                  <c:set var="previousDate" value="" />
-                 <c:set var="checkStatus" value="" />
+                 <% String checkStatus = ""; %>
                  <c:set var="birdNestName" value="" />
                  <c:set var="idRequireOrder" value="" />
                 <div class="row">
@@ -223,7 +223,9 @@
                                                             </div>
                                                             <div style="margin-left: 20px;" class="timeline-text">
                                                                 <h6>
-                                                                    <c:set var="checkStatus" value="${item.status}" />
+                                                                    <c:if test="${item.status == 'Đã hoàn thành'}">
+                                                                        <% checkStatus = "Đã hoàn thành"; %>
+                                                                    </c:if>
                                                                     ${item.status}
                                                                 </h6>
                                                                 <p>${item.reason}</p>
@@ -265,9 +267,9 @@
                         </div>
                     </div>
                 </div>
-                <c:if test="${checkStatus  eq 'Đã hoàn thành'}">
-                        <%@include file="components/FeedbackComponent.jsp" %>
-               </c:if>
+               <% if(checkStatus == "Đã hoàn thành") { %>
+                    <%@include file="components/FeedbackComponent.jsp" %>
+                <%} %>
             </div>
         </section>
         <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>

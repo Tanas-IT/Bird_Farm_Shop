@@ -74,7 +74,7 @@
             #sortTable_next {
                 margin-left: 0;
             }
-#sortTable_paginate span {
+            #sortTable_paginate span {
                 background-color: #fff;
                 padding: 10px 0;
             }
@@ -148,7 +148,7 @@
                
             }
             .reproductive {
-                background-color: pink;
+                background-color: #940B92;
                 display: block;
                 text-align: center;
                 width: 80%;
@@ -168,7 +168,7 @@
                 font-size: 17px;
                 font-weight: 500;
                 color: #fff;
-}
+            }
             .myOrderPairing:hover {
                 color: red;
                 text-decoration: none;
@@ -232,7 +232,7 @@
                                 <fmt:formatNumber var="formatTotalPrice" value="${c.fee}"  />
                                 ${formatTotalPrice}  VNĐ
                             </td>
-<td> <c:choose>
+                            <td> <c:choose>
                                     <c:when test="${c.status eq 'Đang xử lý'}">
                                         <span class="processing" style="background-color: yellow;">${c.status}</span>
                                     </c:when>
@@ -270,7 +270,7 @@
                     $('#sortTable').DataTable({
                         "language": {
                             "decimal": "",
-                            "emptyTable": "Không có đơn hàng nào",
+                            "emptyTable": "No data available in table",
                             "info": " _START_ đến _END_ của _TOTAL_ bản ghi",
                             "infoEmpty": "HIển thị 0 to 0 of 0 bản ghi",
                             "infoFiltered": "(kết quả từ _MAX_ tổng số bản ghi)",
@@ -339,7 +339,7 @@
             </script>
 
             <script>
-// Get all the filter buttons
+                // Get all the filter buttons
                 const filterButtons = document.querySelectorAll('.sort');
 
                 // Add click event listener to each filter button

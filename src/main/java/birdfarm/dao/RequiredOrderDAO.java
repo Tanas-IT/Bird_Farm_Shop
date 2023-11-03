@@ -219,7 +219,7 @@ public class RequiredOrderDAO {
         try {
             conn = DBConnection.makeConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement("Select ro.idRequiredOrder, bp1.name as BirdFatherName, bp2.name as BirdMotherName, ro.receiverName, ro.receiverAddress, ro.receiverPhoneNumber,ro.Note, ro.createdDate,ro.status, rod.fee From [RequiredOrder] ro\n" +
+                ptm = conn.prepareStatement("Select ro.idRequiredOrder, bp1.name as BirdFatherName, bp2.name as BirdMotherName, ro.receiverName, ro.receiverAddress, ro.receiverPhoneNumber,ro.Note, ro.createdDate,ro.status, rod.fee ,ro.paymentID From [RequiredOrder] ro\n" +
 "                                                 Join [User] u\n" +
 "                                                 ON ro.idUser = u.idUser\n" +
 "                                                 Join RequiredOrderDetail rod\n" +
@@ -238,11 +238,12 @@ public class RequiredOrderDAO {
                     String cName = rs.getString("receiverName");
                     String cAddress = rs.getString("receiverAddress");
                     String cPhone = rs.getString("receiverPhoneNumber");
+                    int paymentID = rs.getInt("paymentID");
                     String cNote = rs.getString("Note");
                     Date roDate = rs.getDate("createdDate");
                     String roStatus = rs.getString("status");
                     double oFee = rs.getDouble("fee");
-                    requiredOrder = new RequiredOrderDTO(roId, roDate, roStatus, cAddress, cName, cPhone, cNote, roBirdFatherName, roBirdMotherName, oFee);
+                    requiredOrder = new RequiredOrderDTO(roId, roDate, roStatus, cAddress, cName, cPhone, cNote, roBirdFatherName, roBirdMotherName, oFee,paymentID);
                     list.add(requiredOrder);
                 }
             }
