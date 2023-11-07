@@ -85,6 +85,26 @@
     .custom-button:active {
         background-color: #367d39; /* Màu xanh là cây đậm khi được nhấn */
     }
+    .signup-link a {
+        display: block;
+        height: 38px;
+        background-color: #4CAF50;;
+        color: #fff;
+        padding: 5px 0px 10px 6px;
+        width: 157px;
+        margin-left: 10px;
+        border-radius: 10px;
+        text-decoration: none;
+    }
+    .delete-btn, .delete-btn:hover{
+        width: 72px;
+        display: block;
+        background-color: red;
+        color: #fff;
+        padding: 10px;
+        border-radius: 8px;
+        text-decoration: none
+    }
         </style>
 
     </head>
@@ -115,7 +135,9 @@
                     </div>
                 </nav>
 
-
+                <div>
+                     <div class="signup-link"><a href="Register_Admin.jsp">Tạo tài khoản mới</a></div>
+                </div>
                 <div class="content">
                     <div class="container-fluid">
                         <div class="col-md-pull-12">
@@ -138,13 +160,14 @@
                                                     <th>Vai trò</th>
                                                     <th>Mật khẩu</th>
                                                     <th>Đặt lại</th>
+                                                    <th>Xóa</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 <c:forEach var="dto" items="${result}" varStatus="counter">
                                                 <form action="DispatchServlet">
                                                     <tr>
-                                                        <td>${dto.idUser}</td>
+                                                        <td name ="idUser" value ="${dto.idUser}">${dto.idUser}</td>
                                                         <td>
                                                             ${dto.userName}
                                                             <input type="hidden" 
@@ -165,6 +188,9 @@
                                                         <td>
                                                             <button class="custom-button"  type="submit" value="Update" name="btAction">
                                                                 Update</button>
+                                                        </td>
+                                                         <td>
+                                                            <a class="delete-btn" href="DispatchServlet?btAction=DeleteAccount&txtUserID=${dto.idUser}">Delete</a>
                                                         </td>
                                                     </tr>
                                                 </form>

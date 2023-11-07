@@ -35,18 +35,14 @@ public class RemoveItemFromViewCart extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = VIEW_CART;
         String idUser = request.getParameter("userID");
-        String[] birdID = request.getParameterValues("idBird");
-        String birdQuantity = request.getParameter("birdQuantity");
-        String[] selectedItem = request.getParameterValues("selectedIndexs");
-        int quantityOfCart = Integer.parseInt(birdQuantity);
+        String birdID = request.getParameter("birdIDRemove");
         HttpSession session = request.getSession();
         try  {
             Cart cart = (Cart) session.getAttribute("CART");
+             int quantityOfCart = cart.getCart().size();
             if(cart != null && !cart.getCart().isEmpty()) {
-            for(String selected : selectedItem) {
-                 cart.getCart().remove(birdID[Integer.parseInt(selected)]);
+                 cart.getCart().remove(birdID);
                   quantityOfCart--;
-            }
             if(cart == null || cart.getCart().isEmpty()) {
                 session.setAttribute("total", 0);
             } else {

@@ -92,7 +92,7 @@
                     <input type="hidden" name="idBird" value="${idBird}"/>
                     <input type="hidden" name="idOrder" value="${idOrder}"/>
                     <button type="submit" name="btAction" value="SendOrderFeedback" id="submit-button">Gửi</button>
-                    <button id="cancel-button">Hủy</button>
+                    <button type="button" id="cancel-button">Hủy</button>
                 </div>
             </div>
         </form>

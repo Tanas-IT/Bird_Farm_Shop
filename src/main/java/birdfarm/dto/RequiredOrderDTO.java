@@ -36,12 +36,14 @@ public class RequiredOrderDTO implements Serializable{
     private String BirdFatherName;
     private String BirdMotherName;
     private double fee;
+    private int birdNestMale;
+    private int birdNestFemale;
     public RequiredOrderDTO() {
        
         
     }
 
-    public RequiredOrderDTO(int idRequiredOrder, Date createdDate, String status, String receiverAddress, String receiverName, String receiverPhoneNumber, String note, String BirdFatherName, String BirdMotherName, double fee, int paymentID) {
+    public RequiredOrderDTO(int idRequiredOrder, Date createdDate, String status, String receiverAddress, String receiverName, String receiverPhoneNumber, String note, String BirdFatherName, String BirdMotherName, double fee, int paymentID,int birdNestMale, int birdNestFemale) {
         this.idRequiredOrder = idRequiredOrder;
         this.createdDate = createdDate;
         this.status = status;
@@ -53,6 +55,8 @@ public class RequiredOrderDTO implements Serializable{
         this.BirdMotherName = BirdMotherName;
         this.fee = fee;
         this.paymentID = paymentID;
+        this.birdNestMale = birdNestMale;
+        this.birdNestFemale = birdNestFemale;
     }
 
     public RequiredOrderDTO(int idRequiredOrder, String idUser, Date createdDate, String status, double total, Date deliveryDate, String receiverAddress, String receiverName, String receiverPhoneNumber, int paymentID, String reason, String imgTracking, Date trackingDate) {
@@ -69,6 +73,7 @@ public class RequiredOrderDTO implements Serializable{
         this.reason = reason;
         this.imgTracking = imgTracking;
         this.trackingDate = trackingDate;
+        
     }
         
     /**
@@ -424,6 +429,34 @@ public class RequiredOrderDTO implements Serializable{
      */
     public void setFee(double fee) {
         this.fee = fee;
+    }
+
+    /**
+     * @return the birdNestMale
+     */
+    public int getBirdNestMale() {
+        return birdNestMale;
+    }
+
+    /**
+     * @param birdNestMale the birdNestMale to set
+     */
+    public void setBirdNestMale(int birdNestMale) {
+        this.birdNestMale = birdNestMale;
+    }
+
+    /**
+     * @return the birdNestFemale
+     */
+    public int getBirdNestFemale() {
+        return birdNestFemale;
+    }
+
+    /**
+     * @param birdNestFemale the birdNestFemale to set
+     */
+    public void setBirdNestFemale(int birdNestFemale) {
+        this.birdNestFemale = birdNestFemale;
     }
     
     

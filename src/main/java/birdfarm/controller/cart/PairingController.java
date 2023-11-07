@@ -8,6 +8,7 @@ package birdfarm.controller.birdproduct;
 import birdfarm.dao.BirdDAO;
 import birdfarm.dto.BirdDTO;
 import birdfarm.dto.RequiredOrderDetailDTO;
+import birdfarm.shopping.RequiredCart;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -34,13 +35,15 @@ public class PairingController extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             String action = (String)request.getAttribute("action");
-            session.removeAttribute("RCART");
-            session.removeAttribute("RquantityOfCart");
-            session.removeAttribute("total");
-//            if(action.equals("Đổi chim giống khác")) {
-//               
-//                
-//            }
+            
+            if(!action.equals("Đổi chim giống khác")) {
+               session.removeAttribute("RCART");
+                session.setAttribute("RquantityOfCart",0);
+                session.removeAttribute("Rtotal");
+            } else {
+                RequiredCart quantityCart = (RequiredCart) session.getAttribute("RCART");
+                session.setAttribute("RquantityOfCart",quantityCart.getRcart().size());
+            }
             String userID = request.getParameter("userID");
             BirdDAO dao = new BirdDAO();
             List<BirdDTO> fList = dao.getListFemale();

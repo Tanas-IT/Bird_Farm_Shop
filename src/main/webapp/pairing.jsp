@@ -123,11 +123,10 @@
                         </form>
                     </div>
                     <form action="DispatchServlet">
-                        <input type="hidden" name="userID" value="<%= user.getIdUser().trim()%>" />
                         <button class="cart btn" type="submit" name="btAction" value="Xem giỏ hàng">
                             <i class="fa-solid fa-cart-shopping"></i>
                             <!--No cart:  header_cart-list--no-cart-->
-                                    <% if(cart == null) {%>
+                                    <% if(cart == null || cart.getRcart().isEmpty()) {%>
                                     <div class="header_cart">
                                         <div class="header__cart-list header_cart-list--no-cart">
                                         <img class="header__cart-no-cart-img" src="img/no_cart.png"/>
@@ -169,6 +168,9 @@
                                                 <div class="header__cart-item-body">
                                                     <span class="header__cart-item-description">
                                                         Giới tính: <%= entry.getValue().getGender() %>
+                                                    </span>
+                                                    <span class="header__cart-item-remove">
+                                                        <a style="color:red" class="text-decoration-none" data-idRemove="<%= entry.getKey() %>" href="DispatchServlet?btAction=RemoveItemPairing&idRemove=<%= entry.getKey() %>&userID=<%= user.getIdUser().trim()%>">Xóa</a>
                                                     </span>
                                                 </div>
                                             </div>
@@ -411,7 +413,7 @@
                   setTimeout(function () {
                       notification.style.display = 'none'; // Ẩn thông báo sau 3 giây (3000 milliseconds)
                   }, 3500);
-              } 
+              }
         </script>
     </body>
 </html>

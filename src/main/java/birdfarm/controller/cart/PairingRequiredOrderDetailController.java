@@ -39,7 +39,7 @@ public class PairingRequiredOrderDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
          HttpSession session = request.getSession();
         String idRequiredOrder = (String) request.getAttribute("idRequiredOrder");
-        String orderId_raw = request.getParameter("idRequireOrder");
+        String orderId_raw = request.getParameter("idRequiredOrder");
         int orderId = 0;
         if (idRequiredOrder != null) {
             orderId = Integer.parseInt(idRequiredOrder);
@@ -54,7 +54,7 @@ public class PairingRequiredOrderDetailController extends HttpServlet {
         List<RequiredOrderDTO> listMyRequiredOrderinDetail = requiredOrderDAO.getAllRequiredOrderInDetail(orderId);
         request.setAttribute("listMyRequiredOrderinDetail", listMyRequiredOrderinDetail);
 
-        session.setAttribute("historyUrl", "order-detail?idOrder=" + orderId_raw);
+        session.setAttribute("idRequireOrder",orderId);
         request.getRequestDispatcher("pairingOrderDetail.jsp").forward(request, response);
     }
 

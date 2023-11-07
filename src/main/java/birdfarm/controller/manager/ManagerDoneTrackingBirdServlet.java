@@ -64,10 +64,10 @@ public class ManagerDoneTrackingBirdServlet extends HttpServlet {
             Double priceBirdDad_1 = Double.parseDouble(priceBirdDad);
             Double priceBirdMom_1 = Double.parseDouble(priceBirdMom);
             //Tinh Total cua don hang
-            Double a, b, c, total;
+            Double a, b, total;
 
-            a = (priceBirdDad_1 + priceBirdMom_1) / 2;
-            b = fee_1;
+            a = fee_1;
+            b = (birdNestFemale1*priceBirdMom_1) +(birdNestMale1*priceBirdDad_1);
 
             total = a + b;
             String button = request.getParameter("btAction");

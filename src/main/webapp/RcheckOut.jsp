@@ -56,7 +56,7 @@
                             <form action="DispatchServlet">
                                 <input type="hidden" name="txtUsername" value="${user.username}"/>
                                 <input type="hidden" name="txtPassword" value="${user.password}"/>
-                                <input type="hidden" name="total" value="${sessionScope.total}"/>
+                                <input type="hidden" name="total" value="${sessionScope.Rtotal}"/>
                                 <input style="background-color: #f3e4e4;border: none;font-weight: 600;font-size: 18px;" id="home-link" type="submit" class="nav-link nav-active" aria-current="page" value="Trang chủ"/>
                             </form>
                         </c:if>
@@ -208,12 +208,12 @@
                         <label for="payType" style="font-weight: bold; padding-bottom: 10px;">Thanh toán Online qua VNPAY (NCB)</label><br>
                         <!-- Total -->
                         <h2 style="text-align: center; padding: 20px 0px; color: red;">
-                            <fmt:formatNumber var="formatTotalPrice" value="${sessionScope.total}"  />
+                            <fmt:formatNumber var="formatTotalPrice" value="${sessionScope.Rtotal}"  />
                             Tổng tiền:    ${formatTotalPrice}  VNĐ
                         </h2>
                         <!-- Input -->
-                        <input type="hidden" name="amount" value="${sessionScope.total}"/>
-                        <input type="hidden" name="total" value="${sessionScope.total}"/>
+                        <input type="hidden" name="amount" value="${sessionScope.Rtotal}"/>
+                        <input type="hidden" name="total" value="${sessionScope.Rtotal}"/>
                         <div style="display: flex; justify-content: center">
                             <div id="html_element"></div>
                         </div>

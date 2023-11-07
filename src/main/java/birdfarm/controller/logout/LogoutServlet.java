@@ -50,6 +50,7 @@ public class LogoutServlet extends HttpServlet {
         }
 
             session.invalidate();
+            session.setMaxInactiveInterval(0);
         } finally {
             response.sendRedirect(url);
         }

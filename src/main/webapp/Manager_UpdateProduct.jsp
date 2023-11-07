@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-          <title>Update</title>
+        <title>Update</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="img/bird_logo.png" />
         <meta charset="utf-8" />
@@ -48,6 +48,7 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+
         </style>
 
     </head>
@@ -95,24 +96,71 @@
                                     <div class="card-body">
                                         <c:set var="result" value="${requestScope.SHOW_UPDATE_PRODUCT}"/>
                                         <c:forEach items="${result}" var="dto" varStatus="counter">
-                                            <form action="DispatchServlet">                                         
+                                            <form action="DispatchServlet" >                                         
                                                 <div class="row">
-                                                    <div class="col-md-4 pr-1">
+                                                    <div class="col-md-3 pr-1">
                                                         <div class="form-group">
-                                                            <label>ID</label>
+                                                            <label class="highlight" >ID</label>
                                                             <input type="text" class="form-control" disabled="" placeholder="Company" value="${dto.idBird}">
                                                             <input type="hidden" name="txtIdBird" value="${dto.idBird}" />
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-8 px-1">
+                                                    <div class="col-md-2 pr-1" >
+                                                        <div class="form-group">
+                                                            <label>Phân loại</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Company" value="${dto.type}">
+                                                            <input type="hidden" name="txtIdBird" value="${dto.type}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-4 px-1">
                                                         <div class="form-group">
                                                             <label>Tên chim</label>
                                                             <input type="text" class="form-control" disabled="" placeholder="Username" value="${dto.name}">
                                                         </div>
-                                                    </div>       
+                                                    </div>
+                                                    <div class="col-md-3 px-1">
+                                                        <div class="form-group">
+                                                            <label>Giống loài</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Username" value="${dto.birdTypeName}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <c:if test="${dto.type eq '0' || 
+                                                              dto.type eq '1' || 
+                                                              dto.type eq '2' || 
+                                                              dto.type eq '3' }">
+                                                      <style>
+                                                          #type {
+                                                              display: none;
+                                                          }
+                                                      </style>
+                                                </c:if>
+                                                <c:if test="${dto.birdFather eq null || dto.birdMother eq null}">
+                                                    <style>
+                                                        #parentBird {
+                                                            display: none;
+                                                        }
+                                                    </style>
+                                                </c:if>
+                                                <div class="row" id="parentBird">
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label class="highlight" >Chim bố</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Chim bố" value="${dto.birdFather}">
+                                                            <input type="hidden" name="txtIdBird" value="${dto.birdFather}" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Chim mẹ</label>
+                                                            <input type="text" class="form-control" disabled="" placeholder="Chim mẹ" value="${dto.birdMother}">
+                                                            <input type="hidden" name="txtIdBird" value="${dto.birdMother}" />
+                                                        </div>
+                                                    </div>
+
                                                 </div>
                                                 <div class="row">
-                                                    <div class="col-md-6 pr-1">
+                                                    <div class="col-md-3 pr-1">
                                                         <div class="form-group">
                                                             <label>Trạng thái mặt hàng   <input type="checkbox" name="txtStatus" value="ON" 
                                                                                                 <c:if test="${dto.status}">
@@ -122,10 +170,24 @@
                                                             <input type="text" class="form-control" disabled="" placeholder="Company" value="${dto.status}">
                                                         </div>
                                                     </div>
-                                                    <div class="col-md-6 pl-1">
+                                                    <div class="col-md-3 pl-1">
                                                         <div class="form-group">
-                                                            <label>Giai đoạn chim</label>
-                                                            <input type="text" class="form-control"  placeholder="Last Name" name="txtPeriod" value="${dto.period}">
+                                                            <label style="">Giai đoạn chim</label>
+                                                            <input type="text" disabled="" class="form-control"  placeholder="Last Name"  value="${dto.period}">
+                                                            <input type="hidden" name="txtPeriod" value="${dto.period}" />
+
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Tuổi</label>
+                                                            <input type="text" disabled="" class="form-control"  placeholder="Last Name" name="txtPeriod" value="${dto.age}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-3 pl-1">
+                                                        <div class="form-group">
+                                                            <label>Giới tính</label>
+                                                            <input type="text" disabled="" class="form-control"  placeholder="Last Name" name="txtPeriod" value="${dto.gender}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -133,19 +195,33 @@
                                                     <div class="col-md-4 pr-1">
                                                         <div class="form-group">
                                                             <label>Số lượng</label>
-                                                            <input type="text" class="form-control" placeholder="City" name="txtQuantity" value="${dto.quantity}">
+                                                            <input type="number" class="form-control" placeholder="quantity" name="txtQuantity" value="${dto.quantity}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 px-1">
                                                         <div class="form-group">
                                                             <label>Giá nhập vào</label>
-                                                            <input type="text" class="form-control" placeholder="Country" name="txtImportPrice" value="${dto.importPrice}">
+                                                            <input type="text" class="form-control" name="txtImportPrice" value="${dto.importPrice}">
                                                         </div>
                                                     </div>
                                                     <div class="col-md-4 pl-1">
                                                         <div class="form-group">
                                                             <label>Giá bán ra</label>
-                                                            <input type="text" class="form-control" placeholder="ZIP Code" name="txtSalePrice" value="${dto.salePrice}">
+                                                            <input type="text" class="form-control" name="txtSalePrice" value="${dto.salePrice}">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row" id="type">
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label >Giá sinh ra chim con Đực</label>
+                                                            <input type="text" class="form-control"  name="txtBirdMaleBorn" value="${dto.feeBirdNestMale}">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6 pr-1">
+                                                        <div class="form-group">
+                                                            <label>Giá sinh ra chim con Cái</label>
+                                                            <input type="text" class="form-control" name="txtBirdFemaleBorn" value="${dto.feeBirdNestFemale}">
                                                         </div>
                                                     </div>
                                                 </div>
@@ -162,18 +238,35 @@
 
                                                         <div class="form-group">
                                                             <label>Cập nhật Video</label>
-                                                           <textarea style="height: 41px" type="text" class="form-control text-elipis" placeholder="url" 
+                                                            <textarea style="height: 41px" type="text" class="form-control text-elipis" placeholder="url" 
                                                                       name="txtvideoURL">${dto.videoURL}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
-
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Thành tích</label>
+                                                            <textarea rows="3" cols="30" class="form-control" placeholder="Overview" 
+                                                                      name="txtAchievement" value="${dto.achievement}">${dto.achievement}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
                                                             <label>Thông tin của Chim</label>
                                                             <textarea rows="15" cols="80" class="form-control" placeholder="Overview" 
                                                                       name="txtOverview" value="${dto.overview}">${dto.overview}</textarea>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="form-group">
+                                                            <label>Thông tin ngắn gọn</label>
+                                                            <textarea rows="7" cols="30" class="form-control" placeholder="Overview" 
+                                                                      name="txtShortDescription" value="${dto.shortDescription}">${dto.shortDescription}</textarea>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -190,32 +283,32 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="card card-user">
-                                        
+
                                         <div class="card card-image1">
-                                            
-                                            
+
+
                                             <img class="text-elipis" src="${dto.imageURL}" style="width: 200px; height: 200px">
 
                                         </div>
-                                   
 
 
-                                    <div class="card-body">
-                                        <div class="author">
 
-                                            <br>
-                                            <br>
-                                            <br><br>
+                                        <div class="card-body">
+                                            <div class="author">
+
+                                                <br>
+                                                <br>
+                                                <br><br>
 
 
-                                            <p class="description">
+                                                <p class="description">
 
-                                            </p>
+                                                </p>
 
-                                            <div class="card card-image1" >
-                                                      ${dto.videoURL}
-                                            </div>
-  </c:forEach>   
+                                                <div class="card card-image1" >
+                                                    ${dto.videoURL}
+                                                </div>
+                                            </c:forEach>   
                                         </div>
                                         <p class="description text-center">
 

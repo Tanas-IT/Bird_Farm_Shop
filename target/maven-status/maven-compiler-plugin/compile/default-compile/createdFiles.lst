@@ -31,6 +31,7 @@ birdfarm\dto\BirdTypeDTO.class
 birdfarm\dto\Category.class
 birdfarm\controller\feedback\FeedbackOrderServlet.class
 birdfarm\controller\cart\RemoveController.class
+birdfarm\dto\ManagerCreateErrorDTO.class
 birdfarm\controller\cart\AddRequiredController.class
 birdfarm\controller\manager\ManagerViewSuccessTrackingBirdServlet.class
 birdfarm\dto\RequiredOrderDetailDTO.class
@@ -51,6 +52,7 @@ CheckoutRequiredController.class
 birdfarm\controller\admin\AdminUpdatePayment.class
 birdfarm\shopping\CheckOutProduct.class
 birdfarm\controller\manager\ManagerViewSuccessTrackingDetailServlet.class
+birdfarm\controller\admin\AdminDeleteAccountServlet.class
 birdfarm\dto\DateDTO$DateDTOBuilder.class
 birdfarm\controller\manager\ManagerCancelTrackingBirdServlet.class
 birdfarm\controller\cart\RequiredPaymentResultController.class
@@ -66,6 +68,7 @@ birdfarm\dao\OrderBirdDAO.class
 birdfarm\HistoryBillDAO\HistoryServlet.class
 birdfarm\controller\admin\AdminViewPaymentServlet.class
 birdfarm\controller\manager\UploadServlet.class
+birdfarm\controller\cart\RemoveItemPairingFromCart.class
 birdfarm\controller\manager\ManagerAcceptDeliveryOrderServlet.class
 birdfarm\controller\googlelogin\GoogleUtils.class
 birdfarm\controller\birdcomparator\BirdPriceAscendingComparator.class
@@ -75,6 +78,8 @@ birdfarm\controller\cart\RemoveItemFromViewCart.class
 birdfarm\dto\GoogleDTO.class
 birdfarm\controller\cart\ViewRequiredController.class
 birdfarm\dto\DateDTO.class
+birdfarm\controller\manager\ManagerViewCreateProductServlet.class
+birdfarm\controller\cart\RemoveItemFromViewRequiredCart.class
 birdfarm\dao\ManagerProductDAO.class
 com\vnpay\common\ConfigForPairing.class
 birdfarm\dao\ManagerTrackingBirdDAO.class
@@ -105,6 +110,7 @@ birdfarm\controller\googlelogin\Constants.class
 birdfarm\controller\googlelogin\LoginGoogleHandler.class
 birdfarm\util\DBConnection.class
 birdfarm\controller\birdproduct\ViewAllBirdServlet.class
+birdfarm\controller\login\CreateAccountAdminServlet.class
 birdfarm\controller\login\CreateAccountServlet.class
 birdfarm\controller\cart\RemoveItemFromCart.class
 birdfarm\dto\BirdFeedbackDTO.class
@@ -116,6 +122,7 @@ birdfarm\dao\UserDAO.class
 birdfarm\payment\Payment_COD_DTO.class
 birdfarm\payment\Payment_VNP_DTO.class
 birdfarm\dao\DateDAO.class
+birdfarm\controller\manager\ManagerCreateProductServlet.class
 birdfarm\dto\ManagerViewFeedbackDTO.class
 birdfarm\controller\cart\AddCheckOutController.class
 birdfarm\controller\manager\ManagerShowUpdateProductServlet.class

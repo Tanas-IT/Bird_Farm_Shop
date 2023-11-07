@@ -219,12 +219,12 @@ public class RequiredOrderDAO {
         try {
             conn = DBConnection.makeConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement("Select ro.idRequiredOrder, bp1.name as BirdFatherName, bp2.name as BirdMotherName, ro.receiverName, ro.receiverAddress, ro.receiverPhoneNumber,ro.Note, ro.createdDate,ro.status, rod.fee ,ro.paymentID From [RequiredOrder] ro\n" +
+                ptm = conn.prepareStatement("Select ro.idRequiredOrder, bp1.name as BirdFatherName, bp2.name as BirdMotherName, ro.receiverName, ro.receiverAddress, ro.receiverPhoneNumber,ro.Note, ro.createdDate,ro.status, rod.fee ,ro.paymentID, rod.birdNestMale, rod.birdNestFemale From [RequiredOrder] ro\n" +
 "                                                 Join [User] u\n" +
 "                                                 ON ro.idUser = u.idUser\n" +
 "                                                 Join RequiredOrderDetail rod\n" +
 "                                                 ON ro.idRequiredOrder = rod.idRequiredOrder\n" +
-"                                                  Join BirdProduct bp1\n" +
+"                                                 Join BirdProduct bp1\n" +
 "                                                On bp1.idBird = rod.idBirdFather\n" +
 "												Join BirdProduct bp2\n" +
 "                                                On bp2.idBird = rod.idBirdMother\n" +
@@ -243,7 +243,9 @@ public class RequiredOrderDAO {
                     Date roDate = rs.getDate("createdDate");
                     String roStatus = rs.getString("status");
                     double oFee = rs.getDouble("fee");
-                    requiredOrder = new RequiredOrderDTO(roId, roDate, roStatus, cAddress, cName, cPhone, cNote, roBirdFatherName, roBirdMotherName, oFee,paymentID);
+                    int birdNestMale = rs.getInt("birdNestMale");
+                    int birdNestFemale = rs.getInt("birdNestFemale");
+                    requiredOrder = new RequiredOrderDTO(roId, roDate, roStatus, cAddress, cName, cPhone, cNote, roBirdFatherName, roBirdMotherName, oFee,paymentID,birdNestMale, birdNestFemale);
                     list.add(requiredOrder);
                 }
             }

@@ -147,135 +147,227 @@
                 font-size: 20px;
                 font-weight: bold;
                 background-color: transparent;
-               
+
             }
             .myOrderPairing:hover {
                 color: red;
                 text-decoration: none;
             }
-        </style>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            .wrapper {
+                margin: auto;
+            }
+            .tab-wrapper {
+                text-align: center;
+                display: block;
+                margin: auto;
+            }
+                .tabs {
+                    margin: 0;
+                    padding: 0;
+                    display: flex;
+                    justify-content: center;
+                    margin-bottom: 65px;
+                }
+                    .tab-link {
+                        margin: 0 1%;
+                        list-style: none;
+                        padding: 10px 40px;
+                        color: #aaa;
+                        cursor: pointer;
+                        font-weight: 700;
+                        transition: all ease 0.5s;
+                        border-bottom: solid 3px rgba(255,255,255,0.0);
+                        letter-spacing: 1px;
+                    }
+                    .tab-link a {
+                        color: #aaa;
+                        cursor: pointer;
+                        font-weight: 700;
+                        text-decoration: none;
+                    }
+                    .tab-link:hover {
+                        color: #999;
+                        border-color: #999;
+                    }
+                    .tab-link.active{
+                        color: #333;
+                        border-color: #333;
+                    }
+                    .tab-link:nth-of-type(1).active {
+                        border-color: #EE6534;
+                    }
+                    .tab-link:nth-of-type(1).active a {
+                        color: #EE6534;
+                    }
+                    .tab-link:nth-of-type(2).active {
+                        border-color: #1790D2;
+                    }
+                    .tab-link:nth-of-type(2).active a {
+                        color: #1790D2;
+                    }
+                    .content-wrapper {
+                        padding: 40px 80px;
+                    }
+                    .tab-content {
+                        display: none;
+                        text-align: center;
+                        color: #888;
+                        font-weight: 300;
+                        font-size: 15px;
+                        opacity: 0;
+                        transform: translateY(15px);
+                        animation: fadeIn 0.5s ease 1 forwards;
+                    }
+                    .tab-content.active {
+                        display: block;
+                    }
+                    @keyframes fadeIn {
+                        100%
+                        opacity: 1;
+                        transform: none;}
+                    </style>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    </head>
-    <body>
-        <div class="go-to-pairing">
-            <a class="myOrderPairing" href="myOrderPairing.jsp">
-                 <i class="fa-solid fa-arrow-left" style="color: red; margin:0 10px"></i>   Quay lại trang lịch sử đơn ghép chim 
-                </a>
-        </div>
-        <section class="timeline_area section_padding_130">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-12 col-sm-8 col-lg-6">
-                        <div class="section_heading text-center">
-                            <h6>Theo dõi đơn hàng</h6>
-                            <h3>Thông tin cập nhật về tình trạng tổ chim theo ngày</h3>
-                            <div class="line"></div>
+                </head>
+                <body>
+                    <div class="go-to-pairing">
+                    <a class="myOrderPairing" href="myOrderPairing.jsp">
+                        <i class="fa-solid fa-arrow-left" style="color: red; margin:0 10px"></i>   Quay lại trang lịch sử đơn ghép chim 
+                        </a>
+                    </div>
+                    <div class="wrapper">
+                        <div class="tab-wrapper">
+                            <ul class="tabs">
+                                <li class="tab-link active" data-tab="1">
+                                    <a href="#">Xem trạng thái đơn hàng</a>
+                                </li>
+                                <li class="tab-link" data-tab="2">
+                                    <a style="padding: 20px;" href="DispatchServlet?btAction=HistoryViewPairingDetail&idRequiredOrder=${sessionScope.RequiredOrderID}"/>
+                                    Xem chi tiết đơn ghép chim</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </div>
-                 <c:set var="previousDate" value="" />
-                 <% String checkStatus = ""; %>
-                 <c:set var="birdNestName" value="" />
-                 <c:set var="idRequireOrder" value="" />
-                <div class="row">
-                    <div class="col-12">
-                        <div class="apland-timeline-area">
-                            <c:if test="${requestScope.Order_Detail ne null}">
-                                <c:set var="myMap" value="${requestScope.Order_Detail}"></c:set>
-                                <c:forEach var="trackingItem" items="${myMap}">
-                                    <div class="single-timeline-area">
-                                        <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                                            <p>
-                                                <c:if test="${not empty trackingItem.key}">
-                                                    ${trackingItem.key}
-                                                </c:if> 
-                                            </p>
+                        <section class="timeline_area section_padding_130">
+                            <div class="container">
+                                <div class="row justify-content-center">
+                                    <div class="col-12 col-sm-8 col-lg-6">
+                                        <div class="section_heading text-center">
+                                            <h6>Theo dõi đơn hàng</h6>
+                                            <h3>Thông tin cập nhật về tình trạng tổ chim theo ngày</h3>
+                                            <div class="line"></div>
                                         </div>
-                                        <c:if test="${trackingItem.key ne null}">
-                                            <div class="row">
-                                                <c:if test="${item.status == 'Đã hoàn thành'}">
-                                                    <div class="col-12 col-md-6 col-lg-4">
-                                                        <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-                                                            <div>
-                                                                <i style="width:73px; height: 73px" class="fas fa-check-circle" style="color: #81e656;"></i>
+                                    </div>
+                                </div>
+                                <c:set var="previousDate" value="" />
+                                <% String checkStatus = ""; %>
+                                <c:set var="birdNestName" value="" />
+                                <c:set var="idRequireOrder" value="" />
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="apland-timeline-area">
+                                            <c:if test="${requestScope.Order_Detail ne null}">
+                                                <c:set var="myMap" value="${requestScope.Order_Detail}"></c:set>
+                                                <c:forEach var="trackingItem" items="${myMap}">
+                                                    <div class="single-timeline-area">
+                                                        <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
+                                                        <p>
+                                                            <c:if test="${not empty trackingItem.key}">
+                                                                ${trackingItem.key}
+                                                            </c:if> 
+                                                        </p>
+                                                    </div>
+                                                    <c:if test="${trackingItem.key ne null}">
+                                                        <div class="row">
+                                                            <c:if test="${item.status == 'Đã hoàn thành'}">
+                                                                <div class="col-12 col-md-6 col-lg-4">
+                                                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                                                        <div>
+                                                                            <i style="width:73px; height: 73px" class="fas fa-check-circle" style="color: #81e656;"></i>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </c:if>
+                                                            <c:forEach var="item" items="${trackingItem.value}">
+                                                                <c:set var="birdNestName" value="${item.birdNestName}"/>
+                                                                <c:set var="idRequireOrder" value="${item.idRequireOrder}" />
+                                                                <div class="col-12 col-md-6 col-lg-4">
+                                                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                                                        <div>
+                                                                            <c:if test="${empty item.imageURL}">
+                                                                                <i class="fa-solid fa-dove" style="color: #39d03b;"></i>
+                                                                            </c:if>
+                                                                            <c:if test="${not empty item.imageURL}">
+                                                                                <c:if test="${not empty item.birdNestName}">
+                                                                                    <img style="width:73px; height: 73px" src="${item.imageURL}" alt="${item.birdNestName}"/> 
+                                                                                    </c:if>
+                                                                                    <c:if test="${empty item.birdNestName}">
+                                                                                        <img style="width:73px;height: 73px" src="${item.imageURL}"/> 
+                                                                                    </c:if>
+                                                                                </c:if>
+                                                                            </div>
+                                                                            <div style="margin-left: 20px;" class="timeline-text">
+                                                                            <h6>
+                                                                                <c:if test="${item.status == 'Đã hoàn thành'}">
+                                                                                    <% checkStatus = "Đã hoàn thành"; %>
+                                                                                </c:if>
+                                                                                ${item.status}
+                                                                            </h6>
+                                                                            <p>${item.reason}</p>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </c:forEach>
+                                                        </div>
+                                                    </c:if>
+                                                    <c:if test="${empty trackingItem.key || trackingItem.key eq null}">
+                                                        <div class="row">        
+                                                            <div class="col-12 col-md-6 col-lg-4">
+                                                                <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                                                    <div class="img_noUpdate"><i class="fa-solid fa-image" style="color: #36dd58;"></i></div>
+                                                                    <div class="timeline-text">
+                                                                        <h6>Chưa có cập nhật</h6>
+                                                                    </div>
+                                                                </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                 </c:if>
-                                                <c:forEach var="item" items="${trackingItem.value}">
-                                                    <c:set var="birdNestName" value="${item.birdNestName}"/>
-                                                   <c:set var="idRequireOrder" value="${item.idRequireOrder}" />
-                                                    <div class="col-12 col-md-6 col-lg-4">
-                                                        <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-                                                            <div>
-                                                                <c:if test="${empty item.imageURL}">
-                                                                    <i class="fa-solid fa-dove" style="color: #39d03b;"></i>
-                                                                </c:if>
-                                                                <c:if test="${not empty item.imageURL}">
-                                                                    <c:if test="${not empty item.birdNestName}">
-                                                                        <img style="width:73px; height: 73px" src="${item.imageURL}" alt="${item.birdNestName}"/> 
-                                                                    </c:if>
-                                                                    <c:if test="${empty item.birdNestName}">
-                                                                        <img style="width:73px;height: 73px" src="${item.imageURL}"/> 
-                                                                    </c:if>
-                                                                </c:if>
-                                                            </div>
-                                                            <div style="margin-left: 20px;" class="timeline-text">
-                                                                <h6>
-                                                                    <c:if test="${item.status == 'Đã hoàn thành'}">
-                                                                        <% checkStatus = "Đã hoàn thành"; %>
-                                                                    </c:if>
-                                                                    ${item.status}
-                                                                </h6>
-                                                                <p>${item.reason}</p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
+                                                    </c:if> 
+                                                </div>
+                                            </c:forEach>
                                         </c:if>
-                                        <c:if test="${empty trackingItem.key || trackingItem.key eq null}">
-                                            <div class="row">        
-                                            <div class="col-12 col-md-6 col-lg-4">
-                                                        <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-                                                            <div class="img_noUpdate"><i class="fa-solid fa-image" style="color: #36dd58;"></i></div>
-                                                            <div class="timeline-text">
-                                                                <h6>Chưa có cập nhật</h6>
-                                                            </div>
+                                        <c:if test="${empty requestScope.Order_Detail || requestScope.Order_Detail eq null}">
+                                            <div class="single-timeline-area">
+                                                <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
+                                                </div>
+                                                <div class="col-12 col-md-6 col-lg-4">
+                                                    <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
+                                                        <div class="img_noUpdate"><i class="fa-solid fa-image" style="color: #36dd58;"></i></div>
+                                                        <div class="timeline-text">
+                                                            <h6>Chưa có cập nhật</h6>
                                                         </div>
                                                     </div>
-                                            </div>
-                                        </c:if> 
-                                    </div>
-                                </c:forEach>
-                            </c:if>
-                            <c:if test="${empty requestScope.Order_Detail || requestScope.Order_Detail eq null}">
-                                <div class="single-timeline-area">
-                                    <div class="timeline-date wow fadeInLeft" data-wow-delay="0.1s" style="visibility: visible; animation-delay: 0.1s; animation-name: fadeInLeft;">
-                                    </div>
-                                    <div class="col-12 col-md-6 col-lg-4">
-                                            <div class="single-timeline-content d-flex wow fadeInLeft" data-wow-delay="0.5s" style="visibility: visible; animation-delay: 0.5s; animation-name: fadeInLeft;">
-                                                <div class="img_noUpdate"><i class="fa-solid fa-image" style="color: #36dd58;"></i></div>
-                                                <div class="timeline-text">
-                                                    <h6>Chưa có cập nhật</h6>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </c:if>
+                                    </div>
                                 </div>
-                            </c:if>
+                            </div>
+                            <% if (checkStatus == "Đã hoàn thành") { %>
+                            <%@include file="components/FeedbackComponent.jsp" %>
+                            <%}%>
                         </div>
-                    </div>
-                </div>
-               <% if(checkStatus == "Đã hoàn thành") { %>
-                    <%@include file="components/FeedbackComponent.jsp" %>
-                <%} %>
-            </div>
-        </section>
-        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript">
+                    </section>
+                    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
+                    <script type="text/javascript">
+                            $('.tab-link').click( function() {
+	
+                                var tabID = $(this).attr('data-tab');
 
-        </script>
-    </body>
-</html>
+                                $(this).addClass('active').siblings().removeClass('active');
+
+                                $('#tab-'+tabID).addClass('active').siblings().removeClass('active');
+                        });
+                    </script>
+            </body>
+        </html>

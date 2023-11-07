@@ -45,7 +45,7 @@ public class ViewRequiredController extends HttpServlet {
             UserDAO userDAO = new UserDAO();
             UserDTO user = userDAO.getUser(idUser);
             request.setAttribute("user", user);
-            int quantityOfCart = (int) session.getAttribute("quantityOfCart");
+            int quantityOfCart = (int) session.getAttribute("RquantityOfCart");
             Map<String, BirdDTO> cart = (Map<String, BirdDTO>) session.getAttribute("RCART");
             session.setAttribute("RCART", cart);
             session.setAttribute("RquantityOfCart", quantityOfCart);

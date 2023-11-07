@@ -25,7 +25,7 @@ import birdfarm.dto.AdminProductDTO;
 public class AdminDAO implements Serializable {
 
     private List<AdminDTO> accountList;
-    
+
     private List<AdminProductDTO> adminList;
 
     public List<AdminDTO> getAccountList() {
@@ -35,8 +35,7 @@ public class AdminDAO implements Serializable {
     public List<AdminProductDTO> getAdminList() {
         return adminList;
     }
-    
-    
+
     public void showPaymentMethod()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -53,7 +52,7 @@ public class AdminDAO implements Serializable {
                 while (rs.next()) {
                     String methodName = rs.getString("methodName");
                     int idPayment = rs.getInt("idPayment");
-                    
+
                     AdminDTO dto
                             = new AdminDTO(methodName, idPayment);
 
@@ -114,6 +113,7 @@ public class AdminDAO implements Serializable {
             }
         }
     }
+
     public boolean updatePaymentMethod(int idPayment, String methodName)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -152,6 +152,7 @@ public class AdminDAO implements Serializable {
         }
         return result;
     }
+
     public boolean updatePassRole(String username, String password, String fullName)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -192,8 +193,67 @@ public class AdminDAO implements Serializable {
         return result;
     }
     
-    public void getBirdListAdmin() 
-           throws SQLException, NamingException, ClassNotFoundException {
+    public boolean DeleteFromUserDetail(String userID)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        try {
+            //1. Make connection
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "Delete From Customer Where idCustomer = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, userID);
+                int effectRows = stm.executeUpdate();
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+    
+    public boolean DeleteUser(String userID)
+            throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        try {
+            //1. Make connection
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "Delete From [User] " +
+"                         Where idUser = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, userID);
+                int effectRows = stm.executeUpdate();
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
+
+    public void getBirdListAdmin()
+            throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -201,14 +261,14 @@ public class AdminDAO implements Serializable {
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "SELECT bp.[idBird]\n" +
-                        "      ,bp.[name]\n" +
-                        "      ,bp.[quantity]\n" +
-                        "      ,bp.[salePrice]\n" +
-                        "	  ,bf.Age\n" +
-                        "  FROM [BIRD_FARM_SHOP].[dbo].[BirdProduct] bp\n" +
-                        "  Join BirdProfile bf\n" +
-                        "  ON bp.idBird = bf.idBird";
+                String sql = "SELECT bp.[idBird]\n"
+                        + "      ,bp.[name]\n"
+                        + "      ,bp.[quantity]\n"
+                        + "      ,bp.[salePrice]\n"
+                        + "	  ,bf.Age\n"
+                        + "  FROM [BIRD_FARM_SHOP].[dbo].[BirdProduct] bp\n"
+                        + "  Join BirdProfile bf\n"
+                        + "  ON bp.idBird = bf.idBird";
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {

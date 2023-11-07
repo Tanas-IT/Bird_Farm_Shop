@@ -214,7 +214,7 @@
                                             <!--Remove Here-->
                                             <td style="padding-top: 40px; text-align: center;">
                                                 <input type="hidden" name="userID" value="${user.idUser}" />
-                                                <input class="btn btn-success" type="submit" name="btAction" value="Xóa">
+                                                <input title="${counter.count}" onclick="RemoveItemEvent(this)" class="btn btn-success" type="button" name="btAction" value="Xóa " />
                                             </td>
                                         </tr>
                                     </c:forEach>
@@ -247,6 +247,13 @@
                 </c:if>
             </div>
         </div>
+        <c:forEach var="product" varStatus="counter" items="${sessionScope.CART.cart}">
+            <form id="form${counter.count}" action="DispatchServlet">
+                <input type="hidden" name="userID" value="${user.idUser}" />
+                <input type="hidden" name="birdIDRemove" value="${product.value.idBird}"/>
+                <input class="btn btn-success" type="hidden" name="btAction" value="Xóa" />
+            </form>
+        </c:forEach>
         <div id='notification'>Bạn chưa chọn sản phẩm nào</div>
         <!-- Footer -->
         <div style="margin-top: 20px;">
@@ -254,7 +261,6 @@
         </div>
                 <div id='notificationPairing'>
                     ${sessionScope.PAYMENT}
-                   
                 </div>           
         <!-- End of footer -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -314,7 +320,19 @@
                         setTimeout(function () {
                             notification.style.display = 'none'; // Ẩn thông báo sau 3 giây (3000 milliseconds)
                         }, 3500);
-                    } 
+                    }
+                    function RemoveItemEvent(remove) {
+                        var keyRemove = [];
+                        <c:forEach var="product" varStatus="counter" items="${sessionScope.CART.cart}">
+                                keyRemove.push(${counter.count});
+                        </c:forEach>
+                        for(var i =0; i < keyRemove.length; i++) {
+                            if(remove.getAttribute("title") == keyRemove[i]) {
+                                document.getElementById("form"+keyRemove[i]).submit();
+                            }
+                        
+                    }
+                }
         </script>
     </body>
 </html>

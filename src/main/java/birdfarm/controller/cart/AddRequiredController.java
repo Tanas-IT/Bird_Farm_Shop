@@ -68,10 +68,11 @@ public class AddRequiredController extends HttpServlet {
                 request.setAttribute("listBird", listBird);
                 if (check) {
                     double total = 0;
-                    if(session.getAttribute("total") != null) {
-                        total = (double) session.getAttribute("total");
-                    }
                     session.setAttribute("RCART", cart);
+                    
+                    if(session.getAttribute("Rtotal") != null) {
+                        total = (double) session.getAttribute("Rtotal");
+                    }
                    double totalEach = 0;
                     request.setAttribute("MESSAGE", "Thêm " + birdQuantity + " " + birdName + " vào giỏ hàng thành công!");
                         if(cart.getRcart().get(birdID).getGender().equals("Trống")) {
@@ -81,8 +82,8 @@ public class AddRequiredController extends HttpServlet {
                             totalEach = cart.getRcart().get(birdID).getQuantity()* cart.getRcart().get(birdID).getFeeBirdNestFemale();
                         }
                         total += totalEach;
-                    session.setAttribute("total", total);
-                    session.setAttribute("RquantityOfCart", cart.getRcart().size());
+                        session.setAttribute("RquantityOfCart", cart.getRcart().size());
+                    session.setAttribute("Rtotal", total);
                     session.setAttribute("idBird", birdID);
                 }
                 if (!check) {

@@ -42,8 +42,7 @@ public class HistoryPairingController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try{
-            HttpSession session = request.getSession();
+        HttpSession session = request.getSession();
             String idOrder = (String) request.getAttribute("idOrder");
             String orderId_raw = request.getParameter("idOrder");
             int orderId = 0;
@@ -52,7 +51,7 @@ public class HistoryPairingController extends HttpServlet {
             } else {
                 orderId = Integer.parseInt(orderId_raw);
             }
-            
+        try{
             RequiredOrderDetailDAO requiredDAO = new RequiredOrderDetailDAO();
             requiredDAO.getTrackingBird(orderId);
             List<RequiredOrderDetailDTO> requiredOrder_Detail = requiredDAO.getListTracking();
@@ -64,11 +63,10 @@ public class HistoryPairingController extends HttpServlet {
                 listFilter.get(rod.getTrackingDate()).add(rod);
             }
             request.setAttribute("Order_Detail", listFilter);
-
-        session.setAttribute("historyUrl", "order-detail?idOrder=" + orderId_raw);
         } catch (SQLException ex) {
            ex.printStackTrace();
         } finally {
+            session.setAttribute("RequiredOrderID", orderId);
             request.getRequestDispatcher("TrackingPairing.jsp").forward(request, response);
         }
         

@@ -23,19 +23,19 @@ import javax.naming.NamingException;
  * @author HP
  */
 public class ManagerTrackingBirdDAO implements Serializable {
-
+    
     private List<ManagerTrackingBirdDTO> requiredOrderDetailList;
-
+    
     public List<ManagerTrackingBirdDTO> getRequiredOrderDetailList() {
         return requiredOrderDetailList;
     }
-
+    
     public void showTrackingList()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-
+        
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
@@ -64,7 +64,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     ManagerTrackingBirdDTO dto
                             = new ManagerTrackingBirdDTO(idRequiredOrder,
                                     status, trackingDate, birdFather, birdMother, fullName, createdDate);
-
+                    
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
                     }
@@ -80,13 +80,13 @@ public class ManagerTrackingBirdDAO implements Serializable {
             }
         }
     }
-
+    
     public void showSuccessTrackingList()
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-
+        
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
@@ -111,11 +111,11 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     String birdFather = rs.getString("birdFather");
                     String birdMother = rs.getString("birdMother");
                     String status = rs.getString("status");
-
+                    
                     ManagerTrackingBirdDTO dto
                             = new ManagerTrackingBirdDTO(idRequiredOrder,
                                     status, trackingDate, birdFather, birdMother, fullName);
-
+                    
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
                     }
@@ -137,7 +137,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-
+        
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
@@ -162,11 +162,11 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     String birdFather = rs.getString("birdFather");
                     String birdMother = rs.getString("birdMother");
                     String status = rs.getString("status");
-
+                    
                     ManagerTrackingBirdDTO dto
                             = new ManagerTrackingBirdDTO(idRequiredOrder,
                                     status, trackingDate, birdFather, birdMother, fullName);
-
+                    
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
                     }
@@ -188,34 +188,34 @@ public class ManagerTrackingBirdDAO implements Serializable {
         Connection con = null;
         PreparedStatement stm = null;
         ResultSet rs = null;
-
+        
         try {
             con = DBConnection.makeConnection();
             if (con != null) {
-                String sql = "  Select ro.idRequiredOrder, u.fullName, ro.receiverName,\n" +
-"                                ro.status, ro.reason,ro.imgTracking, \n" +
-"                                ro.trackingDate,bf1.feeBirdNestMale as priceBirdDad,bf2.feeBirdNestFemale as priceBirdMom, \n" +
-"                                 b1.name as birdFather , b2.name as birdMother,  rd.birdNestMale ,\n" +
-"                                rd.birdNestFemale , rd.fee , cu.email, rd.idBirdNest, \n" +
-"                        b1.imageURL as imageBirdFather, b2.imageURL as imageBirdMother,\n" +
-"                        b1.shortDescription as shortDescriptionBirdFather,\n" +
-"                         b2.shortDescription as shortDescriptionBirdMother \n" +
-"                                from  RequiredOrder ro \n" +
-"                                join RequiredOrderDetail rd \n" +
-"                                 on ro.idRequiredOrder = rd.idRequiredOrder\n" +
-"                                join BirdProduct b1 \n" +
-"                                   on rd.idBirdFather=b1.idBird \n" +
-"                                  join BirdProduct b2\n" +
-"                                  on rd.idBirdMother = b2.idBird\n" +
-"				   join BirdProfile bf1 \n" +
-"                                   on bf1.idBird=rd.idBirdFather\n" +
-"                                  join BirdProfile bf2\n" +
-"                                  on rd.idBirdMother = bf2.idBird\n" +
-"                                 join [User] u \n" +
-"                                   on ro.idUser = u.idUser\n" +
-"                                join [Customer] cu\n" +
-"                                  on ro.idUser = cu.idCustomer\n" +
-"                                      Where ro.idRequiredOrder = ?";
+                String sql = "  Select ro.idRequiredOrder, u.fullName, ro.receiverName,\n"
+                        + "                                ro.status, ro.reason,ro.imgTracking, ro.Total, \n"
+                        + "                                ro.trackingDate,bf1.feeBirdNestMale as priceBirdDad,bf2.feeBirdNestFemale as priceBirdMom, \n"
+                        + "                                 b1.name as birdFather , b2.name as birdMother,  rd.birdNestMale ,\n"
+                        + "                                rd.birdNestFemale , rd.fee , cu.email, rd.idBirdNest, \n"
+                        + "                        b1.imageURL as imageBirdFather, b2.imageURL as imageBirdMother,\n"
+                        + "                        b1.shortDescription as shortDescriptionBirdFather,\n"
+                        + "                         b2.shortDescription as shortDescriptionBirdMother \n"
+                        + "                                from  RequiredOrder ro \n"
+                        + "                                join RequiredOrderDetail rd \n"
+                        + "                                 on ro.idRequiredOrder = rd.idRequiredOrder\n"
+                        + "                                join BirdProduct b1 \n"
+                        + "                                   on rd.idBirdFather=b1.idBird \n"
+                        + "                                  join BirdProduct b2\n"
+                        + "                                  on rd.idBirdMother = b2.idBird\n"
+                        + "				   join BirdProfile bf1 \n"
+                        + "                                   on bf1.idBird=rd.idBirdFather\n"
+                        + "                                  join BirdProfile bf2\n"
+                        + "                                  on rd.idBirdMother = bf2.idBird\n"
+                        + "                                 join [User] u \n"
+                        + "                                   on ro.idUser = u.idUser\n"
+                        + "                                join [Customer] cu\n"
+                        + "                                  on ro.idUser = cu.idCustomer\n"
+                        + "                                      Where ro.idRequiredOrder = ?";
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, searchValue);
                 rs = stm.executeQuery();
@@ -239,15 +239,15 @@ public class ManagerTrackingBirdDAO implements Serializable {
                     String imageBirdMother = rs.getString("imageBirdMother");
                     String shortDescriptionBirdFather = rs.getString("shortDescriptionBirdFather");
                     String shortDescriptionBirdMother = rs.getString("shortDescriptionBirdMother");
-
+                    Double total = rs.getDouble("total");
                     ManagerTrackingBirdDTO dto
-                            = new ManagerTrackingBirdDTO(idRequiredOrder, 
-                                    status, reason, imgTracking, birdFather,
-                                    birdMother, fullName, importPriceBirdDad,
-                                    importPriceBirdMom, fee, birdNestMale, birdNestFemale,
-                                    email, idBirdNest, imageBirdFather, imageBirdMother, 
-                                    shortDescriptionBirdFather, shortDescriptionBirdMother);
-
+                            = new ManagerTrackingBirdDTO(idRequiredOrder, status, 
+                                    reason, imgTracking, birdFather, birdMother,
+                                    fullName, importPriceBirdDad, importPriceBirdMom,
+                                    fee, birdNestMale, birdNestFemale, email, idBirdNest, 
+                                    imageBirdFather, imageBirdMother, shortDescriptionBirdFather, 
+                                    shortDescriptionBirdMother, total);
+                    
                     if (this.requiredOrderDetailList == null) {
                         this.requiredOrderDetailList = new ArrayList<>();
                     }
@@ -263,7 +263,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
             }
         }
     }
-
+    
     public List<Chart> totalMoneyRequiredOrder(String idOrder, String start, int day) throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
@@ -278,7 +278,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
                             + "FROM [RequiredOrder]\n"
                             + "WHERE idRequiredOrder " + idOrder + "\n"
                             + "  AND createdDate <= DATEADD(DAY, ?, ?) AND createdDate >= ?";
-
+                    
                     stm = con.prepareStatement(sql);
                     stm.setInt(1, i);
                     stm.setString(2, start);
@@ -306,38 +306,38 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return list;
     }
-
+    
     public boolean updateTrackingBirdImg(int idRequiredOrder, String imgTracking)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
-
+        
         try {
-
+            
             con = DBConnection.makeConnection();
             if (con != null) {
-
+                
                 String sql = "UPDATE RequiredOrder\n"
                         + "SET trackingDate = CAST(GETDATE() AS DATE),\n"
                         + "imgTracking = ? \n"
                         + "WHERE idRequiredOrder = ? ";
-
+                
                 stm = con.prepareStatement(sql);
-
+                
                 stm.setString(1, imgTracking);
                 stm.setInt(2, idRequiredOrder);
-
+                
                 int effectRows = stm.executeUpdate();
 
                 //5. Process
                 if (effectRows > 0) {
                     result = true;
                 }
-
+                
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }
@@ -347,40 +347,40 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return result;
     }
-
+    
     public boolean updateTrackingBird(int idRequiredOrder, String status, String reason)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
-
+        
         try {
-
+            
             con = DBConnection.makeConnection();
             if (con != null) {
-
+                
                 String sql = " UPDATE RequiredOrder\n"
                         + "                       SET [status] = ?,\n"
                         + "                       trackingDate = CAST(GETDATE() AS DATE),\n"
                         + "                       [reason] = ?\n"
                         + "                      \n"
                         + "                       WHERE idRequiredOrder = ?";
-
+                
                 stm = con.prepareStatement(sql);
                 stm.setString(1, status);
                 stm.setString(2, reason);
                 stm.setInt(3, idRequiredOrder);
-
+                
                 int effectRows = stm.executeUpdate();
 
                 //5. Process
                 if (effectRows > 0) {
                     result = true;
                 }
-
+                
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }
@@ -390,38 +390,38 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return result;
     }
-
+    
     public boolean updateTrackingBirdDetail(int idRequiredOrder, int birdNestFemale1, int birdNestMale1)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
-
+        
         try {
-
+            
             con = DBConnection.makeConnection();
             if (con != null) {
-
+                
                 String sql = "UPDATE RequiredOrderDetail \n"
                         + "                        SET [birdNestMale] = ? ,\n"
                         + "                        [birdNestFemale] = ? \n"
                         + "                        WHERE idRequiredOrder = ?";
-
+                
                 stm = con.prepareStatement(sql);
                 stm.setInt(1, birdNestMale1);
                 stm.setInt(2, birdNestFemale1);
                 stm.setInt(3, idRequiredOrder);
-
+                
                 int effectRows = stm.executeUpdate();
 
                 //5. Process
                 if (effectRows > 0) {
                     result = true;
                 }
-
+                
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }
@@ -431,7 +431,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return result;
     }
-
+    
     public boolean cancelRequiredOrderTrackingBird(int idRequiredOrder, String reason)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -454,7 +454,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
                 }
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }
@@ -464,7 +464,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return result;
     }
-
+    
     public boolean cancelBirdProductTrackingBird(int idRequiredOrder)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -493,7 +493,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
                 }
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }
@@ -503,7 +503,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return result;
     }
-
+    
     public boolean successRequiredOrderTrackingBird(int idRequiredOrder, Double total, String reason)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
@@ -528,7 +528,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
                 }
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }
@@ -567,7 +567,7 @@ public class ManagerTrackingBirdDAO implements Serializable {
                 }
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }
@@ -577,21 +577,21 @@ public class ManagerTrackingBirdDAO implements Serializable {
         }
         return result;
     }
-
+    
     public boolean insertTrackingBird(String idBirdNest, String imageURL, String status, String reason, String birdName)
             throws SQLException, NamingException, ClassNotFoundException {
         Connection con = null;
         PreparedStatement stm = null;
         boolean result = false;
-
+        
         try {
-
+            
             con = DBConnection.makeConnection();
             if (con != null) {
-
+                
                 String sql = "  INSERT INTO TrackingBirdNest (idBirdNest, imageURL, status, trackingDate, reason,name)\n"
                         + "VALUES (?, ?, ?,  CAST(CONVERT(datetime2(0), GETDATE()) AS datetime2(0)), ?, ?)";
-
+                
                 stm = con.prepareStatement(sql);
                 stm.setString(1, idBirdNest);
                 stm.setString(2, imageURL);
@@ -604,10 +604,10 @@ public class ManagerTrackingBirdDAO implements Serializable {
                 if (effectRows > 0) {
                     result = true;
                 }
-
+                
             }
         } finally {
-
+            
             if (stm != null) {
                 stm.close();
             }

@@ -53,22 +53,31 @@ public class ManagerUpdateProductServlet extends HttpServlet {
 
             String overview = request.getParameter("txtOverview");
 
+            //========================
+            String birdMaleBorn = request.getParameter("txtBirdMaleBorn");
+            String birdFemaleBorn = request.getParameter("txtBirdFemaleBorn");
+            String achievement = request.getParameter("txtAchievement");
+            String shortDescription = request.getParameter("txtShortDescription");
+
             boolean status1 = false;
             int quantity1 = Integer.parseInt(quantity);
             Double importPrice1 = Double.parseDouble(importPrice);
             Double salePrice1 = Double.parseDouble(salePrice);
 
+            Double birdMaleBorn1 = Double.parseDouble(birdMaleBorn);
+            Double birdFemaleBorn1 = Double.parseDouble(birdFemaleBorn);
+
             if (status != null) {
                 status1 = true;
             }
-            
-            ManagerProductDAO dao = new ManagerProductDAO();
-            boolean result = dao.updateProduct(idBird, status1, period, quantity1,
-                    importPrice1, salePrice1, imageURL, overview, videoURL);
-            if (result) {
-                url = "DispatchServlet?btAction=ViewUpdateProduct&txtIdBird=" + idBird;
 
-            }
+            ManagerProductDAO dao = new ManagerProductDAO();
+            dao.updateProduct(idBird, status1, period, quantity1,
+                    importPrice1, salePrice1, imageURL, overview, videoURL);
+            dao.updateProductVer2BirdProduct(idBird, shortDescription);
+            dao.updateProductVer3BirdProfile(idBird, achievement, birdMaleBorn1, birdFemaleBorn1);
+
+            url = "DispatchServlet?btAction=ViewUpdateProduct&txtIdBird=" + idBird;
 
         } finally {
             response.sendRedirect(url);

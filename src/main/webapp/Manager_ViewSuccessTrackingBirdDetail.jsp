@@ -145,24 +145,6 @@
                                                         </div>
                                                     </div>
                                                     <div class="row">
-                                                        <div class="col-md-3 pr-1">
-                                                            <div class="form-group">
-                                                                <label>Giá chim bố </label>
-                                                                <input type="text" class="form-control" disabled="" placeholder="Company" value="${dto.importPriceBirdDad}">
-                                                                <input type="hidden" name="txtpriceBirdDad" value="${dto.importPriceBirdDad}" />
-
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-md-3 px-1 ">
-                                                            <div class="form-group">
-                                                                <label>Giá chim mẹ</label>
-                                                                <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.importPriceBirdMom}">
-                                                                <input type="hidden" name="txtpriceBirdMom" value="${dto.importPriceBirdMom}" />
-                                                                <input type="hidden" name="txtfee" value="${dto.fee}" />
-                                                                <input type="hidden" name="txtidBirdNest" value="${dto.idBirdNest}" />
-
-                                                            </div>
-                                                        </div>
                                                         <div class="col-md-3 pl-1 pull-right" >
                                                             <div class="form-group">
                                                                 <label>ID tổ chim</label>
@@ -171,10 +153,32 @@
 
                                                             </div>
                                                         </div>
+                                                        <div class="col-md-3 pr-1">
+                                                            <div class="form-group">
+                                                                <label>Giá chim bố </label>
+                                                                <fmt:formatNumber var="formatMalePrice" value="${dto.importPriceBirdDad}" />
+                                                                <input type="text" class="form-control" disabled="" placeholder="Company" value="${formatMalePrice} VNĐ"> 
+                                                                <input type="hidden" name="txtpriceBirdDad" value="${dto.importPriceBirdDad}" />
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-3 px-1 ">
+                                                            <div class="form-group">
+                                                                <label>Giá chim mẹ</label>
+                                                                <fmt:formatNumber var="formatFemalePrice" value="${dto.importPriceBirdMom}" />
+                                                                <input type="text" class="form-control" disabled="" placeholder="Country" value="${formatFemalePrice} VNĐ">
+                                                                <input type="hidden" name="txtpriceBirdMom" value="${dto.importPriceBirdMom}" />
+                                                                <input type="hidden" name="txtfee" value="${dto.fee}" />
+                                                                <input type="hidden" name="txtidBirdNest" value="${dto.idBirdNest}" />
+
+                                                            </div>
+                                                        </div>
+                                                        
                                                         <div class="col-md-3 pl-1 pull-right" >
                                                             <div class="form-group">
-                                                                <label>Phí</label>
-                                                                <input type="text" class="form-control" disabled="" placeholder="Country" value="${dto.fee}">
+                                                                <label>Tổng tiền</label>
+                                                                <fmt:formatNumber var="formatTotalPrice" value="${dto.total}" />
+                                                                <input type="text" class="form-control" disabled="" placeholder="Country" value="${formatTotalPrice} VNĐ">
 
 
                                                             </div>

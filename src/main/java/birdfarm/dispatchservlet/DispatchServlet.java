@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 @MultipartConfig
 public class DispatchServlet extends HttpServlet {
 
-     private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
+    private final String ADMIN_CONTROL_ACCOUNT_CONTROLLER = "AdminControlAccountServlet";
     private final String ADMIN_VIEW_PAYMENT_CONTROLLER = "AdminViewPaymentServlet";
     private final String MANAGER_VIEW_FEEDBACK_CONTROLLER = "ManagerViewFeedbackServlet";
     private final String BIRD_CONTROLLER = "BirdProductServlet";
@@ -47,8 +47,10 @@ public class DispatchServlet extends HttpServlet {
     private final String RPAYMENT_CONTROLLER = "RpaymentController";
     private final String HISTORY_PAIRING_CONTROLLER = "HistoryPairingController";
     private final String REMOVE_ITEM_FROM_VIEW_CART = "RemoveItemFromViewCart";
+    private final String REMOVE_ITEM_FROM_VIEW_REQUIRED_CART = "RemoveItemFromViewRequiredCart";
+    private final String REMOVE_ITEM_PAIRING = "RemoveItemPairingFromCart";
     private final String HISTORY_VIEW_DETAIL_PAIRING_BILL = "PairingRequiredOrderDetailController";
-    
+
     private final String PAIRING_CONTROLLER = "PairingController";
     private final String REMOVE_ITEM_FROM_CART = "RemoveItemFromCart";
     private final String FEEDBACK_CONTROLLER = "FeedbackServlet";
@@ -57,7 +59,9 @@ public class DispatchServlet extends HttpServlet {
     private final String SEND_MAIL_TRACKING = "ManagerSendMailTrackingBirdServlet";
 
     private final String ADMIN_UPDATE_ACCOUNT_CONTROLLER = "AdminUpdateAccountServlet";
+     private final String ADMIN_DELETE_ACCOUNT_CONTROLLER = "AdminDeleteAccountServlet";
     private final String ADMIN_UPDATE_PAYMENT_CONTROLLER = "AdminUpdatePayment";
+     private final String REGISTER_ADMIN_CONTROLLER = "CreateAccountAdminServlet";
 
     private final String MANAGER_VIEW_BILL_CONTROLLER = "ManagerViewBillServlet";
     private final String MANAGER_VIEW_DETAIL_BILL_CONTROLLER = "ManagerViewDetailBillServlet";
@@ -91,9 +95,9 @@ public class DispatchServlet extends HttpServlet {
     private final String MANAGER_CANCEL_TRACKING_BIRD_CONTROLLER = "ManagerCancelTrackingBirdServlet";
     private final String MANAGER_DONE_TRACKING_BIRD_CONTROLLER = "ManagerDoneTrackingBirdServlet";
 
+    private final String MANAGER_VIEW_ADD_PRODUCT_CONTROLLER = "ManagerViewCreateProductServlet";
+    private final String MANAGER_CREATE_PRODUCT_CONTROLLER = "ManagerCreateProductServlet";
     private final String HISTORY = "HistoryServlet";
-
-    
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -111,7 +115,7 @@ public class DispatchServlet extends HttpServlet {
         String button = request.getParameter("btAction");//btAction phai duoc copy va paste vao trong servletlogin
         String url = BIRD_CONTROLLER;
         try {
-             if (button == null) { //trigger welcome file
+            if (button == null) { //trigger welcome file
                 url = BIRD_CONTROLLER;
             } else if (button.equals("AdminControlAccount")) {
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;
@@ -162,33 +166,37 @@ public class DispatchServlet extends HttpServlet {
                 url = HISTORY_PAIRING_CONTROLLER;
             } else if (button.equals("removeItemCart")) {
                 url = REMOVE_ITEM_FROM_CART;
+            } else if (button.equals("RemoveItemPairing")) {
+                url = REMOVE_ITEM_PAIRING;
             } else if (button.equals("Xóa")) {
                 url = REMOVE_ITEM_FROM_VIEW_CART;
-            } else if(button.equals("HistoryViewPairingDetail")) {
+            } else if (button.equals("Xóa ")) {
+                url = REMOVE_ITEM_FROM_VIEW_REQUIRED_CART;
+            } else if (button.equals("HistoryViewPairingDetail")) {
                 url = HISTORY_VIEW_DETAIL_PAIRING_BILL;
-            } else if(button.equals("UpdatePaymentMethod")) {
+            } else if (button.equals("UpdatePaymentMethod")) {
                 url = ADMIN_UPDATE_PAYMENT_CONTROLLER;
-            }
-            else if (button.equals("ManagerSendMail")) {
+            } else if (button.equals("ManagerSendMail")) {
                 url = SEND_MAIL_TRACKING;
-            } 
-            else if(button.equals("SendFeedback")) { 
+            } else if (button.equals("SendFeedback")) {
                 url = FEEDBACK_CONTROLLER;
-            } else if(button.equals("SendOrderFeedback")) {
+            } else if (button.equals("SendOrderFeedback")) {
                 url = FEEDBACK_ORDER_CONTROLLER;
-            }
-            else if (button.equals("HistoryManager")) {
+            } else if (button.equals("HistoryManager")) {
                 url = HISTORY;
 //================================================================
-            } else if(button.equals("HistoryBill")) {
+            } else if (button.equals("HistoryBill")) {
                 url = HISTORY_CONTROLLER;
-            }
-            else if (button.equals("AdminControlAccount")) {
+            } else if (button.equals("AdminControlAccount")) {
                 url = ADMIN_CONTROL_ACCOUNT_CONTROLLER;
 
             } else if (button.equals("Update")) {
                 url = ADMIN_UPDATE_ACCOUNT_CONTROLLER;
-//------------------------------------------------------------------------------
+            }   //------------------------------------------------------------------------------
+           else if (button.equals("RegisterAdmin")) {
+                url = REGISTER_ADMIN_CONTROLLER;
+            }else if (button.equals("DeleteAccount")) {
+                url = ADMIN_DELETE_ACCOUNT_CONTROLLER;
             } else if (button.equals("ManagerViewFeedback")) {
                 url = MANAGER_VIEW_FEEDBACK_CONTROLLER;
             } else if (button.equals("ManagerViewBill")) {
@@ -252,51 +260,59 @@ public class DispatchServlet extends HttpServlet {
                 url = MANAGER_DELETE_PRODUCT_CONTROLLER;
             } else if(button.equals("AdminViewPaymentMethod")) {
                 url = ADMIN_VIEW_PAYMENT_CONTROLLER;
+            }  else if (button.equals("CreateProduct")) {
+                url = MANAGER_CREATE_PRODUCT_CONTROLLER;
+            } else if (button.equals("AddProduct")) {
+                url = MANAGER_VIEW_ADD_PRODUCT_CONTROLLER;
             }
-        } finally {
+            }finally {
             RequestDispatcher rd = request.getRequestDispatcher(url);
             rd.forward(request, response);
         }
-    }
+        }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+        // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+        /**
+         * Handles the HTTP <code>GET</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doGet
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
-    }
+            processRequest(request, response);
+        }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+        /**
+         * Handles the HTTP <code>POST</code> method.
+         *
+         * @param request servlet request
+         * @param response servlet response
+         * @throws ServletException if a servlet-specific error occurs
+         * @throws IOException if an I/O error occurs
+         */
+        @Override
+        protected void doPost
+        (HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        processRequest(request, response);
-    }
+            request.setCharacterEncoding("UTF-8");
+            processRequest(request, response);
+        }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
+        /**
+         * Returns a short description of the servlet.
+         *
+         * @return a String containing servlet description
+         */
+        @Override
+        public String getServletInfo
+        
+            () {
         return "Short description";
-    }// </editor-fold>
+        }// </editor-fold>
 
-}
+    }

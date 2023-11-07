@@ -136,6 +136,7 @@
                                         <th style="text-align: center;">Phí ghép cặp</th>
                                         <th style="text-align: center;">Số lượng</th>
                                         <th style="text-align: center;">Tổng tiền</th>
+                                        <th style="text-align: center;">Xóa</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -144,17 +145,17 @@
                                                 <!--for each qua CheckOut cart kiểm tra nếu có thì check không thì ko check-->
                                                 <td style="padding-top: 40px; text-align: center">
                                                 <c:if test="${sessionScope.selected eq product.value.idBird}">
-                                                    <input disabled="" name="selectedIndexs" checked type="checkbox" value="${counter.count-1}" onchange="updateParamValue(this)"/>
+                                                    <input readonly="" name="selectedIndexs" checked type="checkbox" value="${counter.count-1}" onchange="updateParamValue(this)"/>
                                                     <input  name="idBird" type="hidden" value="${product.value.idBird}">
                                                 </c:if>
                                                 <c:if test="${sessionScope.selected ne product.value.idBird}">
-                                                    <input disabled="" checked name="selectedIndexs" type="checkbox" value="${counter.count-1}" onchange="updateParamValue(this)"/>
+                                                    <input readonly="" checked name="selectedIndexs" type="checkbox" value="${counter.count-1}" onchange="updateParamValue(this)"/>
                                                     <input name="idBird" type="hidden" value="${product.value.idBird}">
                                                 </c:if>
                                             </td>
                                             <td style="padding-top: 40px; text-align: center;">
                                                 ${counter.count}
-                                                <input type="hidden" name="stt" value="${counter.count}"/>
+                                                <input class="stt" type="hidden" name="stt" value="${counter.count}"/>
                                             </td>
                                             <td style="text-align: center;">
                                                 <img src="${product.value.imageURL}" alt="alt" width="100px" height="100px" style="border-radius: 10px;"/> 
@@ -200,7 +201,10 @@
                                                     ${formatFinalEachPrice}
                                                 </c:if>
                                             </td>
-                                            <!--Remove Here-->
+                                             <!--Remove Here-->
+                                            <td style="padding-top: 40px; text-align: center;">
+                                                <input title="${counter.count}" onclick="RemoveItemEvent(this)" class="btn btn-success" type="button" name="btAction" value="Xóa " />
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                     <tr>
@@ -208,16 +212,17 @@
                                             <div class="container" style="margin-top: 20px;">
                                                 <div class="row">
                                                     <div class="col-md-6" style="align-items: center;">
-                                                        <fmt:formatNumber var="formatFinalPrice" value="${sessionScope.total}" pattern="#,##0 VNĐ" />
+                                                        <fmt:formatNumber var="formatFinalPrice" value="${sessionScope.Rtotal}" pattern="#,##0 VNĐ" />
                                                         <h1>Tổng phí: ${formatFinalPrice}</h1>
                                                     </div>
                                                     <div class="col-md-6" style="text-align: right; display: flex;align-items: end;justify-content: end;margin-bottom: 24px;">
-                                                        <form action="DispatchServlet">
-                                                            <input type="hidden" name="userID" value="${user.idUser}" />
-                                                            <input style="margin-right: 27px;" type="submit" name="btAction" value = "Đổi chim giống khác" class="btn btn-success btn-lg"/>
-                                                        </form>
+                                                        <c:url var="ChangePairing" value="DispatchServlet">
+                                                            <c:param name="userID" value="${user.idUser}" />
+                                                            <c:param name="btAction" value="Đổi chim giống khác" />
+                                                        </c:url>
+                                                        <a style="margin-right: 27px;" type="submit" href="${ChangePairing}" class="text-decoration-none btn btn-success btn-lg">Đổi chim giống khác</a>
                                                         <input type="hidden" name="userID" value="${user.idUser}" />
-                                                        <input type="hidden" name="total" value="${sessionScope.total}" />
+                                                        <input type="hidden" name="total" value="${sessionScope.Rtotal}" />
                                                         <input onclick="checkCheckbox()" type="submit" name="btAction" value = "Đặt hàng" class="btn btn-success btn-lg"/>   
                                                     </div>
                                                 </div>
@@ -231,6 +236,14 @@
                 </c:if>
             </div>
         </div>
+        <c:forEach var="product" varStatus="counter" items="${sessionScope.RCART.rcart}">
+            <form id="form${counter.count}" action="DispatchServlet">
+                <input type="hidden" name="userID" value="${user.idUser}" />
+                <input type="hidden" name="birdQuantity" value="1">
+                <input type="hidden" name="birdIDRemove" value="${product.value.idBird}"/>
+                <input class="btn btn-success" type="hidden" name="btAction" value="Xóa " />
+            </form>
+        </c:forEach>
         <div id='notification'>Bạn chưa chọn sản phẩm nào</div>
         <!-- Footer -->
         <div style="margin-top: 20px;">
@@ -297,7 +310,19 @@
                         setTimeout(function () {
                             notification.style.display = 'none'; // Ẩn thông báo sau 3 giây (3000 milliseconds)
                         }, 3500);
-                    } 
+                    }
+                    function RemoveItemEvent(remove) {
+                        var keyRemove = [];
+                        <c:forEach var="product" varStatus="counter" items="${sessionScope.RCART.rcart}">
+                                keyRemove.push(${counter.count});
+                        </c:forEach>
+                        for(var i =0; i < keyRemove.length; i++) {
+                            if(remove.getAttribute("title") == keyRemove[i]) {
+                                document.getElementById("form"+keyRemove[i]).submit();
+                            }
+                        
+                    }
+                }
 
         </script>
     </body>

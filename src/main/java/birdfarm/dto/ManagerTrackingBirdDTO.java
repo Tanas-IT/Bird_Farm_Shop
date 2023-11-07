@@ -72,7 +72,8 @@ public class ManagerTrackingBirdDTO implements Serializable {
             Double importPriceBirdDad, Double importPriceBirdMom,
             Double fee, int birdNestMale, int birdNestFemale, String email ,
             String idBirdNest, String imageBirdFather, String imageBirdMother,
-            String shortDescriptionBirdFather ,  String shortDescriptionBirdMother) {
+            String shortDescriptionBirdFather ,  String shortDescriptionBirdMother,
+            Double total) {
         this.idRequiredOrder = idRequiredOrder;
         this.status = status;
         this.reason = reason;
@@ -91,7 +92,7 @@ public class ManagerTrackingBirdDTO implements Serializable {
         this.imageBirdMother = imageBirdMother;
         this.shortDescriptionBirdFather = shortDescriptionBirdFather;
         this.shortDescriptionBirdMother = shortDescriptionBirdMother;
-        
+        this.total = total;
     }
 
     public String getImageBirdFather() {

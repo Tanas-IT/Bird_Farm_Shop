@@ -218,7 +218,7 @@
                                     <h4 class="header__cart-heading">Sản phẩm đã thêm</h4>
                                     <ul  class="header__cart-list-item">
                                         <!--Cart Item-->
-                                        <%for (Map.Entry<String, BirdDTO> entry : cart.getCart().entrySet()) {
+                                        <% for (Map.Entry<String, BirdDTO> entry : cart.getCart().entrySet()) {
                                                 String type = "Chim phổ thông";
                                                if(entry.getValue().getType() == 1) type = "Tổ chim";
                                                else if(entry.getValue().getType() == 2) type = "Chim cao cấp";

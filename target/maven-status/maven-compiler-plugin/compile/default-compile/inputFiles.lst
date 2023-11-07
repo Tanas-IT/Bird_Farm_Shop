@@ -4,6 +4,7 @@ E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\Histo
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\payment\Payment_VNP_DTO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\payment\Payment_COD_DTO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\ViewRequiredController.java
+E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminDeleteAccountServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\com\vnpay\common\ConfigForPairing.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\PairingRequiredOrderDetailController.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\login\HomeServlet.java
@@ -35,6 +36,7 @@ E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\contr
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\RoleDTO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewSuccessTrackingDetailServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dao\BirdDAO.java
+E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\RemoveItemFromViewRequiredCart.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerShowUpdateProductServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\birdproduct\ViewMoreBirdServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\birdcomparator\BirdPriceAscendingComparator.java
@@ -59,6 +61,7 @@ E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\contr
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewCanceTrackingBirdServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewFeedbackServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\BirdFeedbackDTO.java
+E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\ManagerCreateErrorDTO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\RequiredOrderDetailDTO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\Mail\Email.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewProductServlet.java
@@ -94,6 +97,7 @@ E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\A
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\ManagerOrderDTO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\CheckoutRequiredController.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\OrderDetailController.java
+E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerCreateProductServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dao\RequiredOrderDetailDAO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\login\LoginServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerDashBoardServlet.java
@@ -102,6 +106,8 @@ E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\contr
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\RpaymentController.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\admin\AdminUpdatePayment.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\AddController.java
+E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\RemoveItemPairingFromCart.java
+E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\manager\ManagerViewCreateProductServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dao\ManagerProductDAO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dao\OrderBirdDAO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\HistoryBillDAO\HistoryDAO.java
@@ -111,6 +117,7 @@ E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\contr
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\AdminDTO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\birdproduct\BirdSearchServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dto\RequiredOrderDTO.java
+E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\login\CreateAccountAdminServlet.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\dao\OrderDetailDAO.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\util\DBConnection.java
 E:\SWP391\Template Bird Farm Selling\Bird_Farm_Shop\src\main\java\birdfarm\controller\cart\RequiredPaymentResultController.java

@@ -35,7 +35,7 @@
                 <li>
                     <a href="DispatchServlet?btAction=AdminControlAccount">
                         <i class="pe-7s-user"></i>
-                        <p>Tai khoan</p>
+                        <p>Tài khoản</p>
                     </a> 
                 </li>
 
