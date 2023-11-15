@@ -72,7 +72,7 @@ public class RequiredOrderDetailDTO implements Serializable{
         this.birdNestFemale = birdNestFemale;
     }
 
-    public RequiredOrderDetailDTO(int idRequireOrder, String idBirdNest, double fee, Date createdDate, String status, String birdFatherName, String birdMotherName) {
+    public RequiredOrderDetailDTO(int idRequireOrder, String idBirdNest, double fee, Date createdDate, String status, String birdFatherName, String birdMotherName,int birdNestMale, int birdNestFemale,double feeBirdNestMale, double feeBirdNestFemale) {
         this.idRequireOrder = idRequireOrder;
         this.idBirdNest = idBirdNest;
         this.fee = fee;
@@ -80,6 +80,10 @@ public class RequiredOrderDetailDTO implements Serializable{
         this.status = status;
         this.birdFatherName = birdFatherName;
         this.birdMotherName = birdMotherName;
+        this.birdNestMale = birdNestMale;
+        this.birdNestFemale = birdNestFemale;
+        this.feeBirdNestMale = feeBirdNestMale;
+        this.feeBirdNestFemale = feeBirdNestFemale;
     }
     public RequiredOrderDetailDTO(int idRequireOrder, int birdNestMale, int birdNestFemale, String status, String birdFatherName, String birdMotherName, String reason, String imageURL, String trackingDate) {
         this.idRequireOrder = idRequireOrder;

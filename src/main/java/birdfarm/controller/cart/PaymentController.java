@@ -74,6 +74,7 @@ public class PaymentController extends HttpServlet {
             String receiverName = req.getParameter("fullname");
             //Get paymentId
             int paymentId = Integer.parseInt(req.getParameter("payType"));
+            String quantity = req.getParameter("quantity");
             //Get isPay
             boolean isPay = false;
             //Get orderCode

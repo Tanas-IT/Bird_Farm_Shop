@@ -239,7 +239,7 @@
                                                     ${formatPrice}
                                                 </div>
                                                 <div class="col-2 col-sm-2 text-secondary-d2">
-                                                    <fmt:formatNumber var="formatTotalPrice" value="${orderDetailItem.totalPrice}" />
+                                                    <fmt:formatNumber var="formatTotalPrice" value="${orderDetailItem.bird.quantity * orderDetailItem.bird.salePrice}" />
                                                     ${formatTotalPrice} VNĐ
                                                 </div>
                                             </div>
@@ -258,7 +258,7 @@
                                                     ${formatPrice}
                                                 </div>
                                                 <div class="col-2 col-sm-2 text-secondary-d2">
-                                                    <fmt:formatNumber var="formatTotalPrice" value="${orderDetailItem.totalPrice}" />
+                                                    <fmt:formatNumber var="formatTotalPrice" value="${orderDetailItem.bird.quantity * orderDetailItem.bird.salePrice}" />
                                                     ${formatTotalPrice} VNĐ
                                                 </div>
                                             </div>

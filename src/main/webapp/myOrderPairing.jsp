@@ -229,7 +229,8 @@
                             </td>
                             <td>${c.birdFatherName} và ${c.birdMotherName}</td>
                             <td>
-                                <fmt:formatNumber var="formatTotalPrice" value="${c.fee}"  />
+                                <c:set var="bonusFee" value="${(c.feeBirdNestMale * c.birdNestMale) + (c.feeBirdNestFemale *c.birdNestFemale)}"/>
+                                <fmt:formatNumber var="formatTotalPrice" value="${c.fee + bonusFee}"  />
                                 ${formatTotalPrice}  VNĐ
                             </td>
                             <td> <c:choose>

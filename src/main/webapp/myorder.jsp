@@ -214,7 +214,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    <c:set var="checkConcurrent" value=""/>
                     <c:forEach items ="${listMyOrder}" var="c">
+                       
+                        <c:if test="${c.idOrder ne checkConcurrent}">
+                            <c:set var="checkConcurrent" value="${c.idOrder}"/>
                         <tr>
                             <td><a href="DispatchServlet?btAction=HistoryDetail&idOrder=${c.idOrder}">
                                     ${c.idOrder}</a></td>
@@ -222,7 +226,12 @@
                                 <fmt:formatDate value="${c.createdDate}" pattern="dd/MM/yyyy" var="formattedDateString" />
                                 ${formattedDateString}
                             </td>
-                            <td>${c.birdName}</td>
+                           
+                            <td> <c:forEach items ="${listMyOrder}" var="d">
+                                ${d.birdName},
+                                </c:forEach>
+                            </td>
+                            
                             <td>
                                 <fmt:formatNumber var="formatTotalPrice" value="${c.total}"  />
                                 ${formatTotalPrice}  VNĐ
@@ -253,6 +262,7 @@
                                     <i style="font-size: 27px;" class=" fa-solid fa-eye"></i></a>
                             </td>
                         </tr>
+                        </c:if>
                     </c:forEach>
                 </tbody>
             </table>

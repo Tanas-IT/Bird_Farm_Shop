@@ -18,37 +18,38 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 /**
  *
  * @author Minh
  */
 @WebServlet(name = "PairingController", urlPatterns = {"/PairingController"})
 public class PairingController extends HttpServlet {
-    
+
     private static final String SUCCESS = "pairing.jsp";
     private static final String ERROR = "pairing.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String url = ERROR;
         try {
             HttpSession session = request.getSession();
-            String action = (String)request.getAttribute("action");
-            
-            if(!action.equals("Đổi chim giống khác")) {
-               session.removeAttribute("RCART");
-                session.setAttribute("RquantityOfCart",0);
-                session.removeAttribute("Rtotal");
+            String action = (String) request.getAttribute("action");
+
+            session.removeAttribute("RCART");
+            session.setAttribute("RquantityOfCart", 0);
+            session.removeAttribute("Rtotal");
+            if (!action.equals("Đổi chim giống khác")) {
+
             } else {
                 RequiredCart quantityCart = (RequiredCart) session.getAttribute("RCART");
-                session.setAttribute("RquantityOfCart",quantityCart.getRcart().size());
+                session.setAttribute("RquantityOfCart", quantityCart.getRcart().size());
             }
             String userID = request.getParameter("userID");
             BirdDAO dao = new BirdDAO();
             List<BirdDTO> fList = dao.getListFemale();
             List<BirdDTO> mList = dao.getListMale();
-            if(!fList.isEmpty()||!mList.isEmpty()){
+            if (!fList.isEmpty() || !mList.isEmpty()) {
                 session.setAttribute("LIST_M", mList);
                 session.setAttribute("LIST_F", fList);
                 session.setAttribute("userID", userID);

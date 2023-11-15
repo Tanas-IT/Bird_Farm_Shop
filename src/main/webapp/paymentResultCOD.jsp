@@ -173,94 +173,88 @@
             </div>
 
         </nav>
-        <div class="container">
-            <div class="table-responsive">
-                <h1>Thông tin người nhận</h1>
-                <c:if test="${sessionScope.user != null}">
-                    <c:if test="${not empty sessionScope.user}">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>FullName:</th>
-                                <td>${sessionScope.user.fullName}</td>
-                            </tr>
-                            <tr>
-                                <th>Email:</th>
-                                <td>${sessionScope.EMAIL}</td>
-                            </tr>
-                        </table>
-                    </c:if>
-                </c:if>
-            </div>
-        </div>
-        <div class="container">
+          <div class="container">
             <div class="table-responsive">
                 <h1>Hóa đơn</h1>
                 <c:if test="${sessionScope.ORDERDETAIL != null}">
                     <c:if test="${not empty sessionScope.ORDERDETAIL}">
-                        <c:forEach var="birdItem" items="${sessionScope.ORDERDETAIL}">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>Mã đơn hàng</th>
-                                <td>${birdItem.idOrder}</td>
-                            </tr>
-                            <tr>
-                                <th>Ngày giao</th>
-                                <td>${birdItem.createdDate}</td>
-                            </tr>
-                            <tr>
-                                <th>Trạng thái</th>
-                                <td>${birdItem.status}</td>
-                            </tr>
-                            <tr>
-                                <th>Lưu ý</th>
-                                <td>${birdItem.note}</td>
-                            </tr>
-                            <tr>
-                                <th>Họ và tên người nhận</th>
-                                <td>${birdItem.fullName}</td>
-                            </tr>
-                            
-                            <tr>
-                                <th>Tên sản phẩm</th>
-                                <td>${birdItem.bird.name}</td>
-                            </tr>
-                            <tr>
-                                <th>Mô tả</th>
-                                <td>${birdItem.bird.shortDescription}</td>
-                            </tr>
-                            <tr>
-                                <th>Email</th>
-                                <td>${sessionScope.EMAIL}</td>
-                            </tr>
-                            <tr>
-                                <th>Đơn giá</th>
-                                <td>
-                                    <fmt:formatNumber var="formatPrice" value=" ${birdItem.price}"  />
+                        <c:forEach var="birdItem" items="${sessionScope.ORDERDETAIL}" varStatus="count">
+                            <c:if test="${count.index == 0}">
+                                <h2 style="margin-top: 10%; margin-bottom: 20px" class="text-center text-danger">Thông tin đơn hàng</h2>
+                                <table class="table table-striped col-md-6">
+                                    <tr>
+                                        <th>Mã đơn hàng</th>
+                                        <td>${birdItem.idOrder}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Ngày giao</th>
+                                        <td>${birdItem.createdDate}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Trạng thái</th>
+                                        <td>${birdItem.status}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Lưu ý</th>
+                                        <td>${sessionScope.ORDER.note}</td>
+                                    </tr>
+                                </table>
+                               <h2 style="margin-bottom: 20px" class="text-center text-danger">Thông tin giao hàng</h2>
+                                <table class="table table-striped col-md-6">
+                                    <tr>
+                                        <th>Họ và tên người nhận</th>
+                                        <td>${sessionScope.ORDER.receiverName}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Email</th>
+                                        <td>${sessionScope.EMAIL}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Địa chỉ</th>
+                                        <td>${sessionScope.ORDER.receiverAddress}</td>
+                                    </tr>
+                                </table>
+                            </c:if>
+                        </c:forEach>
+                        <h2 style="margin-bottom: 20px" class="text-center text-danger">Thông tin thanh toán</h2>
+                            <table class="table table-striped">
+                                <tr>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Mô tả</th>
+                                    <th>Đơn giá</th>
+                                    <th>Số lượng</th>
+                                    <th>Tổng tiền</th>
+                                    
+                                </tr>
+                            <c:forEach var="birdItem" items="${sessionScope.ORDERDETAIL}">
+                                <tr>
+                                    <td>${birdItem.bird.name}</td>
+                                    <td>${birdItem.bird.shortDescription}</td>
+                                    <td>
+                                        <fmt:formatNumber var="formatPrice" value=" ${birdItem.price}"  />
                                         ${formatPrice}  VNĐ
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Số lượng</th>
-                                <td>${birdItem.quantity}</td>
-                            </tr>
-                            <tr>
-                                <th>Tổng tiền</th>
-                                <td>
-                                    <fmt:formatNumber var="formatTotalPrice" value="${birdItem.price * birdItem.quantity}"  />
-                                     ${formatTotalPrice}  VNĐ
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>Địa chỉ</th>
-                                <td>${sessionScope.ORDER.receiverAddress}</td>
-                            </tr>
+                                    </td>
+                                    <td>${birdItem.quantity}</td>
+                                     <td>
+                                        <fmt:formatNumber var="formatTotalPrice" value="${birdItem.price * birdItem.quantity}"  />
+                                        ${formatTotalPrice}  VNĐ
+                                    </td>
+                                </tr>
                             </c:forEach>
+                                <tr>
+                                    <td colspan="4">Tổng</td>
+                                    <td colspan="4">
+                                        <fmt:formatNumber var="formatFinalTotalPrice" value="${sessionScope.ORDER.total}"  />
+                                        ${formatFinalTotalPrice}  VNĐ
+                                    </td>
+                                </tr>
+                            </table>
                         </table>
                     </c:if>
                 </c:if>
             </div>
         </div>
-        <div style="text-align: center; margin-top: 20px;">
+        <div style="text-align: center; margin: 20px 0;">
             <a href="DispatchServlet?btAction=Login&txtUsername=${user.username}&txtPassword=${user.password}" class="btn btn-success btn-lg">Quay lại trang mua hàng</a>
         </div>
         <!-- Footer -->
@@ -268,15 +262,15 @@
         <!-- End of footer -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script>
-                            document.addEventListener("DOMContentLoaded", function (event) {
-                                var scrollpos = localStorage.getItem("scrollpos");
-                                if (scrollpos)
-                                    window.scrollTo(0, scrollpos);
-                            });
+                                document.addEventListener("DOMContentLoaded", function (event) {
+                                    var scrollpos = localStorage.getItem("scrollpos");
+                                    if (scrollpos)
+                                        window.scrollTo(0, scrollpos);
+                                });
 
-                            window.onscroll = function (e) {
-                                localStorage.setItem("scrollpos", window.scrollY);
-                            };
+                                window.onscroll = function (e) {
+                                    localStorage.setItem("scrollpos", window.scrollY);
+                                };
         </script>
     </body>
 </html>

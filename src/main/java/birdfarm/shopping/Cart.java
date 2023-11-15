@@ -51,7 +51,7 @@ public class Cart {
                 boolean checkQuantity = dao.checkQuantityProduct(bird.getIdBird(), bird.getQuantityOfUser());
                 //Neu vuot qua so luong cho phep thi block
                 if (!checkQuantity) {
-                    bird.setQuantity(currentQuantity);
+                    bird.setQuantityOfUser(currentQuantity);
                     dao.updateQuantity(bird);
                 } else {
                     this.cart.put(bird.getIdBird(), bird);
@@ -60,7 +60,7 @@ public class Cart {
             } else {
                 OrderBirdDAO dao = new OrderBirdDAO();
                 //Kiem tra so san pham trong kho hang
-                boolean checkQuantity = dao.checkQuantityProduct(bird.getIdBird(), bird.getQuantity());
+                boolean checkQuantity = dao.checkQuantityProduct(bird.getIdBird(), bird.getQuantityOfUser());
                 //Neu vuot qua so luong cho phep thi block
                 if (!checkQuantity) {
                     check = false;

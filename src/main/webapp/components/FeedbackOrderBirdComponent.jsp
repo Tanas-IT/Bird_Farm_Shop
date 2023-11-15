@@ -13,7 +13,7 @@
             position: fixed;
             top: 50%;
             left: 50%;
-            transform: translate(205px, 146px);
+            transform: translate(205px, 205px);
             padding: 10px 20px;
             background-color: #4CAF50;
             color: white;

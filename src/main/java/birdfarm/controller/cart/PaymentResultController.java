@@ -55,10 +55,10 @@ public class PaymentResultController extends HttpServlet {
                     boolean checkQuantity = false;
                     if (cart != null) {
                         ArrayList<String> removeProductInCart = new ArrayList<>();
-                        for (String productKey : cart.getCart().keySet()) {
-                            checkQuantity = bdao.updateQuantity(cart.getCart().get(productKey));
-                            cart.getCart().get(productKey).setQuantityOfUser(0);
-                            removeProductInCart.add(productKey);
+                        for (String birdKey : checkOutCart.getCart().keySet()) {
+                            checkQuantity = bdao.updateQuantity(checkOutCart.getCart().get(birdKey));
+                            cart.getCart().get(birdKey).setQuantityOfUser(0);
+                            removeProductInCart.add(birdKey);
                         }
                         for(String productKey : removeProductInCart) {
                             cart.getCart().remove(productKey);
@@ -81,8 +81,8 @@ public class PaymentResultController extends HttpServlet {
                 boolean checkQuantity = false;
                 if (cart != null) {
                      ArrayList<String> removeProductInCart = new ArrayList<>();
-                        for (String productKey : cart.getCart().keySet()) {
-                            checkQuantity = bdao.updateQuantity(cart.getCart().get(productKey));
+                        for (String productKey : checkOutCart.getCart().keySet()) {
+                            checkQuantity = bdao.updateQuantity(checkOutCart.getCart().get(productKey));
                             cart.getCart().get(productKey).setQuantityOfUser(0);
                             removeProductInCart.add(productKey);
                         }

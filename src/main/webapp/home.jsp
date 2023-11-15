@@ -641,13 +641,15 @@
                     </div>
                 </div>
             </div>
-            <div class="container">
+           <div class="container">
                 <div class="container-feedback">
-                    <% for (BirdFeedbackDTO birdFeedback : listBirdFeedback) {
+                    <% int i = 0;
+                        for (BirdFeedbackDTO birdFeedback : listBirdFeedback) {
+                        if(i <=1) {
                     %> 
                     <div style="margin-top:30px; margin-right: 20px;" class="col-md-6">
                         <div class="client_box">
-                            <div class="detail_box">
+                            <div style="height: 233px;" class="detail_box">
                                 <div class="img_box">
                                     <img style="height: 94px;" src="https://cdn.icon-icons.com/icons2/2468/PNG/512/user_icon_149329.png">
                                 </div>
@@ -658,7 +660,9 @@
                             </div>
                         </div>
                     </div>
-                    <%}%>
+                    <%}
+                        i++;
+                    }%>
                 </div>
             </div>
         </section>

@@ -258,10 +258,7 @@
         <!-- Footer -->
         <div style="margin-top: 20px;">
             <%@include file="components/footerComponent.jsp" %>
-        </div>
-                <div id='notificationPairing'>
-                    ${sessionScope.PAYMENT}
-                </div>           
+        </div>      
         <!-- End of footer -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

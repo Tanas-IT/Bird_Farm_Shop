@@ -45,10 +45,9 @@ public class ManagerProductDAO implements Serializable {
                             "      ,[period]\n" +
                             "      ,[shortDescription]\n" +
                             "      ,[isPairing]\n" +
-                            "  FROM [BIRD_FARM_SHOP_1].[dbo].[BirdProduct] bp\n" +
+                            "  FROM [BIRD_FARM_SHOP].[dbo].[BirdProduct] bp\n" +
                             "  Join BirdProfile bf\n" +
-                            "  ON bp.idBird = bf.idBird\n" +
-                            "  Where bp.type=4";
+                            "  ON bp.idBird = bf.idBird\n" ;
                 stm = con.prepareCall(sql);
                 rs = stm.executeQuery();
                 while (rs.next()) {
@@ -363,6 +362,34 @@ public class ManagerProductDAO implements Serializable {
         return result;
     }
 
+     public boolean deleteBirdPro(String idBird) throws SQLException, NamingException, ClassNotFoundException {
+        Connection con = null;
+        PreparedStatement stm = null;
+        boolean result = false;
+        try {
+            //1. Make connection
+            con = DBConnection.makeConnection();
+            if (con != null) {
+                String sql = "Delete From BirdProfile "
+                        + "Where idBird = ?";
+                stm = con.prepareStatement(sql);
+                stm.setString(1, idBird);
+                int effectRows = stm.executeUpdate();
+                if (effectRows > 0) {
+                    result = true;
+                }
+            }
+        } finally {
+
+            if (stm != null) {
+                stm.close();
+            }
+            if (con != null) {
+                con.close();
+            }
+        }
+        return result;
+    }
     public boolean insertTableBirdProduct(String idBird, String name,
             String overview, int idBirdSpecies, int quantity, Double importPrice,
             Double salePrice, String imageURL, String period, int type, String videoURL,

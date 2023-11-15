@@ -62,7 +62,7 @@
         <c:if test="${sessionScope.user.roleName == 'Quản lý'}">
             <%@include file="components//ManagerComponent.jsp" %>
         </c:if>
-        <c:if test="${sessionScope.user.roleName == 'Staff'}">
+        <c:if test="${sessionScope.user.roleName == 'Nhân viên'}">
             <%@include file="components//StaffComponent.jsp" %>
         </c:if>
         <div class="main-panel">

@@ -44,6 +44,7 @@ public class ManagerDeleteProductServlet extends HttpServlet {
         String url = ERROR_PAGE;
         try {
             ManagerProductDAO dao = new ManagerProductDAO();
+            dao.deleteBirdPro(idBird);
             boolean result = dao.deleteBird(idBird);
             if (result) {              
                 url = "DispatchServlet?btAction=ManagerViewProduct";

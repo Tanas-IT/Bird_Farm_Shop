@@ -31,7 +31,7 @@ public class OrderDAO {
     private static final String UPDATE_PAYMENT = "UPDATE [Order] SET paymentID = ? WHERE orderCode=?";
     private static final String UPDATE_STATUS = "UPDATE [Order] SET status=? WHERE orderCode=?";
     private static final String UPDATE_ISPAY = "UPDATE [Order] SET isPay=? WHERE orderCode=?";
-     private static final String GET_ALL_ORDER = "Select o.idOrder, o.createdDate, bp.name, od.quantity, od.price, o.status, od.totalPrice From [Order] o\n"
+     private static final String GET_ALL_ORDER = "Select o.idOrder, o.createdDate, bp.name, od.quantity, od.price, o.status, o.Total From [Order] o\n"
                                                 + "  Join [User] u\n"
                                                 + "  ON o.idUser = u.idUser\n"
                                                 + "  Join OrderDetail od\n"
@@ -253,7 +253,7 @@ public class OrderDAO {
                     String oBirdName = rs.getString("name");
                     Date oDate = rs.getDate("createdDate");
                     String oStatus = rs.getString("status");
-                    double oPrice = rs.getDouble("totalPrice");
+                    double oPrice = rs.getDouble("Total");
                     order = new OrderDTO(oId, oDate, oStatus, oPrice, oBirdName);
                     list.add(order);
                 }
@@ -306,21 +306,29 @@ public class OrderDAO {
             con = DBConnection.makeConnection();
             if (con != null) {
                 String sql = "SELECT [idRequiredOrderDetail]\n" +
-                    "      ,ro.[idRequiredOrder]\n" +
-                    "      , bp.name as BirdFatherName,\n" +
-                    "	  ro.createdDate,\n" +
-                    "	  ro.status,\n" +
-                    "	  bp1.name as BirdMotherName\n" +
-                    "      ,[idBirdNest]\n" +
-                    "      ,[fee]\n" +
-                    "  FROM [BIRD_FARM_SHOP].[dbo].[RequiredOrderDetail] rod\n" +
-                    "  Join BirdProduct bp\n" +
-                    "  ON rod.idBirdFather = bp.idBird\n" +
-                    "  Join BirdProduct bp1\n" +
-                    "  ON rod.idBirdMother = bp1.idBird\n" +
-                    "  Join RequiredOrder ro\n" +
-                    "  ON ro.idRequiredOrder = rod.idRequiredOrder "
-                        + "Where ro.idUser = ?";
+"                          ,ro.[idRequiredOrder]\n" +
+"                          , bp.name as BirdFatherName,\n" +
+"                    	  ro.createdDate, \n" +
+"                    	  ro.status,\n" +
+"                    	  bp1.name as BirdMotherName\n" +
+"                          ,[idBirdNest]\n" +
+"                          ,[fee]\n" +
+"                    , [birdNestMale]\n" +
+"                          ,[birdNestFemale]\n" +
+"                     ,bf.[feeBirdNestMale]\n" +
+"                          ,bf1.[feeBirdNestFemale]\n" +
+"                      FROM [BIRD_FARM_SHOP].[dbo].[RequiredOrderDetail] rod\n" +
+"                      Join BirdProduct bp\n" +
+"                      ON rod.idBirdFather = bp.idBird\n" +
+"                      Join BirdProduct bp1\n" +
+"                      ON rod.idBirdMother = bp1.idBird\n" +
+"                      Join RequiredOrder ro\n" +
+"                      ON ro.idRequiredOrder = rod.idRequiredOrder\n" +
+"					  Join BirdProfile bf\n" +
+"                      ON rod.idBirdFather = bf.idBird\n" +
+"					  Join BirdProfile bf1\n" +
+"                      ON rod.idBirdMother = bf1.idBird\n" +
+"                         Where ro.idUser = ?";
                 stm = con.prepareStatement(sql);
                 stm.setString(1, idUser);
                 rs = stm.executeQuery();
@@ -332,7 +340,11 @@ public class OrderDAO {
                     String status = rs.getString("status");
                     double fee = rs.getDouble("fee");
                     String idBirdNest = rs.getString("idBirdNest");
-                    RequiredOrderDetailDTO bird = new RequiredOrderDetailDTO(idRequiredOrder, idBirdNest, fee, createdDate, status,BirdFatherName, BirdMotherName);
+                    int birdNestMale = rs.getInt("birdNestMale");
+                    int birdNestFemale = rs.getInt("birdNestFemale");
+                    double feeBirdNestMale = rs.getDouble("feeBirdNestMale");
+                    double feeBirdNestFemale = rs.getDouble("feeBirdNestFemale");
+                    RequiredOrderDetailDTO bird = new RequiredOrderDetailDTO(idRequiredOrder, idBirdNest, fee, createdDate, status,BirdFatherName, BirdMotherName, birdNestMale, birdNestFemale,feeBirdNestMale, feeBirdNestFemale);
                     if(this.listRequiredOrderDetailDTO == null) {
                         this.listRequiredOrderDetailDTO = new ArrayList<>();
                     }

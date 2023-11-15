@@ -7,6 +7,7 @@ package birdfarm.controller.birdproduct;
 
 import birdfarm.dao.BirdDAO;
 import birdfarm.dto.BirdDTO;
+import birdfarm.dto.UserDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -38,8 +40,11 @@ public class CompareBirdProductServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = COMPARE_PAGE;
         response.setContentType("text/html;charset=UTF-8");
+        HttpSession session = request.getSession();
         String birdID1 = request.getParameter("birdID1");
         String birdID2 = request.getParameter("birdID2");
+        UserDTO user = (UserDTO)session.getAttribute("user");
+        
         try {
             BirdDAO birdDAO = new BirdDAO();
             BirdDTO bird1 = birdDAO.getBirdByID(birdID1);
@@ -51,6 +56,9 @@ public class CompareBirdProductServlet extends HttpServlet {
             if(bird1 != null && bird2 != null) {
                 request.setAttribute("bird1", bird1);
                 request.setAttribute("bird2", bird2);
+            }
+            if(user == null) {
+                url = "sosanhguest.jsp";
             }
           
         } catch (SQLException ex) {
